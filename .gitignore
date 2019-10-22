@@ -61,3 +61,11 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+.idea/.gitignore
+.idea/.idea.CardGameHexBoard/riderModule.iml
+.idea/.idea.CardGameHexBoard/.idea/contentModel.xml
+.idea/.idea.CardGameHexBoard/.idea/encodings.xml
+.idea/.idea.CardGameHexBoard/.idea/indexLayout.xml
+.idea/.idea.CardGameHexBoard/.idea/modules.xml
+.idea/.idea.CardGameHexBoard/.idea/projectSettingsUpdater.xml
+.idea/.idea.CardGameHexBoard/.idea/vcs.xml
