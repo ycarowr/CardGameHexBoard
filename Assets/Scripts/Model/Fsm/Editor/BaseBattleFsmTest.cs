@@ -9,36 +9,44 @@ namespace Game.Fsm.Tests
     {
         protected MockFsmController Controller;
         protected EventsDispatcher Dispatcher;
-        protected BattleFsm Fsm;
         protected GameData GameData;
         protected GameParameters Parameters;
 
         [SetUp]
-        public void Setup()
+        public virtual void Setup()
         {
             Parameters = GameParameters.Load();
             Dispatcher = EventsDispatcher.Load();
             GameData = GameData.Load();
             Dispatcher.AddListener(this);
             Controller = new GameObject("MockFsmController").AddComponent<MockFsmController>();
-            Fsm = new BattleFsm(Controller, GameData.CurrentGameInstance, Parameters, Dispatcher);
-            Assert.IsNotNull(Controller);
+            Controller.Awake();
+            GameData.Initialize(Controller);
         }
 
         [TearDown]
-        public void End()
+        public virtual void End()
         {
-            Fsm.Clear();
+            GameData.Clear();
             Dispatcher.RemoveListener(this);
         }
 
         public class MockFsmController : MonoBehaviour, IGameController
         {
-            BattleFsm _fsm;
+            EventsDispatcher _dispatcher;
+            GameData _gameData;
             public MonoBehaviour MonoBehaviour => this;
 
             public void RestartGameImmediately()
             {
+                _dispatcher.Notify<IRestartGame>(i => i.OnRestart());
+                _gameData.Clear();
+            }
+
+            public void Awake()
+            {
+                _gameData = GameData.Load();
+                _dispatcher = EventsDispatcher.Load();
             }
         }
     }

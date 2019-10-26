@@ -37,7 +37,10 @@ namespace HexCardGame
         void Start() => StartBattle();
 
         /// <summary>  Start the battle. Called only once after being initialized by the Bootstrapper. </summary>
-        [Button]
-        public void StartBattle() => _gameData.Initialize(this);
+        [Button] void StartBattle()
+        {
+            _gameData.Initialize(this);
+            _gameData.CurrentGameInstance.BattleFsm.StartBattle();
+        }
     }
 }

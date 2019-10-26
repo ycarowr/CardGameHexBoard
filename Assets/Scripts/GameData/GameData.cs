@@ -40,8 +40,6 @@ namespace HexCardGame
             CurrentGameInstance = LoadGame();
             if (CurrentGameInstance == null)
                 CreateGame(controller);
-
-            CurrentGameInstance.BattleFsm.StartBattle();
         }
     }
 }

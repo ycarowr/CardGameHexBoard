@@ -1,4 +1,6 @@
-﻿namespace HexCardGame.Model.Game
+﻿using UnityEngine;
+
+namespace HexCardGame.Model.Game
 {
     /// <summary> Start Game Step Implementation. </summary>
     public class StartGameMechanics : BaseGameMechanics

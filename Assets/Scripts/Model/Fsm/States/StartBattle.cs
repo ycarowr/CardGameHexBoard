@@ -25,11 +25,18 @@ namespace HexCardGame
         public override void OnEnterState()
         {
             base.OnEnterState();
+            
             //schedule pre game
-            Fsm.Controller.MonoBehaviour.StartCoroutine(PreGameRoutine());
-
+            if(Application.isPlaying)
+                Fsm.Controller.MonoBehaviour.StartCoroutine(PreGameRoutine());
+            else 
+                Game.PreStartGame();
+            
             //schedule start game
-            Fsm.Controller.MonoBehaviour.StartCoroutine(StartGameRoutine());
+            if(Application.isPlaying)
+                Fsm.Controller.MonoBehaviour.StartCoroutine(StartGameRoutine());
+            else
+                Game.StartGame();
         }
 
         #endregion
