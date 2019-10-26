@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Game.Ui;
 using Tools.Patterns.GameEvents;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace HexCardGame.UI
 
     /// <summary> End game HUD. Solves model dependencies accessing the game controller via Singleton. </summary>
     [RequireComponent(typeof(IUiUserInput))]
-    public class UiEndGameContainer : UiGameEventListener, IRestartGameHandler, IFinishGame, IStartGame
+    public class UiEndGameContainer : UiEventListener, IRestartGameHandler, IFinishGame, IStartGame
     {
         const float DelayToEnable = 1f;
         GameData GameData { get; set; }

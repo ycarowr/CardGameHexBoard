@@ -1,11 +1,12 @@
-﻿using Tools.Patterns.GameEvents;
+﻿using Game.Ui;
+using Tools.Patterns.GameEvents;
 using UnityEngine;
 
 namespace HexCardGame.UI
 {
     [RequireComponent(typeof(IUiUserInput))]
     [RequireComponent(typeof(IUiPlayer))]
-    public class UiFinishUserTurn : UiGameEventListener, IFinishPlayerTurn
+    public class UiFinishUserTurn : UiEventListener, IFinishPlayerTurn
     {
         IUiUserInput UserInput { get; set; }
         IUiPlayer Ui { get; set; }
