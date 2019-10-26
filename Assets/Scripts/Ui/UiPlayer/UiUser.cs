@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame.UI
+﻿namespace HexCardGame.UI
 {
     /// <summary> User HUD </summary>
     public class UiUser : UiPlayer

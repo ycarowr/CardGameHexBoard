@@ -5,7 +5,7 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(IUiUserInput))]
     [RequireComponent(typeof(IUiPlayer))]
     public class UiUserHudButtons : MonoBehaviour,
-        UiButtonRandom.IPressPassTurn,
+        UiButtonPassTurn.IPressPassTurn,
         UiButtonLose.IPressLose,
         UiButtonWin.IPressWin
     {
@@ -20,7 +20,7 @@ namespace HexCardGame.UI
         {
             UserInput = GetComponent<IUiUserInput>();
             Ui = GetComponent<IUiPlayer>();
-            var buttons = gameObject.GetComponentsInChildren<UiButton>();
+            var buttons = GetComponentsInChildren<UiButton>();
             foreach (var button in buttons)
                 button.SetHandler(this);
         }
@@ -35,21 +35,21 @@ namespace HexCardGame.UI
 
         #region Buttons
 
-        void UiButtonRandom.IPressPassTurn.PassTurn()
+        void UiButtonPassTurn.IPressPassTurn.PassTurn()
         {
-//            if (Ui.GameData.CurrentGameInstance.TurnLogic.GetPlayer(Ui.Id).PassTurn())
-//                DisableInput();
+            if (Ui.GameData.CurrentGameInstance.BattleFsm.TryPassTurn(Ui.Id))
+                DisableInput();
         }
 
         void UiButtonLose.IPressLose.PressLose()
         {
-//            Ui.Lose();
+            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.Enemy);
             DisableInput();
         }
 
         void UiButtonWin.IPressWin.PressWin()
         {
-//            Ui. Win();
+            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.User);
             DisableInput();
         }
 

@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using HexCardGame.Model.Game;
-using HexCardGame;
 using UnityEngine;
 
 namespace HexCardGame
 {
     public class EnemyTurn : TurnState
     {
-        protected override PlayerId Id => PlayerId.Enemy;
-
-        protected EnemyTurn(TurnBasedFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents) :
+        protected EnemyTurn(BattleFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents) :
             base(fsm, game, gameParameters, gameEvents)
         {
         }
+
+        protected override PlayerId Id => PlayerId.Enemy;
 
         Coroutine AiFinishTurnRoutine { get; set; }
         float AiFinishTurnDelay => GameParameters.Timers.TimeUntilAiFinishTurn;

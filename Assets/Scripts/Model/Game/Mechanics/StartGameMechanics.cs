@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame.Model.Game
+﻿namespace HexCardGame.Model.Game
 {
     /// <summary> Start Game Step Implementation. </summary>
     public class StartGameMechanics : BaseGameMechanics
@@ -23,6 +21,6 @@ namespace HexCardGame.Model.Game
         }
 
         /// <summary> Dispatch start game event to the listeners. </summary>
-        void OnGameStarted(IPlayer starterPlayer) => GameEvents.Notify<IStartGame>(i => i.OnStartGame(starterPlayer));
+        void OnGameStarted(IPlayer starterPlayer) => Dispatcher.Notify<IStartGame>(i => i.OnStartGame(starterPlayer));
     }
 }

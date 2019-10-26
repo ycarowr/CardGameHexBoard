@@ -8,7 +8,11 @@ namespace HexCardGame.UI
     {
         protected ParticleSystem[] Particles { get; set; }
 
-        protected virtual void Awake() => Particles = GetComponentsInChildren<ParticleSystem>();
+        protected override void Awake()
+        {
+            base.Awake();
+            Particles = GetComponentsInChildren<ParticleSystem>();
+        }
 
         protected virtual IEnumerator Play(float delay = 0)
         {

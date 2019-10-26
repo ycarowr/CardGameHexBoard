@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Tools.Patterns.Observer;
-using HexCardGame;
 
 namespace HexCardGame
 {

@@ -1,19 +1,13 @@
-﻿using System.Collections.Generic;
-using HexCardGame.Model.TurnLogic;
-using HexCardGame;
+﻿using HexCardGame.Model.TurnLogic;
 
 namespace HexCardGame.Model.Game
 {
     /// <summary> A game interface. </summary>
     public interface IGame
     {
-        GameParameters GameParameters { get; }
-        EventsDispatcher GameEvents { get; }
-        List<BaseGameMechanics> Mechanics { get; }
+        EventsDispatcher Dispatcher { get; }
 
-        TurnBasedFsm Fsm { get; }
-
-        List<IPlayer> Players { get; }
+        BattleFsm BattleFsm { get; }
 
         ITurnLogic TurnLogic { get; }
 

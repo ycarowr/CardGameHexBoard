@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame
+﻿namespace HexCardGame
 {
     public interface IPlayer
     {

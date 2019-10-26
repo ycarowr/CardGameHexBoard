@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using HexCardGame;
 
 namespace HexCardGame.Model.TurnLogic
 {
     public interface ITurnLogic
     {
         PlayerId CurrentPlayerId { get; }
-        
+
         /// <summary> List with all the players that are playing the match. </summary>
         List<IPlayer> Players { get; }
 
@@ -39,7 +38,7 @@ namespace HexCardGame.Model.TurnLogic
 
         bool IsUser();
         bool IsEnemy();
-        
+
         /// <summary> Returns a player opponent. </summary>
         IPlayer GetOpponent(IPlayer player);
 

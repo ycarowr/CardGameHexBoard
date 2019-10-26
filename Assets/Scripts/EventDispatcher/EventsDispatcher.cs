@@ -1,7 +1,6 @@
 ﻿using System;
 using Tools.Patterns.Observer;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 /// <summary>
 ///     Dispatcher of the events related to the Battle FSM.

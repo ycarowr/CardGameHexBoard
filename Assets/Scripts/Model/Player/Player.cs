@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame
+﻿namespace HexCardGame
 {
     /// <summary> A concrete player class. </summary>
     public class Player : IPlayer

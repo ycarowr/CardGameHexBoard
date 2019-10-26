@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using HexCardGame;
 
 namespace HexCardGame.Model.Game
 {
@@ -21,6 +20,6 @@ namespace HexCardGame.Model.Game
 
         /// <summary> Dispatch pre start game event to the listeners</summary>
         void OnGamePreStarted(List<IPlayer> players) =>
-            GameEvents.Notify<IPreGameStart>(i => i.OnPreGameStart(players));
+            Dispatcher.Notify<IPreGameStart>(i => i.OnPreGameStart(players));
     }
 }

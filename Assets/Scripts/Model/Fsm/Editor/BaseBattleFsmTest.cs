@@ -1,17 +1,17 @@
-﻿using NUnit.Framework;
+﻿using HexCardGame;
+using NUnit.Framework;
 using Tools.Patterns.Observer;
-using HexCardGame;
 using UnityEngine;
 
 namespace Game.Fsm.Tests
 {
     public class BaseBattleFsmTest : IListener
     {
-        protected GameParameters Parameters;
         protected MockFsmController Controller;
         protected EventsDispatcher Dispatcher;
+        protected BattleFsm Fsm;
         protected GameData GameData;
-        protected TurnBasedFsm Fsm;
+        protected GameParameters Parameters;
 
         [SetUp]
         public void Setup()
@@ -21,7 +21,7 @@ namespace Game.Fsm.Tests
             GameData = GameData.Load();
             Dispatcher.AddListener(this);
             Controller = new GameObject("MockFsmController").AddComponent<MockFsmController>();
-            Fsm = new TurnBasedFsm(Controller, GameData.CurrentGameInstance, Parameters, Dispatcher);
+            Fsm = new BattleFsm(Controller, GameData.CurrentGameInstance, Parameters, Dispatcher);
             Assert.IsNotNull(Controller);
         }
 
@@ -34,8 +34,12 @@ namespace Game.Fsm.Tests
 
         public class MockFsmController : MonoBehaviour, IGameController
         {
-            TurnBasedFsm _fsm;
+            BattleFsm _fsm;
             public MonoBehaviour MonoBehaviour => this;
+
+            public void RestartGameImmediately()
+            {
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using TMPro;
-using HexCardGame;
 
 namespace HexCardGame.UI
 {

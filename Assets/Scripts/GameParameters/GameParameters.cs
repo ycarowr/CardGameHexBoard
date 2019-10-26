@@ -1,5 +1,4 @@
 ﻿using System;
-using HexCardGame;
 using UnityEngine;
 
 namespace HexCardGame
@@ -9,7 +8,7 @@ namespace HexCardGame
     {
         public const string Path = "GameParameters";
         public static GameParameters Load() => Resources.Load<GameParameters>(Path);
-        
+
         #region Game Start
 
         public GameEventTimers Timers = new GameEventTimers();
@@ -50,15 +49,8 @@ namespace HexCardGame
         [Serializable]
         public class PlayerProfiles
         {
-            [Tooltip("Configurations for Bottom player")]
-            public Player BottomPlayer = new Player
-            {
-                IsAi = false,
-                id = PlayerId.User
-            };
-
             [Tooltip("Configurations for Top player")]
-            public Player TopPlayer = new Player
+            public Player AiPlayer = new Player
             {
                 IsAi = true,
                 id = PlayerId.Enemy
@@ -67,13 +59,20 @@ namespace HexCardGame
             [Tooltip("Seat where the user player will be sitting.")]
             public PlayerId userId = PlayerId.User;
 
+            [Tooltip("Configurations for Bottom player")]
+            public Player UserPlayer = new Player
+            {
+                IsAi = false,
+                id = PlayerId.User
+            };
+
             [Serializable]
             public class Player
             {
+                public PlayerId id;
+
                 [Tooltip("Whether this player is driven by an AI system or not")]
                 public bool IsAi;
-
-                public PlayerId id;
             }
         }
 

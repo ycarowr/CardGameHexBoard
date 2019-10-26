@@ -4,16 +4,15 @@ using Tools.Patterns.StateMachine;
 
 namespace HexCardGame
 {
-    public class TurnBasedFsm : BaseStateMachine
+    public class BattleFsm : BaseStateMachine
     {
-        Dictionary<PlayerId, TurnState> _register = new Dictionary<PlayerId, TurnState>(); 
-        public IGameController Controller { get; }
+        readonly Dictionary<PlayerId, TurnState> _register = new Dictionary<PlayerId, TurnState>();
 
-        public TurnBasedFsm(IGameController controller, IGame gameData, 
+        public BattleFsm(IGameController controller, IGame gameData,
             GameParameters gameParameters, EventsDispatcher gameEvents) : base(controller)
         {
             Controller = controller;
-            
+
             //create states
             var user = new UserPlayer(this, gameData, gameParameters, gameEvents);
             var enemy = new EnemyPlayer(this, gameData, gameParameters, gameEvents);
@@ -25,9 +24,11 @@ namespace HexCardGame
             RegisterState(enemy);
             RegisterState(start);
             RegisterState(end);
-            
+
             Initialize();
         }
+
+        public IGameController Controller { get; }
 
 
         /// <summary>  Call this method to Push Start Battle State and begin the match. </summary>
@@ -49,8 +50,8 @@ namespace HexCardGame
             PopState();
             PushState<EndBattle>();
         }
-        
-        public void UserTurn()
+
+        void UserTurn()
         {
             if (!IsInitialized)
                 return;
@@ -58,8 +59,8 @@ namespace HexCardGame
             PopState();
             PushState<UserPlayer>();
         }
-        
-        public void EnemyPlayer()
+
+        void EnemyPlayer()
         {
             if (!IsInitialized)
                 return;
@@ -68,8 +69,15 @@ namespace HexCardGame
             PushState<EnemyPlayer>();
         }
 
+        public bool TryPassTurn(PlayerId id)
+        {
+            var state = GetPlayerState(id);
+            return state.TryPassTurn();
+        }
+
         public void RegisterPlayer(PlayerId id, TurnState state) => _register.Add(id, state);
         public TurnState GetPlayerState(PlayerId id) => _register[id];
+
         public override void Clear()
         {
             base.Clear();

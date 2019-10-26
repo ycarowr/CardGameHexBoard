@@ -1,7 +1,6 @@
 using HexCardGame.Model.Game;
 using Tools.Patterns.Observer;
 using Tools.Patterns.StateMachine;
-using HexCardGame;
 
 namespace HexCardGame
 {
@@ -15,7 +14,7 @@ namespace HexCardGame
 
         #region Constructor
 
-        protected BaseBattleState(TurnBasedFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents)
+        protected BaseBattleState(BattleFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents)
         {
             Fsm = fsm;
             Game = game;
@@ -36,7 +35,7 @@ namespace HexCardGame
         protected GameParameters GameParameters { get; }
         protected EventsDispatcher GameEvents { get; }
         protected IGame Game { get; }
-        public TurnBasedFsm Fsm { get; set; }
+        public BattleFsm Fsm { get; set; }
         public bool IsInitialized { get; }
 
         #endregion

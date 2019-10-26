@@ -1,6 +1,6 @@
 ﻿namespace HexCardGame.UI
 {
-    public class UiButtonRandom : UiButton
+    public class UiButtonPassTurn : UiButton
     {
         protected override void OnSetHandler(IButtonHandler handler)
         {

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using HexCardGame.Model.Game;
-using HexCardGame;
 using UnityEngine;
 
 namespace HexCardGame
@@ -11,7 +10,7 @@ namespace HexCardGame
 
         #region Constructor
 
-        public StartBattle(TurnBasedFsm fsm, IGame game, GameParameters gameParameters,
+        public StartBattle(BattleFsm fsm, IGame game, GameParameters gameParameters,
             EventsDispatcher gameEvents) :
             base(fsm, game, gameParameters, gameEvents)
         {

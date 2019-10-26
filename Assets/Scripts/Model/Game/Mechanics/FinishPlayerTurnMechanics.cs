@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame.Model.Game
+﻿namespace HexCardGame.Model.Game
 {
     /// <summary> Finish Current player Turn Implementation. </summary>
     public class FinishPlayerTurnMechanics : BaseGameMechanics
@@ -24,7 +22,7 @@ namespace HexCardGame.Model.Game
 
         /// <summary> Dispatch to the listeners. </summary>
         void OnFinishedCurrentPlayerTurn(IPlayer currentPlayer) =>
-            GameEvents.Notify<IFinishPlayerTurn>(i =>
+            Dispatcher.Notify<IFinishPlayerTurn>(i =>
                 i.OnFinishPlayerTurn(currentPlayer));
     }
 }

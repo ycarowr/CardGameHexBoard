@@ -1,18 +1,14 @@
 ﻿using System.Collections;
 using HexCardGame.Model.Game;
-using HexCardGame;
 using UnityEngine;
 
 namespace HexCardGame
 {
     public abstract class TurnState : BaseBattleState, IFinishPlayerTurn
     {
-        protected TurnState(TurnBasedFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents) :
-            base(fsm, game, gameParameters, gameEvents)
-        {
+        protected TurnState(BattleFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents) :
+            base(fsm, game, gameParameters, gameEvents) =>
             Fsm.RegisterPlayer(Id, this);
-            gameEvents.AddListener(this);
-        }
 
         protected bool IsMyTurn => Game.TurnLogic.IsMyTurn(Id);
         protected abstract PlayerId Id { get; }
@@ -21,7 +17,7 @@ namespace HexCardGame
         Coroutine TimeOutRoutine { get; set; }
         Coroutine TickRoutine { get; set; }
 
-        
+
         void IFinishPlayerTurn.OnFinishPlayerTurn(IPlayer player)
         {
             if (!IsMyTurn)
@@ -31,7 +27,7 @@ namespace HexCardGame
             var nextState = Fsm.GetPlayerState(nextId);
             Fsm.PushState(nextState);
         }
-        
+
         public override void OnEnterState()
         {
             base.OnEnterState();
@@ -67,13 +63,15 @@ namespace HexCardGame
             TickRoutine = null;
         }
 
-        /// <summary> Check if the player can pass the turn and passes the turn to the next player. </summary>
-        public bool PassTurn()
+        /// <summary> Passes the turn to the next player. </summary>
+        public bool TryPassTurn()
         {
+            if (!IsMyTurn)
+                return false;
             Game.FinishCurrentPlayerTurn();
             return true;
         }
-        
+
         /// <summary> Finishes the player turn. </summary>
         protected virtual IEnumerator TimeOut()
         {
@@ -91,7 +89,7 @@ namespace HexCardGame
                 yield return new WaitForSeconds(GameParameters.Timers.TimeUntilFinishTurn);
             }
 
-            PassTurn();
+            TryPassTurn();
         }
 
         /// <summary> Starts the player turn. </summary>

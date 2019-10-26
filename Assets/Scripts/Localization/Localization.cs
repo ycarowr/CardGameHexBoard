@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tools.Patterns.Singleton;
-using HexCardGame;
 
 namespace HexCardGame.Localisation
 {

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Game.Ui;
-using Tools.Patterns.GameEvents;
 using UnityEngine;
 
 namespace HexCardGame.UI

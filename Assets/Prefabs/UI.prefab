@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 1}
-  Id: 0
+  Id: 10
 --- !u!1 &4673718998935222314
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 1}
-  Id: 0
+  Id: 8
 --- !u!1 &7072459653969197315
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 1}
-  Id: 0
+  Id: 9
 --- !u!1 &8328427133094054720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,11 +1061,25 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 46499745, guid: 75507cc35d42b4543afdfb4d79a565f1, type: 3}
+      propertyPath: m_Name
+      value: UiEndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298140605644572146, guid: 75507cc35d42b4543afdfb4d79a565f1,
+        type: 3}
+      propertyPath: m_Name
+      value: UiUserPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 5298140605151382362, guid: 75507cc35d42b4543afdfb4d79a565f1,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 8328427134643626737}
+    - target: {fileID: 5298140605007053916, guid: 75507cc35d42b4543afdfb4d79a565f1,
+        type: 3}
+      propertyPath: m_Name
+      value: UiAiPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 2856216416906183429, guid: 75507cc35d42b4543afdfb4d79a565f1,
         type: 3}
       propertyPath: color.b
@@ -1594,6 +1608,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4189502200243926939, guid: 6dde4a4ed391644459eceb497d3fcc76,
         type: 3}
+      propertyPath: localizedText
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189502200243926939, guid: 6dde4a4ed391644459eceb497d3fcc76,
+        type: 3}
       propertyPath: id
       value: 0
       objectReference: {fileID: 0}
@@ -1731,6 +1750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: id
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 79850898275589823, guid: 40fa8c18c9585974e98e23d0a4051b80,
+        type: 3}
+      propertyPath: localizedText
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 79850898275589823, guid: 40fa8c18c9585974e98e23d0a4051b80,
         type: 3}

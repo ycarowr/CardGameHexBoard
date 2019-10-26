@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame.UI
+﻿namespace HexCardGame.UI
 {
     public class UiParticlesStartGame : UiParticles, IStartGame
     {

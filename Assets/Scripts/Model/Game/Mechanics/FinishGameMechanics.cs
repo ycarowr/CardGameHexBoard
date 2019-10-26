@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame.Model.Game
+﻿namespace HexCardGame.Model.Game
 {
     /// <summary> Finish Game Step Implementation. </summary>
     public class FinishGameMechanics : BaseGameMechanics
@@ -27,6 +25,6 @@ namespace HexCardGame.Model.Game
 
         /// <summary> Dispatch end game to the listeners. </summary>
         void OnGameFinished(IPlayer winner) =>
-            GameEvents.Notify<IFinishGame>(i => i.OnFinishGame(winner));
+            Dispatcher.Notify<IFinishGame>(i => i.OnFinishGame(winner));
     }
 }

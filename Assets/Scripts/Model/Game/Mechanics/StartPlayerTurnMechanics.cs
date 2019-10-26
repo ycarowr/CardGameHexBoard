@@ -1,6 +1,4 @@
-﻿using HexCardGame;
-
-namespace HexCardGame.Model.Game
+﻿namespace HexCardGame.Model.Game
 {
     /// <summary> Start Current player Turn Implementation. </summary>
     public class StartPlayerTurnMechanics : BaseGameMechanics
@@ -28,9 +26,8 @@ namespace HexCardGame.Model.Game
         }
 
         /// <summary> Dispatch start current player turn to the listeners. </summary>
-        /// <param name="currentPlayer"></param>
         void OnStartedCurrentPlayerTurn(IPlayer currentPlayer) =>
-            GameEvents.Notify<IStartPlayerTurn>(i =>
+            Dispatcher.Notify<IStartPlayerTurn>(i =>
                 i.OnStartPlayerTurn(currentPlayer));
     }
 }

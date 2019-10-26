@@ -10,7 +10,7 @@ namespace HexCardGame.UI
         protected override void Awake()
         {
             base.Awake();
-            SetText(Localisation.Localization.Instance.Get(id));
+            SetText(Localization.Instance.Get(id));
         }
     }
 }

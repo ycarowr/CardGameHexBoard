@@ -7,7 +7,7 @@ namespace HexCardGame.UI
         protected override void Awake()
         {
             base.Awake();
-            var restartText = Localisation.Localization.Instance.Get(LocalizationIds.Restart);
+            var restartText = Localization.Instance.Get(LocalizationIds.Restart);
             SetText(restartText);
         }
     }
