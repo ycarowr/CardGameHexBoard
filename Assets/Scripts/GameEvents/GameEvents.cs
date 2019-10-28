@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HexCardGame.Model;
 using HexCardGame.Model.GameBoard;
 using HexCardGame.Model.GamePool;
 
@@ -56,6 +57,12 @@ namespace HexCardGame
     public interface ICreatePool
     {
         void OnCreatePool(Pool pool);
+    }
+    
+    [Event]
+    public interface ICreateLibrary
+    {
+        void OnCreateLibrary(Library library);
     }
     
 }

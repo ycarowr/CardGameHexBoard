@@ -24,13 +24,20 @@ namespace HexCardGame.Model.Game
             ProcessFinishGame = new FinishGameMechanics(this);
             Board = new Board(gameParameters, dispatcher);
             Pool = new Pool(gameParameters, dispatcher);
+
+            var libData = new Dictionary<PlayerId, List<object>>
+            {
+                {PlayerId.User, new List<object>()},
+                {PlayerId.Enemy, new List<object>()}
+            };
+            Library = new Library(libData, Dispatcher);
         }
 
         #endregion
 
 
         #region Properties
-
+    
         public EventsDispatcher Dispatcher { get; }
         public BattleFsm BattleFsm { get; }
         public bool IsGameStarted { get; set; }
@@ -47,6 +54,7 @@ namespace HexCardGame.Model.Game
         FinishGameMechanics ProcessFinishGame { get; }
         Board Board { get; }
         Pool Pool { get; }
+        Library Library { get; }
         #endregion
 
         #endregion
