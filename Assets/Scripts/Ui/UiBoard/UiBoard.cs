@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using HexCardGame;
+using HexCardGame.Model.GameBoard;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Logger = Tools.Logger;
 
 namespace Game.Ui
 {
@@ -22,7 +24,7 @@ namespace Game.Ui
         void ICreateBoard.OnCreateBoard(Board board)
         {
             CurrentBoard = board;
-            Debug.Log("Ui boar View created");
+            Logger.Log<UiBoard>("Board View Created");
             foreach(var p in board.Units)
                 TileMap.SetTile(p, test);
         }

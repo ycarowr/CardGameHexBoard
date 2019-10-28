@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using HexCardGame;
+using HexCardGame.Model.GameBoard;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;

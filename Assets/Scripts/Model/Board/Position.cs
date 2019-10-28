@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace HexCardGame
+namespace HexCardGame.Model.GameBoard
 {
     public static class BoardHexUtility
     {

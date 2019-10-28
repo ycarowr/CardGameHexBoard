@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using HexCardGame.Model.GameBoard;
+using HexCardGame.Model.GamePool;
 using HexCardGame.Model.TurnLogic;
 
 namespace HexCardGame.Model.Game
@@ -21,6 +23,7 @@ namespace HexCardGame.Model.Game
             ProcessFinishPlayerTurn = new FinishPlayerTurnMechanics(this);
             ProcessFinishGame = new FinishGameMechanics(this);
             Board = new Board(gameParameters, dispatcher);
+            Pool = new Pool(gameParameters, dispatcher);
         }
 
         #endregion
@@ -43,7 +46,7 @@ namespace HexCardGame.Model.Game
         FinishPlayerTurnMechanics ProcessFinishPlayerTurn { get; }
         FinishGameMechanics ProcessFinishGame { get; }
         Board Board { get; }
-
+        Pool Pool { get; }
         #endregion
 
         #endregion

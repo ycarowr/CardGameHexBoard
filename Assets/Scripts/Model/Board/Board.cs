@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Tools.GenericCollection;
+using Tools;
 using UnityEngine;
 
-namespace HexCardGame
+namespace HexCardGame.Model.GameBoard
 {
     public class Board : Collection<Position>
     {
@@ -34,13 +35,16 @@ namespace HexCardGame
 
         void AddPosition(int x, int y)
         {
-            Debug.Log($"Model Added position {x}, {y}");
             var position = new Position(x, y);
             Add(position);
         }
 
         public Position Get(int x, int y) => Units.Find(p => p.X == x && p.Y == y);
 
-        void OnCreateBoard() => Dispatcher.Notify<ICreateBoard>(i => i.OnCreateBoard(this));
+        void OnCreateBoard()
+        {
+            Tools.Logger.Log<Board>("Board Model Dispatched");
+            Dispatcher.Notify<ICreateBoard>(i => i.OnCreateBoard(this));
+        }
     }
 }
