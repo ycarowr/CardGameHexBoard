@@ -20,6 +20,7 @@ namespace HexCardGame.Model.Game
             ProcessStartPlayerTurn = new StartPlayerTurnMechanics(this);
             ProcessFinishPlayerTurn = new FinishPlayerTurnMechanics(this);
             ProcessFinishGame = new FinishGameMechanics(this);
+            Board = new Board(gameParameters, dispatcher);
         }
 
         #endregion
@@ -41,6 +42,7 @@ namespace HexCardGame.Model.Game
         StartPlayerTurnMechanics ProcessStartPlayerTurn { get; }
         FinishPlayerTurnMechanics ProcessFinishPlayerTurn { get; }
         FinishGameMechanics ProcessFinishGame { get; }
+        Board Board { get; }
 
         #endregion
 

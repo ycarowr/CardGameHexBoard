@@ -43,4 +43,11 @@ namespace HexCardGame
     {
         void OnRestart();
     }
+
+    [Event]
+    public interface ICreateBoard
+    {
+        void OnCreateBoard(Board board);
+    }
+    
 }

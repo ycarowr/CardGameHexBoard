@@ -707,7 +707,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1095,11 +1095,6 @@ PrefabInstance:
       propertyPath: color.b
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 367549890, guid: 75507cc35d42b4543afdfb4d79a565f1, type: 3}
-      propertyPath: GameEvents
-      value: 
-      objectReference: {fileID: 11400000, guid: 46e77e9ce70b6044d873ea3c5a73372e,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75507cc35d42b4543afdfb4d79a565f1, type: 3}
 --- !u!1 &85427369913525908 stripped
@@ -1608,13 +1603,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4189502200243926939, guid: 6dde4a4ed391644459eceb497d3fcc76,
         type: 3}
-      propertyPath: localizedText
-      value: 8
+      propertyPath: id
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4189502200243926939, guid: 6dde4a4ed391644459eceb497d3fcc76,
         type: 3}
-      propertyPath: id
-      value: 0
+      propertyPath: localizedText
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dde4a4ed391644459eceb497d3fcc76, type: 3}
@@ -1753,13 +1748,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 79850898275589823, guid: 40fa8c18c9585974e98e23d0a4051b80,
         type: 3}
-      propertyPath: localizedText
-      value: 9
+      propertyPath: id
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 79850898275589823, guid: 40fa8c18c9585974e98e23d0a4051b80,
         type: 3}
-      propertyPath: id
-      value: 2
+      propertyPath: localizedText
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40fa8c18c9585974e98e23d0a4051b80, type: 3}
