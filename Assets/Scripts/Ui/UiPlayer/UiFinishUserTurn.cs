@@ -1,4 +1,5 @@
 ﻿using Game.Ui;
+using HexCardGame.Model.Game;
 using Tools.Patterns.GameEvents;
 using UnityEngine;
 

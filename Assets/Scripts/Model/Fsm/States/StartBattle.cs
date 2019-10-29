@@ -10,9 +10,7 @@ namespace HexCardGame
 
         #region Constructor
 
-        public StartBattle(BattleFsm fsm, IGame game, GameParameters gameParameters,
-            EventsDispatcher gameEvents) :
-            base(fsm, game, gameParameters, gameEvents)
+        public StartBattle(BattleStateArguments args) : base(args)
         {
         }
 

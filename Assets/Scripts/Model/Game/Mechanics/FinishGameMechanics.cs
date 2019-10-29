@@ -1,5 +1,12 @@
 ﻿namespace HexCardGame.Model.Game
 {
+    /// <summary> Broadcast of the winner after a game is finished to the Listeners. </summary>
+    [Event]
+    public interface IFinishGame
+    {
+        void OnFinishGame(IPlayer winner);
+    }
+    
     /// <summary> Finish Game Step Implementation. </summary>
     public class FinishGameMechanics : BaseGameMechanics
     {

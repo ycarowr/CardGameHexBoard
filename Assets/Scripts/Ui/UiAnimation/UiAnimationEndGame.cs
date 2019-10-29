@@ -1,4 +1,5 @@
 ﻿using HexCardGame.Localisation;
+using HexCardGame.Model.Game;
 using TMPro;
 using UnityEngine;
 

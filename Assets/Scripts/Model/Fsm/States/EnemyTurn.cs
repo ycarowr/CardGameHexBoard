@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using HexCardGame.Model.Game;
+using Tools.Patterns.Observer;
 using UnityEngine;
 
 namespace HexCardGame
 {
     public class EnemyTurn : TurnState
     {
-        protected EnemyTurn(BattleFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents) :
-            base(fsm, game, gameParameters, gameEvents)
+        protected EnemyTurn(BattleStateArguments args) : base(args)
         {
         }
 

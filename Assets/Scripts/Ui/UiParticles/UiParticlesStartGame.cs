@@ -1,4 +1,6 @@
-﻿namespace HexCardGame.UI
+﻿using HexCardGame.Model.Game;
+
+namespace HexCardGame.UI
 {
     public class UiParticlesStartGame : UiParticles, IStartGame
     {

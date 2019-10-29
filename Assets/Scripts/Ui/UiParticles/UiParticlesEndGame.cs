@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using HexCardGame.Model.Game;
+using UnityEngine;
 
 namespace HexCardGame.UI
 {

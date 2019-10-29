@@ -12,7 +12,7 @@ namespace HexCardGame.UI
     {
         [SerializeField] UiPoolPosition[] poolCardPositions;
         [SerializeField] GameObject cardTemplate;
-        Pool CurrentPool { get; set; }
+        IPool CurrentPool { get; set; }
 
         protected override void Awake()
         {
@@ -20,7 +20,7 @@ namespace HexCardGame.UI
             base.Awake();
         }
 
-        void ICreatePool.OnCreatePool(Pool pool)
+        void ICreatePool.OnCreatePool(IPool pool)
         {
             CurrentPool = pool;
             Logger.Log<UiPool>("Pool View Created");

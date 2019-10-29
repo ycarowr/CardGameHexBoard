@@ -1,8 +1,16 @@
 ﻿namespace HexCardGame.Model.Game
 {
+    /// <summary> Broadcast of a player when it starts the turn to the Listeners. </summary>
+    [Event]
+    public interface IStartPlayerTurn
+    {
+        void OnStartPlayerTurn(IPlayer player);
+    }
+
     /// <summary> Start Current player Turn Implementation. </summary>
     public class StartPlayerTurnMechanics : BaseGameMechanics
     {
+
         public StartPlayerTurnMechanics(IGame game) : base(game)
         {
         }

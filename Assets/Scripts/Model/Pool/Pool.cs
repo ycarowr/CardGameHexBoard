@@ -1,15 +1,28 @@
 using System.Collections.Generic;
 using Tools.GenericCollection;
+using Tools.Patterns.Observer;
 using UnityEngine;
 using Logger = Tools.Logger;
 
 namespace HexCardGame.Model.GamePool
 {
-    public class Pool : Collection<Position>
+    [Event]
+    public interface ICreatePool
     {
-        EventsDispatcher Dispatcher { get; }
+        void OnCreatePool(IPool pool);
+    }
+    
+    public interface IPool
+    {
+        int Size { get; }
+        void AddCardAtPosition(object card, PoolPositionId id);
+    }
+    
+    public class Pool : Collection<Position>, IPool
+    {
+        IDispatcher Dispatcher { get; }
         
-        public Pool(GameParameters configs, EventsDispatcher dispatcher)
+        public Pool(GameParametersReference configs, IDispatcher dispatcher)
         {
             Dispatcher = dispatcher;
 
@@ -23,11 +36,20 @@ namespace HexCardGame.Model.GamePool
             var position = new Position(id);
             Add(position);
         }
-        
+
+        Position Get(PoolPositionId id) => Units.Find(x => x.Id == id);
+        public void AddCardAtPosition(object card, PoolPositionId id)
+        {
+            var position = Get(id);
+            if(!position.HasCard) 
+                position.SetStoredCard(card);
+        }
+
         void OnCreatePool()
         {
             Logger.Log<Pool>("Pool Model Dispatched");
             Dispatcher.Notify<ICreatePool>(i => i.OnCreatePool(this));
         }
+
     }
 }

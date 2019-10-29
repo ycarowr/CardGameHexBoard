@@ -10,7 +10,7 @@ namespace HexCardGame.UI
     public class UiLibrary : UiEventListener, ICreateLibrary
     {
 
-        void ICreateLibrary.OnCreateLibrary(Library lib)
+        void ICreateLibrary.OnCreateLibrary(ILibrary lib)
         {
             Logger.Log<UiLibrary>("Library View Created");
         }

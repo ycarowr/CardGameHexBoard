@@ -10,10 +10,10 @@ namespace Game.Fsm.Tests
         [Test]
         public void InitStateTest()
         {
-            Assert.AreEqual(false, GameData.CurrentGameInstance.IsGameFinished);
-            Assert.AreEqual(false, GameData.CurrentGameInstance.IsGameStarted);
-            Assert.AreEqual(false, GameData.CurrentGameInstance.IsTurnInProgress);
-            Assert.AreEqual(2, GameData.CurrentGameInstance.TurnLogic.Players.Count);
+            Assert.AreEqual(false, GameDataReference.CurrentGameInstance.IsGameFinished);
+            Assert.AreEqual(false, GameDataReference.CurrentGameInstance.IsGameStarted);
+            Assert.AreEqual(false, GameDataReference.CurrentGameInstance.IsTurnInProgress);
+            Assert.AreEqual(2, GameDataReference.CurrentGameInstance.TurnLogic.Players.Length);
         }
     }
 }

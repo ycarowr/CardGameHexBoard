@@ -1,4 +1,6 @@
-﻿namespace HexCardGame.Model.Game
+﻿using Tools.Patterns.Observer;
+
+namespace HexCardGame.Model.Game
 {
     /// <summary> Small Part of a Turn. </summary>
     public abstract class BaseGameMechanics
@@ -7,6 +9,6 @@
 
         protected IGame Game { get; }
 
-        protected EventsDispatcher Dispatcher => Game.Dispatcher;
+        protected IDispatcher Dispatcher => Game.Dispatcher;
     }
 }

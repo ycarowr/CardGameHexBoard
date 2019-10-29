@@ -7,7 +7,7 @@ namespace HexCardGame.Model.TurnLogic
         PlayerId CurrentPlayerId { get; }
 
         /// <summary> List with all the players that are playing the match. </summary>
-        List<IPlayer> Players { get; }
+        IPlayer[] Players { get; }
 
         /// <summary> Quantity of players playing this match. </summary>
         int PlayersCount { get; }

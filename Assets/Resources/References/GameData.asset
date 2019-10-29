@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1001780249cbba94e98896c8d669442a, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  gameEvents: {fileID: 11400000, guid: 46e77e9ce70b6044d873ea3c5a73372e, type: 2}
+  dispatcher: {fileID: 11400000, guid: 46e77e9ce70b6044d873ea3c5a73372e, type: 2}
   gameParameters: {fileID: 11400000, guid: abfc1c0d7b7d6cf4892d3fed0462d2cb, type: 2}

@@ -1,5 +1,12 @@
 ﻿namespace HexCardGame.Model.Game
 {
+    /// <summary> Broadcast of a player when it finishes the turn to the Listeners. </summary>
+    [Event]
+    public interface IFinishPlayerTurn
+    {
+        void OnFinishPlayerTurn(IPlayer player);
+    }
+    
     /// <summary> Finish Current player Turn Implementation. </summary>
     public class FinishPlayerTurnMechanics : BaseGameMechanics
     {

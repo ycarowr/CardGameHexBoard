@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using HexCardGame.Model.Game;
+using Tools.Patterns.Observer;
 using UnityEngine;
 
 namespace HexCardGame
 {
     public abstract class TurnState : BaseBattleState, IFinishPlayerTurn
     {
-        protected TurnState(BattleFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents) :
-            base(fsm, game, gameParameters, gameEvents) =>
-            Fsm.RegisterPlayer(Id, this);
+        protected TurnState(BattleStateArguments args) : base(args) => Fsm.RegisterPlayer(Id, this);
 
         protected bool IsMyTurn => Game.TurnLogic.IsMyTurn(Id);
         protected abstract PlayerId Id { get; }

@@ -10,21 +10,27 @@ namespace HexCardGame
     /// </summary>
     public abstract class BaseBattleState : IState, IListener, IRestartGame
     {
-        //----------------------------------------------------------------------------------------------------------
-
+        public struct BattleStateArguments
+        {
+            public IGame Game;
+            public BattleFsm Fsm;
+            public IDispatcher Dispatcher;
+            public GameParametersReference GameParameters;
+        }
+        
         #region Constructor
 
-        protected BaseBattleState(BattleFsm fsm, IGame game, GameParameters gameParameters, EventsDispatcher gameEvents)
+        protected BaseBattleState(BattleStateArguments args)
         {
-            Fsm = fsm;
-            Game = game;
-            GameParameters = gameParameters;
-            GameEvents = gameEvents;
-
-            //Subscribe game events 
-            GameEvents.AddListener(this);
+            Fsm = args.Fsm;
+            Game = args.Game;
+            GameParameters = args.GameParameters;
+            Dispatcher = args.Dispatcher;
+            Dispatcher.AddListener(this);
             IsInitialized = true;
         }
+
+        ~BaseBattleState() => Dispatcher.RemoveListener(this);
 
         #endregion
 
@@ -32,10 +38,10 @@ namespace HexCardGame
 
         #region Properties
 
-        protected GameParameters GameParameters { get; }
-        protected EventsDispatcher GameEvents { get; }
+        protected GameParametersReference GameParameters { get; }
+        protected IDispatcher Dispatcher { get; }
         protected IGame Game { get; }
-        public BattleFsm Fsm { get; set; }
+        public BattleFsm Fsm { get; }
         public bool IsInitialized { get; }
 
         #endregion
@@ -44,7 +50,7 @@ namespace HexCardGame
 
         #region Operations
 
-        public virtual void OnClear() => GameEvents.RemoveListener(this);
+        public virtual void OnClear() => Dispatcher.RemoveListener(this);
 
         public virtual void OnInitialize()
         {

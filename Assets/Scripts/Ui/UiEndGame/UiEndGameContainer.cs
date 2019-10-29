@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Game.Ui;
+using HexCardGame.Model.Game;
 using Tools.Patterns.GameEvents;
 using UnityEngine;
 
@@ -15,20 +16,20 @@ namespace HexCardGame.UI
     public class UiEndGameContainer : UiEventListener, IRestartGameHandler, IFinishGame, IStartGame
     {
         const float DelayToEnable = 1f;
-        GameData GameData { get; set; }
+        GameDataReference GameDataReference { get; set; }
         IUiUserInput UserInput { get; set; }
 
         void IFinishGame.OnFinishGame(IPlayer winner) => StartCoroutine(EnableInput());
 
         void IRestartGameHandler.RestartGame() =>
-            GameData.CurrentGameInstance.BattleFsm.Controller.RestartGameImmediately();
+            GameDataReference.CurrentGameInstance.BattleFsm.Controller.RestartGameImmediately();
 
         void IStartGame.OnStartGame(IPlayer starter) => UserInput.Disable();
 
         protected override void Awake()
         {
             base.Awake();
-            GameData = GameData.Load();
+            GameDataReference = GameDataReference.Load();
 
             //user input
             UserInput = gameObject.AddComponent<UiUserInput>();

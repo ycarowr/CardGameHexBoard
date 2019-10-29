@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Ui;
+using HexCardGame.Model.Game;
 using UnityEngine;
 
 namespace HexCardGame.UI
@@ -11,7 +12,7 @@ namespace HexCardGame.UI
         IUiUserInput UserInput { get; set; }
         IUiPlayer Ui { get; set; }
 
-        void IPreGameStart.OnPreGameStart(List<IPlayer> players)
+        void IPreGameStart.OnPreGameStart(IPlayer[] players)
         {
             if (Ui.IsMyTurn())
                 UserInput.Disable();

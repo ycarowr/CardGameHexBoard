@@ -2,6 +2,13 @@
 
 namespace HexCardGame.Model.Game
 {
+    /// <summary> Broadcast of the starter player to the Listeners. </summary>
+    [Event]
+    public interface IStartGame
+    {
+        void OnStartGame(IPlayer starter);
+    }
+    
     /// <summary> Start Game Step Implementation. </summary>
     public class StartGameMechanics : BaseGameMechanics
     {

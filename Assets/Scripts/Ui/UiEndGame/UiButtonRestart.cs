@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using HexCardGame.Model.Game;
 using TMPro;
 using Tools.Patterns.Observer;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace HexCardGame.UI
         IListener, IPreGameStart, IFinishGame
     {
         const float DelayToShow = 3.5f;
-        EventsDispatcher _dispatcher;
+        EventsDispatcherReference _dispatcher;
         UITextMeshImage UiButton { get; set; }
 
         protected override void OnSetHandler(IButtonHandler handler)
@@ -37,7 +38,7 @@ namespace HexCardGame.UI
 
         void IFinishGame.OnFinishGame(IPlayer winner) => StartCoroutine(ShowButton());
 
-        void IPreGameStart.OnPreGameStart(List<IPlayer> players) => UiButton.Enabled = false;
+        void IPreGameStart.OnPreGameStart(IPlayer[] players) => UiButton.Enabled = false;
 
         #endregion
 
@@ -47,7 +48,7 @@ namespace HexCardGame.UI
 
         protected void Awake()
         {
-            _dispatcher = EventsDispatcher.Load();
+            _dispatcher = EventsDispatcherReference.Load();
             UiButton = new UITextMeshImage(
                 GetComponentInChildren<TMP_Text>(),
                 GetComponent<Image>());

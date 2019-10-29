@@ -2,87 +2,65 @@
 using HexCardGame.Model.GameBoard;
 using HexCardGame.Model.GamePool;
 using HexCardGame.Model.TurnLogic;
+using Tools.Patterns.Observer;
 
 namespace HexCardGame.Model.Game
 {
-    /// <summary>  Simple concrete Game Implementation. TODO: Consider to break this class down into small partial classes. </summary>
-    public class RuntimeGame : IGame
+    /// <summary>  Game Model Implementation. </summary>
+    public partial class RuntimeGame : IGame
     {
-        #region Constructor
-
-        public RuntimeGame(IGameController controller, List<IPlayer> players, GameParameters gameParameters,
-            EventsDispatcher dispatcher)
+        public struct RuntimeGameArgs
         {
-            Dispatcher = dispatcher;
-            TurnLogic = new TurnMechanics(players);
-            BattleFsm = new BattleFsm(controller, this, gameParameters, dispatcher);
+            public IGameController Controller;
+            public GameParametersReference GameParameters;
+            public IDispatcher Dispatcher;
+        }
 
+        public RuntimeGame(RuntimeGameArgs args)
+        {
+            Dispatcher = args.Dispatcher;
+            InitializeGameDataStructures(args);
+            InitializeTurnBasedStructures(args);
+        }
+
+        void InitializeGameDataStructures(RuntimeGameArgs args)
+        {
+            {   
+                //Create and connect players to their seats
+                var userId = args.GameParameters.Profiles.UserPlayer.id;
+                var aiId = args.GameParameters.Profiles.AiPlayer.id;
+                var user = new Player(userId, args.GameParameters, args.Dispatcher);
+                var ai = new Player(aiId, args.GameParameters, args.Dispatcher);
+                Players = new[] {user, ai};
+            }
+
+            //Create Board
+            Board = new Board(args.GameParameters, Dispatcher);
+            
+            //Create Pool
+            Pool = new Pool(args.GameParameters, Dispatcher);
+            
+            {
+                //Create Library
+                var libData = new Dictionary<PlayerId, List<object>>
+                {
+                    {PlayerId.User, new List<object>()},
+                    {PlayerId.Enemy, new List<object>()}
+                };
+
+                Library = new Library(libData, Dispatcher);
+            }
+        }
+
+        void InitializeTurnBasedStructures(RuntimeGameArgs args)
+        {
+            TurnLogic = new TurnMechanics(Players);
+            BattleFsm = new BattleFsm(args.Controller, this, args.GameParameters, args.Dispatcher);
             ProcessPreStartGame = new PreStartGameMechanics(this);
             ProcessStartGame = new StartGameMechanics(this);
             ProcessStartPlayerTurn = new StartPlayerTurnMechanics(this);
             ProcessFinishPlayerTurn = new FinishPlayerTurnMechanics(this);
             ProcessFinishGame = new FinishGameMechanics(this);
-            Board = new Board(gameParameters, dispatcher);
-            Pool = new Pool(gameParameters, dispatcher);
-
-            var libData = new Dictionary<PlayerId, List<object>>
-            {
-                {PlayerId.User, new List<object>()},
-                {PlayerId.Enemy, new List<object>()}
-            };
-            Library = new Library(libData, Dispatcher);
         }
-
-        #endregion
-
-
-        #region Properties
-    
-        public EventsDispatcher Dispatcher { get; }
-        public BattleFsm BattleFsm { get; }
-        public bool IsGameStarted { get; set; }
-        public bool IsGameFinished { get; set; }
-        public bool IsTurnInProgress { get; set; }
-
-        #region Mechanics
-
-        public ITurnLogic TurnLogic { get; }
-        PreStartGameMechanics ProcessPreStartGame { get; }
-        StartGameMechanics ProcessStartGame { get; }
-        StartPlayerTurnMechanics ProcessStartPlayerTurn { get; }
-        FinishPlayerTurnMechanics ProcessFinishPlayerTurn { get; }
-        FinishGameMechanics ProcessFinishGame { get; }
-        Board Board { get; }
-        Pool Pool { get; }
-        Library Library { get; }
-        #endregion
-
-        #endregion
-
-        //----------------------------------------------------------------------------------------------------------
-
-        #region Execution
-
-        public void PreStartGame() => ProcessPreStartGame.Execute();
-
-        public void StartGame() => ProcessStartGame.Execute();
-
-        public void StartCurrentPlayerTurn() => ProcessStartPlayerTurn.Execute();
-
-        public void FinishCurrentPlayerTurn() => ProcessFinishPlayerTurn.Execute();
-
-        public void ExecuteAiTurn(PlayerId id)
-        {
-        }
-
-        public void ForceWin(PlayerId id)
-        {
-            var player = TurnLogic.GetPlayer(id);
-            ProcessFinishGame.Execute(player);
-        }
-
-        #endregion
-
-        //----------------------------------------------------------------------------------------------------------
     }
 }

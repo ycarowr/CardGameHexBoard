@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using Tools.Extensions.List;
 using Tools.GenericCollection;
+using Tools.Patterns.Observer;
 using UnityEngine;
 using Logger = Tools.Logger;
 
 
 namespace HexCardGame.Model
 {
-    public class Library : Collection<object>
+    [Event]
+    public interface ICreateLibrary
     {
-        EventsDispatcher Dispatcher { get; }
+        void OnCreateLibrary(ILibrary library);
+    }
+    
+    public interface ILibrary
+    {
+        void GenerateCardFromRandomData();
+        void GenerateCardFromPlayerData(PlayerId id);
+    }
+    
+    public class Library : Collection<object>, ILibrary
+    {
+        IDispatcher Dispatcher { get; }
         readonly List<object> _library = new List<object>();
         readonly Dictionary<PlayerId, List<object>> _libraryByPlayer;
         
-        public Library(Dictionary<PlayerId, List<object>> playersLibrary, EventsDispatcher dispatcher)
+        public Library(Dictionary<PlayerId, List<object>> playersLibrary, IDispatcher dispatcher)
         {
             Dispatcher = dispatcher;
             _libraryByPlayer = playersLibrary;
@@ -23,8 +36,8 @@ namespace HexCardGame.Model
             OnCreateLibrary();
         }
 
-        public void GenerateFromRandomData() => _library.RandomItem();
-        public void GenerateFromPlayer(PlayerId id) => _libraryByPlayer[id].RandomItem();
+        public void GenerateCardFromRandomData() => _library.RandomItem();
+        public void GenerateCardFromPlayerData(PlayerId id) => _libraryByPlayer[id].RandomItem();
         void OnCreateLibrary()
         {
             Logger.Log<Library>("Create Library Model");

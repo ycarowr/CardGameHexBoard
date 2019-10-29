@@ -9,10 +9,11 @@ using Logger = Tools.Logger;
 
 namespace Game.Ui
 {
+    
     public class UiBoard : UiEventListener, ICreateBoard
     {
         [SerializeField] TileBase test;
-        Board CurrentBoard { get; set; }
+        IBoard CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
 
         protected override void Awake()
@@ -21,11 +22,11 @@ namespace Game.Ui
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        void ICreateBoard.OnCreateBoard(Board board)
+        void ICreateBoard.OnCreateBoard(IBoard board)
         {
             CurrentBoard = board;
             Logger.Log<UiBoard>("Board View Created");
-            foreach(var p in board.Units)
+            foreach(var p in board.Positions)
                 TileMap.SetTile(p, test);
         }
     }

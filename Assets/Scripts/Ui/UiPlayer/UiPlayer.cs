@@ -5,7 +5,7 @@ namespace HexCardGame.UI
     public interface IUiPlayer
     {
         PlayerId Id { get; }
-        GameData GameData { get; }
+        GameDataReference GameDataReference { get; }
         bool IsMyTurn();
         bool IsUser();
         bool IsEnemy();
@@ -15,10 +15,10 @@ namespace HexCardGame.UI
     public class UiPlayer : MonoBehaviour, IUiPlayer
     {
         public virtual PlayerId Id => PlayerId.Enemy;
-        public GameData GameData { get; private set; }
-        public bool IsMyTurn() => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(Id);
-        public bool IsUser() => GameData.CurrentGameInstance.TurnLogic.IsUser();
-        public bool IsEnemy() => GameData.CurrentGameInstance.TurnLogic.IsEnemy();
-        protected virtual void Awake() => GameData = GameData.Load();
+        public GameDataReference GameDataReference { get; private set; }
+        public bool IsMyTurn() => GameDataReference.CurrentGameInstance.TurnLogic.IsMyTurn(Id);
+        public bool IsUser() => GameDataReference.CurrentGameInstance.TurnLogic.IsUser();
+        public bool IsEnemy() => GameDataReference.CurrentGameInstance.TurnLogic.IsEnemy();
+        protected virtual void Awake() => GameDataReference = GameDataReference.Load();
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 namespace HexCardGame
 {
     [CreateAssetMenu(menuName = "Game Parameters")]
-    public class GameParameters : ScriptableObject
+    public class GameParametersReference : ScriptableObject
     {
-        public const string Path = "GameParameters";
-        public static GameParameters Load() => Resources.Load<GameParameters>(Path);
+        public const string Path = "References/GameParameters";
+        public static GameParametersReference Load() => Resources.Load<GameParametersReference>(Path);
 
         #region Game Start
 

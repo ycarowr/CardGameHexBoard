@@ -37,19 +37,19 @@ namespace HexCardGame.UI
 
         void UiButtonPassTurn.IPressPassTurn.PassTurn()
         {
-            if (Ui.GameData.CurrentGameInstance.BattleFsm.TryPassTurn(Ui.Id))
+            if (Ui.GameDataReference.CurrentGameInstance.BattleFsm.TryPassTurn(Ui.Id))
                 DisableInput();
         }
 
         void UiButtonLose.IPressLose.PressLose()
         {
-            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.Enemy);
+            Ui.GameDataReference.CurrentGameInstance.ForceWin(PlayerId.Enemy);
             DisableInput();
         }
 
         void UiButtonWin.IPressWin.PressWin()
         {
-            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.User);
+            Ui.GameDataReference.CurrentGameInstance.ForceWin(PlayerId.User);
             DisableInput();
         }
 

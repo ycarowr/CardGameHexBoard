@@ -8,7 +8,7 @@ namespace HexCardGame.UI
 {
     public class UiPoolDebug : UiEventListener, ICreatePool
     {
-        void ICreatePool.OnCreatePool(Pool pool)
+        void ICreatePool.OnCreatePool(IPool pool)
         {
             
         }

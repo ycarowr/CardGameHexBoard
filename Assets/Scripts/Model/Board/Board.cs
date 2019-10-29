@@ -1,17 +1,31 @@
 using System.Collections.Generic;
 using Tools.GenericCollection;
 using Tools;
+using Tools.Patterns.Observer;
 using UnityEngine;
 
 namespace HexCardGame.Model.GameBoard
 {
-    public class Board : Collection<Position>
+    [Event]
+    public interface ICreateBoard
     {
-        EventsDispatcher Dispatcher { get; }
+        void OnCreateBoard(IBoard board);
+    }
+    
+    public interface IBoard
+    {
+        List<Position> Positions { get; }
+        Position Get(int x, int y);
+    }
+    
+    public class Board : Collection<Position>, IBoard
+    {
+        IDispatcher Dispatcher { get; }
         public int MaxX { get; }
         public int MaxY { get; }
+        public List<Position> Positions => Units;
         
-        public Board(GameParameters configs, EventsDispatcher dispatcher)
+        public Board(GameParametersReference configs, IDispatcher dispatcher)
         {
             Dispatcher = dispatcher;
             MaxX = 6;

@@ -21,10 +21,10 @@ MonoBehaviour:
     TimeUntilStartGameEvent: 0.01
     TimeUntilStartTurn: 0.01
   Profiles:
-    BottomPlayer:
-      IsAi: 0
-      id: 0
-    TopPlayer:
-      IsAi: 1
+    AiPlayer:
       id: 2
+      IsAi: 1
     userId: 0
+    UserPlayer:
+      id: 0
+      IsAi: 0

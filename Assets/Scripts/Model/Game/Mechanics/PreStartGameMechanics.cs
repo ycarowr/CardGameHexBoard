@@ -2,6 +2,13 @@
 
 namespace HexCardGame.Model.Game
 {
+    /// <summary> Broadcast of the players right before the game start. </summary>
+    [Event]
+    public interface IPreGameStart
+    {
+        void OnPreGameStart(IPlayer[] players);
+    }
+    
     /// <summary> Pre Start Game Step Implementation. </summary>
     public class PreStartGameMechanics : BaseGameMechanics
     {
@@ -19,7 +26,7 @@ namespace HexCardGame.Model.Game
         }
 
         /// <summary> Dispatch pre start game event to the listeners</summary>
-        void OnGamePreStarted(List<IPlayer> players) =>
+        void OnGamePreStarted(IPlayer[] players) =>
             Dispatcher.Notify<IPreGameStart>(i => i.OnPreGameStart(players));
     }
 }

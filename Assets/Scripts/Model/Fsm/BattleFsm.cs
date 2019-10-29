@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HexCardGame.Model.Game;
+using Tools.Patterns.Observer;
 using Tools.Patterns.StateMachine;
 
 namespace HexCardGame
@@ -8,18 +9,29 @@ namespace HexCardGame
     {
         readonly Dictionary<PlayerId, TurnState> _register = new Dictionary<PlayerId, TurnState>();
 
-        public BattleFsm(IGameController controller, IGame gameData,
-            GameParameters gameParameters, EventsDispatcher gameEvents) : base(controller)
+        public BattleFsm(IGameController controller, IGame game,
+            GameParametersReference gameParameters, IDispatcher dispatcher) : base(controller)
         {
             Controller = controller;
 
-            //create states
-            var user = new UserPlayer(this, gameData, gameParameters, gameEvents);
-            var enemy = new EnemyPlayer(this, gameData, gameParameters, gameEvents);
-            var start = new StartBattle(this, gameData, gameParameters, gameEvents);
-            var end = new EndBattle(this, gameData, gameParameters, gameEvents);
 
-            //register all states
+
+            //Create states
+            var args = new BaseBattleState.BattleStateArguments
+            {
+                Fsm = this,
+                Game = game,
+                GameParameters = gameParameters,
+                Dispatcher = dispatcher
+            };
+
+            var user = new UserPlayer(args);
+            var enemy = new EnemyPlayer(args);
+            var start = new StartBattle(args);
+            var end = new EndBattle(args);
+
+
+            //Register all states
             RegisterState(user);
             RegisterState(enemy);
             RegisterState(start);

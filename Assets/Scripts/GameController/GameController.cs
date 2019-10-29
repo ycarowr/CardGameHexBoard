@@ -1,8 +1,16 @@
-﻿using Tools.Patterns.StateMachine;
+﻿using Tools.Patterns.Observer;
+using Tools.Patterns.StateMachine;
 using UnityEngine;
 
 namespace HexCardGame
 {
+    /// <summary> Broadcast of restart game. </summary>
+    [Event]
+    public interface IRestartGame
+    {
+        void OnRestart();
+    }
+    
     public interface IGameController : IStateMachineHandler
     {
         MonoBehaviour MonoBehaviour { get; }
@@ -14,8 +22,8 @@ namespace HexCardGame
     /// </summary>
     public class GameController : MonoBehaviour, IGameController
     {
-        EventsDispatcher _dispatcher;
-        GameData _gameData;
+        IDispatcher _dispatcher;
+        GameDataReference _gameDataReference;
 
         /// <summary>  Handler for the state machine. Used to dispatch coroutines. </summary>
         public MonoBehaviour MonoBehaviour => this;
@@ -24,14 +32,16 @@ namespace HexCardGame
         public void RestartGameImmediately()
         {
             _dispatcher.Notify<IRestartGame>(i => i.OnRestart());
-            _gameData.Clear();
+            _gameDataReference.Clear();
             StartBattle();
         }
 
         void Awake()
         {
-            _gameData = GameData.Load();
-            _dispatcher = EventsDispatcher.Load();
+            if(!_gameDataReference)
+                _gameDataReference = GameDataReference.Load();
+            if(_dispatcher == null)
+                _dispatcher = EventsDispatcherReference.Load();
         }
 
         void Start() => StartBattle();
@@ -39,8 +49,8 @@ namespace HexCardGame
         /// <summary>  Start the battle. Called only once after being initialized by the Bootstrapper. </summary>
         [Button] void StartBattle()
         {
-            _gameData.Initialize(this);
-            _gameData.CurrentGameInstance.BattleFsm.StartBattle();
+            _gameDataReference.Initialize(this);
+            _gameDataReference.CurrentGameInstance.BattleFsm.StartBattle();
         }
     }
 }

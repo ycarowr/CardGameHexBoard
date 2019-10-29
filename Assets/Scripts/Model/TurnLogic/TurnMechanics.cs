@@ -7,12 +7,12 @@ namespace HexCardGame.Model.TurnLogic
     /// <summary> This class decides which player goes first and which player goes next. </summary>
     public class TurnMechanics : ITurnLogic
     {
-        public TurnMechanics(List<IPlayer> players)
+        public TurnMechanics(IPlayer[] players)
         {
             if (players == null)
                 throw new ArgumentException("A Null List is not a valid argument to Create a TurnLogic");
-            if (players.Count < 1)
-                throw new ArgumentException("Invalid number of players: " + players.Count);
+            if (players.Length < 1)
+                throw new ArgumentException("Invalid number of players: " + PlayersCount);
 
             Players = players;
             TurnCount = 0;
@@ -23,12 +23,12 @@ namespace HexCardGame.Model.TurnLogic
         public PlayerId CurrentPlayerId { get; private set; }
         public PlayerId NextPlayerId => CurrentPlayer.Id == PlayerId.User ? PlayerId.Enemy : PlayerId.User;
         public PlayerId StarterPlayerId { get; private set; }
-        public List<IPlayer> Players { get; }
+        public IPlayer[] Players { get; }
         public int TurnCount { get; private set; }
         public IPlayer CurrentPlayer => GetPlayer(CurrentPlayerId);
         public IPlayer NextPlayer => GetPlayer(NextPlayerId);
         public IPlayer StarterPlayer => GetPlayer(StarterPlayerId);
-        public int PlayersCount => Players.Count;
+        public int PlayersCount => Players.Length;
         public bool IsMyTurn(IPlayer player) => CurrentPlayer == player;
         public bool IsMyTurn(PlayerId id) => CurrentPlayerId == id;
 

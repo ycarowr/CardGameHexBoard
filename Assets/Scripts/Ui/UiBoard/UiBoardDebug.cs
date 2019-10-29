@@ -14,7 +14,7 @@ namespace Game.Ui
         List<TMP_Text> textPositions = new List<TMP_Text>();
         [SerializeField] GameObject textPosition;
         Tilemap TileMap { get; set; }
-        Board CurrentBoard { get; set; }
+        IBoard CurrentBoard { get; set; }
 
 
         protected override void Awake()
@@ -23,7 +23,7 @@ namespace Game.Ui
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        void ICreateBoard.OnCreateBoard(Board board)
+        void ICreateBoard.OnCreateBoard(IBoard board)
         {
             CurrentBoard = board;
             DrawPositions();
@@ -34,7 +34,7 @@ namespace Game.Ui
         {
             const string uiPosition = "UiPosition_";
             var identity = Quaternion.identity;
-            foreach (var p in CurrentBoard.Units)
+            foreach (var p in CurrentBoard.Positions)
             {
                 var worldPosition = TileMap.CellToWorld(p);
                 var gameObj = Instantiate(textPosition, worldPosition, identity, transform);
