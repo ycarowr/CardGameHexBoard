@@ -6,10 +6,10 @@ using UnityEngine;
 ///     Dispatcher of the events related to the Battle FSM.
 /// </summary>
 [CreateAssetMenu(menuName = "References/GameEventsDispatcher")]
-public class EventsDispatcherReference : ObserverAtt<EventAttribute>
+public class EventsDispatcher : ObserverAtt<EventAttribute>
 {
     const string FilePath = "References/GameEventsDispatcher";
-    public static EventsDispatcherReference Load() => Resources.Load<EventsDispatcherReference>(FilePath);
+    public static EventsDispatcher Load() => Resources.Load<EventsDispatcher>(FilePath);
 }
 
 [AttributeUsage(AttributeTargets.Interface, AllowMultiple = true)]

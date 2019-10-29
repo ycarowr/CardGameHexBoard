@@ -1,13 +1,23 @@
 ﻿using System;
+using HexCardGame.SharedData;
 using UnityEngine;
 
 namespace HexCardGame
 {
     [CreateAssetMenu(menuName = "Game Parameters")]
-    public class GameParametersReference : ScriptableObject
+    public class GameParameters : ScriptableObject
     {
         public const string Path = "References/GameParameters";
-        public static GameParametersReference Load() => Resources.Load<GameParametersReference>(Path);
+
+        //----------------------------------------------------------------------------------------------------------
+
+        #region Board Configurations 
+
+        public BoardData BoardData;
+
+        #endregion
+
+        public static GameParameters Load() => Resources.Load<GameParameters>(Path);
 
         #region Game Start
 

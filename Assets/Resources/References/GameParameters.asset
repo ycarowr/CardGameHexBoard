@@ -28,3 +28,4 @@ MonoBehaviour:
     UserPlayer:
       id: 0
       IsAi: 0
+  BoardData: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}

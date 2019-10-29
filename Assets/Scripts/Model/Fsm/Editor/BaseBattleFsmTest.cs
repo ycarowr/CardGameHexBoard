@@ -8,45 +8,45 @@ namespace Game.Fsm.Tests
     public class BaseBattleFsmTest : IListener
     {
         protected MockFsmController Controller;
-        protected EventsDispatcherReference Dispatcher;
-        protected GameDataReference GameDataReference;
-        protected GameParametersReference Parameters;
+        protected EventsDispatcher Dispatcher;
+        protected GameData GameData;
+        protected GameParameters Parameters;
 
         [SetUp]
         public virtual void Setup()
         {
-            Parameters = GameParametersReference.Load();
-            Dispatcher = EventsDispatcherReference.Load();
-            GameDataReference = GameDataReference.Load();
+            Parameters = GameParameters.Load();
+            Dispatcher = EventsDispatcher.Load();
+            GameData = GameData.Load();
             Dispatcher.AddListener(this);
             Controller = new GameObject("MockFsmController").AddComponent<MockFsmController>();
             Controller.Awake();
-            GameDataReference.Initialize(Controller);
+            GameData.Initialize(Controller);
         }
 
         [TearDown]
         public virtual void End()
         {
-            GameDataReference.Clear();
+            GameData.Clear();
             Dispatcher.RemoveListener(this);
         }
 
         public class MockFsmController : MonoBehaviour, IGameController
         {
-            EventsDispatcherReference _dispatcher;
-            GameDataReference _gameDataReference;
+            EventsDispatcher _dispatcher;
+            GameData _gameData;
             public MonoBehaviour MonoBehaviour => this;
 
             public void RestartGameImmediately()
             {
                 _dispatcher.Notify<IRestartGame>(i => i.OnRestart());
-                _gameDataReference.Clear();
+                _gameData.Clear();
             }
 
             public void Awake()
             {
-                _gameDataReference = GameDataReference.Load();
-                _dispatcher = EventsDispatcherReference.Load();
+                _gameData = GameData.Load();
+                _dispatcher = EventsDispatcher.Load();
             }
         }
     }

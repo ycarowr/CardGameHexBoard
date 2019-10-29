@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace HexCardGame.Model.GameBoard
 {
@@ -8,7 +7,7 @@ namespace HexCardGame.Model.GameBoard
         public static Vector3Int AsVector3Int(this Position p) => new Vector3Int(p.X, p.Y, 0);
         public static Vector2Int AsVector2Int(this Position p) => new Vector2Int(p.X, p.Y);
     }
-    
+
     public class Position
     {
         public Position(int x, int y)

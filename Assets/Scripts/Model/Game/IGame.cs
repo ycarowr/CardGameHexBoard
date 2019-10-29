@@ -14,7 +14,7 @@ namespace HexCardGame.Model.Game
         void StartCurrentPlayerTurn();
         void FinishCurrentPlayerTurn();
     }
-    
+
     /// <summary> A game interface. </summary>
     public interface IGame : ITurnMechanics
     {

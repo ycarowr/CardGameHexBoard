@@ -9,29 +9,23 @@ namespace HexCardGame
     {
         readonly Dictionary<PlayerId, TurnState> _register = new Dictionary<PlayerId, TurnState>();
 
-        public BattleFsm(IGameController controller, IGame game,
-            GameParametersReference gameParameters, IDispatcher dispatcher) : base(controller)
+        public BattleFsm(RuntimeGame.GameArgs args, IGame game) : base(args.Controller)
         {
-            Controller = controller;
+            Controller = args.Controller;
 
-
-
-            //Create states
-            var args = new BaseBattleState.BattleStateArguments
+            var fsmArgs = new BattleFsmArguments
             {
                 Fsm = this,
                 Game = game,
-                GameParameters = gameParameters,
-                Dispatcher = dispatcher
+                Dispatcher = args.Dispatcher,
+                GameParameters = args.GameParameters
             };
 
-            var user = new UserPlayer(args);
-            var enemy = new EnemyPlayer(args);
-            var start = new StartBattle(args);
-            var end = new EndBattle(args);
+            var user = new UserPlayer(fsmArgs);
+            var enemy = new EnemyPlayer(fsmArgs);
+            var start = new StartBattle(fsmArgs);
+            var end = new EndBattle(fsmArgs);
 
-
-            //Register all states
             RegisterState(user);
             RegisterState(enemy);
             RegisterState(start);
@@ -41,7 +35,6 @@ namespace HexCardGame
         }
 
         public IGameController Controller { get; }
-
 
         /// <summary>  Call this method to Push Start Battle State and begin the match. </summary>
         public void StartBattle()
@@ -63,24 +56,7 @@ namespace HexCardGame
             PushState<EndBattle>();
         }
 
-        void UserTurn()
-        {
-            if (!IsInitialized)
-                return;
-
-            PopState();
-            PushState<UserPlayer>();
-        }
-
-        void EnemyPlayer()
-        {
-            if (!IsInitialized)
-                return;
-
-            PopState();
-            PushState<EnemyPlayer>();
-        }
-
+        /// <summary> Call this method to pass the turn of the current player. </summary>
         public bool TryPassTurn(PlayerId id)
         {
             var state = GetPlayerState(id);
@@ -94,6 +70,14 @@ namespace HexCardGame
         {
             base.Clear();
             _register.Clear();
+        }
+
+        public struct BattleFsmArguments
+        {
+            public IGame Game;
+            public BattleFsm Fsm;
+            public IDispatcher Dispatcher;
+            public GameParameters GameParameters;
         }
     }
 }

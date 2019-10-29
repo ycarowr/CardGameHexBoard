@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using HexCardGame.Model.Game;
 using TMPro;
 using Tools.Patterns.Observer;
@@ -12,7 +11,7 @@ namespace HexCardGame.UI
         IListener, IPreGameStart, IFinishGame
     {
         const float DelayToShow = 3.5f;
-        EventsDispatcherReference _dispatcher;
+        EventsDispatcher _dispatcher;
         UITextMeshImage UiButton { get; set; }
 
         protected override void OnSetHandler(IButtonHandler handler)
@@ -48,7 +47,7 @@ namespace HexCardGame.UI
 
         protected void Awake()
         {
-            _dispatcher = EventsDispatcherReference.Load();
+            _dispatcher = EventsDispatcher.Load();
             UiButton = new UITextMeshImage(
                 GetComponentInChildren<TMP_Text>(),
                 GetComponent<Image>());

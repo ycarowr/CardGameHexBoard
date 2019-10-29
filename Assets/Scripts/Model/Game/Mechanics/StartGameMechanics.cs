@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace HexCardGame.Model.Game
+﻿namespace HexCardGame.Model.Game
 {
     /// <summary> Broadcast of the starter player to the Listeners. </summary>
     [Event]
@@ -8,7 +6,7 @@ namespace HexCardGame.Model.Game
     {
         void OnStartGame(IPlayer starter);
     }
-    
+
     /// <summary> Start Game Step Implementation. </summary>
     public class StartGameMechanics : BaseGameMechanics
     {

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Game.Ui;
+﻿using Game.Ui;
 using HexCardGame.Model.Game;
 using UnityEngine;
 

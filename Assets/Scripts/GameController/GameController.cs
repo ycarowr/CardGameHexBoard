@@ -10,7 +10,7 @@ namespace HexCardGame
     {
         void OnRestart();
     }
-    
+
     public interface IGameController : IStateMachineHandler
     {
         MonoBehaviour MonoBehaviour { get; }
@@ -23,7 +23,7 @@ namespace HexCardGame
     public class GameController : MonoBehaviour, IGameController
     {
         IDispatcher _dispatcher;
-        GameDataReference _gameDataReference;
+        GameData _gameData;
 
         /// <summary>  Handler for the state machine. Used to dispatch coroutines. </summary>
         public MonoBehaviour MonoBehaviour => this;
@@ -32,25 +32,26 @@ namespace HexCardGame
         public void RestartGameImmediately()
         {
             _dispatcher.Notify<IRestartGame>(i => i.OnRestart());
-            _gameDataReference.Clear();
+            _gameData.Clear();
             StartBattle();
         }
 
         void Awake()
         {
-            if(!_gameDataReference)
-                _gameDataReference = GameDataReference.Load();
-            if(_dispatcher == null)
-                _dispatcher = EventsDispatcherReference.Load();
+            if (!_gameData)
+                _gameData = GameData.Load();
+            if (_dispatcher == null)
+                _dispatcher = EventsDispatcher.Load();
         }
 
         void Start() => StartBattle();
 
         /// <summary>  Start the battle. Called only once after being initialized by the Bootstrapper. </summary>
-        [Button] void StartBattle()
+        [Button]
+        void StartBattle()
         {
-            _gameDataReference.Initialize(this);
-            _gameDataReference.CurrentGameInstance.BattleFsm.StartBattle();
+            _gameData.Initialize(this);
+            _gameData.CurrentGameInstance.BattleFsm.StartBattle();
         }
     }
 }

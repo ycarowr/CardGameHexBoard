@@ -1,26 +1,33 @@
-﻿using System.Collections.Generic;
-using HexCardGame;
+﻿using HexCardGame;
 using HexCardGame.Model.Game;
 using NUnit.Framework;
-using Tools.Patterns.Observer;
-using UnityEngine;
 
 namespace Game.Fsm.Tests
 {
     public class MvcIntegrationTests : BaseBattleFsmTest, IStartGame, IFinishGame, IPreGameStart,
         IStartPlayerTurn, IFinishPlayerTurn
     {
-        bool _started;
         bool _ended;
-        bool _preStarted;
-        bool _playerStarted;
         bool _playerFinished;
+        bool _playerStarted;
+        bool _preStarted;
+        bool _started;
+
+        public void OnFinishGame(IPlayer winner) => _ended = true;
+
+        public void OnFinishPlayerTurn(IPlayer player) => _playerFinished = true;
+
+        public void OnPreGameStart(IPlayer[] players) => _preStarted = true;
+
+        public void OnStartGame(IPlayer p) => _started = true;
+
+        public void OnStartPlayerTurn(IPlayer player) => _playerStarted = true;
 
         [Test]
         public void PreStartGame()
         {
             _preStarted = false;
-            GameDataReference.CurrentGameInstance.PreStartGame();
+            GameData.CurrentGameInstance.PreStartGame();
             Assert.IsTrue(_preStarted);
         }
 
@@ -28,55 +35,45 @@ namespace Game.Fsm.Tests
         public void StartGame()
         {
             _started = false;
-            GameDataReference.CurrentGameInstance.StartGame();
+            GameData.CurrentGameInstance.StartGame();
             Assert.IsTrue(_started);
         }
 
         [Test]
         public void EndGameUser()
         {
-            GameDataReference.CurrentGameInstance.StartGame();
+            GameData.CurrentGameInstance.StartGame();
             _ended = false;
-            GameDataReference.CurrentGameInstance.ForceWin(PlayerId.User);
+            GameData.CurrentGameInstance.ForceWin(PlayerId.User);
             Assert.IsTrue(_ended);
         }
 
         [Test]
         public void EndGameEnemy()
         {
-            GameDataReference.CurrentGameInstance.StartGame();
+            GameData.CurrentGameInstance.StartGame();
             _ended = false;
-            GameDataReference.CurrentGameInstance.ForceWin(PlayerId.Enemy);
+            GameData.CurrentGameInstance.ForceWin(PlayerId.Enemy);
             Assert.IsTrue(_ended);
         }
 
         [Test]
         public void StartTurn()
         {
-            GameDataReference.CurrentGameInstance.StartGame();
+            GameData.CurrentGameInstance.StartGame();
             _playerStarted = false;
-            GameDataReference.CurrentGameInstance.StartCurrentPlayerTurn();
+            GameData.CurrentGameInstance.StartCurrentPlayerTurn();
             Assert.IsTrue(_playerStarted);
         }
-        
+
         [Test]
         public void FinishTurn()
         {
-            GameDataReference.CurrentGameInstance.StartGame();
-            GameDataReference.CurrentGameInstance.StartCurrentPlayerTurn();
+            GameData.CurrentGameInstance.StartGame();
+            GameData.CurrentGameInstance.StartCurrentPlayerTurn();
             _playerFinished = false;
-            GameDataReference.CurrentGameInstance.FinishCurrentPlayerTurn();
+            GameData.CurrentGameInstance.FinishCurrentPlayerTurn();
             Assert.IsTrue(_playerFinished);
         }
-
-        public void OnStartGame(IPlayer p) => _started = true;
-
-        public void OnFinishGame(IPlayer winner) => _ended = true;
-
-        public void OnPreGameStart(IPlayer[] players) => _preStarted = true;
-
-        public void OnStartPlayerTurn(IPlayer player) => _playerStarted = true;
-
-        public void OnFinishPlayerTurn(IPlayer player) => _playerFinished = true;
     }
 }

@@ -6,7 +6,7 @@
     {
         void OnFinishGame(IPlayer winner);
     }
-    
+
     /// <summary> Finish Game Step Implementation. </summary>
     public class FinishGameMechanics : BaseGameMechanics
     {

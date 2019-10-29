@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 namespace HexCardGame.Model.TurnLogic

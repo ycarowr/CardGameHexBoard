@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using HexCardGame.Model.Game;
+﻿using HexCardGame.Model.Game;
 using Tools.Patterns.Observer;
 using UnityEngine;
 
@@ -8,21 +6,21 @@ namespace HexCardGame
 {
     /// <summary>  Game data. </summary>
     [CreateAssetMenu(menuName = "References/GameData")]
-    public class GameDataReference : ScriptableObject
+    public class GameData : ScriptableObject
     {
         public const string Path = "References/GameData";
         IDispatcher _dispatcher;
-        [SerializeField] GameParametersReference gameParameters;
+        [SerializeField] GameParameters gameParameters;
 
         public IGame CurrentGameInstance { get; private set; }
-        public static GameDataReference Load() => Resources.Load<GameDataReference>(Path);
+        public static GameData Load() => Resources.Load<GameData>(Path);
 
         /// <summary>  Clears the game data. </summary>
         public void Clear() => CurrentGameInstance = null;
 
         void CreateGame(IGameController controller)
         {
-            var turnBasedArgs = new RuntimeGame.RuntimeGameArgs
+            var turnBasedArgs = new RuntimeGame.GameArgs
             {
                 Controller = controller,
                 GameParameters = gameParameters,
@@ -45,8 +43,8 @@ namespace HexCardGame
 
         void OnEnable()
         {
-            if(_dispatcher == null)
-                _dispatcher = EventsDispatcherReference.Load();
+            if (_dispatcher == null)
+                _dispatcher = EventsDispatcher.Load();
         }
     }
 }

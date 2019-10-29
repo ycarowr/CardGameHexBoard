@@ -10,7 +10,6 @@
     /// <summary> Start Current player Turn Implementation. </summary>
     public class StartPlayerTurnMechanics : BaseGameMechanics
     {
-
         public StartPlayerTurnMechanics(IGame game) : base(game)
         {
         }

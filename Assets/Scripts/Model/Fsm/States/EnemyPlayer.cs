@@ -1,10 +1,8 @@
-﻿using HexCardGame.Model.Game;
-
-namespace HexCardGame
+﻿namespace HexCardGame
 {
     public class EnemyPlayer : EnemyTurn
     {
-        public EnemyPlayer(BattleStateArguments args) : base(args)
+        public EnemyPlayer(BattleFsm.BattleFsmArguments args) : base(args)
         {
         }
 

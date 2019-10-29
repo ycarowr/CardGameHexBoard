@@ -1,18 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Game.Ui;
+﻿using Game.Ui;
 using HexCardGame.Model;
-using UnityEngine;
-using Logger = Tools.Logger;
+using Tools;
 
 namespace HexCardGame.UI
 {
     public class UiLibrary : UiEventListener, ICreateLibrary
     {
-
-        void ICreateLibrary.OnCreateLibrary(ILibrary lib)
-        {
-            Logger.Log<UiLibrary>("Library View Created");
-        }
+        void ICreateLibrary.OnCreateLibrary(ILibrary lib) => Logger.Log<UiLibrary>("Library View Created");
     }
 }

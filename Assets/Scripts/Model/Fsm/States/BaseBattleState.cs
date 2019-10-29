@@ -10,17 +10,9 @@ namespace HexCardGame
     /// </summary>
     public abstract class BaseBattleState : IState, IListener, IRestartGame
     {
-        public struct BattleStateArguments
-        {
-            public IGame Game;
-            public BattleFsm Fsm;
-            public IDispatcher Dispatcher;
-            public GameParametersReference GameParameters;
-        }
-        
         #region Constructor
 
-        protected BaseBattleState(BattleStateArguments args)
+        protected BaseBattleState(BattleFsm.BattleFsmArguments args)
         {
             Fsm = args.Fsm;
             Game = args.Game;
@@ -38,11 +30,11 @@ namespace HexCardGame
 
         #region Properties
 
-        protected GameParametersReference GameParameters { get; }
+        protected GameParameters GameParameters { get; }
         protected IDispatcher Dispatcher { get; }
-        protected IGame Game { get; }
-        public BattleFsm Fsm { get; }
         public bool IsInitialized { get; }
+        public BattleFsm Fsm { get; }
+        protected IGame Game { get; }
 
         #endregion
 

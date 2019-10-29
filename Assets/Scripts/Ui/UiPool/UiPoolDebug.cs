@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Game.Ui;
+﻿using Game.Ui;
 using HexCardGame.Model.GamePool;
-using UnityEngine;
 
 namespace HexCardGame.UI
 {
@@ -10,7 +7,6 @@ namespace HexCardGame.UI
     {
         void ICreatePool.OnCreatePool(IPool pool)
         {
-            
         }
     }
 }

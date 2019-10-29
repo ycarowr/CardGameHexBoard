@@ -1,12 +1,9 @@
-﻿using HexCardGame.Model.Game;
-using Tools.Patterns.Observer;
-
-namespace HexCardGame
+﻿namespace HexCardGame
 {
     /// <summary> Bottom, where the User is always sitting. </summary>
     public class UserPlayer : EnemyTurn
     {
-        public UserPlayer(BattleStateArguments args) : base(args)
+        public UserPlayer(BattleFsm.BattleFsmArguments args) : base(args)
         {
         }
 

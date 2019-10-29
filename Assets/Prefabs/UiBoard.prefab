@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d9b6788baf178488a3a472facd18a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}
   textPosition: {fileID: 3841204323083488389, guid: 6d6fcd6432db72747b94af95f210daaf,
     type: 3}
 --- !u!1 &9115395796258587164

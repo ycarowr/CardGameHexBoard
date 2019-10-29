@@ -10,7 +10,7 @@ namespace HexCardGame
 
         #region Constructor
 
-        public StartBattle(BattleStateArguments args) : base(args)
+        public StartBattle(BattleFsm.BattleFsmArguments args) : base(args)
         {
         }
 
@@ -23,15 +23,15 @@ namespace HexCardGame
         public override void OnEnterState()
         {
             base.OnEnterState();
-            
+
             //schedule pre game
-            if(Application.isPlaying)
+            if (Application.isPlaying)
                 Fsm.Controller.MonoBehaviour.StartCoroutine(PreGameRoutine());
-            else 
+            else
                 Game.PreStartGame();
-            
+
             //schedule start game
-            if(Application.isPlaying)
+            if (Application.isPlaying)
                 Fsm.Controller.MonoBehaviour.StartCoroutine(StartGameRoutine());
             else
                 Game.StartGame();

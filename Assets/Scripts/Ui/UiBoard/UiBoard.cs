@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using HexCardGame;
-using HexCardGame.Model.GameBoard;
+﻿using HexCardGame.Model.GameBoard;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Logger = Tools.Logger;
 
 namespace Game.Ui
 {
-    
     public class UiBoard : UiEventListener, ICreateBoard
     {
+        GameObject[] positions;
         [SerializeField] TileBase test;
         IBoard CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
+
+        void ICreateBoard.OnCreateBoard(IBoard board)
+        {
+            CurrentBoard = board;
+            DrawUi();
+        }
 
         protected override void Awake()
         {
@@ -22,12 +24,15 @@ namespace Game.Ui
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        void ICreateBoard.OnCreateBoard(IBoard board)
+        [Button]
+        void DrawUi()
         {
-            CurrentBoard = board;
             Logger.Log<UiBoard>("Board View Created");
-            foreach(var p in board.Positions)
+            foreach (var p in CurrentBoard.Positions)
                 TileMap.SetTile(p, test);
         }
+
+        [Button]
+        void ClearUi() => TileMap.ClearAllTiles();
     }
 }

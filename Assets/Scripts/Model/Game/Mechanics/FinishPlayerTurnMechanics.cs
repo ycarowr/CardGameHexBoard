@@ -6,7 +6,7 @@
     {
         void OnFinishPlayerTurn(IPlayer player);
     }
-    
+
     /// <summary> Finish Current player Turn Implementation. </summary>
     public class FinishPlayerTurnMechanics : BaseGameMechanics
     {

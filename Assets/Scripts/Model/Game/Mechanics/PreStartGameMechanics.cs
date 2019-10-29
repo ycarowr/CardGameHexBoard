@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HexCardGame.Model.Game
+﻿namespace HexCardGame.Model.Game
 {
     /// <summary> Broadcast of the players right before the game start. </summary>
     [Event]
@@ -8,7 +6,7 @@ namespace HexCardGame.Model.Game
     {
         void OnPreGameStart(IPlayer[] players);
     }
-    
+
     /// <summary> Pre Start Game Step Implementation. </summary>
     public class PreStartGameMechanics : BaseGameMechanics
     {

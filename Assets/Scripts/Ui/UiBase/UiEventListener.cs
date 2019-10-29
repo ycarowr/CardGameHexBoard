@@ -9,13 +9,13 @@ namespace Game.Ui
     public abstract class UiEventListener : MonoBehaviour, IListener
     {
         /// <summary> Reference to the observer. </summary>
-        EventsDispatcherReference _dispatcher;
+        EventsDispatcher _dispatcher;
 
         /// <summary> Add itself as a listener. </summary>
         protected virtual void Awake()
         {
             //loads the asset
-            _dispatcher = EventsDispatcherReference.Load();
+            _dispatcher = EventsDispatcher.Load();
             Subscribe();
         }
 

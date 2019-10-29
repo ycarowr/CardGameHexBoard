@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HexCardGame.Model.TurnLogic
+﻿namespace HexCardGame.Model.TurnLogic
 {
     public interface ITurnLogic
     {

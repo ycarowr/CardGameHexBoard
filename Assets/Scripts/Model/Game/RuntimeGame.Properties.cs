@@ -9,7 +9,7 @@ namespace HexCardGame.Model.Game
     {
         #region Properties
 
-        public IDispatcher Dispatcher { get; private set; }
+        public IDispatcher Dispatcher { get; }
         public bool IsGameStarted { get; set; }
         public bool IsGameFinished { get; set; }
         public bool IsTurnInProgress { get; set; }
