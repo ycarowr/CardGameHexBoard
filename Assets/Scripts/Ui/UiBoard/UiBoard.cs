@@ -1,9 +1,10 @@
-﻿using HexCardGame.Model.GameBoard;
+﻿using Game.Ui;
+using HexCardGame.Model.GameBoard;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Logger = Tools.Logger;
 
-namespace Game.Ui
+namespace HexCardGame.UI
 {
     public class UiBoard : UiEventListener, ICreateBoard
     {
@@ -15,7 +16,7 @@ namespace Game.Ui
         void ICreateBoard.OnCreateBoard(IBoard board)
         {
             CurrentBoard = board;
-            DrawUi();
+            DrawBoardUi();
         }
 
         protected override void Awake()
@@ -25,7 +26,7 @@ namespace Game.Ui
         }
 
         [Button]
-        void DrawUi()
+        void DrawBoardUi()
         {
             Logger.Log<UiBoard>("Board View Created");
             foreach (var p in CurrentBoard.Positions)
@@ -33,6 +34,6 @@ namespace Game.Ui
         }
 
         [Button]
-        void ClearUi() => TileMap.ClearAllTiles();
+        void ClearBoardUi() => TileMap.ClearAllTiles();
     }
 }

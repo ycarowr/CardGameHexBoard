@@ -55,7 +55,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3378dd0568d3fa44ae1875d51589daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardTemplate: {fileID: 6099696990361975285}
   poolCardPositions:
   - {fileID: 4297822793026113789}
   - {fileID: 2183197073373688707}
@@ -595,7 +596,6 @@ MonoBehaviour:
   - {fileID: 3944274167048154859}
   - {fileID: 9044709764954769152}
   - {fileID: 7875731048958401565}
-  cardTemplate: {fileID: 6099696990361975285}
 --- !u!114 &2224021344975234129
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,9 @@
-﻿using HexCardGame.Model.GameBoard;
+﻿using System;
+using System.Linq;
+using HexCardGame.Model.GameBoard;
+using HexCardGame.SharedData;
 using TMPro;
+using Tools.LocalData;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,9 +11,10 @@ namespace Game.Ui
 {
     public class UiBoardDebug : UiEventListener, ICreateBoard
     {
-        GameObject[] positions;
         [SerializeField] GameObject textPosition;
-        Tilemap TileMap { get; set; }
+        [SerializeField] BoardData data;
+        [SerializeField] Tilemap tileMap;
+        GameObject[] positions;
         IBoard CurrentBoard { get; set; }
 
         void ICreateBoard.OnCreateBoard(IBoard board)
@@ -17,14 +22,7 @@ namespace Game.Ui
             CurrentBoard = board;
             DrawPositions();
         }
-
-
-        protected override void Awake()
-        {
-            base.Awake();
-            TileMap = GetComponentInChildren<Tilemap>();
-        }
-
+        
         [Button]
         void DrawPositions()
         {
@@ -35,7 +33,7 @@ namespace Game.Ui
             for (var i = 0; i < CurrentBoard.Positions.Count; i++)
             {
                 var p = CurrentBoard.Positions[i];
-                var worldPosition = TileMap.CellToWorld(p);
+                var worldPosition = tileMap.CellToWorld(p);
                 var gameObj = Instantiate(textPosition, worldPosition, identity, transform);
                 positions[i] = gameObj;
                 var tmpText = gameObj.GetComponent<TMP_Text>();
@@ -59,9 +57,23 @@ namespace Game.Ui
         [Button]
         void RegenerateBoard()
         {
-            TileMap.ClearAllTiles();
+            tileMap.ClearAllTiles();
             CurrentBoard?.Clear();
             CurrentBoard?.GeneratePositions();
+        }
+
+        void OnDrawGizmos()
+        {
+            for (var i = 0; i < data.MaxX; ++i)
+            for (var j = 0; j < data.MaxY; ++j)
+            {
+                var cell = new Vector3Int(i, j, 0);
+                if (!data.UndesiredPositions.Contains((Vector2Int) cell))
+                {
+                    var position = tileMap.CellToWorld(cell);
+                    Gizmos.DrawWireSphere(position, 0.93f);
+                }
+            }
         }
     }
 }
