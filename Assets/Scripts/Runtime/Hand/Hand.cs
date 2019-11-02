@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using HexCardGame.SharedData;
+﻿using System.Collections.Generic;
+using Tools;
 using Tools.GenericCollection;
 using Tools.Patterns.Observer;
-using UnityEngine;
-using UnityEngine.UIElements;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.Runtime
 {
@@ -22,8 +18,10 @@ namespace HexCardGame.Runtime
         void Add(CardHand card);
         bool Has(CardHand card);
         bool Remove(CardHand card);
+        int Size();
+        void Empty();
     }
-    
+
     public class Hand : Collection<CardHand>, IHand
     {
         public Hand(GameParameters gameParameters, IDispatcher dispatcher)
@@ -36,7 +34,9 @@ namespace HexCardGame.Runtime
         IDispatcher Dispatcher { get; }
         GameParameters Parameters { get; }
         public int MaxHandSize => Parameters.Hand.MaxHandSize;
+        public int Size() => Units.Count;
         public List<CardHand> Cards => Units;
+        public void Empty() => Clear();
 
         void OnCreateHand()
         {

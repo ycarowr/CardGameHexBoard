@@ -27,8 +27,8 @@ namespace Game.Ui
             const string uiPosition = "UiPosition_";
             var identity = Quaternion.identity;
             ClearPositions();
-            positions = new GameObject[CurrentBoard.Positions.Count];
-            for (var i = 0; i < CurrentBoard.Positions.Count; i++)
+            positions = new GameObject[CurrentBoard.Positions.Length];
+            for (var i = 0; i < CurrentBoard.Positions.Length; i++)
             {
                 var p = CurrentBoard.Positions[i];
                 var worldPosition = tileMap.CellToWorld(p);

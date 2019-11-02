@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using HexCardGame.SharedData;
 using Tools;
-using Tools.GenericCollection;
 using Tools.Patterns.Observer;
 
 namespace HexCardGame.Runtime.GameBoard
@@ -14,13 +12,14 @@ namespace HexCardGame.Runtime.GameBoard
 
     public interface IBoard
     {
-        List<Position> Positions { get; }
+        Position[] Positions { get; }
+        bool Has(int x, int y);
         Position Get(int x, int y);
         void GeneratePositions();
         void Clear();
     }
 
-    public class Board : Collection<Position>, IBoard
+    public class Board : IBoard
     {
         public Board(GameParameters parameters, IDispatcher dispatcher)
         {
@@ -33,20 +32,23 @@ namespace HexCardGame.Runtime.GameBoard
         public int MaxX => Data.MaxX;
         public int MaxY => Data.MaxY;
         public BoardData Data { get; }
-        public List<Position> Positions => Units;
+        public Position[] Positions { get; private set; }
 
         public void GeneratePositions()
         {
-            for (var i = 0; i < MaxX; i++)
-            for (var j = 0; j < MaxY; j++)
-                Add(new Position(i, j));
-            RemoveUndesiredPositions();
+            var desiredPositions = Data.GetDesiredPositions();
+            Positions = new Position[desiredPositions.Length];
+            for (var i = 0; i < desiredPositions.Length; i++)
+                Positions[i] = new Position(desiredPositions[i].x, desiredPositions[i].y);
+
             OnCreateBoard();
         }
 
+        public bool Has(int x, int y) => Get(x, y) != null;
+
         public Position Get(int x, int y)
         {
-            foreach (var i in Units)
+            foreach (var i in Positions)
             {
                 if (i.X != x)
                     continue;
@@ -57,11 +59,7 @@ namespace HexCardGame.Runtime.GameBoard
             return null;
         }
 
-        void RemoveUndesiredPositions()
-        {
-            foreach (var i in Data.UndesiredPositions)
-                Remove(Get(i.x, i.y));
-        }
+        public void Clear() => GeneratePositions();
 
         void OnCreateBoard()
         {

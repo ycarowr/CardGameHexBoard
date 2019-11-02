@@ -27,8 +27,10 @@ namespace HexCardGame.UI
         [Button]
         void DrawPool()
         {
-            for (var i = 0; i < CurrentPool.Count; ++i)
+            var size = CurrentPool.Size();
+            for (var i = 0; i < size; ++i)
             {
+                Debug.Log("Create card pool");
                 var gameObj = Instantiate(cardTemplate, poolCardPositions[i].transform);
                 gameObj.SetActive(true);
             }

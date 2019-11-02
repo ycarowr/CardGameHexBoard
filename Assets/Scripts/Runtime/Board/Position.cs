@@ -19,7 +19,7 @@ namespace HexCardGame.Runtime.GameBoard
             return p1.IsEqual(p2);
         }
     }
-    
+
     public class Position : IValued<CardBoard>
     {
         public Position(int x, int y)
@@ -31,6 +31,10 @@ namespace HexCardGame.Runtime.GameBoard
         public int X { get; }
         public int Y { get; }
         int Z => -(X + Y);
+
+        public bool HasValue => Value != null;
+        public CardBoard Value { get; private set; }
+        public void SetValue(CardBoard value) => Value = value;
         public static implicit operator Vector3Int(Position p) => p.AsVector3Int();
         public static implicit operator Vector2Int(Position p) => p.AsVector2Int();
         public override string ToString() => $"Position: {X},{Y}";
@@ -42,14 +46,6 @@ namespace HexCardGame.Runtime.GameBoard
             if (p.X != X)
                 return false;
             return p.Y == Y;
-        }
-
-        public bool HasValue => Value != null;
-        public CardBoard Value { get; private set; }
-        public void SetValue(CardBoard value)
-        {
-            if (!HasValue)
-                Value = value;
         }
     }
 }

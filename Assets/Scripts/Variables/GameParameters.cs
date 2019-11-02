@@ -95,9 +95,9 @@ namespace HexCardGame
         [Serializable]
         public class HandConfigs
         {
-            [Range(1, 10) ] public int MaxHandSize;
+            [Range(1, 10)] public int MaxHandSize;
         }
-        
+
         public HandConfigs Hand = new HandConfigs();
 
         #endregion
