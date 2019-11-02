@@ -4,9 +4,9 @@ namespace HexCardGame.Runtime.Test
 {
     public class HandTests : BaseTest, ICreateHand
     {
+        readonly PlayerId _id = PlayerId.User;
         IHand _hand;
         bool _handCreated;
-        readonly PlayerId _id = PlayerId.User;
 
         public void OnCreateHand(IHand hand, PlayerId id)
         {

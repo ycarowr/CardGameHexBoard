@@ -47,10 +47,10 @@ namespace HexCardGame.Runtime.Game
 
             {
                 //Create Library
-                var libData = new Dictionary<PlayerId, List<CardData>>
+                var libData = new Dictionary<PlayerId, CardData[]>
                 {
-                    {PlayerId.User, new List<CardData>()},
-                    {PlayerId.Ai, new List<CardData>()}
+                    {PlayerId.User, new CardData[0]},
+                    {PlayerId.Ai, new CardData[0]}
                 };
 
                 Library = new Library(libData, Dispatcher);

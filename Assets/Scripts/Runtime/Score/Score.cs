@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Tools;
 using Tools.Patterns.Observer;
 
@@ -36,7 +37,14 @@ namespace HexCardGame.Runtime.GameScore
         public void Add(PlayerId id, int amount) => _register[id] += amount;
         public void Remove(PlayerId id, int amount) => _register[id] -= amount;
         public int GetScoreForPlayer(PlayerId id) => _register[id];
-        public void Clear() => _register.Clear();
+
+        public void Clear()
+        {
+            var keys = _register.Keys.ToArray();
+            _register.Clear();
+            foreach (var id in keys)
+                RegisterPlayer(id);
+        }
 
         void RegisterPlayer(PlayerId id) => _register.Add(id, 0);
 

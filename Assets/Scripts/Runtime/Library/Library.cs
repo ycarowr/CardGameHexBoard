@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using HexCardGame.SharedData;
 using Tools;
-using Tools.Extensions.List;
+using Tools.Extensions.Arrays;
 using Tools.Patterns.Observer;
 
 namespace HexCardGame.Runtime
@@ -20,21 +20,33 @@ namespace HexCardGame.Runtime
 
     public class Library : ILibrary
     {
-        readonly List<CardData> _library = new List<CardData>();
-        readonly Dictionary<PlayerId, List<CardData>> _libraryByPlayer;
+        readonly CardData[] _register;
+        readonly Dictionary<PlayerId, CardData[]> _registerByPlayer;
 
-        public Library(Dictionary<PlayerId, List<CardData>> playersLibrary, IDispatcher dispatcher)
+        public Library(Dictionary<PlayerId, CardData[]> playersLibrary, IDispatcher dispatcher)
         {
             Dispatcher = dispatcher;
-            _libraryByPlayer = playersLibrary;
-            foreach (var key in _libraryByPlayer.Keys)
-                _library.AddRange(_libraryByPlayer[key]);
+            _registerByPlayer = playersLibrary;
+
+            var size = 0;
+            foreach (var value in _registerByPlayer.Values)
+                size += value.Length;
+
+            _register = new CardData[size];
+            var count = 0;
+            foreach (var cardDatas in _registerByPlayer.Values)
+            foreach (var i in cardDatas)
+            {
+                _register[count] = i;
+                ++count;
+            }
+
             OnCreateLibrary();
         }
 
         IDispatcher Dispatcher { get; }
-        public CardData GetRandomData() => _library.RandomItem();
-        public CardData GetRandomDataFromPlayer(PlayerId id) => _libraryByPlayer[id].RandomItem();
+        public CardData GetRandomData() => _register.RandomItem();
+        public CardData GetRandomDataFromPlayer(PlayerId id) => _registerByPlayer[id].RandomItem();
 
         void OnCreateLibrary()
         {

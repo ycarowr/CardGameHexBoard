@@ -81,6 +81,18 @@ namespace HexCardGame.Runtime.Test
             Assert.IsTrue(stateBeforeAi == stateAfterAi);
         }
 
+        [Test]
+        public void ClearScore_Test()
+        {
+            _score.Add(PlayerId.User, 100);
+            _score.Add(PlayerId.Ai, 42);
+            _score.Clear();
+            var stateAfterUser = _score.GetScoreForPlayer(PlayerId.User);
+            var stateAfterAi = _score.GetScoreForPlayer(PlayerId.Ai);
+            Assert.IsTrue(stateAfterAi == 0);
+            Assert.IsTrue(stateAfterUser == 0);
+        }
+
         IPlayer[] GetPlayers() => new IPlayer[]
         {
             new Player(PlayerId.User, Parameters, Dispatcher),
