@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using HexCardGame.Model.GameBoard;
+﻿using System.Linq;
+using HexCardGame.Runtime.GameBoard;
 using HexCardGame.SharedData;
 using TMPro;
-using Tools.LocalData;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,10 +9,10 @@ namespace Game.Ui
 {
     public class UiBoardDebug : UiEventListener, ICreateBoard
     {
-        [SerializeField] GameObject textPosition;
         [SerializeField] BoardData data;
-        [SerializeField] Tilemap tileMap;
         GameObject[] positions;
+        [SerializeField] GameObject textPosition;
+        [SerializeField] Tilemap tileMap;
         IBoard CurrentBoard { get; set; }
 
         void ICreateBoard.OnCreateBoard(IBoard board)
@@ -22,7 +20,7 @@ namespace Game.Ui
             CurrentBoard = board;
             DrawPositions();
         }
-        
+
         [Button]
         void DrawPositions()
         {

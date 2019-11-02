@@ -1,5 +1,5 @@
 ﻿using Game.Ui;
-using HexCardGame.Model;
+using HexCardGame.Runtime;
 using Tools;
 
 namespace HexCardGame.UI

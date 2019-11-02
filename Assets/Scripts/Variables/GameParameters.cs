@@ -63,7 +63,7 @@ namespace HexCardGame
             public Player AiPlayer = new Player
             {
                 IsAi = true,
-                id = PlayerId.Enemy
+                id = PlayerId.Ai
             };
 
             [Tooltip("Seat where the user player will be sitting.")]
@@ -89,5 +89,17 @@ namespace HexCardGame
         #endregion
 
         //----------------------------------------------------------------------------------------------------------
+
+        #region Hand 
+
+        [Serializable]
+        public class HandConfigs
+        {
+            [Range(1, 10) ] public int MaxHandSize;
+        }
+        
+        public HandConfigs Hand = new HandConfigs();
+
+        #endregion
     }
 }

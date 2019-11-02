@@ -43,7 +43,7 @@ namespace HexCardGame.UI
 
         void UiButtonLose.IPressLose.PressLose()
         {
-            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.Enemy);
+            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.Ai);
             DisableInput();
         }
 

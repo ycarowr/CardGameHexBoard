@@ -1,5 +1,5 @@
 ﻿using Game.Ui;
-using HexCardGame.Model.GameBoard;
+using HexCardGame.Runtime.GameBoard;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Logger = Tools.Logger;

@@ -1,4 +1,4 @@
-﻿using HexCardGame.Model.Game;
+﻿using HexCardGame.Runtime.Game;
 
 namespace HexCardGame.UI
 {

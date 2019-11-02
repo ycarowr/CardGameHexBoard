@@ -14,7 +14,7 @@ namespace HexCardGame.UI
     /// <summary> Main player UI. </summary>
     public class UiPlayer : MonoBehaviour, IUiPlayer
     {
-        public virtual PlayerId Id => PlayerId.Enemy;
+        public virtual PlayerId Id => PlayerId.Ai;
         public GameData GameData { get; private set; }
         public bool IsMyTurn() => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(Id);
         public bool IsUser() => GameData.CurrentGameInstance.TurnLogic.IsUser();

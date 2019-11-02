@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Game.Ui;
-using HexCardGame.Model.Game;
+using HexCardGame.Runtime.Game;
 using UnityEngine;
 
 namespace HexCardGame.UI

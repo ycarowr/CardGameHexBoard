@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using HexCardGame.Model.Game;
+using HexCardGame.Runtime.Game;
 using TMPro;
 using Tools.Patterns.Observer;
 using UnityEngine;

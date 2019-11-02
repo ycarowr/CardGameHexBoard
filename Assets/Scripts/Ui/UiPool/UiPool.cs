@@ -1,5 +1,5 @@
 ﻿using Game.Ui;
-using HexCardGame.Model.GamePool;
+using HexCardGame.Runtime.GamePool;
 using UnityEngine;
 using Logger = Tools.Logger;
 
@@ -27,7 +27,7 @@ namespace HexCardGame.UI
         [Button]
         void DrawPool()
         {
-            for (var i = 0; i < CurrentPool.Size; ++i)
+            for (var i = 0; i < CurrentPool.Count; ++i)
             {
                 var gameObj = Instantiate(cardTemplate, poolCardPositions[i].transform);
                 gameObj.SetActive(true);
