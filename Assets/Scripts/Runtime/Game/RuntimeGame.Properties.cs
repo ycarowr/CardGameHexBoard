@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using HexCardGame.Runtime.GameBoard;
+﻿using HexCardGame.Runtime.GameBoard;
 using HexCardGame.Runtime.GamePool;
+using HexCardGame.Runtime.GameScore;
 using HexCardGame.Runtime.TurnLogic;
 using Tools.Patterns.Observer;
 
@@ -23,7 +23,8 @@ namespace HexCardGame.Runtime.Game
         IPool Pool { get; set; }
         ILibrary Library { get; set; }
         IPlayer[] Players { get; set; }
-        Dictionary<IPlayer, IHand> Hands { get; set; }
+        IHand[] Hands { get; set; }
+        IScore Score { get; set; }
 
         #endregion
 

@@ -8,7 +8,7 @@ namespace HexCardGame.Runtime
     [Event]
     public interface ICreateHand
     {
-        void OnCreateHand(IHand hand);
+        void OnCreateHand(IHand hand, PlayerId id);
     }
 
     public interface IHand
@@ -24,13 +24,15 @@ namespace HexCardGame.Runtime
 
     public class Hand : Collection<CardHand>, IHand
     {
-        public Hand(GameParameters gameParameters, IDispatcher dispatcher)
+        public Hand(PlayerId id, GameParameters gameParameters, IDispatcher dispatcher)
         {
+            Id = id;
             Parameters = gameParameters;
             Dispatcher = dispatcher;
             OnCreateHand();
         }
 
+        PlayerId Id { get; }
         IDispatcher Dispatcher { get; }
         GameParameters Parameters { get; }
         public int MaxHandSize => Parameters.Hand.MaxHandSize;
@@ -41,7 +43,7 @@ namespace HexCardGame.Runtime
         void OnCreateHand()
         {
             Logger.Log<Hand>("Create Hands");
-            Dispatcher.Notify<ICreateHand>(i => i.OnCreateHand(this));
+            Dispatcher.Notify<ICreateHand>(i => i.OnCreateHand(this, Id));
         }
     }
 }

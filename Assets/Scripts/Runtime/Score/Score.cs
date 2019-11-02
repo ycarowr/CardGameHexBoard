@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Tools;
 using Tools.Patterns.Observer;
-using UnityEngine;
 
 namespace HexCardGame.Runtime.GameScore
 {
@@ -10,7 +9,7 @@ namespace HexCardGame.Runtime.GameScore
     {
         void OnCreateScore(IScore score);
     }
-    
+
     public interface IScore
     {
         int GetScoreForPlayer(PlayerId id);
@@ -18,12 +17,11 @@ namespace HexCardGame.Runtime.GameScore
         void Remove(PlayerId id, int amount);
         void Clear();
     }
-    
+
     public class Score : IScore
     {
         readonly Dictionary<PlayerId, int> _register = new Dictionary<PlayerId, int>();
-        IDispatcher Dispatcher { get; }
-        GameParameters Parameters { get; }
+
         public Score(IPlayer[] players, GameParameters parameters, IDispatcher dispatcher)
         {
             Parameters = parameters;
@@ -33,12 +31,19 @@ namespace HexCardGame.Runtime.GameScore
             OnCreateScore();
         }
 
-        void RegisterPlayer(PlayerId id) => _register.Add(id, 0);
+        IDispatcher Dispatcher { get; }
+        GameParameters Parameters { get; }
         public void Add(PlayerId id, int amount) => _register[id] += amount;
         public void Remove(PlayerId id, int amount) => _register[id] -= amount;
         public int GetScoreForPlayer(PlayerId id) => _register[id];
         public void Clear() => _register.Clear();
 
-        void OnCreateScore() => Dispatcher.Notify<ICreateScore>(i => i.OnCreateScore(this));
+        void RegisterPlayer(PlayerId id) => _register.Add(id, 0);
+
+        void OnCreateScore()
+        {
+            Logger.Log<Score>("Runtime Score Dispatched");
+            Dispatcher.Notify<ICreateScore>(i => i.OnCreateScore(this));
+        }
     }
 }

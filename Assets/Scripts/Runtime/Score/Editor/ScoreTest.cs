@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using HexCardGame.Runtime.GameScore;
+﻿using HexCardGame.Runtime.GameScore;
 using NUnit.Framework;
-using UnityEngine;
-
 
 namespace HexCardGame.Runtime.Test
 {
@@ -11,6 +7,7 @@ namespace HexCardGame.Runtime.Test
     {
         bool _isCreated;
         IScore _score;
+        public void OnCreateScore(IScore score) => _isCreated = true;
 
         public override void TearDown()
         {
@@ -19,7 +16,6 @@ namespace HexCardGame.Runtime.Test
         }
 
         public override void Create() => _score = new Score(GetPlayers(), Parameters, Dispatcher);
-        public void OnCreateScore(IScore score) => _isCreated = true;
 
         [Test]
         public void ScoreCreated_Test() => Assert.IsTrue(_isCreated);
@@ -46,9 +42,9 @@ namespace HexCardGame.Runtime.Test
             _score.Remove(PlayerId.User, discountUser);
             _score.Remove(PlayerId.Ai, discountAi);
             Assert.IsTrue(startAmount - discountUser == _score.GetScoreForPlayer(PlayerId.User));
-            Assert.IsTrue(startAmount - discountAi == _score.GetScoreForPlayer(PlayerId.Ai));            
+            Assert.IsTrue(startAmount - discountAi == _score.GetScoreForPlayer(PlayerId.Ai));
         }
-        
+
         [Test]
         public void AddScoreCorrectPlayer_Test()
         {
@@ -56,17 +52,17 @@ namespace HexCardGame.Runtime.Test
             var ai = PlayerId.Ai;
             var stateBeforeUser = _score.GetScoreForPlayer(user);
             var stateBeforeAi = _score.GetScoreForPlayer(ai);
-            
+
             var amount = 42;
             _score.Add(user, amount);
 
             var stateAfterUser = _score.GetScoreForPlayer(user);
             var stateAfterAi = _score.GetScoreForPlayer(ai);
-            
+
             Assert.IsTrue(stateBeforeUser + amount == stateAfterUser);
             Assert.IsTrue(stateBeforeAi == stateAfterAi);
         }
-        
+
         [Test]
         public void RemoveScoreCorrectPlayer_Test()
         {
@@ -74,17 +70,17 @@ namespace HexCardGame.Runtime.Test
             var ai = PlayerId.Ai;
             var stateBeforeUser = _score.GetScoreForPlayer(user);
             var stateBeforeAi = _score.GetScoreForPlayer(ai);
-            
+
             var amount = 42;
             _score.Remove(user, amount);
 
             var stateAfterUser = _score.GetScoreForPlayer(user);
             var stateAfterAi = _score.GetScoreForPlayer(ai);
-            
+
             Assert.IsTrue(stateBeforeUser - amount == stateAfterUser);
             Assert.IsTrue(stateBeforeAi == stateAfterAi);
         }
-        
+
         IPlayer[] GetPlayers() => new IPlayer[]
         {
             new Player(PlayerId.User, Parameters, Dispatcher),

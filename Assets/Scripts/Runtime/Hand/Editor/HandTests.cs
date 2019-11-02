@@ -6,8 +6,13 @@ namespace HexCardGame.Runtime.Test
     {
         IHand _hand;
         bool _handCreated;
+        readonly PlayerId _id = PlayerId.User;
 
-        public void OnCreateHand(IHand hand) => _handCreated = true;
+        public void OnCreateHand(IHand hand, PlayerId id)
+        {
+            _handCreated = true;
+            Assert.IsTrue(id == _id);
+        }
 
         [TearDown]
         public override void TearDown()
@@ -16,7 +21,7 @@ namespace HexCardGame.Runtime.Test
             _hand = null;
         }
 
-        public override void Create() => _hand = new Hand(Parameters, Dispatcher);
+        public override void Create() => _hand = new Hand(_id, Parameters, Dispatcher);
 
         [Test]
         public void HandCreated_Test() => Assert.IsTrue(_handCreated);
