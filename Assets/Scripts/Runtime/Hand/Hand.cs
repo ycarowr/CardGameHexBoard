@@ -13,6 +13,7 @@ namespace HexCardGame.Runtime
 
     public interface IHand
     {
+        PlayerId Id { get; }
         int MaxHandSize { get; }
         List<CardHand> Cards { get; }
         void Add(CardHand card);
@@ -32,7 +33,7 @@ namespace HexCardGame.Runtime
             OnCreateHand();
         }
 
-        PlayerId Id { get; }
+        public PlayerId Id { get; }
         IDispatcher Dispatcher { get; }
         GameParameters Parameters { get; }
         public int MaxHandSize => Parameters.Hand.MaxHandSize;

@@ -8,9 +8,9 @@
     }
 
     /// <summary> Start Current player Turn Implementation. </summary>
-    public class StartPlayerTurnMechanics : BaseGameMechanics
+    public class StartPlayerTurn : BaseGameMechanics
     {
-        public StartPlayerTurnMechanics(IGame game) : base(game)
+        public StartPlayerTurn(IGame game) : base(game)
         {
         }
 
@@ -27,8 +27,6 @@
 
             Game.IsTurnInProgress = true;
             Game.TurnLogic.UpdateCurrentPlayer();
-            Game.TurnLogic.CurrentPlayer.StartTurn();
-
             OnStartedCurrentPlayerTurn(Game.TurnLogic.CurrentPlayer);
         }
 

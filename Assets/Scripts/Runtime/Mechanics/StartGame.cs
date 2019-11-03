@@ -1,4 +1,6 @@
-﻿namespace HexCardGame.Runtime.Game
+﻿using UnityEngine;
+
+namespace HexCardGame.Runtime.Game
 {
     /// <summary> Broadcast of the starter player to the Listeners. </summary>
     [Event]
@@ -8,9 +10,9 @@
     }
 
     /// <summary> Start Game Step Implementation. </summary>
-    public class StartGameMechanics : BaseGameMechanics
+    public class StartGame : BaseGameMechanics
     {
-        public StartGameMechanics(IGame game) : base(game)
+        public StartGame(IGame game) : base(game)
         {
         }
 
@@ -21,10 +23,18 @@
 
             Game.IsGameStarted = true;
 
-            //calculus of the starting player
-            Game.TurnLogic.DecideStarterPlayer();
+            Game.TurnLogic.DecideStarterPlayer();    
+
+            DrawStartingHands();
 
             OnGameStarted(Game.TurnLogic.StarterPlayer);
+        }
+
+        void DrawStartingHands()
+        {
+            foreach (var player in Game.TurnLogic.Players)
+                for (int i = 0; i < Parameters.Hand.StartingHandCount; i++)
+                    Game.DrawCardFromLibrary(player);
         }
 
         /// <summary> Dispatch start game event to the listeners. </summary>

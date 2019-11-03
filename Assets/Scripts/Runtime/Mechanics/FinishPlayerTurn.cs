@@ -8,9 +8,9 @@
     }
 
     /// <summary> Finish Current player Turn Implementation. </summary>
-    public class FinishPlayerTurnMechanics : BaseGameMechanics
+    public class FinishPlayerTurn : BaseGameMechanics
     {
-        public FinishPlayerTurnMechanics(IGame game) : base(game)
+        public FinishPlayerTurn(IGame game) : base(game)
         {
         }
 
@@ -23,7 +23,6 @@
             if (Game.IsGameFinished) return;
 
             Game.IsTurnInProgress = false;
-            Game.TurnLogic.CurrentPlayer.FinishTurn();
             OnFinishedCurrentPlayerTurn(Game.TurnLogic.CurrentPlayer);
         }
 

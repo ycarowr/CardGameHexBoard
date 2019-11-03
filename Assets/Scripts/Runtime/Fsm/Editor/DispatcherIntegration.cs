@@ -62,7 +62,7 @@ namespace Game.Fsm.Tests
         {
             GameData.CurrentGameInstance.StartGame();
             _playerStarted = false;
-            GameData.CurrentGameInstance.StartCurrentPlayerTurn();
+            GameData.CurrentGameInstance.StartPlayerTurn();
             Assert.IsTrue(_playerStarted);
         }
 
@@ -70,9 +70,9 @@ namespace Game.Fsm.Tests
         public void FinishTurn()
         {
             GameData.CurrentGameInstance.StartGame();
-            GameData.CurrentGameInstance.StartCurrentPlayerTurn();
+            GameData.CurrentGameInstance.StartPlayerTurn();
             _playerFinished = false;
-            GameData.CurrentGameInstance.FinishCurrentPlayerTurn();
+            GameData.CurrentGameInstance.FinishPlayerTurn();
             Assert.IsTrue(_playerFinished);
         }
     }

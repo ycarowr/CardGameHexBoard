@@ -8,9 +8,9 @@
     }
 
     /// <summary> Finish Game Step Implementation. </summary>
-    public class FinishGameMechanics : BaseGameMechanics
+    public class FinishGame : BaseGameMechanics
     {
-        public FinishGameMechanics(IGame game) : base(game)
+        public FinishGame(IGame game) : base(game)
         {
         }
 

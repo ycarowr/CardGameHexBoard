@@ -12,21 +12,22 @@ namespace HexCardGame
     {
         PlayerId Id { get; }
         bool IsUser { get; }
-        void StartTurn();
-        void FinishTurn();
     }
 
     /// <summary> A concrete player class. </summary>
-    public partial class Player : IPlayer
+    public class Player : IPlayer
     {
         public Player(PlayerId id, GameParameters gameParameters, IDispatcher dispatcher)
         {
             Id = id;
             Dispatcher = dispatcher;
             GameParameters = gameParameters;
-            StartTurn = new StartTurnMechanics(this);
-            FinishTurn = new FinishTurnMechanics(this);
         }
+        
+        public PlayerId Id { get; }
+        IDispatcher Dispatcher { get; }
+        GameParameters GameParameters { get; }
+        public bool IsUser => Id == GameParameters.Profiles.userId;
 
         void OnCreatePlayer() => Dispatcher.Notify<ICreatePlayer>(i => i.OnCreatePlayer(this));
     }

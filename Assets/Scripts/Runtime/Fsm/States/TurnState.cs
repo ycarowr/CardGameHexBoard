@@ -66,7 +66,7 @@ namespace HexCardGame
         {
             if (!IsMyTurn)
                 return false;
-            Game.FinishCurrentPlayerTurn();
+            Game.FinishPlayerTurn();
             return true;
         }
 
@@ -94,7 +94,7 @@ namespace HexCardGame
         protected virtual IEnumerator StartTurn()
         {
             yield return new WaitForSeconds(GameParameters.Timers.TimeUntilStartTurn);
-            Game.StartCurrentPlayerTurn();
+            Game.StartPlayerTurn();
         }
     }
 }

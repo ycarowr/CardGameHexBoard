@@ -1,12 +1,12 @@
 ﻿using System;
 using Random = UnityEngine.Random;
 
-namespace HexCardGame.Runtime.TurnLogic
+namespace HexCardGame.Runtime.GameTurn
 {
     /// <summary> This class decides which player goes first and which player goes next. </summary>
-    public class TurnMechanics : ITurnLogic
+    public class TurnLogic : ITurnLogic
     {
-        public TurnMechanics(IPlayer[] players)
+        public TurnLogic(IPlayer[] players)
         {
             if (players == null)
                 throw new ArgumentException("A Null List is not a valid argument to Create a TurnLogic");

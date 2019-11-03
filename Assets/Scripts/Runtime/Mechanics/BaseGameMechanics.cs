@@ -10,5 +10,7 @@ namespace HexCardGame.Runtime.Game
         protected IGame Game { get; }
 
         protected IDispatcher Dispatcher => Game.Dispatcher;
+
+        protected GameParameters Parameters => Game.Parameters;
     }
 }

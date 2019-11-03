@@ -2,7 +2,7 @@
 using HexCardGame.Runtime.GameBoard;
 using HexCardGame.Runtime.GamePool;
 using HexCardGame.Runtime.GameScore;
-using HexCardGame.Runtime.TurnLogic;
+using HexCardGame.Runtime.GameTurn;
 using HexCardGame.SharedData;
 using Tools.Patterns.Observer;
 
@@ -14,8 +14,10 @@ namespace HexCardGame.Runtime.Game
         public RuntimeGame(GameArgs args)
         {
             Dispatcher = args.Dispatcher;
+            Parameters = args.GameParameters;
             InitializeGameDataStructures(args);
             InitializeTurnBasedStructures(args);
+            InitializeGameMechanics(args);
         }
 
         void InitializeGameDataStructures(GameArgs args)
@@ -59,13 +61,18 @@ namespace HexCardGame.Runtime.Game
 
         void InitializeTurnBasedStructures(GameArgs args)
         {
-            TurnLogic = new TurnMechanics(Players);
+            TurnLogic = new TurnLogic(Players);
             BattleFsm = new BattleFsm(args, this);
-            PreStartGameMechanics = new PreStartGameMechanics(this);
-            StartGameMechanics = new StartGameMechanics(this);
-            StartPlayerTurnMechanics = new StartPlayerTurnMechanics(this);
-            FinishPlayerTurnMechanics = new FinishPlayerTurnMechanics(this);
-            FinishGameMechanics = new FinishGameMechanics(this);
+        }
+
+        void InitializeGameMechanics(GameArgs args)
+        {
+            _startGame = new StartGame(this);
+            _finishGame = new FinishGame(this);
+            _preStartGame = new PreStartGame(this);
+            _startPlayerTurn = new StartPlayerTurn(this);
+            _finishPlayerTurn = new FinishPlayerTurn(this);
+            _handLibrary = new HandLibrary(this);
         }
 
         public struct GameArgs

@@ -1,4 +1,7 @@
-﻿using HexCardGame.Runtime.TurnLogic;
+﻿using HexCardGame.Runtime.GameBoard;
+using HexCardGame.Runtime.GamePool;
+using HexCardGame.Runtime.GameScore;
+using HexCardGame.Runtime.GameTurn;
 using Tools.Patterns.Observer;
 
 namespace HexCardGame.Runtime.Game
@@ -11,17 +14,29 @@ namespace HexCardGame.Runtime.Game
         bool IsTurnInProgress { get; set; }
         void PreStartGame();
         void StartGame();
-        void StartCurrentPlayerTurn();
-        void FinishCurrentPlayerTurn();
+        void StartPlayerTurn();
+        void FinishPlayerTurn();
     }
 
     /// <summary> A game interface. </summary>
-    public interface IGame : ITurnMechanics
+    public interface IGame : ITurnMechanics, ICardGame
     {
+        GameParameters Parameters { get; }
         IDispatcher Dispatcher { get; }
         bool IsGameStarted { get; set; }
         bool IsGameFinished { get; set; }
         void ExecuteAiTurn(PlayerId id);
         void ForceWin(PlayerId id);
+        
+        IScore Score { get; }
+        IHand[] Hands { get; }
+        ILibrary Library { get; }
+        IPool<CardPool> Pool { get; }
+        IBoard<CardBoard> Board { get; }
+    }
+
+    public interface ICardGame
+    {
+        void DrawCardFromLibrary(IPlayer player);
     }
 }

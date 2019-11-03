@@ -8,9 +8,9 @@
     }
 
     /// <summary> Pre Start Game Step Implementation. </summary>
-    public class PreStartGameMechanics : BaseGameMechanics
+    public class PreStartGame : BaseGameMechanics
     {
-        public PreStartGameMechanics(IGame game) : base(game)
+        public PreStartGame(IGame game) : base(game)
         {
         }
 

@@ -1,3 +1,4 @@
+using System;
 using Tools;
 using Tools.Patterns.Observer;
 
@@ -19,6 +20,8 @@ namespace HexCardGame.Runtime.GamePool
         T GetAndRemoveCardAt(PoolPositionIndex index);
         void UncoverAt(PoolPositionIndex index);
         void CoverAt(PoolPositionIndex index);
+        void Lock(PoolPositionIndex index);
+        void Unlock(PoolPositionIndex index);
         void Empty();
     }
 
@@ -46,7 +49,7 @@ namespace HexCardGame.Runtime.GamePool
             return size;
         }
 
-        public T GetCardAt(PoolPositionIndex index) => Position(index)?.Data;
+        public T GetCardAt(PoolPositionIndex index) => Get(index)?.Data;
 
         public T GetAndRemoveCardAt(PoolPositionIndex index)
         {
@@ -55,8 +58,8 @@ namespace HexCardGame.Runtime.GamePool
             return card;
         }
 
-        public void AddCardAt(T card, PoolPositionIndex index) => Position(index)?.SetData(card);
-        public void RemoveCardAt(PoolPositionIndex index) => Position(index)?.SetData(null);
+        public void AddCardAt(T card, PoolPositionIndex index) => Get(index)?.SetData(card);
+        public void RemoveCardAt(PoolPositionIndex index) => Get(index)?.SetData(null);
 
         public void Empty()
         {
@@ -64,7 +67,7 @@ namespace HexCardGame.Runtime.GamePool
                 i.SetData(null);
         }
 
-        Position<T> Position(PoolPositionIndex index) => Positions[(int) index];
+        Position<T> Get(PoolPositionIndex index) => Positions[(int) index];
 
         void CreatePool()
         {
@@ -92,6 +95,84 @@ namespace HexCardGame.Runtime.GamePool
         {
             foreach (var i in Positions)
                 i?.Data?.Uncover();
+        }
+
+        public void Unlock(PoolPositionIndex positionIndex)
+        {
+            switch (positionIndex)
+            {
+                case PoolPositionIndex.Zero:
+                    break;
+                case PoolPositionIndex.One:
+                    Get(PoolPositionIndex.Zero).Unlock();
+                    break;
+                case PoolPositionIndex.Two:
+                    Get(PoolPositionIndex.Zero).Unlock();
+                    break;
+                case PoolPositionIndex.Three:
+                    Get(PoolPositionIndex.One).Unlock();
+                    break;
+                case PoolPositionIndex.Four:
+                    Get(PoolPositionIndex.One).Unlock();
+                    Get(PoolPositionIndex.Two).Unlock();
+                    break;
+                case PoolPositionIndex.Five:
+                    Get(PoolPositionIndex.Two).Unlock();
+                    break;
+                case PoolPositionIndex.Six:
+                    Get(PoolPositionIndex.Three).Unlock();
+                    break;
+                case PoolPositionIndex.Seven:
+                    Get(PoolPositionIndex.Three).Unlock();
+                    Get(PoolPositionIndex.Four).Unlock();
+                    break;
+                case PoolPositionIndex.Eight:
+                    Get(PoolPositionIndex.Five).Unlock();
+                    Get(PoolPositionIndex.Four).Unlock();
+                    break;
+                case PoolPositionIndex.Nine:
+                    Get(PoolPositionIndex.Five).Unlock();
+                    break;
+            }
+        }
+        
+        public void Lock(PoolPositionIndex positionIndex)
+        {
+            switch (positionIndex)
+            {
+                case PoolPositionIndex.Zero:
+                    break;
+                case PoolPositionIndex.One:
+                    Get(PoolPositionIndex.Zero).Lock();
+                    break;
+                case PoolPositionIndex.Two:
+                    Get(PoolPositionIndex.Zero).Lock();
+                    break;
+                case PoolPositionIndex.Three:
+                    Get(PoolPositionIndex.One).Lock();
+                    break;
+                case PoolPositionIndex.Four:
+                    Get(PoolPositionIndex.One).Lock();
+                    Get(PoolPositionIndex.Two).Lock();
+                    break;
+                case PoolPositionIndex.Five:
+                    Get(PoolPositionIndex.Two).Lock();
+                    break;
+                case PoolPositionIndex.Six:
+                    Get(PoolPositionIndex.Three).Lock();
+                    break;
+                case PoolPositionIndex.Seven:
+                    Get(PoolPositionIndex.Three).Lock();
+                    Get(PoolPositionIndex.Four).Lock();
+                    break;
+                case PoolPositionIndex.Eight:
+                    Get(PoolPositionIndex.Five).Lock();
+                    Get(PoolPositionIndex.Four).Lock();
+                    break;
+                case PoolPositionIndex.Nine:
+                    Get(PoolPositionIndex.Five).Lock();
+                    break;
+            }
         }
     }
 }

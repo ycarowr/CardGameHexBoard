@@ -29,17 +29,20 @@ namespace HexCardGame.Runtime
             Dispatcher = dispatcher;
             _registerByPlayer = playersLibrary;
 
+            var count = 0;
             var size = 0;
+            
             foreach (var value in _registerByPlayer.Values)
                 size += value.Length;
 
             _register = new CardData[size];
-            var count = 0;
-            foreach (var cardDatas in _registerByPlayer.Values)
-            foreach (var i in cardDatas)
+            foreach (var data in _registerByPlayer.Values)
             {
-                _register[count] = i;
-                ++count;
+                foreach (var i in data)
+                {
+                    _register[count] = i;
+                    ++count;
+                }
             }
 
             OnCreateLibrary();

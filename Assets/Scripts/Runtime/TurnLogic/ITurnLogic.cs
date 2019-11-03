@@ -1,4 +1,4 @@
-﻿namespace HexCardGame.Runtime.TurnLogic
+﻿namespace HexCardGame.Runtime.GameTurn
 {
     public interface ITurnLogic
     {
