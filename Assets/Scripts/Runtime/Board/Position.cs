@@ -3,12 +3,25 @@ using UnityEngine;
 
 namespace HexCardGame.Runtime.GameBoard
 {
-    public static class BoardHexUtility
+    public class Position<T> : IDataStorage<T> where T : class
     {
-        public static Vector3Int AsVector3Int(this Position p) => new Vector3Int(p.X, p.Y, 0);
-        public static Vector2Int AsVector2Int(this Position p) => new Vector2Int(p.X, p.Y);
+        public int x;
+        public int y;
 
-        public static bool AreEqual(Position p1, Position p2)
+        public Position(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        int Z => -(x + y);
+        public bool HasData => Data != null;
+        public T Data { get; private set; }
+        public void SetData(T value) => Data = value;
+        static Vector3Int AsVector3Int(Position<T> p) => new Vector3Int(p.x, p.y, 0);
+        static Vector2Int AsVector2Int(Position<T> p) => new Vector2Int(p.x, p.y);
+
+        public static bool AreEqual(Position<T> p1, Position<T> p2)
         {
             if (p1 == null && p2 == null)
                 return true;
@@ -18,34 +31,18 @@ namespace HexCardGame.Runtime.GameBoard
 
             return p1.IsEqual(p2);
         }
-    }
 
-    public class Position : IValued<CardBoard>
-    {
-        public Position(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
+        public static implicit operator Vector3Int(Position<T> p) => AsVector3Int(p);
+        public static implicit operator Vector2Int(Position<T> p) => AsVector2Int(p);
+        public override string ToString() => $"Position: {x},{y}";
 
-        public int X { get; }
-        public int Y { get; }
-        int Z => -(X + Y);
-
-        public bool HasValue => Value != null;
-        public CardBoard Value { get; private set; }
-        public void SetValue(CardBoard value) => Value = value;
-        public static implicit operator Vector3Int(Position p) => p.AsVector3Int();
-        public static implicit operator Vector2Int(Position p) => p.AsVector2Int();
-        public override string ToString() => $"Position: {X},{Y}";
-
-        public bool IsEqual(Position p)
+        public bool IsEqual(Position<T> p)
         {
             if (p == null)
                 return false;
-            if (p.X != X)
+            if (p.x != x)
                 return false;
-            return p.Y == Y;
+            return p.y == y;
         }
     }
 }

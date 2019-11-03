@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HexCardGame.Runtime;
 using HexCardGame.Runtime.GameBoard;
 using HexCardGame.SharedData;
 using TMPro;
@@ -7,15 +8,15 @@ using UnityEngine.Tilemaps;
 
 namespace Game.Ui
 {
-    public class UiBoardDebug : UiEventListener, ICreateBoard
+    public class UiBoardDebug : UiEventListener, ICreateBoard<CardBoard>
     {
         [SerializeField] BoardData data;
         GameObject[] positions;
         [SerializeField] GameObject textPosition;
         [SerializeField] Tilemap tileMap;
-        IBoard CurrentBoard { get; set; }
+        IBoard<CardBoard> CurrentBoard { get; set; }
 
-        void ICreateBoard.OnCreateBoard(IBoard board)
+        void ICreateBoard<CardBoard>.OnCreateBoard(IBoard<CardBoard> board)
         {
             CurrentBoard = board;
             DrawPositions();
@@ -35,8 +36,7 @@ namespace Game.Ui
                 var gameObj = Instantiate(textPosition, worldPosition, identity, transform);
                 positions[i] = gameObj;
                 var tmpText = gameObj.GetComponent<TMP_Text>();
-                var vector2Int = p.AsVector2Int();
-                var sPosition = $"y:{vector2Int.y}\nx:{vector2Int.x}";
+                var sPosition = $"y:{p.x}\nx:{p.y}";
                 tmpText.text = sPosition;
                 tmpText.name = uiPosition + sPosition;
             }

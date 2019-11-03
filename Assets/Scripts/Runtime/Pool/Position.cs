@@ -1,10 +1,10 @@
 ﻿namespace HexCardGame.Runtime.GamePool
 {
-    public class Position : IValued<CardPool>
+    public class Position : IDataStorage<CardPool>
     {
-        public bool HasValue => Value != null;
-        public CardPool Value { get; private set; }
+        public bool HasData => Data != null;
+        public CardPool Data { get; private set; }
 
-        public void SetValue(CardPool value) => Value = value;
+        public void SetData(CardPool value) => Data = value;
     }
 }

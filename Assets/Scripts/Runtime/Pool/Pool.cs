@@ -42,12 +42,12 @@ namespace HexCardGame.Runtime.GamePool
         {
             var size = 0;
             foreach (var i in Positions)
-                if (i.HasValue)
+                if (i.HasData)
                     size++;
             return size;
         }
 
-        public CardPool GetCardAt(PoolPositionIndex index) => Position(index)?.Value;
+        public CardPool GetCardAt(PoolPositionIndex index) => Position(index)?.Data;
 
         public CardPool GetAndRemoveCardAt(PoolPositionIndex index)
         {
@@ -56,13 +56,13 @@ namespace HexCardGame.Runtime.GamePool
             return card;
         }
 
-        public void AddCardAt(CardPool card, PoolPositionIndex index) => Position(index)?.SetValue(card);
-        public void RemoveCardAt(PoolPositionIndex index) => Position(index)?.SetValue(null);
+        public void AddCardAt(CardPool card, PoolPositionIndex index) => Position(index)?.SetData(card);
+        public void RemoveCardAt(PoolPositionIndex index) => Position(index)?.SetData(null);
 
         public void Empty()
         {
             foreach (var i in Positions)
-                i.SetValue(null);
+                i.SetData(null);
         }
 
         Position Position(PoolPositionIndex index) => Positions[(int) index];
@@ -86,13 +86,13 @@ namespace HexCardGame.Runtime.GamePool
         void SetAllFaceDown()
         {
             foreach (var i in Positions)
-                i?.Value?.SetFaceUp(false);
+                i?.Data?.SetFaceUp(false);
         }
 
         void SetAllFaceUp()
         {
             foreach (var i in Positions)
-                i?.Value?.SetFaceUp(true);
+                i?.Data?.SetFaceUp(true);
         }
     }
 }

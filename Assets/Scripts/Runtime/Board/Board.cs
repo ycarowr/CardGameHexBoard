@@ -1,25 +1,26 @@
 using HexCardGame.SharedData;
-using Tools;
 using Tools.Patterns.Observer;
+using UnityEngine;
+using Logger = Tools.Logger;
 
 namespace HexCardGame.Runtime.GameBoard
 {
     [Event]
-    public interface ICreateBoard
+    public interface ICreateBoard<T> where T : class
     {
-        void OnCreateBoard(IBoard board);
+        void OnCreateBoard(IBoard<T> board);
     }
 
-    public interface IBoard
+    public interface IBoard<T> : IBoardDataStorage<T> where T : class
     {
-        Position[] Positions { get; }
-        bool Has(int x, int y);
-        Position Get(int x, int y);
+        Position<T>[] Positions { get; }
+        bool HasPosition(int x, int y);
+        Position<T> GetPosition(int x, int y);
+        Position<T> GetPosition(Vector2Int position);
         void GeneratePositions();
-        void Clear();
     }
 
-    public class Board : IBoard
+    public partial class Board<T> : IBoard<T> where T : class
     {
         public Board(GameParameters parameters, IDispatcher dispatcher)
         {
@@ -32,27 +33,28 @@ namespace HexCardGame.Runtime.GameBoard
         public int MaxX => Data.MaxX;
         public int MaxY => Data.MaxY;
         public BoardData Data { get; }
-        public Position[] Positions { get; private set; }
+        public Position<T>[] Positions { get; private set; }
 
         public void GeneratePositions()
         {
             var desiredPositions = Data.GetDesiredPositions();
-            Positions = new Position[desiredPositions.Length];
+            Positions = new Position<T>[desiredPositions.Length];
             for (var i = 0; i < desiredPositions.Length; i++)
-                Positions[i] = new Position(desiredPositions[i].x, desiredPositions[i].y);
+                Positions[i] = new Position<T>(desiredPositions[i].x, desiredPositions[i].y);
 
             OnCreateBoard();
         }
 
-        public bool Has(int x, int y) => Get(x, y) != null;
+        public bool HasPosition(int x, int y) => GetPosition(x, y) != null;
+        public Position<T> GetPosition(Vector2Int p) => GetPosition(p.x, p.y);
 
-        public Position Get(int x, int y)
+        public Position<T> GetPosition(int x, int y)
         {
             foreach (var i in Positions)
             {
-                if (i.X != x)
+                if (i.x != x)
                     continue;
-                if (i.Y == y)
+                if (i.y == y)
                     return i;
             }
 
@@ -63,8 +65,8 @@ namespace HexCardGame.Runtime.GameBoard
 
         void OnCreateBoard()
         {
-            Logger.Log<Board>("Runtime Board Dispatched");
-            Dispatcher.Notify<ICreateBoard>(i => i.OnCreateBoard(this));
+            Logger.Log<Board<T>>("Runtime Board Dispatched");
+            Dispatcher.Notify<ICreateBoard<T>>(i => i.OnCreateBoard(this));
         }
     }
 }

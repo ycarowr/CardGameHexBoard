@@ -1,4 +1,5 @@
 ﻿using Game.Ui;
+using HexCardGame.Runtime;
 using HexCardGame.Runtime.GameBoard;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,14 +7,14 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiBoard : UiEventListener, ICreateBoard
+    public class UiBoard : UiEventListener, ICreateBoard<CardBoard>
     {
         GameObject[] positions;
         [SerializeField] TileBase test;
-        IBoard CurrentBoard { get; set; }
+        IBoard<CardBoard> CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
 
-        void ICreateBoard.OnCreateBoard(IBoard board)
+        void ICreateBoard<CardBoard>.OnCreateBoard(IBoard<CardBoard> board)
         {
             CurrentBoard = board;
             DrawBoardUi();

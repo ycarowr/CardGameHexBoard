@@ -4,13 +4,13 @@ using NUnit.Framework;
 
 namespace HexCardGame.Runtime.Test
 {
-    public class BoardTests : BaseTest, ICreateBoard
+    public class BoardTests : BaseTest, ICreateBoard<TestBoardData>
     {
-        IBoard _board;
+        IBoard<TestBoardData> _board;
         BoardData _boardData;
         bool _isCreated;
 
-        public void OnCreateBoard(IBoard board) => _isCreated = true;
+        public void OnCreateBoard(IBoard<TestBoardData> board) => _isCreated = true;
 
         public override void Setup()
         {
@@ -25,7 +25,7 @@ namespace HexCardGame.Runtime.Test
             _board = null;
         }
 
-        public override void Create() => _board = new Board(Parameters, Dispatcher);
+        public override void Create() => _board = new Board<TestBoardData>(Parameters, Dispatcher);
 
         [Test]
         public void BoardCreated_Test() => Assert.IsTrue(_isCreated);
@@ -34,7 +34,7 @@ namespace HexCardGame.Runtime.Test
         public void BoardDataUndesiredPositions_Test()
         {
             foreach (var i in _boardData.UndesiredPositions)
-                Assert.IsFalse(_board.Has(i.x, i.y));
+                Assert.IsFalse(_board.HasPosition(i.x, i.y));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace HexCardGame.Runtime.Test
         {
             var desired = _boardData.GetDesiredPositions();
             foreach (var i in desired)
-                Assert.IsTrue(_board.Has(i.x, i.y));
+                Assert.IsTrue(_board.HasPosition(i.x, i.y));
         }
 
         [Test]
@@ -51,9 +51,9 @@ namespace HexCardGame.Runtime.Test
             var undesired = _boardData.UndesiredPositions;
             var desired = _boardData.GetDesiredPositions();
             foreach (var i in undesired)
-                Assert.IsFalse(_board.Has(i.x, i.y));
+                Assert.IsFalse(_board.HasPosition(i.x, i.y));
             foreach (var i in desired)
-                Assert.IsTrue(_board.Has(i.x, i.y));
+                Assert.IsTrue(_board.HasPosition(i.x, i.y));
         }
 
         [Test]
@@ -62,16 +62,16 @@ namespace HexCardGame.Runtime.Test
             var undesired = _boardData.UndesiredPositions;
             var desired = _boardData.GetDesiredPositions();
             foreach (var i in undesired)
-                Assert.IsNull(_board.Get(i.x, i.y));
+                Assert.IsNull(_board.GetPosition(i.x, i.y));
             foreach (var i in desired)
             {
-                var position = _board.Get(i.x, i.y);
-                Assert.IsTrue(position.X == i.x);
-                Assert.IsTrue(position.Y == i.y);
+                var position = _board.GetPosition(i.x, i.y);
+                Assert.IsTrue(position.x == i.x);
+                Assert.IsTrue(position.y == i.y);
             }
         }
 
         [Test]
-        public void BoardGetUnExistent_Test() => Assert.IsNull(_board.Get(-1, -1));
+        public void BoardGetUnExistent_Test() => Assert.IsNull(_board.GetPosition(-1, -1));
     }
 }

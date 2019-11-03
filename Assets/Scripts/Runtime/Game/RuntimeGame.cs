@@ -40,7 +40,7 @@ namespace HexCardGame.Runtime.Game
             }
 
             //Create Board
-            Board = new Board(args.GameParameters, Dispatcher);
+            Board = new Board<CardBoard>(args.GameParameters, Dispatcher);
 
             //Create Pool
             Pool = new Pool(args.GameParameters, Dispatcher);
