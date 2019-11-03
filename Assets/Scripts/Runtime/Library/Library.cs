@@ -14,6 +14,7 @@ namespace HexCardGame.Runtime
 
     public interface ILibrary
     {
+        int Size { get; }
         CardData GetRandomData();
         CardData GetRandomDataFromPlayer(PlayerId id);
     }
@@ -45,6 +46,7 @@ namespace HexCardGame.Runtime
         }
 
         IDispatcher Dispatcher { get; }
+        public int Size => _register.Length;
         public CardData GetRandomData() => _register.RandomItem();
         public CardData GetRandomDataFromPlayer(PlayerId id) => _registerByPlayer[id].RandomItem();
 

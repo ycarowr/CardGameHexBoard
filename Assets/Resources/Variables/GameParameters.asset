@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340d871622354f14484f719e366a3e80, type: 3}
   m_Name: GameParameters
   m_EditorClassIdentifier: 
+  BoardData: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}
+  PlayerDeck: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}
   Timers:
     TimeUntilAiDoTurn: 2.5
     TimeUntilAiFinishTurn: 3.5
@@ -28,4 +30,5 @@ MonoBehaviour:
     UserPlayer:
       id: 0
       IsAi: 0
-  BoardData: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}
+  Hand:
+    MaxHandSize: 0

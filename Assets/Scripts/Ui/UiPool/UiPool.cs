@@ -1,17 +1,18 @@
 ﻿using Game.Ui;
+using HexCardGame.Runtime;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
 using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiEventListener, ICreatePool
+    public class UiPool : UiEventListener, ICreatePool<CardPool>
     {
         [SerializeField] GameObject cardTemplate;
         [SerializeField] UiPoolPosition[] poolCardPositions;
-        IPool CurrentPool { get; set; }
+        IPool<CardPool> CurrentPool { get; set; }
 
-        void ICreatePool.OnCreatePool(IPool pool)
+        void ICreatePool<CardPool>.OnCreatePool(IPool<CardPool> pool)
         {
             CurrentPool = pool;
             Logger.Log<UiPool>("Pool View Created");

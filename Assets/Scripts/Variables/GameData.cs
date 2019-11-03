@@ -5,10 +5,10 @@ using UnityEngine;
 namespace HexCardGame
 {
     /// <summary>  Game data. </summary>
-    [CreateAssetMenu(menuName = "References/GameData")]
+    [CreateAssetMenu(menuName = "Variables/GameData")]
     public class GameData : ScriptableObject
     {
-        public const string Path = "References/GameData";
+        public const string Path = "Variables/GameData";
         IDispatcher _dispatcher;
         [SerializeField] GameParameters gameParameters;
 

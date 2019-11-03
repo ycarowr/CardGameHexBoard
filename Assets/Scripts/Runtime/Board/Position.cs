@@ -1,5 +1,4 @@
-﻿using HexCardGame.Runtime.GamePool;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace HexCardGame.Runtime.GameBoard
 {

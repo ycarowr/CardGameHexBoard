@@ -43,14 +43,14 @@ namespace HexCardGame.Runtime.Game
             Board = new Board<CardBoard>(args.GameParameters, Dispatcher);
 
             //Create Pool
-            Pool = new Pool(args.GameParameters, Dispatcher);
+            Pool = new Pool<CardPool>(args.GameParameters, Dispatcher);
 
             {
                 //Create Library
                 var libData = new Dictionary<PlayerId, CardData[]>
                 {
-                    {PlayerId.User, new CardData[0]},
-                    {PlayerId.Ai, new CardData[0]}
+                    {PlayerId.User, args.GameParameters.PlayerDeck.GetDeck()},
+                    {PlayerId.Ai, args.GameParameters.PlayerDeck.GetDeck()}
                 };
 
                 Library = new Library(libData, Dispatcher);

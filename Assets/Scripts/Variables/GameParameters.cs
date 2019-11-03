@@ -7,17 +7,16 @@ namespace HexCardGame
     [CreateAssetMenu(menuName = "Game Parameters")]
     public class GameParameters : ScriptableObject
     {
-        public const string Path = "References/GameParameters";
+        public const string Path = "Variables/GameParameters";
 
         //----------------------------------------------------------------------------------------------------------
 
-        #region Board Configurations 
-
         public BoardData BoardData;
-
-        #endregion
-
+        public PlayerDeck PlayerDeck;
         public static GameParameters Load() => Resources.Load<GameParameters>(Path);
+
+        //----------------------------------------------------------------------------------------------------------
+
 
         #region Game Start
 

@@ -3,13 +3,13 @@ using NUnit.Framework;
 
 namespace HexCardGame.Runtime.Test
 {
-    public class PoolTests : BaseTest, ICreatePool
+    public class PoolTests : BaseTest, ICreatePool<CardPool>
     {
         bool _isCreated;
-        IPool _pool;
-        public void OnCreatePool(IPool pool) => _isCreated = true;
+        IPool<CardPool> _pool;
+        public void OnCreatePool(IPool<CardPool> pool) => _isCreated = true;
 
-        public override void Create() => _pool = new Pool(Parameters, Dispatcher);
+        public override void Create() => _pool = new Pool<CardPool>(Parameters, Dispatcher);
 
         [Test]
         public void PoolCreated_Test() => Assert.IsTrue(_isCreated);
@@ -49,24 +49,27 @@ namespace HexCardGame.Runtime.Test
         }
 
         [Test]
-        public void FlipCardAt_Test()
+        public void CoverCardAt_Test()
         {
             FillPool();
             var positions = PoolPositionUtility.GetAllIndices();
-            var stateBefore = new bool[_pool.Size()];
-            var stateAfter = new bool[_pool.Size()];
-            var count = 0;
             foreach (var i in positions)
-            {
-                var card = _pool.GetCardAt(i);
-                stateBefore[count] = card.IsFaceUp;
-                _pool.FlipCardAt(i);
-                stateAfter[count] = card.IsFaceUp;
-                ++count;
-            }
+                _pool.CoverAt(i);
+            foreach (var i in positions)
+                Assert.IsTrue(_pool.GetCardAt(i).IsCovered);
+        }
 
-            for (var i = 0; i < stateBefore.Length; i++)
-                Assert.IsTrue(stateBefore[i] == !stateAfter[i]);
+        [Test]
+        public void UncoverCardAt_Test()
+        {
+            FillPool();
+            var positions = PoolPositionUtility.GetAllIndices();
+            foreach (var i in positions)
+                _pool.CoverAt(i);
+            foreach (var i in positions)
+                _pool.UncoverAt(i);
+            foreach (var i in positions)
+                Assert.IsFalse(_pool.GetCardAt(i).IsCovered);
         }
 
 

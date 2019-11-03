@@ -2,5 +2,6 @@
 {
     public enum CardId
     {
+        Test
     }
 }
