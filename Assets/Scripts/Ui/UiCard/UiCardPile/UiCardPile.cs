@@ -101,6 +101,8 @@ namespace Tools.UI.Card
         [Button]
         public void NotifyPileChange() => onPileChanged?.Invoke(Cards.ToArray());
 
+        void Update() => NotifyPileChange();
+
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------

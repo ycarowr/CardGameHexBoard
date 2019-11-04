@@ -13,25 +13,20 @@ namespace Tools.UI.Card
 
         int Count { get; set; }
 
-        [SerializeField] [Tooltip("Prefab of the Card C#")]
-        GameObject cardPrefabCs;
+        [SerializeField] [Tooltip("Prefab of the Card")]
+        GameObject cardPrefab;
 
         [SerializeField] [Tooltip("World point where the deck is positioned")]
         Transform deckPosition;
 
-        [SerializeField] [Tooltip("Game view transform")]
-        Transform gameView;
-
-        UiCardHand CardHand { get; set; }
+        [SerializeField] UiCardHand cardHand;
 
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
 
         #region Unitycallbacks
-
-        void Awake() => CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
-
+        
         IEnumerator Start()
         {
             //starting cards
@@ -52,21 +47,21 @@ namespace Tools.UI.Card
         public void DrawCard()
         {
             //TODO: Consider replace Instantiate by an Object Pool Pattern
-            var cardGo = Instantiate(cardPrefabCs, gameView);
+            var cardGo = Instantiate(cardPrefab, cardHand.transform);
             cardGo.name = "Card_" + Count;
             var card = cardGo.GetComponent<IUiCard>();
             card.transform.position = deckPosition.position;
             Count++;
-            CardHand.AddCard(card);
+            cardHand.AddCard(card);
         }
 
         [Button]
         public void PlayCard()
         {
-            if (CardHand.Cards.Count > 0)
+            if (cardHand.Cards.Count > 0)
             {
-                var randomCard = CardHand.Cards.RandomItem();
-                CardHand.PlayCard(randomCard);
+                var randomCard = cardHand.Cards.RandomItem();
+                cardHand.PlayCard(randomCard);
             }
         }
 

@@ -14,8 +14,8 @@ namespace Tools.UI.Card
         IUiCardHand Hand { get; }
         SpriteRenderer[] Renderers { get; }
         SpriteRenderer MyRenderer { get; }
-        Collider Collider { get; }
-        Rigidbody Rigidbody { get; }
+        Collider2D Collider { get; }
+        Rigidbody2D Rigidbody { get; }
         IMouseInput Input { get; }
         GameObject gameObject { get; }
         Transform transform { get; }

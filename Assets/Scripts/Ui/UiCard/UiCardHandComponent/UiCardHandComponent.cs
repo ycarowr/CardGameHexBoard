@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Tools.UI.Card
 {
-    [RequireComponent(typeof(Collider))]
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(IMouseInput))]
     public class UiCardHandComponent : MonoBehaviour, IUiCard
     {
@@ -15,8 +15,8 @@ namespace Tools.UI.Card
 
         SpriteRenderer[] IUiCardComponents.Renderers => MyRenderers;
         SpriteRenderer IUiCardComponents.MyRenderer => MyRenderer;
-        Collider IUiCardComponents.Collider => MyCollider;
-        Rigidbody IUiCardComponents.Rigidbody => MyRigidbody;
+        Collider2D IUiCardComponents.Collider => MyCollider;
+        Rigidbody2D IUiCardComponents.Rigidbody => MyRigidbody;
         IMouseInput IUiCardComponents.Input => MyInput;
         IUiCardHand IUiCardComponents.Hand => Hand;
 
@@ -37,10 +37,10 @@ namespace Tools.UI.Card
         [SerializeField] public UiCardParameters cardConfigsParameters;
         UiCardHandFsm Fsm { get; set; }
         Transform MyTransform { get; set; }
-        Collider MyCollider { get; set; }
+        Collider2D MyCollider { get; set; }
         SpriteRenderer[] MyRenderers { get; set; }
         SpriteRenderer MyRenderer { get; set; }
-        Rigidbody MyRigidbody { get; set; }
+        Rigidbody2D MyRigidbody { get; set; }
         IMouseInput MyInput { get; set; }
         IUiCardHand Hand { get; set; }
         public MonoBehaviour MonoBehaviour => this;
@@ -103,10 +103,10 @@ namespace Tools.UI.Card
         {
             //components
             MyTransform = transform;
-            MyCollider = GetComponent<Collider>();
-            MyRigidbody = GetComponent<Rigidbody>();
+            MyCollider = GetComponent<Collider2D>();
+            MyRigidbody = GetComponent<Rigidbody2D>();
             MyInput = GetComponent<IMouseInput>();
-            Hand = transform.parent.GetComponentInChildren<IUiCardHand>();
+            Hand = transform.GetComponentInParent<IUiCardHand>();
             MyRenderers = GetComponentsInChildren<SpriteRenderer>();
             MyRenderer = GetComponent<SpriteRenderer>();
 
