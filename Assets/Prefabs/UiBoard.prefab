@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6119060842791606737}
   - component: {fileID: 3865852789441437271}
   - component: {fileID: 3626185755184172337}
-  - component: {fileID: 857046748}
+  - component: {fileID: 8144986189535404153}
   m_Layer: 0
   m_Name: UiCharacters
   m_TagString: Untagged
@@ -116,7 +116,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &857046748
+--- !u!114 &8144986189535404153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1303300691914004413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627cdbaf5d3427a43ac187c5af4bc7b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f1da07b912e5c047a8be63e49bc8e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   test: {fileID: 11400000, guid: e20a910fd4f9eb04aaf66f82bdfc9a1f, type: 2}

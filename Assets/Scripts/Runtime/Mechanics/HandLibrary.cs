@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace HexCardGame.Runtime.Game
+﻿namespace HexCardGame.Runtime.Game
 {
-    public class HandLibrary: BaseGameMechanics
+    public class HandLibrary : BaseGameMechanics
     {
         public HandLibrary(IGame game) : base(game)
         {

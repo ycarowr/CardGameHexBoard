@@ -1,9 +1,8 @@
 ﻿using HexCardGame.Runtime.GamePool;
-using UnityEngine;
 
 namespace HexCardGame.Runtime.Game
 {
-    public class HandPool: BaseGameMechanics
+    public class HandPool : BaseGameMechanics
     {
         public HandPool(IGame game) : base(game)
         {
@@ -13,11 +12,11 @@ namespace HexCardGame.Runtime.Game
         {
             if (!Game.IsGameStarted)
                 return;
-            
+
             var poolCard = Game.Pool.GetCardAt(positionIndex);
             if (poolCard.IsCovered)
                 return;
-            
+
             var data = poolCard.Data;
             var cardHand = new CardHand(data);
             var hand = GetPlayerHand(player.Id);

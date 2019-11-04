@@ -1,9 +1,8 @@
 ﻿using HexCardGame.Runtime.GamePool;
-using UnityEngine;
 
 namespace HexCardGame.Runtime.Game
 {
-    public class PoolLibrary: BaseGameMechanics
+    public class PoolLibrary : BaseGameMechanics
     {
         public PoolLibrary(IGame game) : base(game)
         {

@@ -25,14 +25,14 @@ namespace HexCardGame.Runtime.Game
         IDispatcher Dispatcher { get; }
         bool IsGameStarted { get; set; }
         bool IsGameFinished { get; set; }
-        void ExecuteAiTurn(PlayerId id);
-        void ForceWin(PlayerId id);
-        
+
         IScore Score { get; }
         IHand[] Hands { get; }
         ILibrary Library { get; }
         IPool<CardPool> Pool { get; }
         IBoard<CardBoard> Board { get; }
+        void ExecuteAiTurn(PlayerId id);
+        void ForceWin(PlayerId id);
     }
 
     public interface ICardGame

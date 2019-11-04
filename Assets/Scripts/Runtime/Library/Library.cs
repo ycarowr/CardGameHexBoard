@@ -31,18 +31,16 @@ namespace HexCardGame.Runtime
 
             var count = 0;
             var size = 0;
-            
+
             foreach (var value in _registerByPlayer.Values)
                 size += value.Length;
 
             _register = new CardData[size];
             foreach (var data in _registerByPlayer.Values)
+            foreach (var i in data)
             {
-                foreach (var i in data)
-                {
-                    _register[count] = i;
-                    ++count;
-                }
+                _register[count] = i;
+                ++count;
             }
 
             OnCreateLibrary();

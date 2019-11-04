@@ -22,7 +22,7 @@ namespace HexCardGame.Runtime.Game
                 return;
             if (!Game.TurnLogic.IsMyTurn(player))
                 return;
-            
+
             var hand = GetPlayerHand(player.Id);
             if (!hand.Has(card))
                 return;
@@ -31,7 +31,7 @@ namespace HexCardGame.Runtime.Game
             var cardBoard = new CardBoard(card.Data);
             Game.Board.AddDataAt(cardBoard, position);
         }
-        
+
         IHand GetPlayerHand(PlayerId id)
         {
             foreach (var i in Game.Hands)

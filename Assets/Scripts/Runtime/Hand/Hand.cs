@@ -33,9 +33,10 @@ namespace HexCardGame.Runtime
             OnCreateHand();
         }
 
-        public PlayerId Id { get; }
         IDispatcher Dispatcher { get; }
         GameParameters Parameters { get; }
+
+        public PlayerId Id { get; }
         public int MaxHandSize => Parameters.Hand.MaxHandSize;
         public int Size() => Units.Count;
         public List<CardHand> Cards => Units;

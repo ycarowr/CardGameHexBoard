@@ -1,4 +1,3 @@
-using System;
 using Tools;
 using Tools.Patterns.Observer;
 
@@ -67,36 +66,6 @@ namespace HexCardGame.Runtime.GamePool
                 i.SetData(null);
         }
 
-        Position<T> Get(PoolPositionIndex index) => Positions[(int) index];
-
-        void CreatePool()
-        {
-            var size = PoolPositionUtility.GetAllIndicesInt().Length;
-            Positions = new Position<T>[size];
-            for (var i = 0; i < size; i++)
-                Positions[i] = new Position<T>();
-            SetAllFaceDown();
-            OnCreatePool();
-        }
-
-        void OnCreatePool()
-        {
-            Logger.Log<Pool<T>>("Runtime Pool Dispatched");
-            Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
-        }
-
-        void SetAllFaceDown()
-        {
-            foreach (var i in Positions)
-                i?.Data?.Cover();
-        }
-
-        void SetAllFaceUp()
-        {
-            foreach (var i in Positions)
-                i?.Data?.Uncover();
-        }
-
         public void Unlock(PoolPositionIndex positionIndex)
         {
             switch (positionIndex)
@@ -135,7 +104,7 @@ namespace HexCardGame.Runtime.GamePool
                     break;
             }
         }
-        
+
         public void Lock(PoolPositionIndex positionIndex)
         {
             switch (positionIndex)
@@ -173,6 +142,36 @@ namespace HexCardGame.Runtime.GamePool
                     Get(PoolPositionIndex.Five).Lock();
                     break;
             }
+        }
+
+        Position<T> Get(PoolPositionIndex index) => Positions[(int) index];
+
+        void CreatePool()
+        {
+            var size = PoolPositionUtility.GetAllIndicesInt().Length;
+            Positions = new Position<T>[size];
+            for (var i = 0; i < size; i++)
+                Positions[i] = new Position<T>();
+            SetAllFaceDown();
+            OnCreatePool();
+        }
+
+        void OnCreatePool()
+        {
+            Logger.Log<Pool<T>>("Runtime Pool Dispatched");
+            Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
+        }
+
+        void SetAllFaceDown()
+        {
+            foreach (var i in Positions)
+                i?.Data?.Cover();
+        }
+
+        void SetAllFaceUp()
+        {
+            foreach (var i in Positions)
+                i?.Data?.Uncover();
         }
     }
 }

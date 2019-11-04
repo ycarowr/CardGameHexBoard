@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace HexCardGame.Runtime.Game
+﻿namespace HexCardGame.Runtime.Game
 {
     /// <summary> Broadcast of the starter player to the Listeners. </summary>
     [Event]
@@ -23,7 +21,7 @@ namespace HexCardGame.Runtime.Game
 
             Game.IsGameStarted = true;
 
-            Game.TurnLogic.DecideStarterPlayer();    
+            Game.TurnLogic.DecideStarterPlayer();
 
             DrawStartingHands();
 
@@ -33,7 +31,7 @@ namespace HexCardGame.Runtime.Game
         void DrawStartingHands()
         {
             foreach (var player in Game.TurnLogic.Players)
-                for (int i = 0; i < Parameters.Hand.StartingHandCount; i++)
+                for (var i = 0; i < Parameters.Hand.StartingHandCount; i++)
                     Game.DrawCardFromLibrary(player);
         }
 

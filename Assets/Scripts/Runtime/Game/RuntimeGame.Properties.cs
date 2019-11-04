@@ -10,7 +10,7 @@ namespace HexCardGame.Runtime.Game
     {
         #region Properties
 
-        public GameParameters Parameters { get; private set; }
+        public GameParameters Parameters { get; }
         public IDispatcher Dispatcher { get; }
         public bool IsGameStarted { get; set; }
         public bool IsGameFinished { get; set; }
@@ -24,7 +24,7 @@ namespace HexCardGame.Runtime.Game
         public IPool<CardPool> Pool { get; private set; }
         public ILibrary Library { get; private set; }
         public IPlayer[] Players { get; private set; }
-        public IHand[] Hands { get; private  set; }
+        public IHand[] Hands { get; private set; }
         public IScore Score { get; private set; }
 
         #endregion

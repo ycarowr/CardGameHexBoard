@@ -23,10 +23,11 @@ namespace HexCardGame
             Dispatcher = dispatcher;
             GameParameters = gameParameters;
         }
-        
-        public PlayerId Id { get; }
+
         IDispatcher Dispatcher { get; }
         GameParameters GameParameters { get; }
+
+        public PlayerId Id { get; }
         public bool IsUser => Id == GameParameters.Profiles.userId;
 
         void OnCreatePlayer() => Dispatcher.Notify<ICreatePlayer>(i => i.OnCreatePlayer(this));
