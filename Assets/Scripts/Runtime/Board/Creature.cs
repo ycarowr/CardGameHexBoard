@@ -4,8 +4,8 @@ namespace HexCardGame.Runtime
 {
     public class Creature : ICard
     {
-        public Creature(CardData data) => SetData(data);
-        public CardData Data { get; private set; }
-        public void SetData(CardData data) => Data = data;
+        public Creature(ICardData data) => SetData(data);
+        public ICardData Data { get; private set; }
+        public void SetData(ICardData data) => Data = data;
     }
 }

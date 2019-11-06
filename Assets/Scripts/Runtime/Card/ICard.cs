@@ -4,6 +4,6 @@ namespace HexCardGame.Runtime
 {
     public interface ICard
     {
-        CardData Data { get; }
+        ICardData Data { get; }
     }
 }

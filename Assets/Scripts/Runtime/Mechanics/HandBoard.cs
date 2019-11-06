@@ -3,18 +3,19 @@
 namespace HexCardGame.Runtime.Game
 {
     [Event]
-    public interface IPlayCard
+    public interface ICreateCreature
     {
-        void OnPreGameStart(IPlayer[] players);
+        void OnCreateCreature(PlayerId id, Creature creature, Vector2Int position, CardHand card);
     }
 
     public class HandBoard : BaseGameMechanics
     {
+        
         public HandBoard(IGame game) : base(game)
         {
         }
 
-        public void PlayCardAt(IPlayer player, CardHand card, Vector2Int position)
+        public void CreateCreatureAt(IPlayer player, CardHand card, Vector2Int position)
         {
             if (!Game.IsGameStarted)
                 return;
@@ -42,12 +43,6 @@ namespace HexCardGame.Runtime.Game
                 if (i.Id == id)
                     return i;
             return null;
-        }
-
-        [Event]
-        public interface ICreateCreature
-        {
-            void OnCreateCreature(PlayerId id, Creature creature, Vector2Int position, CardHand card);
         }
     }
 }

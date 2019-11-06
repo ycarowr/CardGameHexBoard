@@ -2,8 +2,16 @@
 
 namespace HexCardGame.SharedData
 {
+    public interface ICardData
+    {
+        CardId Id { get; }
+        int Cost { get; }
+        int Score { get; }
+        Sprite Artwork { get; }
+    }
+    
     [CreateAssetMenu(menuName = "Data/Card")]
-    public class CardData : ScriptableObject
+    public class CardData : ScriptableObject, ICardData
     {
         [SerializeField] Sprite artwork;
         [Range(0, 5)] [SerializeField] int cost;
