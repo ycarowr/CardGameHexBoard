@@ -10,7 +10,7 @@ namespace HexCardGame.Runtime.CardsBoard
     [Event]
     public interface ICreateCardBoard
     {
-        void OnCreateCharacter(CardBoard character);
+        void OnCreateCharacter(Creature character);
     }
 }
 
@@ -21,7 +21,7 @@ namespace HexCardGame.UI
         [SerializeField] TileBase test;
         Tilemap TileMap { get; set; }
 
-        void ICreateCardBoard.OnCreateCharacter(CardBoard character) => DrawCharacterUi(character);
+        void ICreateCardBoard.OnCreateCharacter(Creature character) => DrawCharacterUi(character);
 
         protected override void Awake()
         {
@@ -32,7 +32,7 @@ namespace HexCardGame.UI
         [Button]
         void DrawTest() => TileMap.SetTile(new Vector3Int(2, 3, 0), test);
 
-        void DrawCharacterUi(CardBoard character)
+        void DrawCharacterUi(Creature character)
         {
             Logger.Log<UiCardsBoard>("Character View Created");
             TileMap.SetTile(new Vector3Int(2, 3, 0), test);

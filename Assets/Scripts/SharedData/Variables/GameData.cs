@@ -20,26 +20,20 @@ namespace HexCardGame
 
         void CreateGame(IGameController controller)
         {
+            var gameMechanics = new GameMechanics();
             var turnBasedArgs = new RuntimeGame.GameArgs
             {
                 Controller = controller,
-                GameParameters = gameParameters,
-                Dispatcher = _dispatcher
+                Dispatcher = _dispatcher,
+                GameMechanics = gameMechanics,
+                GameParameters = gameParameters
             };
-
-            //create game data
             CurrentGameInstance = new RuntimeGame(turnBasedArgs);
+            gameMechanics.Initialize(CurrentGameInstance);
         }
-
-        IGame LoadGame() => null;
 
         /// <summary>  Initialize game data. </summary>
-        public void Initialize(IGameController controller)
-        {
-            CurrentGameInstance = LoadGame();
-            if (CurrentGameInstance == null)
-                CreateGame(controller);
-        }
+        public void Initialize(IGameController controller) => CreateGame(controller);
 
         void OnEnable()
         {

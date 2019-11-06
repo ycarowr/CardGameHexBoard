@@ -1,14 +1,26 @@
-﻿namespace HexCardGame.Runtime.Game
+﻿using HexCardGame.Runtime.GamePool;
+using UnityEngine;
+
+namespace HexCardGame.Runtime.Game
 {
     public partial class RuntimeGame
     {
         #region Operations
 
-        public void PreStartGame() => _preStartGame.Execute();
-        public void StartGame() => _startGame.Execute();
-        public void StartPlayerTurn() => _startPlayerTurn.Execute();
-        public void FinishPlayerTurn() => _finishPlayerTurn.Execute();
-        public void DrawCardFromLibrary(IPlayer player) => _handLibrary.DrawCard(player);
+        public void StartGame() => GameMechanics.StartGame.Execute();
+        public void PreStartGame() => GameMechanics.PreStartGame.Execute();
+        public void StartPlayerTurn() => GameMechanics.StartPlayerTurn.Execute();
+        public void FinishPlayerTurn() => GameMechanics.FinishPlayerTurn.Execute();
+        public void DrawCardFromLibrary(IPlayer player) => GameMechanics.HandLibrary.DrawCard(player);
+
+        public void PlayCardAt(IPlayer player, CardHand card, Vector2Int position) =>
+            GameMechanics.HandBoard.PlayCardAt(player, card, position);
+
+        public void PickCardFromPosition(IPlayer player, PoolPositionIndex positionIndex) =>
+            GameMechanics.HandPool.PickCard(player, positionIndex);
+
+        public void ReturnCardToPosition(IPlayer player, CardHand cardHand, PoolPositionIndex positionIndex) =>
+            GameMechanics.HandPool.ReturnCard(player, cardHand, positionIndex);
 
         public void ExecuteAiTurn(PlayerId id)
         {
@@ -17,7 +29,7 @@
         public void ForceWin(PlayerId id)
         {
             var player = TurnLogic.GetPlayer(id);
-            _finishGame.Execute(player);
+            GameMechanics.FinishGame.Execute(player);
         }
 
         #endregion

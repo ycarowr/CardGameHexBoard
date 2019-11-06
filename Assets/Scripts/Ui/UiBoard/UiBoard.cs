@@ -7,14 +7,14 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiBoard : UiEventListener, ICreateBoard<CardBoard>
+    public class UiBoard : UiEventListener, ICreateBoard<Creature>
     {
         GameObject[] positions;
         [SerializeField] TileBase test;
-        IBoard<CardBoard> CurrentBoard { get; set; }
+        IBoard<Creature> CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
 
-        void ICreateBoard<CardBoard>.OnCreateBoard(IBoard<CardBoard> board)
+        void ICreateBoard<Creature>.OnCreateBoard(IBoard<Creature> board)
         {
             CurrentBoard = board;
             DrawBoardUi();

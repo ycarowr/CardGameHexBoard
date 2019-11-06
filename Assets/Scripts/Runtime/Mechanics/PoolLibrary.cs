@@ -8,13 +8,23 @@ namespace HexCardGame.Runtime.Game
         {
         }
 
-        public void AddCardFromLibrary(IPlayer player, PoolPositionIndex positionIndex)
+        public void RevealCard(IPlayer player, PoolPositionIndex positionIndex)
         {
             if (!Game.IsGameStarted)
                 return;
 
-            var data = Game.Library.GetRandomDataFromPlayer(player.Id);
-            var card = new CardPool(data);
+            var data = Game.Library.GetRandomData();
+            var cardPool = new CardPool(data);
+            OnRevealCard(player.Id, cardPool, positionIndex);
+        }
+
+        void OnRevealCard(PlayerId playerId, CardPool cardPool, PoolPositionIndex positionIndex) =>
+            Dispatcher.Notify<IRevealCard>(i => i.OnRevealCard(playerId, cardPool, positionIndex));
+
+        [Event]
+        public interface IRevealCard
+        {
+            void OnRevealCard(PlayerId id, CardPool cardPool, PoolPositionIndex positionIndex);
         }
     }
 }

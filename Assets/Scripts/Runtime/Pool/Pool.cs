@@ -4,12 +4,12 @@ using Tools.Patterns.Observer;
 namespace HexCardGame.Runtime.GamePool
 {
     [Event]
-    public interface ICreatePool<T> where T : Coverable
+    public interface ICreatePool<T> where T : class
     {
         void OnCreatePool(IPool<T> pool);
     }
 
-    public interface IPool<T> where T : Coverable
+    public interface IPool<T> where T : class
     {
         Position<T>[] Positions { get; }
         int Size();
@@ -17,14 +17,13 @@ namespace HexCardGame.Runtime.GamePool
         void RemoveCardAt(PoolPositionIndex index);
         T GetCardAt(PoolPositionIndex index);
         T GetAndRemoveCardAt(PoolPositionIndex index);
-        void UncoverAt(PoolPositionIndex index);
-        void CoverAt(PoolPositionIndex index);
+        bool HasDataAt(PoolPositionIndex index);
         void Lock(PoolPositionIndex index);
         void Unlock(PoolPositionIndex index);
         void Empty();
     }
 
-    public class Pool<T> : Position<T>, IPool<T> where T : Coverable
+    public class Pool<T> : Position<T>, IPool<T> where T : class
     {
         public Pool(GameParameters gameParams, IDispatcher dispatcher)
         {
@@ -34,10 +33,6 @@ namespace HexCardGame.Runtime.GamePool
 
         IDispatcher Dispatcher { get; }
         public Position<T>[] Positions { get; private set; }
-
-        public void UncoverAt(PoolPositionIndex index) => GetCardAt(index).Uncover();
-
-        public void CoverAt(PoolPositionIndex index) => GetCardAt(index).Cover();
 
         public int Size()
         {
@@ -59,6 +54,7 @@ namespace HexCardGame.Runtime.GamePool
 
         public void AddCardAt(T card, PoolPositionIndex index) => Get(index)?.SetData(card);
         public void RemoveCardAt(PoolPositionIndex index) => Get(index)?.SetData(null);
+        public bool HasDataAt(PoolPositionIndex index) => Get(index).HasData;
 
         public void Empty()
         {
@@ -152,7 +148,6 @@ namespace HexCardGame.Runtime.GamePool
             Positions = new Position<T>[size];
             for (var i = 0; i < size; i++)
                 Positions[i] = new Position<T>();
-            SetAllFaceDown();
             OnCreatePool();
         }
 
@@ -160,18 +155,6 @@ namespace HexCardGame.Runtime.GamePool
         {
             Logger.Log<Pool<T>>("Runtime Pool Dispatched");
             Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
-        }
-
-        void SetAllFaceDown()
-        {
-            foreach (var i in Positions)
-                i?.Data?.Cover();
-        }
-
-        void SetAllFaceUp()
-        {
-            foreach (var i in Positions)
-                i?.Data?.Uncover();
         }
     }
 }

@@ -48,31 +48,6 @@ namespace HexCardGame.Runtime.Test
                 Assert.AreEqual(null, _pool.GetCardAt(i));
         }
 
-        [Test]
-        public void CoverCardAt_Test()
-        {
-            FillPool();
-            var positions = PoolPositionUtility.GetAllIndices();
-            foreach (var i in positions)
-                _pool.CoverAt(i);
-            foreach (var i in positions)
-                Assert.IsTrue(_pool.GetCardAt(i).IsCovered);
-        }
-
-        [Test]
-        public void UncoverCardAt_Test()
-        {
-            FillPool();
-            var positions = PoolPositionUtility.GetAllIndices();
-            foreach (var i in positions)
-                _pool.CoverAt(i);
-            foreach (var i in positions)
-                _pool.UncoverAt(i);
-            foreach (var i in positions)
-                Assert.IsFalse(_pool.GetCardAt(i).IsCovered);
-        }
-
-
         CardPool GetTestCard() => new CardPool(null);
 
         void FillPool()

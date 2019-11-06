@@ -1,6 +1,6 @@
 ﻿namespace HexCardGame.Runtime.GamePool
 {
-    public class Position<T> : IDataStorage<T> where T : Coverable
+    public class Position<T> : IDataStorage<T> where T : class
     {
         public bool IsLocked { get; private set; }
         public bool HasData => Data != null;

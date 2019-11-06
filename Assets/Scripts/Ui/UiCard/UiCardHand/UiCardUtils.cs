@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Tools.Extensions.List;
+﻿using Tools.Extensions.List;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,22 +19,6 @@ namespace Tools.UI.Card
         Transform deckPosition;
 
         [SerializeField] UiCardHand cardHand;
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        #region Unitycallbacks
-        
-        IEnumerator Start()
-        {
-            //starting cards
-            for (var i = 0; i < 6; i++)
-            {
-                yield return new WaitForSeconds(0.2f);
-                DrawCard();
-            }
-        }
 
         #endregion
 

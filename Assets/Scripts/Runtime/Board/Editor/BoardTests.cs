@@ -4,13 +4,13 @@ using NUnit.Framework;
 
 namespace HexCardGame.Runtime.Test
 {
-    public class BoardTests : BaseTest, ICreateBoard<TestBoardData>
+    public class BoardTests : BaseTest, ICreateBoard<MockCreature>
     {
-        IBoard<TestBoardData> _board;
+        IBoard<MockCreature> _board;
         BoardData _boardData;
         bool _isCreated;
 
-        public void OnCreateBoard(IBoard<TestBoardData> board) => _isCreated = true;
+        public void OnCreateBoard(IBoard<MockCreature> board) => _isCreated = true;
 
         public override void Setup()
         {
@@ -25,7 +25,7 @@ namespace HexCardGame.Runtime.Test
             _board = null;
         }
 
-        public override void Create() => _board = new Board<TestBoardData>(Parameters, Dispatcher);
+        public override void Create() => _board = new Board<MockCreature>(Parameters, Dispatcher);
 
         [Test]
         public void BoardCreated_Test() => Assert.IsTrue(_isCreated);

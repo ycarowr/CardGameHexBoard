@@ -28,9 +28,13 @@ namespace HexCardGame.Runtime.Game
                 return;
 
             hand.Remove(card);
-            var cardBoard = new CardBoard(card.Data);
-            Game.Board.AddDataAt(cardBoard, position);
+            var creature = new Creature(card.Data);
+            Game.Board.AddDataAt(creature, position);
+            OnCreateCreature(player.Id, creature, position, card);
         }
+
+        void OnCreateCreature(PlayerId playerId, Creature creature, Vector2Int position, CardHand card) =>
+            Dispatcher.Notify<ICreateCreature>(i => i.OnCreateCreature(playerId, creature, position, card));
 
         IHand GetPlayerHand(PlayerId id)
         {
@@ -38,6 +42,12 @@ namespace HexCardGame.Runtime.Game
                 if (i.Id == id)
                     return i;
             return null;
+        }
+
+        [Event]
+        public interface ICreateCreature
+        {
+            void OnCreateCreature(PlayerId id, Creature creature, Vector2Int position, CardHand card);
         }
     }
 }

@@ -3,6 +3,7 @@ using HexCardGame.Runtime.GamePool;
 using HexCardGame.Runtime.GameScore;
 using HexCardGame.Runtime.GameTurn;
 using Tools.Patterns.Observer;
+using UnityEngine;
 
 namespace HexCardGame.Runtime.Game
 {
@@ -30,7 +31,7 @@ namespace HexCardGame.Runtime.Game
         IHand[] Hands { get; }
         ILibrary Library { get; }
         IPool<CardPool> Pool { get; }
-        IBoard<CardBoard> Board { get; }
+        IBoard<Creature> Board { get; }
         void ExecuteAiTurn(PlayerId id);
         void ForceWin(PlayerId id);
     }
@@ -38,5 +39,8 @@ namespace HexCardGame.Runtime.Game
     public interface ICardGame
     {
         void DrawCardFromLibrary(IPlayer player);
+        void PickCardFromPosition(IPlayer player, PoolPositionIndex positionIndex);
+        void ReturnCardToPosition(IPlayer player, CardHand cardHand, PoolPositionIndex positionIndex);
+        void PlayCardAt(IPlayer player, CardHand cardHand, Vector2Int position);
     }
 }

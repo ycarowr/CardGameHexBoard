@@ -20,7 +20,7 @@ namespace HexCardGame.Runtime.Game
 
         #region Game Data Structures
 
-        public IBoard<CardBoard> Board { get; private set; }
+        public IBoard<Creature> Board { get; private set; }
         public IPool<CardPool> Pool { get; private set; }
         public ILibrary Library { get; private set; }
         public IPlayer[] Players { get; private set; }
@@ -33,12 +33,7 @@ namespace HexCardGame.Runtime.Game
 
         public ITurnLogic TurnLogic { get; private set; }
         public BattleFsm BattleFsm { get; private set; }
-        PreStartGame _preStartGame;
-        StartGame _startGame;
-        StartPlayerTurn _startPlayerTurn;
-        FinishPlayerTurn _finishPlayerTurn;
-        FinishGame _finishGame;
-        HandLibrary _handLibrary;
+        public GameMechanics GameMechanics { get; }
 
         #endregion
     }

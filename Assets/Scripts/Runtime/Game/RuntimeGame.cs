@@ -15,9 +15,9 @@ namespace HexCardGame.Runtime.Game
         {
             Dispatcher = args.Dispatcher;
             Parameters = args.GameParameters;
+            GameMechanics = args.GameMechanics;
             InitializeGameDataStructures(args);
             InitializeTurnBasedStructures(args);
-            InitializeGameMechanics(args);
         }
 
         void InitializeGameDataStructures(GameArgs args)
@@ -42,7 +42,7 @@ namespace HexCardGame.Runtime.Game
             }
 
             //Create Board
-            Board = new Board<CardBoard>(args.GameParameters, Dispatcher);
+            Board = new Board<Creature>(args.GameParameters, Dispatcher);
 
             //Create Pool
             Pool = new Pool<CardPool>(args.GameParameters, Dispatcher);
@@ -65,21 +65,38 @@ namespace HexCardGame.Runtime.Game
             BattleFsm = new BattleFsm(args, this);
         }
 
-        void InitializeGameMechanics(GameArgs args)
-        {
-            _startGame = new StartGame(this);
-            _finishGame = new FinishGame(this);
-            _preStartGame = new PreStartGame(this);
-            _startPlayerTurn = new StartPlayerTurn(this);
-            _finishPlayerTurn = new FinishPlayerTurn(this);
-            _handLibrary = new HandLibrary(this);
-        }
-
         public struct GameArgs
         {
             public IDispatcher Dispatcher;
             public IGameController Controller;
+            public GameMechanics GameMechanics;
             public GameParameters GameParameters;
+        }
+    }
+
+    public class GameMechanics
+    {
+        public HandPool HandPool { get; private set; }
+        public HandBoard HandBoard { get; private set; }
+        public StartGame StartGame { get; private set; }
+        public FinishGame FinishGame { get; private set; }
+        public HandLibrary HandLibrary { get; private set; }
+        public PoolLibrary PoolLibrary { get; private set; }
+        public PreStartGame PreStartGame { get; private set; }
+        public StartPlayerTurn StartPlayerTurn { get; private set; }
+        public FinishPlayerTurn FinishPlayerTurn { get; private set; }
+
+        public void Initialize(IGame game)
+        {
+            HandPool = new HandPool(game);
+            StartGame = new StartGame(game);
+            HandBoard = new HandBoard(game);
+            FinishGame = new FinishGame(game);
+            PoolLibrary = new PoolLibrary(game);
+            HandLibrary = new HandLibrary(game);
+            PreStartGame = new PreStartGame(game);
+            StartPlayerTurn = new StartPlayerTurn(game);
+            FinishPlayerTurn = new FinishPlayerTurn(game);
         }
     }
 }
