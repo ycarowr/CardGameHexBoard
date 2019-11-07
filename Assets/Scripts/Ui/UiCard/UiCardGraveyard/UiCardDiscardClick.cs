@@ -20,6 +20,8 @@ namespace Tools.UI.Card
             Input.OnPointerClick += PlayRandom;
         }
 
-        void PlayRandom(PointerEventData obj) => Utils.PlayCard();
+        void PlayRandom(PointerEventData obj)
+        {
+        }
     }
 }
