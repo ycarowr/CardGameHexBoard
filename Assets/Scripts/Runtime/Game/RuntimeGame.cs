@@ -15,7 +15,7 @@ namespace HexCardGame.Runtime.Game
         {
             Dispatcher = args.Dispatcher;
             Parameters = args.GameParameters;
-            GameMechanics = args.GameMechanics;
+            GameMechanics = new GameMechanics(this);
             InitializeGameDataStructures(args);
             InitializeTurnBasedStructures(args);
         }
@@ -69,24 +69,23 @@ namespace HexCardGame.Runtime.Game
         {
             public IDispatcher Dispatcher;
             public IGameController Controller;
-            public GameMechanics GameMechanics;
             public GameParameters GameParameters;
         }
     }
 
-    public class GameMechanics
+    public struct GameMechanics
     {
-        public HandPool HandPool { get; private set; }
-        public HandBoard HandBoard { get; private set; }
-        public StartGame StartGame { get; private set; }
-        public FinishGame FinishGame { get; private set; }
-        public HandLibrary HandLibrary { get; private set; }
-        public PoolLibrary PoolLibrary { get; private set; }
-        public PreStartGame PreStartGame { get; private set; }
-        public StartPlayerTurn StartPlayerTurn { get; private set; }
-        public FinishPlayerTurn FinishPlayerTurn { get; private set; }
+        public HandPool HandPool { get; }
+        public HandBoard HandBoard { get; }
+        public StartGame StartGame { get; }
+        public FinishGame FinishGame { get; }
+        public HandLibrary HandLibrary { get; }
+        public PoolLibrary PoolLibrary { get; }
+        public PreStartGame PreStartGame { get; }
+        public StartPlayerTurn StartPlayerTurn { get; }
+        public FinishPlayerTurn FinishPlayerTurn { get; }
 
-        public void Initialize(IGame game)
+        public GameMechanics(IGame game)
         {
             HandPool = new HandPool(game);
             StartGame = new StartGame(game);

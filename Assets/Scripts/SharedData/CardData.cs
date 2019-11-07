@@ -9,7 +9,7 @@ namespace HexCardGame.SharedData
         int Score { get; }
         Sprite Artwork { get; }
     }
-    
+
     [CreateAssetMenu(menuName = "Data/Card")]
     public class CardData : ScriptableObject, ICardData
     {

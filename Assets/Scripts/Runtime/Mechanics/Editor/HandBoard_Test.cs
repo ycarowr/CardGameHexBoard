@@ -6,10 +6,10 @@ namespace HexCardGame.Runtime.Test
 {
     public partial class Mechanics_Test : ICreateCreature
     {
-        MockCardData _mockCardData = new MockCardData();
-        Vector2Int _v2IntPosition = new Vector2Int();
         CardHand _cardHand;
-        
+        readonly MockCardData _mockCardData = new MockCardData();
+        readonly Vector2Int _v2IntPosition = new Vector2Int();
+
         public void OnCreateCreature(PlayerId id, Creature creature, Vector2Int position, CardHand card)
         {
             EventReceived = true;

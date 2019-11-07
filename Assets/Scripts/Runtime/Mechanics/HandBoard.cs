@@ -10,7 +10,6 @@ namespace HexCardGame.Runtime.Game
 
     public class HandBoard : BaseGameMechanics
     {
-        
         public HandBoard(IGame game) : base(game)
         {
         }

@@ -1,7 +1,0 @@
-{
-    "DataRegister": {
-        "StoreDataTest": "{\"TestBool\":true,\"TestInt\":2147483647,\"TestNestedData\":{\"TestFloat\":123.1231,\"TestString\":\"ycaro\"}}",
-        "StoreDataTest1": "{\"TestBool\":true,\"TestInt\":2147483647,\"TestNestedData\":{\"TestFloat\":123.1231,\"TestString\":\"ycaro\"}}",
-        "StoreDataTest2": "{\"TestBool\":true,\"TestInt\":2147483647,\"TestNestedData\":{\"TestFloat\":123.1231,\"TestString\":\"ycaro\"}}"
-    }
-}

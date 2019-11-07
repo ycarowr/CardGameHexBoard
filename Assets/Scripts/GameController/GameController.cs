@@ -16,16 +16,13 @@ namespace HexCardGame
         MonoBehaviour MonoBehaviour { get; }
         void RestartGameImmediately();
     }
-
-    /// <summary>
-    ///     Main Controller. Holds the FSM which controls the game flow. Also provides access to the players
-    /// </summary>
+    
     public class GameController : MonoBehaviour, IGameController
     {
         IDispatcher _dispatcher;
         GameData _gameData;
 
-        /// <summary>  Handler for the state machine. Used to dispatch coroutines. </summary>
+        /// <summary>  Handler for the state machine. Used to dispatch corotines. </summary>
         public MonoBehaviour MonoBehaviour => this;
 
         [Button]
@@ -38,7 +35,7 @@ namespace HexCardGame
 
         void Awake()
         {
-            if (!_gameData)
+            if (_gameData == null)
                 _gameData = GameData.Load();
             if (_dispatcher == null)
                 _dispatcher = EventsDispatcher.Load();
