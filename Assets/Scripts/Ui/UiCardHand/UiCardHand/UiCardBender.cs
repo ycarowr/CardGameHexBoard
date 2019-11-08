@@ -37,7 +37,7 @@ namespace Tools.UI.Card
 
         SpriteRenderer CardRenderer { get; set; }
         float CardWidth => CardRenderer.bounds.size.x;
-        IUiCardHand CardHand { get; set; }
+        UiCardHand CardHand { get; set; }
 
         #endregion
 
@@ -50,7 +50,7 @@ namespace Tools.UI.Card
             if (cards == null)
                 throw new ArgumentException("Can't bend a card list null");
 
-            var fullAngle = -parameters.BentAngle;
+            var fullAngle = parameters.BentAngle;
             var anglePerCard = fullAngle / cards.Length;
             var firstAngle = CalcFirstAngle(fullAngle);
             var handWidth = CalcHandWidth(cards.Length);
@@ -80,7 +80,6 @@ namespace Tools.UI.Card
                     var zAxisRot = pivotLocationFactor == 1 ? 0 : 180;
                     var rotation = new Vector3(0, 0, angleTwist - zAxisRot);
                     var position = new Vector3(xPos, yPos, card.transform.position.z);
-
                     var rotSpeed = card.IsPlayer ? parameters.RotationSpeed : parameters.RotationSpeedP2;
                     card.RotateTo(rotation, rotSpeed);
                     card.MoveTo(position, parameters.MovementSpeed);

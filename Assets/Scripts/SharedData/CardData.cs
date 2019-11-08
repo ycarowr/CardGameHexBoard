@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace HexCardGame.SharedData
 {
@@ -8,6 +9,7 @@ namespace HexCardGame.SharedData
         int Cost { get; }
         int Score { get; }
         Sprite Artwork { get; }
+        Tile Tile { get; }
     }
 
     [CreateAssetMenu(menuName = "Data/Card")]
@@ -20,6 +22,7 @@ namespace HexCardGame.SharedData
         [SerializeField] string nameCard;
         [Range(0, 10)] [SerializeField] int score;
         [SerializeField] string stringId;
+        [SerializeField] Tile tile;
 
         // -------------------------------------------------------------------------------------------------------------
 
@@ -32,5 +35,7 @@ namespace HexCardGame.SharedData
             get => artwork;
             set => artwork = value;
         }
+
+        public Tile Tile => tile;
     }
 }

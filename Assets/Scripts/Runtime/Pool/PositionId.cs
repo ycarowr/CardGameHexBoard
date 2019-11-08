@@ -4,13 +4,13 @@ namespace HexCardGame.Runtime.GamePool
 {
     public static class PoolPositionUtility
     {
-        public static PoolPositionIndex[] GetAllIndices() =>
-            (PoolPositionIndex[]) Enum.GetValues(typeof(PoolPositionIndex));
+        public static PositionId[] GetAllIndices() =>
+            (PositionId[]) Enum.GetValues(typeof(PositionId));
 
-        public static int[] GetAllIndicesInt() => (int[]) Enum.GetValues(typeof(PoolPositionIndex));
+        public static int[] GetAllIndicesInt() => (int[]) Enum.GetValues(typeof(PositionId));
     }
 
-    public enum PoolPositionIndex
+    public enum PositionId
     {
         Zero = 0,
         One = 1,

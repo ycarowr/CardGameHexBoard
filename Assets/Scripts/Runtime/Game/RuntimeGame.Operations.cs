@@ -11,17 +11,19 @@ namespace HexCardGame.Runtime.Game
         public void PreStartGame() => GameMechanics.PreStartGame.Execute();
         public void StartPlayerTurn() => GameMechanics.StartPlayerTurn.Execute();
         public void FinishPlayerTurn() => GameMechanics.FinishPlayerTurn.Execute();
-        public void DrawCardFromLibrary(IPlayer player) => GameMechanics.HandLibrary.DrawCard(player);
+        public void DrawCardFromLibrary(PlayerId playerId) => GameMechanics.HandLibrary.DrawCard(playerId);
 
-        public void CreateCreatureAt(IPlayer player, CardHand card, Vector2Int position)
-            => GameMechanics.HandBoard.CreateCreatureAt(player, card, position);
+        public void RevealCardFromLibrary(PlayerId playerId, PositionId positionId)
+            => GameMechanics.PoolLibrary.RevealCard(playerId, positionId);
 
+        public void PlayElementAt(PlayerId playerId, CardHand card, Vector2Int position)
+            => GameMechanics.HandBoard.CreateBoardElementAt(playerId, card, position);
 
-        public void PickCardFromPosition(IPlayer player, PoolPositionIndex positionIndex) =>
-            GameMechanics.HandPool.PickCard(player, positionIndex);
+        public void PickCardFromPosition(PlayerId playerId, PositionId positionId) =>
+            GameMechanics.HandPool.PickCard(playerId, positionId);
 
-        public void ReturnCardToPosition(IPlayer player, CardHand cardHand, PoolPositionIndex positionIndex) =>
-            GameMechanics.HandPool.ReturnCard(player, cardHand, positionIndex);
+        public void ReturnCardToPosition(PlayerId playerId, CardHand cardHand, PositionId positionId) =>
+            GameMechanics.HandPool.ReturnCard(playerId, cardHand, positionId);
 
         public void ExecuteAiTurn(PlayerId id)
         {

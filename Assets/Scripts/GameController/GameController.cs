@@ -16,7 +16,7 @@ namespace HexCardGame
         MonoBehaviour MonoBehaviour { get; }
         void RestartGameImmediately();
     }
-    
+
     public class GameController : MonoBehaviour, IGameController
     {
         IDispatcher _dispatcher;

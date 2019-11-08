@@ -7,7 +7,7 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Card Hand holds a register of cards.
     /// </summary>
-    public class UiCardHand : UiCardPile, IUiCardHand
+    public class UiCardHand : UiCardPile
     {
         //--------------------------------------------------------------------------------------------------------------
 
@@ -18,27 +18,9 @@ namespace Tools.UI.Card
         /// </summary>
         public IUiCard SelectedCard { get; private set; }
 
-        event Action<IUiCard> OnCardSelected = card => { };
+        public event Action<IUiCard> OnCardSelected = card => { };
 
-        event Action<IUiCard> OnCardPlayed = card => { };
-
-        /// <summary>
-        ///     Event raised when a card is played.
-        /// </summary>
-        Action<IUiCard> IUiCardHand.OnCardPlayed
-        {
-            get => OnCardPlayed;
-            set => OnCardPlayed = value;
-        }
-
-        /// <summary>
-        ///     Event raised when a card is selected.
-        /// </summary>
-        Action<IUiCard> IUiCardHand.OnCardSelected
-        {
-            get => OnCardSelected;
-            set => OnCardSelected = value;
-        }
+        public event Action<IUiCard> OnCardPlayed = card => { };
 
         #endregion
 

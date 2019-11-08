@@ -12,16 +12,16 @@
         {
         }
 
-        public void DrawCard(IPlayer player)
+        public void DrawCard(PlayerId playerId)
         {
             if (!Game.IsGameStarted)
                 return;
 
             var data = Game.Library.GetRandomData();
             var card = new CardHand(data);
-            var playerHand = GetPlayerHand(player.Id);
+            var playerHand = GetPlayerHand(playerId);
             playerHand.Add(card);
-            OnDrawCard(player.Id, card);
+            OnDrawCard(playerId, card);
         }
 
         void OnDrawCard(PlayerId playerId, CardHand card) =>

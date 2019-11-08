@@ -9,18 +9,22 @@ namespace HexCardGame.Runtime.GamePool
         void OnCreatePool(IPool<T> pool);
     }
 
-    public interface IPool<T> where T : class
+    public interface IPool<T> : IPoolStorage<T> where T : class
     {
-        Position<T>[] Positions { get; }
         int Size();
-        void AddCardAt(T card, PoolPositionIndex index);
-        void RemoveCardAt(PoolPositionIndex index);
-        T GetCardAt(PoolPositionIndex index);
-        T GetAndRemoveCardAt(PoolPositionIndex index);
-        bool HasDataAt(PoolPositionIndex index);
-        void Lock(PoolPositionIndex index);
-        void Unlock(PoolPositionIndex index);
-        void Empty();
+        void Lock(PositionId positionId);
+        void Unlock(PositionId positionId);
+        bool IsPositionLocked(PositionId positionId);
+    }
+
+    public interface IPoolStorage<T> where T : class
+    {
+        void Clear();
+        void AddCardAt(T card, PositionId id);
+        void RemoveCardAt(PositionId id);
+        T GetCardAt(PositionId id);
+        T GetAndRemoveCardAt(PositionId id);
+        bool HasDataAt(PositionId id);
     }
 
     public class Pool<T> : Position<T>, IPool<T> where T : class
@@ -43,104 +47,87 @@ namespace HexCardGame.Runtime.GamePool
             return size;
         }
 
-        public T GetCardAt(PoolPositionIndex index) => Get(index)?.Data;
+        public bool IsPositionLocked(PositionId positionId) => Get(positionId).IsLocked;
 
-        public T GetAndRemoveCardAt(PoolPositionIndex index)
+        public void Unlock(PositionId positionId)
         {
-            var card = GetCardAt(index);
-            RemoveCardAt(index);
-            return card;
-        }
-
-        public void AddCardAt(T card, PoolPositionIndex index) => Get(index)?.SetData(card);
-        public void RemoveCardAt(PoolPositionIndex index) => Get(index)?.SetData(null);
-        public bool HasDataAt(PoolPositionIndex index) => Get(index).HasData;
-
-        public void Empty()
-        {
-            foreach (var i in Positions)
-                i.SetData(null);
-        }
-
-        public void Unlock(PoolPositionIndex positionIndex)
-        {
-            switch (positionIndex)
+            switch (positionId)
             {
-                case PoolPositionIndex.Zero:
+                case PositionId.Zero:
                     break;
-                case PoolPositionIndex.One:
-                    Get(PoolPositionIndex.Zero).Unlock();
+                case PositionId.One:
+                    Get(PositionId.Zero).Unlock();
                     break;
-                case PoolPositionIndex.Two:
-                    Get(PoolPositionIndex.Zero).Unlock();
+                case PositionId.Two:
+                    Get(PositionId.Zero).Unlock();
                     break;
-                case PoolPositionIndex.Three:
-                    Get(PoolPositionIndex.One).Unlock();
+                case PositionId.Three:
+                    Get(PositionId.One).Unlock();
                     break;
-                case PoolPositionIndex.Four:
-                    Get(PoolPositionIndex.One).Unlock();
-                    Get(PoolPositionIndex.Two).Unlock();
+                case PositionId.Four:
+                    Get(PositionId.One).Unlock();
+                    Get(PositionId.Two).Unlock();
                     break;
-                case PoolPositionIndex.Five:
-                    Get(PoolPositionIndex.Two).Unlock();
+                case PositionId.Five:
+                    Get(PositionId.Two).Unlock();
                     break;
-                case PoolPositionIndex.Six:
-                    Get(PoolPositionIndex.Three).Unlock();
+                case PositionId.Six:
+                    Get(PositionId.Three).Unlock();
                     break;
-                case PoolPositionIndex.Seven:
-                    Get(PoolPositionIndex.Three).Unlock();
-                    Get(PoolPositionIndex.Four).Unlock();
+                case PositionId.Seven:
+                    Get(PositionId.Three).Unlock();
+                    Get(PositionId.Four).Unlock();
                     break;
-                case PoolPositionIndex.Eight:
-                    Get(PoolPositionIndex.Five).Unlock();
-                    Get(PoolPositionIndex.Four).Unlock();
+                case PositionId.Eight:
+                    Get(PositionId.Five).Unlock();
+                    Get(PositionId.Four).Unlock();
                     break;
-                case PoolPositionIndex.Nine:
-                    Get(PoolPositionIndex.Five).Unlock();
+                case PositionId.Nine:
+                    Get(PositionId.Five).Unlock();
                     break;
             }
         }
 
-        public void Lock(PoolPositionIndex positionIndex)
+        public void Lock(PositionId positionId)
         {
-            switch (positionIndex)
+            switch (positionId)
             {
-                case PoolPositionIndex.Zero:
+                case PositionId.Zero:
                     break;
-                case PoolPositionIndex.One:
-                    Get(PoolPositionIndex.Zero).Lock();
+                case PositionId.One:
+                    Get(PositionId.Zero).Lock();
                     break;
-                case PoolPositionIndex.Two:
-                    Get(PoolPositionIndex.Zero).Lock();
+                case PositionId.Two:
+                    Get(PositionId.Zero).Lock();
                     break;
-                case PoolPositionIndex.Three:
-                    Get(PoolPositionIndex.One).Lock();
+                case PositionId.Three:
+                    Get(PositionId.One).Lock();
                     break;
-                case PoolPositionIndex.Four:
-                    Get(PoolPositionIndex.One).Lock();
-                    Get(PoolPositionIndex.Two).Lock();
+                case PositionId.Four:
+                    Get(PositionId.One).Lock();
+                    Get(PositionId.Two).Lock();
                     break;
-                case PoolPositionIndex.Five:
-                    Get(PoolPositionIndex.Two).Lock();
+                case PositionId.Five:
+                    Get(PositionId.Two).Lock();
                     break;
-                case PoolPositionIndex.Six:
-                    Get(PoolPositionIndex.Three).Lock();
+                case PositionId.Six:
+                    Get(PositionId.Three).Lock();
                     break;
-                case PoolPositionIndex.Seven:
-                    Get(PoolPositionIndex.Three).Lock();
-                    Get(PoolPositionIndex.Four).Lock();
+                case PositionId.Seven:
+                    Get(PositionId.Three).Lock();
+                    Get(PositionId.Four).Lock();
                     break;
-                case PoolPositionIndex.Eight:
-                    Get(PoolPositionIndex.Five).Lock();
-                    Get(PoolPositionIndex.Four).Lock();
+                case PositionId.Eight:
+                    Get(PositionId.Five).Lock();
+                    Get(PositionId.Four).Lock();
                     break;
-                case PoolPositionIndex.Nine:
-                    Get(PoolPositionIndex.Five).Lock();
+                case PositionId.Nine:
+                    Get(PositionId.Five).Lock();
                     break;
             }
         }
 
-        Position<T> Get(PoolPositionIndex index) => Positions[(int) index];
+        Position<T> Get(PositionId positionId) => Positions[(int) positionId];
 
         void CreatePool()
         {
@@ -156,5 +143,28 @@ namespace HexCardGame.Runtime.GamePool
             Logger.Log<Pool<T>>("Runtime Pool Dispatched");
             Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
         }
+
+        #region Storage
+
+        public T GetCardAt(PositionId id) => Get(id)?.Data;
+
+        public T GetAndRemoveCardAt(PositionId id)
+        {
+            var card = GetCardAt(id);
+            RemoveCardAt(id);
+            return card;
+        }
+
+        public void AddCardAt(T card, PositionId id) => Get(id)?.SetData(card);
+        public void RemoveCardAt(PositionId id) => Get(id)?.SetData(null);
+        public bool HasDataAt(PositionId id) => Get(id).HasData;
+
+        public void Clear()
+        {
+            foreach (var i in Positions)
+                i.SetData(null);
+        }
+
+        #endregion
     }
 }

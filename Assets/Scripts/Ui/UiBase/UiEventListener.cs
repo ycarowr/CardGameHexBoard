@@ -1,20 +1,19 @@
 ﻿using Tools.Patterns.Observer;
-using UnityEngine;
 
 namespace Game.Ui
 {
     /// <summary>
     ///     Base class for all classes interested on events that happen inside the FSM.
     /// </summary>
-    public abstract class UiEventListener : MonoBehaviour, IListener
+    public abstract class UiEventListener : UiGameInputRequester, IListener
     {
         /// <summary> Reference to the observer. </summary>
-        EventsDispatcher _dispatcher;
+        IDispatcher _dispatcher;
 
         /// <summary> Add itself as a listener. </summary>
-        protected virtual void Awake()
+        protected override void Awake()
         {
-            //loads the asset
+            base.Awake();
             _dispatcher = EventsDispatcher.Load();
             Subscribe();
         }

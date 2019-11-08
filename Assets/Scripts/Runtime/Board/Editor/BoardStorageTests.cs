@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Test
 {
     public class BoardStorageTests : BaseTest
     {
-        IBoard<MockCreature> _board;
+        IBoard<MockBoardElement> _board;
 
         [TearDown]
         public override void TearDown()
@@ -14,13 +14,13 @@ namespace HexCardGame.Runtime.Test
             _board = null;
         }
 
-        public override void Create() => _board = new Board<MockCreature>(Parameters, Dispatcher);
+        public override void Create() => _board = new Board<MockBoardElement>(Parameters, Dispatcher);
 
         [Test]
         public void AddDataAt_Test()
         {
             var positions = _board.Positions;
-            var testSample = new MockCreature[positions.Length];
+            var testSample = new MockBoardElement[positions.Length];
             for (var i = 0; i < testSample.Length; i++)
                 testSample[i] = GetTestData();
 
@@ -42,7 +42,7 @@ namespace HexCardGame.Runtime.Test
         public void HasDataAt_Test()
         {
             var positions = _board.Positions;
-            var testSample = new MockCreature[positions.Length];
+            var testSample = new MockBoardElement[positions.Length];
             for (var i = 0; i < testSample.Length; i++)
                 testSample[i] = GetTestData();
 
@@ -60,7 +60,7 @@ namespace HexCardGame.Runtime.Test
         public void HasData_Test()
         {
             var positions = _board.Positions;
-            var testSample = new MockCreature[positions.Length];
+            var testSample = new MockBoardElement[positions.Length];
             for (var i = 0; i < testSample.Length; i++)
                 testSample[i] = GetTestData();
 
@@ -78,7 +78,7 @@ namespace HexCardGame.Runtime.Test
         public void RemoveDataAt_Test()
         {
             var positions = _board.Positions;
-            var testSample = new MockCreature[positions.Length];
+            var testSample = new MockBoardElement[positions.Length];
             for (var i = 0; i < testSample.Length; i++)
                 testSample[i] = GetTestData();
 
@@ -100,7 +100,7 @@ namespace HexCardGame.Runtime.Test
         public void RemoveData_Test()
         {
             var positions = _board.Positions;
-            var testSample = new MockCreature[positions.Length];
+            var testSample = new MockBoardElement[positions.Length];
             for (var i = 0; i < testSample.Length; i++)
                 testSample[i] = GetTestData();
 
@@ -121,6 +121,6 @@ namespace HexCardGame.Runtime.Test
             }
         }
 
-        MockCreature GetTestData() => new MockCreature();
+        MockBoardElement GetTestData() => new MockBoardElement();
     }
 }

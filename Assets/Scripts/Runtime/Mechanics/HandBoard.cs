@@ -3,9 +3,9 @@
 namespace HexCardGame.Runtime.Game
 {
     [Event]
-    public interface ICreateCreature
+    public interface ICreateBoardElement
     {
-        void OnCreateCreature(PlayerId id, Creature creature, Vector2Int position, CardHand card);
+        void OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector2Int position, CardHand card);
     }
 
     public class HandBoard : BaseGameMechanics
@@ -14,27 +14,27 @@ namespace HexCardGame.Runtime.Game
         {
         }
 
-        public void CreateCreatureAt(IPlayer player, CardHand card, Vector2Int position)
+        public void CreateBoardElementAt(PlayerId playerId, CardHand card, Vector2Int position)
         {
             if (!Game.IsGameStarted)
                 return;
             if (!Game.IsTurnInProgress)
                 return;
-            if (!Game.TurnLogic.IsMyTurn(player))
+            if (!Game.TurnLogic.IsMyTurn(playerId))
                 return;
 
-            var hand = GetPlayerHand(player.Id);
+            var hand = GetPlayerHand(playerId);
             if (!hand.Has(card))
                 return;
 
             hand.Remove(card);
-            var creature = new Creature(card.Data);
+            var creature = new BoardElement(card.Data, playerId);
             Game.Board.AddDataAt(creature, position);
-            OnCreateCreature(player.Id, creature, position, card);
+            OnCreateCreature(playerId, creature, position, card);
         }
 
-        void OnCreateCreature(PlayerId playerId, Creature creature, Vector2Int position, CardHand card) =>
-            Dispatcher.Notify<ICreateCreature>(i => i.OnCreateCreature(playerId, creature, position, card));
+        void OnCreateCreature(PlayerId playerId, BoardElement boardElement, Vector2Int position, CardHand card) =>
+            Dispatcher.Notify<ICreateBoardElement>(i => i.OnCreateBoardElement(playerId, boardElement, position, card));
 
         IHand GetPlayerHand(PlayerId id)
         {

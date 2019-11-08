@@ -41,7 +41,7 @@ namespace HexCardGame.Runtime.Test
         public void EmptyPool_Test()
         {
             FillPool();
-            _pool.Empty();
+            _pool.Clear();
             var positions = PoolPositionUtility.GetAllIndices();
             Assert.IsTrue(_pool.Size() == 0);
             foreach (var i in positions)

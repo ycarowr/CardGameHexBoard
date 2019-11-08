@@ -7,14 +7,14 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiBoard : UiEventListener, ICreateBoard<Creature>
+    public class UiBoard : UiEventListener, ICreateBoard<BoardElement>
     {
         GameObject[] positions;
         [SerializeField] TileBase test;
-        IBoard<Creature> CurrentBoard { get; set; }
+        IBoard<BoardElement> CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
 
-        void ICreateBoard<Creature>.OnCreateBoard(IBoard<Creature> board)
+        void ICreateBoard<BoardElement>.OnCreateBoard(IBoard<BoardElement> board)
         {
             CurrentBoard = board;
             DrawBoardUi();
@@ -33,8 +33,5 @@ namespace HexCardGame.UI
             foreach (var p in CurrentBoard.Positions)
                 TileMap.SetTile(p, test);
         }
-
-        [Button]
-        void ClearBoardUi() => TileMap.ClearAllTiles();
     }
 }

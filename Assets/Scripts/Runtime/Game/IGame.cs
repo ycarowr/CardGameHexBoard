@@ -31,16 +31,17 @@ namespace HexCardGame.Runtime.Game
         IHand[] Hands { get; }
         ILibrary Library { get; }
         IPool<CardPool> Pool { get; }
-        IBoard<Creature> Board { get; }
+        IBoard<BoardElement> Board { get; }
         void ExecuteAiTurn(PlayerId id);
         void ForceWin(PlayerId id);
     }
 
     public interface ICardGame
     {
-        void DrawCardFromLibrary(IPlayer player);
-        void PickCardFromPosition(IPlayer player, PoolPositionIndex positionIndex);
-        void ReturnCardToPosition(IPlayer player, CardHand cardHand, PoolPositionIndex positionIndex);
-        void CreateCreatureAt(IPlayer player, CardHand card, Vector2Int position);
+        void RevealCardFromLibrary(PlayerId playerId, PositionId positionId);
+        void DrawCardFromLibrary(PlayerId playerId);
+        void PickCardFromPosition(PlayerId playerId, PositionId positionId);
+        void ReturnCardToPosition(PlayerId playerId, CardHand cardHand, PositionId positionId);
+        void PlayElementAt(PlayerId playerId, CardHand card, Vector2Int position);
     }
 }

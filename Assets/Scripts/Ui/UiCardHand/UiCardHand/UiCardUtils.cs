@@ -1,5 +1,4 @@
-﻿using Tools.Extensions.List;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Tools.UI.Card
@@ -12,13 +11,11 @@ namespace Tools.UI.Card
 
         int Count { get; set; }
 
-
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
 
         #region Operations
-
 
         public void Restart() => SceneManager.LoadScene(0);
 

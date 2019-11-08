@@ -18,7 +18,7 @@ namespace Tools.UI.Card
         Collider2D IUiCardComponents.Collider => MyCollider;
         Rigidbody2D IUiCardComponents.Rigidbody => MyRigidbody;
         IMouseInput IUiCardComponents.Input => MyInput;
-        IUiCardHand IUiCardComponents.Hand => Hand;
+        UiCardHand IUiCardComponents.Hand => Hand;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace Tools.UI.Card
         SpriteRenderer MyRenderer { get; set; }
         Rigidbody2D MyRigidbody { get; set; }
         IMouseInput MyInput { get; set; }
-        IUiCardHand Hand { get; set; }
+        UiCardHand Hand { get; set; }
         public MonoBehaviour MonoBehaviour => this;
         public Camera MainCamera => Camera.main;
         public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
@@ -106,7 +106,7 @@ namespace Tools.UI.Card
             MyCollider = GetComponent<Collider2D>();
             MyRigidbody = GetComponent<Rigidbody2D>();
             MyInput = GetComponent<IMouseInput>();
-            Hand = transform.GetComponentInParent<IUiCardHand>();
+            Hand = transform.GetComponentInParent<UiCardHand>();
             MyRenderers = GetComponentsInChildren<SpriteRenderer>();
             MyRenderer = GetComponent<SpriteRenderer>();
 

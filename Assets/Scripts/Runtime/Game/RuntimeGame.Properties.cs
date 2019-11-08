@@ -20,7 +20,7 @@ namespace HexCardGame.Runtime.Game
 
         #region Game Data Structures
 
-        public IBoard<Creature> Board { get; private set; }
+        public IBoard<BoardElement> Board { get; private set; }
         public IPool<CardPool> Pool { get; private set; }
         public ILibrary Library { get; private set; }
         public IPlayer[] Players { get; private set; }
