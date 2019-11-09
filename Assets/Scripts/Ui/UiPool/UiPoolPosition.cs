@@ -14,7 +14,13 @@ namespace HexCardGame.UI
         public void SetData(IUiCardPool value)
         {
             Data = value;
-            Data.Motion.MoveTo(transform.position, PoolMovementSpeed);
+            Data?.Motion.MoveTo(transform.position, PoolMovementSpeed);
+        }
+
+        public void Clear()
+        {
+            Destroy(Data.MonoBehaviour.gameObject);
+            SetData(null);
         }
     }
 }

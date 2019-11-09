@@ -7,7 +7,7 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiBoardElements : UiEventListener, ICreateBoardElement
+    public class UiBoardElements : UiEventListener, ICreateBoardElement, IRestartGame
     {
         Tilemap TileMap { get; set; }
 
@@ -24,6 +24,6 @@ namespace HexCardGame.UI
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        Vector3 GetWorldPosition(Vector3Int position) => TileMap.GetCellCenterWorld(position);
+        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
     }
 }

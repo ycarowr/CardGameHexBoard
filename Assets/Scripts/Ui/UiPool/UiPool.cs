@@ -3,11 +3,12 @@ using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiEventListener,
+    public class UiPool : UiEventListener, IRestartGame,
         IPickCard, IReturnCard,
         IRevealCard, IRevealPool
     {
@@ -37,6 +38,14 @@ namespace HexCardGame.UI
                 var cardHand = pool.GetCardAt(i);
                 AddCard(cardHand, i);
             }
+        }
+
+        void IRestartGame.OnRestart() => Clear();
+
+        void Clear()
+        {
+            foreach (var i in poolCardPositions) 
+                i.Clear();
         }
 
         void AddCard(CardPool cardPool, PositionId positionId)

@@ -1,4 +1,5 @@
 ﻿using System;
+using HexCardGame;
 
 namespace Tools.UI.Card
 {
@@ -7,7 +8,7 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Card Hand holds a register of cards.
     /// </summary>
-    public class UiCardHand : UiCardPile
+    public class UiCardHand : UiCardPile, IRestartGame
     {
         //--------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +20,7 @@ namespace Tools.UI.Card
         public IUiCard SelectedCard { get; private set; }
 
         public event Action<IUiCard> OnCardSelected = card => { };
-
+        public event Action OnCardUnSelect = () =>  { };
         public event Action<IUiCard> OnCardPlayed = card => { };
 
         #endregion
@@ -81,6 +82,7 @@ namespace Tools.UI.Card
             SelectedCard = null;
             card.Unselect();
             NotifyPileChange();
+            OnCardUnSelect.Invoke();
             EnableCards();
         }
 
@@ -111,5 +113,7 @@ namespace Tools.UI.Card
         void NotifyCardSelected() => OnCardSelected?.Invoke(SelectedCard);
 
         #endregion
+
+        void IRestartGame.OnRestart() => Clear();
     }
 }

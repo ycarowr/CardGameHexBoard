@@ -8,10 +8,12 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiHand : UiEventListener, ICreateHand, IDrawCard, ICreateBoardElement, IOnSelectBoardPosition
+    public class UiHand : UiEventListener, IDrawCard, ICreateBoardElement, IOnSelectBoardPosition, IRestartGame
     {
         readonly Dictionary<IUiCard, CardHand> _cards = new Dictionary<IUiCard, CardHand>();
         [SerializeField] UiCardHand cardHand;
+
+        [SerializeField] UiBoardPositionSelector boardSelector;
 
         [SerializeField] [Tooltip("Prefab of the Card")]
         GameObject cardPrefab;
@@ -28,12 +30,7 @@ namespace HexCardGame.UI
             if (id != this.id) return;
             cardHand.PlaySelected();
             RemoveCard(card);
-        }
-
-        public void OnCreateHand(IHand hand, PlayerId id)
-        {
-            if (this.id == id)
-                Logger.Log<UiHand>("Created View Hand for id: " + id);
+            boardSelector.Lock();
         }
 
         void IDrawCard.OnDrawCard(PlayerId id, CardHand card)
@@ -46,7 +43,7 @@ namespace HexCardGame.UI
         {
             if (SelectedCard == null)
                 return;
-            Debug.Log("Selected Position Play: " + position);
+            
             GameData.CurrentGameInstance.PlayElementAt(id, SelectedCard, position);
             SelectedCard = null;
         }
@@ -55,6 +52,7 @@ namespace HexCardGame.UI
         {
             base.Awake();
             cardHand.OnCardSelected += SelectCard;
+            cardHand.OnCardUnSelect += Unselect;
         }
 
 
@@ -83,6 +81,24 @@ namespace HexCardGame.UI
             Destroy(removed?.gameObject);
         }
 
-        void SelectCard(IUiCard uiCard) => SelectedCard = _cards[uiCard];
+        void SelectCard(IUiCard uiCard)
+        {
+            SelectedCard = _cards[uiCard];
+            boardSelector.Unlock();
+        }
+        
+        void Unselect()
+        {
+            SelectedCard = null;
+            boardSelector.Lock();
+        }
+
+        void IRestartGame.OnRestart() => Clear();
+
+        void Clear()
+        {
+            _cards.Clear();
+            SelectedCard = null;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Ui;
 using UnityEngine;
 
 namespace Tools.UI.Card
@@ -9,14 +10,15 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Pile of cards. Add or Remove cards and be notified when changes happen.
     /// </summary>
-    public abstract class UiCardPile : MonoBehaviour, IUiCardPile
+    public abstract class UiCardPile : UiEventListener, IUiCardPile
     {
         //--------------------------------------------------------------------------------------------------------------
 
         #region Unitycallbacks
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             //initialize register
             Cards = new List<IUiCard>();
 
