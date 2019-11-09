@@ -115,7 +115,7 @@ namespace Tools.UI.Card
             Movement = new UiMotionMovementCard(this);
             Rotation = new UiMotionRotationCard(this);
 
-
+            (MyCollider as BoxCollider2D).size = cardConfigsParameters.CardSize.Value;
             //fsm
             Fsm = new UiCardHandFsm(MainCamera, CardConfigsParameters, this);
         }

@@ -20,7 +20,11 @@ namespace HexCardGame.UI
             var positions = PoolPositionUtility.GetAllIndices();
             Gizmos.color = Color.green;
             foreach (var i in positions)
-                Gizmos.DrawCube(Positioning.GetPositionFor(i), Positioning.Size);
+            {
+                var center = Positioning.GetPositionFor(i);
+                uiPool.GetPosition(i).transform.position = center;
+                Gizmos.DrawCube(center, Positioning.Size);
+            }
         }
 
         void DrawSquare()

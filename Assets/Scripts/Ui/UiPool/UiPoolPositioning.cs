@@ -14,7 +14,7 @@ namespace HexCardGame.UI
         {
             Pool = pool;
             Parameters = parameters;
-            Size = Pool.CardSize;
+            Size = parameters.UiCardSize.Value;
             UpdatePositions();
         }
 

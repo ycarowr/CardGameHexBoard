@@ -13,12 +13,9 @@ namespace HexCardGame.UI
         IRevealCard, IRevealPool
     {
         UiPoolPositioning _positioning;
-        [SerializeField] UiCardPool cardPoolTemplate;
         [SerializeField] Transform deckPosition;
         [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
-        public Vector2 CardSize => cardPoolTemplate.Size;
-
         void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId) =>
             Logger.Log<UiPool>("pick Card Received", Color.blue);
 
@@ -51,7 +48,7 @@ namespace HexCardGame.UI
         void AddCard(CardPool cardPool, PositionId positionId)
         {
             var uiPosition = GetPosition(positionId);
-            var uiCard = Instantiate(cardPoolTemplate, deckPosition.position, Quaternion.identity,
+            var uiCard = Instantiate(parameters.UiCardPoolTemplate, deckPosition.position, Quaternion.identity,
                 uiPosition.transform);
             uiPosition.SetData(uiCard);
         }

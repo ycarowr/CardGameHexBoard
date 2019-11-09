@@ -5,6 +5,7 @@ namespace Tools.UI.Card
     [CreateAssetMenu(menuName = "Card Config Parameters")]
     public class UiCardParameters : ScriptableObject
     {
+        [SerializeField] UiCardSize uiCardSize;
         #region Disable
 
         [Header("Disable")] [Tooltip("How a card fades when disabled.")] [SerializeField] [Range(0.1f, 1)]
@@ -180,6 +181,8 @@ namespace Tools.UI.Card
         float discardedSize;
 
         public float DiscardedSize => discardedSize;
+
+        public UiCardSize CardSize => uiCardSize;
 
         #endregion
     }

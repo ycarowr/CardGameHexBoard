@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7690581640822800438}
   - component: {fileID: 3944274167048154859}
   - component: {fileID: 2641674088534719866}
+  - component: {fileID: 5796572618830688511}
   m_Layer: 0
   m_Name: Position7
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978785539788728596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1284, y: -0.00000023841858, z: 0}
+  m_LocalPosition: {x: -0.8249998, y: 0.5500003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -44,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 7
 --- !u!114 &2641674088534719866
 MonoBehaviour:
@@ -57,8 +59,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &5796572618830688511
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978785539788728596}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &1342084950232360722
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,6 +97,7 @@ GameObject:
   - component: {fileID: 3296553664843254177}
   - component: {fileID: 8678792994398725569}
   - component: {fileID: 2842642211935629877}
+  - component: {fileID: 8109089686575179357}
   m_Layer: 0
   m_Name: Position6
   m_TagString: Untagged
@@ -85,7 +113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342084950232360722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.0389, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: 1.6125002, y: -1.6749998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -103,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 6
 --- !u!114 &2842642211935629877
 MonoBehaviour:
@@ -116,8 +145,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &8109089686575179357
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342084950232360722}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &2595320939221672124
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +183,7 @@ GameObject:
   - component: {fileID: 3538611498135411047}
   - component: {fileID: 3799305961798837723}
   - component: {fileID: 4745984852388884874}
+  - component: {fileID: 4140910544822741194}
   m_Layer: 0
   m_Name: Position3
   m_TagString: Untagged
@@ -144,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2595320939221672124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3463001, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: 2.4250002, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -162,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 3
 --- !u!114 &4745984852388884874
 MonoBehaviour:
@@ -175,8 +231,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &4140910544822741194
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595320939221672124}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &2779362093674964758
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +269,7 @@ GameObject:
   - component: {fileID: 1033302085328147657}
   - component: {fileID: 9044709764954769152}
   - component: {fileID: 7276591262027634179}
+  - component: {fileID: 7938594896773555305}
   m_Layer: 0
   m_Name: Position8
   m_TagString: Untagged
@@ -203,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2779362093674964758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5642, y: -0.00000023841858, z: 0}
+  m_LocalPosition: {x: 0.8000002, y: 0.5500003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -221,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 8
 --- !u!114 &7276591262027634179
 MonoBehaviour:
@@ -234,8 +317,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &7938594896773555305
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779362093674964758}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &3006613358249846493
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +355,7 @@ GameObject:
   - component: {fileID: 6753820935282402041}
   - component: {fileID: 7875731048958401565}
   - component: {fileID: 5224091601843903290}
+  - component: {fileID: 6433249102338294118}
   m_Layer: 0
   m_Name: Position9
   m_TagString: Untagged
@@ -262,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3006613358249846493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.00000023841858, z: 0}
+  m_LocalPosition: {x: -0.012499809, y: 2.775, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -280,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 9
 --- !u!114 &5224091601843903290
 MonoBehaviour:
@@ -293,8 +403,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &6433249102338294118
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006613358249846493}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &3964817355265723829
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +441,7 @@ GameObject:
   - component: {fileID: 3001843260037296054}
   - component: {fileID: 4297822793026113789}
   - component: {fileID: 6320847748070291198}
+  - component: {fileID: 444944296922551891}
   m_Layer: 0
   m_Name: Position0
   m_TagString: Untagged
@@ -321,7 +457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964817355265723829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3463001, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: -2.4499998, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -339,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 0
 --- !u!114 &6320847748070291198
 MonoBehaviour:
@@ -352,8 +489,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &444944296922551891
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964817355265723829}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &5156479195252589519
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +527,7 @@ GameObject:
   - component: {fileID: 7542851923709610447}
   - component: {fileID: 3092313508886032777}
   - component: {fileID: 4873188853931370275}
+  - component: {fileID: 2336232975258145700}
   m_Layer: 0
   m_Name: Position4
   m_TagString: Untagged
@@ -380,7 +543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5156479195252589519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9105, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: -1.6374998, y: -1.6749998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -398,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 4
 --- !u!114 &4873188853931370275
 MonoBehaviour:
@@ -411,8 +575,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &2336232975258145700
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5156479195252589519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &6697261032338253571
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,8 +658,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckPosition: {fileID: 0}
   parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
-  cardPoolTemplate: {fileID: 5464038742142501973, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
   poolCardPositions:
   - {fileID: 4297822793026113789}
   - {fileID: 2183197073373688707}
@@ -507,6 +694,7 @@ GameObject:
   - component: {fileID: 1598480945331931592}
   - component: {fileID: 6723207097849701043}
   - component: {fileID: 2994210645920087149}
+  - component: {fileID: 6405400894214602627}
   m_Layer: 0
   m_Name: Position5
   m_TagString: Untagged
@@ -522,7 +710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6796583167650793247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4747, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: -0.012499809, y: -1.6749998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -540,6 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 5
 --- !u!114 &2994210645920087149
 MonoBehaviour:
@@ -553,8 +742,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &6405400894214602627
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6796583167650793247}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &7593792189510204950
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +780,7 @@ GameObject:
   - component: {fileID: 238350004015927516}
   - component: {fileID: 5610396863077851782}
   - component: {fileID: 2698303032409569113}
+  - component: {fileID: 1254498974313458011}
   m_Layer: 0
   m_Name: Position2
   m_TagString: Untagged
@@ -581,7 +796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7593792189510204950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78209996, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: 0.8000002, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -599,6 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 2
 --- !u!114 &2698303032409569113
 MonoBehaviour:
@@ -612,8 +828,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &1254498974313458011
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593792189510204950}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0
 --- !u!1 &8688386200589411573
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +866,7 @@ GameObject:
   - component: {fileID: 705204965581925246}
   - component: {fileID: 2183197073373688707}
   - component: {fileID: 941371422428684245}
+  - component: {fileID: 7232595935463201644}
   m_Layer: 0
   m_Name: Position1
   m_TagString: Untagged
@@ -640,7 +882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8688386200589411573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7821001, y: -2.2000003, z: 0}
+  m_LocalPosition: {x: -0.8249998, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8647016433453934828}
@@ -658,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7db363abac5eaa4e8dc4f2874dd9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   id: 1
 --- !u!114 &941371422428684245
 MonoBehaviour:
@@ -671,5 +914,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f406fd77c0264f97bb4db26735ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 6743686594615380239, guid: 5b4853904160e3a47acfc40a6e3e4e35,
-    type: 3}
+  uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
+--- !u!61 &7232595935463201644
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688386200589411573}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 2.2}
+  m_EdgeRadius: 0

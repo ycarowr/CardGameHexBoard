@@ -11,12 +11,16 @@ namespace HexCardGame.UI
 
     public class UiCardPool : MonoBehaviour, IUiCardPool
     {
-        public Renderer Renderer;
-        public Vector3 Size => Renderer.bounds.size;
+        [SerializeField] UiPoolParameters parameters;
         public ICardData Data { get; private set; }
         public UiMotion Motion { get; private set; }
         public MonoBehaviour MonoBehaviour => this;
-        void Awake() => Motion = new UiMotion(this);
+        void Awake()
+        {
+            GetComponent<BoxCollider2D>().size = parameters.UiCardSize.Value;
+            Motion = new UiMotion(this);
+        }
+
         void Update() => Motion.Update();
 
         public void SetData(ICardData data)
