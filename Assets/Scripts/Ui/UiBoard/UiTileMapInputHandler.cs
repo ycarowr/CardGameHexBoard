@@ -28,7 +28,11 @@ namespace HexCardGame.UI
         IDispatcher Dispatcher { get; set; }
         Tilemap TileMap { get; set; }
         Camera Camera { get; set; }
-        
+
+        public void Lock() => Input.StopTracking();
+        public void Unlock() => Input.StartTracking();
+        public bool IsLocked => Input.IsTracking;
+
         void OnPointerClick(PointerEventData eventData)
         {
             if (IsLocked)
@@ -37,10 +41,6 @@ namespace HexCardGame.UI
             var position = TileMap.WorldToCell(worldPoint);
             Dispatcher.Notify<IOnClickTile>(i => i.OnClickTile(position));
         }
-
-        public void Lock() => Input.StopTracking();
-        public void Unlock() => Input.StartTracking();
-        public bool IsLocked => Input.IsTracking;
 
         void Awake()
         {

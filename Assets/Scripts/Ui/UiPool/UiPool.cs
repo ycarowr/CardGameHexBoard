@@ -3,7 +3,6 @@ using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
@@ -16,6 +15,7 @@ namespace HexCardGame.UI
         [SerializeField] Transform deckPosition;
         [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
+
         void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId)
         {
             Logger.Log<UiPool>("pick Card Received", Color.blue);
@@ -24,6 +24,8 @@ namespace HexCardGame.UI
                 return;
             position.Clear();
         }
+
+        void IRestartGame.OnRestart() => Clear();
 
         void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
             Logger.Log<UiPool>("Return Card Received", Color.blue);
@@ -43,11 +45,12 @@ namespace HexCardGame.UI
             }
         }
 
-        void IRestartGame.OnRestart() => Clear();
+        void ISelectPoolPosition.OnSelectPoolPosition(PlayerId playerId, PositionId positionId) =>
+            GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
 
         void Clear()
         {
-            foreach (var i in poolCardPositions) 
+            foreach (var i in poolCardPositions)
                 i.Clear();
         }
 
@@ -89,11 +92,6 @@ namespace HexCardGame.UI
         {
             _positioning.Update();
             UpdatePositions();
-        }
-        
-        void ISelectPoolPosition.OnSelectPoolPosition(PlayerId playerId, PositionId positionId)
-        {
-            GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
         }
     }
 }

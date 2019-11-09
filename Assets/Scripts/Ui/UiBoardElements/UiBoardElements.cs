@@ -18,12 +18,12 @@ namespace HexCardGame.UI
             TileMap.SetTile(position, boardElement.Data.Tile);
         }
 
+        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
+
         protected override void Awake()
         {
             base.Awake();
             TileMap = GetComponentInChildren<Tilemap>();
         }
-
-        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
     }
 }

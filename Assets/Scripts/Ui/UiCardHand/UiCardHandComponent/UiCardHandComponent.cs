@@ -98,7 +98,7 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         #region Unity Callbacks
-        
+
         public void Initialize()
         {
             //components

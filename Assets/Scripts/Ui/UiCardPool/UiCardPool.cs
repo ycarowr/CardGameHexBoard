@@ -15,6 +15,7 @@ namespace HexCardGame.UI
         public ICardData Data { get; private set; }
         public UiMotion Motion { get; private set; }
         public MonoBehaviour MonoBehaviour => this;
+
         void Awake()
         {
             GetComponent<BoxCollider2D>().size = parameters.UiCardSize.Value;

@@ -25,6 +25,8 @@ namespace HexCardGame.UI
         {
         }
 
+        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
+
         protected override void Awake()
         {
             base.Awake();
@@ -38,7 +40,5 @@ namespace HexCardGame.UI
             foreach (var p in CurrentBoard.Positions)
                 TileMap.SetTile(p, test);
         }
-        
-        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
     }
 }

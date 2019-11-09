@@ -132,6 +132,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdbb9b5e9b2df94a8657c6572bf73ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &374543068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5979081775563484480, guid: b8fe88e33884c794f95c12cf1cf83068,
+    type: 3}
+  m_PrefabInstance: {fileID: 1779363569709935283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3378dd0568d3fa44ae1875d51589daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1337570797 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3670158220292412448, guid: ad164a00d0a10304aacefe40d867ac9f,
@@ -917,6 +929,11 @@ PrefabInstance:
       propertyPath: boardSelector
       value: 
       objectReference: {fileID: 34383588}
+    - target: {fileID: 856482792259604711, guid: ad164a00d0a10304aacefe40d867ac9f,
+        type: 3}
+      propertyPath: uiPool
+      value: 
+      objectReference: {fileID: 374543068}
     - target: {fileID: 5479066457725894904, guid: ad164a00d0a10304aacefe40d867ac9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -977,6 +994,11 @@ PrefabInstance:
       propertyPath: deckPosition
       value: 
       objectReference: {fileID: 1468380460}
+    - target: {fileID: 1601316957285124258, guid: ad164a00d0a10304aacefe40d867ac9f,
+        type: 3}
+      propertyPath: uiPool
+      value: 
+      objectReference: {fileID: 374543068}
     - target: {fileID: 3670158220007463382, guid: ad164a00d0a10304aacefe40d867ac9f,
         type: 3}
       propertyPath: m_Mesh

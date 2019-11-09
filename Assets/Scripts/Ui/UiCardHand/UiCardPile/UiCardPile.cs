@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Ui;
-using UnityEngine;
 
 namespace Tools.UI.Card
 {
