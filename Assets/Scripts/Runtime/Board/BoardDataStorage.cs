@@ -4,10 +4,10 @@ namespace HexCardGame.Runtime.GameBoard
 {
     public interface IBoardDataStorage<T> where T : class
     {
-        T GetDataFrom(Vector2Int vPosition);
-        void AddDataAt(T data, Vector2Int position);
-        bool RemoveDataAt(Vector2Int vPosition);
-        bool HasDataAt(Vector2Int position);
+        T GetDataFrom(Vector3Int vPosition);
+        void AddDataAt(T data, Vector3Int position);
+        bool RemoveDataAt(Vector3Int vPosition);
+        bool HasDataAt(Vector3Int position);
         bool RemoveData(T data);
         bool HasData(T data);
         void Clear();
@@ -15,11 +15,11 @@ namespace HexCardGame.Runtime.GameBoard
 
     public partial class Board<T>
     {
-        public T GetDataFrom(Vector2Int vPosition) => GetPosition(vPosition).Data;
+        public T GetDataFrom(Vector3Int vPosition) => GetPosition(vPosition).Data;
 
-        public void AddDataAt(T data, Vector2Int position) => GetPosition(position).SetData(data);
+        public void AddDataAt(T data, Vector3Int position) => GetPosition(position).SetData(data);
 
-        public bool RemoveDataAt(Vector2Int vPosition)
+        public bool RemoveDataAt(Vector3Int vPosition)
         {
             var position = GetPosition(vPosition);
             var data = position.Data;
@@ -27,7 +27,7 @@ namespace HexCardGame.Runtime.GameBoard
             return data != null;
         }
 
-        public bool HasDataAt(Vector2Int position) => GetPosition(position).HasData;
+        public bool HasDataAt(Vector3Int position) => GetPosition(position).HasData;
 
         public bool RemoveData(T data)
         {

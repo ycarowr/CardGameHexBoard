@@ -16,7 +16,7 @@ namespace HexCardGame.Runtime.Game
         public void RevealCardFromLibrary(PlayerId playerId, PositionId positionId)
             => GameMechanics.PoolLibrary.RevealCard(playerId, positionId);
 
-        public void PlayElementAt(PlayerId playerId, CardHand card, Vector2Int position)
+        public void PlayElementAt(PlayerId playerId, CardHand card, Vector3Int position)
             => GameMechanics.HandBoard.CreateBoardElementAt(playerId, card, position);
 
         public void PickCardFromPosition(PlayerId playerId, PositionId positionId) =>

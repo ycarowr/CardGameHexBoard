@@ -7,14 +7,14 @@ namespace HexCardGame.Runtime.Test
     public partial class Mechanics_Test : ICreateBoardElement
     {
         readonly MockCardData _mockCardData = new MockCardData();
-        readonly Vector2Int _v2IntPosition = new Vector2Int();
+        readonly Vector3Int _v3IntPosition = new Vector3Int();
         CardHand _cardHand;
 
-        public void OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector2Int position, CardHand card)
+        public void OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position, CardHand card)
         {
             EventReceived = true;
             Assert.IsTrue(boardElement.Data == _mockCardData);
-            Assert.IsTrue(position == _v2IntPosition);
+            Assert.IsTrue(position == _v3IntPosition);
             Assert.IsTrue(_cardHand == card);
         }
 
@@ -23,7 +23,7 @@ namespace HexCardGame.Runtime.Test
         {
             var player = Game.TurnLogic.CurrentPlayer;
             _cardHand = new CardHand(_mockCardData);
-            Game.PlayElementAt(player.Id, _cardHand, _v2IntPosition);
+            Game.PlayElementAt(player.Id, _cardHand, _v3IntPosition);
             Assert.IsTrue(EventReceived);
         }
     }

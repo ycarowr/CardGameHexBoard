@@ -42,6 +42,6 @@ namespace HexCardGame.Runtime.Game
         void DrawCardFromLibrary(PlayerId playerId);
         void PickCardFromPosition(PlayerId playerId, PositionId positionId);
         void ReturnCardToPosition(PlayerId playerId, CardHand cardHand, PositionId positionId);
-        void PlayElementAt(PlayerId playerId, CardHand card, Vector2Int position);
+        void PlayElementAt(PlayerId playerId, CardHand card, Vector3Int position);
     }
 }

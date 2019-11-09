@@ -16,7 +16,7 @@ namespace HexCardGame.Runtime.GameBoard
         Position<T>[] Positions { get; }
         bool HasPosition(int x, int y);
         Position<T> GetPosition(int x, int y);
-        Position<T> GetPosition(Vector2Int position);
+        Position<T> GetPosition(Vector3Int position);
         void GeneratePositions();
     }
 
@@ -46,7 +46,7 @@ namespace HexCardGame.Runtime.GameBoard
         }
 
         public bool HasPosition(int x, int y) => GetPosition(x, y) != null;
-        public Position<T> GetPosition(Vector2Int p) => GetPosition(p.x, p.y);
+        public Position<T> GetPosition(Vector3Int p) => GetPosition(p.x, p.y);
 
         public Position<T> GetPosition(int x, int y)
         {

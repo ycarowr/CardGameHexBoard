@@ -8,18 +8,18 @@ namespace Game.Ui
     public abstract class UiEventListener : UiGameInputRequester, IListener
     {
         /// <summary> Reference to the observer. </summary>
-        IDispatcher _dispatcher;
+        protected IDispatcher Dispatcher;
 
         /// <summary> Add itself as a listener. </summary>
         protected override void Awake()
         {
             base.Awake();
-            _dispatcher = EventsDispatcher.Load();
+            Dispatcher = EventsDispatcher.Load();
             Subscribe();
         }
 
         void OnDestroy() => Unsubscribe();
-        void Subscribe() => _dispatcher.AddListener(this);
-        void Unsubscribe() => _dispatcher?.RemoveListener(this);
+        void Subscribe() => Dispatcher.AddListener(this);
+        void Unsubscribe() => Dispatcher?.RemoveListener(this);
     }
 }

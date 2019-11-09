@@ -1,12 +1,13 @@
-﻿using UnityEngine.EventSystems;
+﻿using HexCardGame.UI;
+using UnityEngine;
 
 namespace Tools.UI.Card
 {
     /// <summary>
     ///     Battlefield Zone.
     /// </summary>
-    public class UiZoneBattleField : UiBaseDropZone
+    public class UiZoneBattleField : UiBaseDropZone, IOnSelectBoardPosition
     {
-        protected override void OnPointerUp(PointerEventData eventData) => CardHand?.PlaySelected();
+        public void OnSelectPosition(Vector3Int position) => CardHand?.PlaySelected();
     }
 }

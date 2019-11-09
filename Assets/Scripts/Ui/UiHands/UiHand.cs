@@ -2,14 +2,13 @@
 using Game.Ui;
 using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
-using Tools.Extensions.Arrays;
 using Tools.UI.Card;
 using UnityEngine;
 using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiHand : UiEventListener, ICreateHand, IDrawCard, ICreateBoardElement
+    public class UiHand : UiEventListener, ICreateHand, IDrawCard, ICreateBoardElement, IOnSelectBoardPosition
     {
         readonly Dictionary<IUiCard, CardHand> _cards = new Dictionary<IUiCard, CardHand>();
         [SerializeField] UiCardHand cardHand;
@@ -21,11 +20,13 @@ namespace HexCardGame.UI
         Transform deckPosition;
 
         [SerializeField] PlayerId id;
+        public CardHand SelectedCard { get; private set; }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector2Int position,
+        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position,
             CardHand card)
         {
             if (id != this.id) return;
+            cardHand.PlaySelected();
             RemoveCard(card);
         }
 
@@ -41,11 +42,21 @@ namespace HexCardGame.UI
                 _cards.Add(GetCard(), card);
         }
 
+        void IOnSelectBoardPosition.OnSelectPosition(Vector3Int position)
+        {
+            if (SelectedCard == null)
+                return;
+            Debug.Log("Selected Position Play: " + position);
+            GameData.CurrentGameInstance.PlayElementAt(id, SelectedCard, position);
+            SelectedCard = null;
+        }
+
         protected override void Awake()
         {
             base.Awake();
-            cardHand.OnCardPlayed += PlayCard;
+            cardHand.OnCardSelected += SelectCard;
         }
+
 
         [Button]
         public IUiCard GetCard()
@@ -58,14 +69,6 @@ namespace HexCardGame.UI
             return uiCard;
         }
 
-        void PlayCard(IUiCard uiCard)
-        {
-            if (uiCard == null)
-                return;
-
-            var rdn = GameData.CurrentGameInstance.Board.Positions.RandomItem();
-            GameData.CurrentGameInstance.PlayElementAt(id, _cards[uiCard], rdn);
-        }
 
         void RemoveCard(CardHand card)
         {
@@ -77,7 +80,9 @@ namespace HexCardGame.UI
             if (removed != null)
                 _cards.Remove(removed);
 
-            Destroy(removed.gameObject);
+            Destroy(removed?.gameObject);
         }
+
+        void SelectCard(IUiCard uiCard) => SelectedCard = _cards[uiCard];
     }
 }

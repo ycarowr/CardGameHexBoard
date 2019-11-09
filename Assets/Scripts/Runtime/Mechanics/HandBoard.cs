@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Game
     [Event]
     public interface ICreateBoardElement
     {
-        void OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector2Int position, CardHand card);
+        void OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position, CardHand card);
     }
 
     public class HandBoard : BaseGameMechanics
@@ -14,7 +14,7 @@ namespace HexCardGame.Runtime.Game
         {
         }
 
-        public void CreateBoardElementAt(PlayerId playerId, CardHand card, Vector2Int position)
+        public void CreateBoardElementAt(PlayerId playerId, CardHand card, Vector3Int position)
         {
             if (!Game.IsGameStarted)
                 return;
@@ -33,7 +33,7 @@ namespace HexCardGame.Runtime.Game
             OnCreateCreature(playerId, creature, position, card);
         }
 
-        void OnCreateCreature(PlayerId playerId, BoardElement boardElement, Vector2Int position, CardHand card) =>
+        void OnCreateCreature(PlayerId playerId, BoardElement boardElement, Vector3Int position, CardHand card) =>
             Dispatcher.Notify<ICreateBoardElement>(i => i.OnCreateBoardElement(playerId, boardElement, position, card));
 
         IHand GetPlayerHand(PlayerId id)

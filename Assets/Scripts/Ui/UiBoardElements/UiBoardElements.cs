@@ -11,12 +11,11 @@ namespace HexCardGame.UI
     {
         Tilemap TileMap { get; set; }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector2Int position,
+        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position,
             CardHand card)
         {
-            var worldPosition = GetWorldPosition(position);
-            Logger.Log<UiBoard>("Create Board Element at: " + worldPosition);
-            TileMap.SetTile((Vector3Int) position, boardElement.Data.Tile);
+            Logger.Log<UiBoard>("Create Board Element at: " + TileMap.WorldToCell(position));
+            TileMap.SetTile(position, boardElement.Data.Tile);
         }
 
         protected override void Awake()
@@ -25,6 +24,6 @@ namespace HexCardGame.UI
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        Vector3 GetWorldPosition(Vector2Int position) => TileMap.GetCellCenterWorld((Vector3Int) position);
+        Vector3 GetWorldPosition(Vector3Int position) => TileMap.GetCellCenterWorld(position);
     }
 }
