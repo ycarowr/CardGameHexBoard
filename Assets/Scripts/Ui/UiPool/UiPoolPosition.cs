@@ -15,7 +15,7 @@ namespace HexCardGame.UI
         public IUiCardPool Data { get; private set; }
         BoxCollider2D Collider { get; set; }
 
-        void OnEnable() 
+        void Awake() 
         {
             Collider = GetComponent<BoxCollider2D>();
             Collider.size = parameters.UiCardSize.Value;

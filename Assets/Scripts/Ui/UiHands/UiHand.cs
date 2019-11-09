@@ -2,19 +2,17 @@
 using Game.Ui;
 using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
+using HexCardGame.Runtime.GamePool;
 using Tools.UI.Card;
 using UnityEngine;
 using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiHand : UiEventListener, IDrawCard, ICreateBoardElement, IOnSelectBoardPosition, IRestartGame
+    public class UiHand : UiEventListener, IDrawCard, ICreateBoardElement, ISelectBoardPosition, IRestartGame, ISelectPoolPosition
     {
         readonly Dictionary<IUiCard, CardHand> _cards = new Dictionary<IUiCard, CardHand>();
         [SerializeField] UiCardHand cardHand;
-
-        [SerializeField] UiBoardPositionSelector boardSelector;
-
         [SerializeField] [Tooltip("Prefab of the Card")]
         GameObject cardPrefab;
 
@@ -24,13 +22,12 @@ namespace HexCardGame.UI
         [SerializeField] PlayerId id;
         public CardHand SelectedCard { get; private set; }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position,
-            CardHand card)
+        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position, CardHand card)
         {
-            if (id != this.id) return;
+            if (id != this.id) 
+                return;
             cardHand.PlaySelected();
             RemoveCard(card);
-            boardSelector.Lock();
         }
 
         void IDrawCard.OnDrawCard(PlayerId id, CardHand card)
@@ -39,7 +36,7 @@ namespace HexCardGame.UI
                 _cards.Add(GetCard(), card);
         }
 
-        void IOnSelectBoardPosition.OnSelectPosition(Vector3Int position)
+        void ISelectBoardPosition.OnSelectPosition(Vector3Int position)
         {
             if (SelectedCard == null)
                 return;
@@ -81,24 +78,18 @@ namespace HexCardGame.UI
             Destroy(removed?.gameObject);
         }
 
-        void SelectCard(IUiCard uiCard)
-        {
-            SelectedCard = _cards[uiCard];
-            boardSelector.Unlock();
-        }
-        
-        void Unselect()
-        {
-            SelectedCard = null;
-            boardSelector.Lock();
-        }
-
+        void SelectCard(IUiCard uiCard) => SelectedCard = _cards[uiCard];
+        void Unselect() => SelectedCard = null;
         void IRestartGame.OnRestart() => Clear();
 
         void Clear()
         {
             _cards.Clear();
             SelectedCard = null;
+        }
+
+        void ISelectPoolPosition.OnSelectPoolPosition(PlayerId playerId, PositionId positionId)
+        {
         }
     }
 }

@@ -8,7 +8,7 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiEventListener, IRestartGame,
+    public class UiPool : UiEventListener, IRestartGame, ISelectPoolPosition,
         IPickCard, IReturnCard,
         IRevealCard, IRevealPool
     {
@@ -16,8 +16,16 @@ namespace HexCardGame.UI
         [SerializeField] Transform deckPosition;
         [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
-        void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId) =>
+        void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId)
+        {
             Logger.Log<UiPool>("pick Card Received", Color.blue);
+            var position = GetPosition(positionId);
+            if (!position.HasData)
+                return;
+            var uiCardPool = position.Data;
+            position.SetData(null);
+            Destroy(uiCardPool.MonoBehaviour.gameObject);
+        }
 
         void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
             Logger.Log<UiPool>("Return Card Received", Color.blue);
@@ -82,6 +90,11 @@ namespace HexCardGame.UI
         {
             _positioning.Update();
             UpdatePositions();
+        }
+        
+        void ISelectPoolPosition.OnSelectPoolPosition(PlayerId playerId, PositionId positionId)
+        {
+            GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
         }
     }
 }

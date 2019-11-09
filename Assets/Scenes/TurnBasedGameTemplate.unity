@@ -132,6 +132,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdbb9b5e9b2df94a8657c6572bf73ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1337570797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3670158220292412448, guid: ad164a00d0a10304aacefe40d867ac9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5479066457627506575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e577684f24150cc4b9f493b4b9942f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1468380460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5462433120417405439, guid: e3a9f606605395e45bc037ec060a9c90,
@@ -274,6 +286,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2899150155539997726, guid: e8b95a7a71f382a40b6bbbd6789c9aea,
+        type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8b95a7a71f382a40b6bbbd6789c9aea, type: 3}
 --- !u!1001 &1621070282487906477
@@ -417,6 +434,46 @@ PrefabInstance:
       propertyPath: deckPosition
       value: 
       objectReference: {fileID: 1468380460}
+    - target: {fileID: 750207973, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 118882189, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 594903866, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 833013857, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 937472578, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 109313963, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 1834602891, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 994996721, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 1023214255, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
+    - target: {fileID: 1720365660, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
+      propertyPath: cardHand
+      value: 
+      objectReference: {fileID: 1337570797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
 --- !u!1001 &2156035524673360644

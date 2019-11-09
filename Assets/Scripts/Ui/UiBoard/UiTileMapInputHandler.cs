@@ -1,4 +1,5 @@
-﻿using Tools.Patterns.Observer;
+﻿using Tools.Input.Mouse;
+using Tools.Patterns.Observer;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -18,15 +19,17 @@ namespace HexCardGame.UI
         void OnClickTile(Vector3Int position);
     }
 
+    [RequireComponent(typeof(IMouseInput))]
     [RequireComponent(typeof(Tilemap))]
     [RequireComponent(typeof(TilemapCollider2D))]
-    public class UiTileMapInputHandler : MonoBehaviour, ITileMapInput, IPointerClickHandler
+    public class UiTileMapInputHandler : MonoBehaviour, ITileMapInput
     {
+        IMouseInput Input { get; set; }
         IDispatcher Dispatcher { get; set; }
         Tilemap TileMap { get; set; }
         Camera Camera { get; set; }
-
-        void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+        
+        void OnPointerClick(PointerEventData eventData)
         {
             if (IsLocked)
                 return;
@@ -35,15 +38,17 @@ namespace HexCardGame.UI
             Dispatcher.Notify<IOnClickTile>(i => i.OnClickTile(position));
         }
 
-        public void Lock() => IsLocked = true;
-        public void Unlock() => IsLocked = false;
-        public bool IsLocked { get; private set; }
+        public void Lock() => Input.StopTracking();
+        public void Unlock() => Input.StartTracking();
+        public bool IsLocked => Input.IsTracking;
 
         void Awake()
         {
             Camera = Camera.main;
             TileMap = GetComponentInChildren<Tilemap>();
             Dispatcher = EventsDispatcher.Load();
+            Input = GetComponent<IMouseInput>();
+            Input.OnPointerClick += OnPointerClick;
         }
 
         Vector3 ScreenToWorldPosition(Vector3 point) => Camera.ScreenToWorldPoint(point);
