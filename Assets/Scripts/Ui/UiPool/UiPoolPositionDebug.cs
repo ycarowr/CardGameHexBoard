@@ -4,8 +4,8 @@ namespace HexCardGame.UI
 {
     public class UiPoolPositionDebug : MonoBehaviour
     {
-        [SerializeField] Transform cardTemplate;
-        Vector3 Size => cardTemplate.localScale;
+        [SerializeField] Collider2D cardTemplate;
+        Vector3 Size => cardTemplate.bounds.size;
 
         void OnDrawGizmos()
         {

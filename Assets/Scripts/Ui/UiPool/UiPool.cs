@@ -11,8 +11,12 @@ namespace HexCardGame.UI
         IPickCard, IReturnCard,
         IRevealCard, IRevealPool
     {
-        [SerializeField] GameObject cardTemplate;
+        UiPoolPositioning _positioning;
+        [SerializeField] UiCardPool cardPoolTemplate;
+        [SerializeField] Transform deckPosition;
+        [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
+        public Vector2 CardSize => cardPoolTemplate.Size;
 
         void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId) =>
             Logger.Log<UiPool>("pick Card Received", Color.blue);
@@ -35,23 +39,43 @@ namespace HexCardGame.UI
             }
         }
 
-        protected override void Awake()
-        {
-            cardTemplate.SetActive(false);
-            base.Awake();
-        }
-
         void AddCard(CardPool cardPool, PositionId positionId)
         {
             var uiPosition = GetPosition(positionId);
+            var uiCard = Instantiate(cardPoolTemplate, deckPosition.position, Quaternion.identity,
+                uiPosition.transform);
+            uiPosition.SetData(uiCard);
         }
 
-        UiPoolPosition GetPosition(PositionId positionId)
+        public UiPoolPosition GetPosition(PositionId positionId)
         {
             foreach (var i in poolCardPositions)
                 if (i.Id == positionId)
                     return i;
             return null;
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _positioning = new UiPoolPositioning(this, parameters);
+            UpdatePositions();
+        }
+
+        void UpdatePositions()
+        {
+            var positions = PoolPositionUtility.GetAllIndices();
+            foreach (var i in positions)
+            {
+                var position = GetPosition(i);
+                position.transform.position = _positioning.GetPositionFor(i);
+            }
+        }
+
+        void Update()
+        {
+            _positioning.Update();
+            UpdatePositions();
         }
     }
 }

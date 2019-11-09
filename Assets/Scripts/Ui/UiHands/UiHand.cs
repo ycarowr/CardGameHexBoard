@@ -53,6 +53,7 @@ namespace HexCardGame.UI
             var cardGo = Instantiate(cardPrefab, cardHand.transform);
             var uiCard = cardGo.GetComponent<IUiCard>();
             uiCard.transform.position = deckPosition.position;
+            uiCard.gameObject.SetActive(true);
             cardHand.AddCard(uiCard);
             return uiCard;
         }

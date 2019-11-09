@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378817687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: 4.23, y: 0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3240129117941335146}
@@ -90,11 +90,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eefa2e3c37cf4747a440ff0cf6a434b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  cardHand: {fileID: 8038468258090155770}
   cardPrefab: {fileID: 3245573509686006908, guid: da89c93580533da4abe22dd655a7d0ca,
     type: 3}
   deckPosition: {fileID: 0}
-  cardHand: {fileID: 8038468258090155770}
+  id: 2
 --- !u!114 &8038468258090155770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,11 +428,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eefa2e3c37cf4747a440ff0cf6a434b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  cardHand: {fileID: 3670158220292412448}
   cardPrefab: {fileID: 3245573509686006908, guid: da89c93580533da4abe22dd655a7d0ca,
     type: 3}
   deckPosition: {fileID: 0}
-  cardHand: {fileID: 3670158220292412448}
+  id: 0
 --- !u!1 &3670158220784557073
 GameObject:
   m_ObjectHideFlags: 0

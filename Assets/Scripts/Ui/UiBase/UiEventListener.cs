@@ -20,6 +20,6 @@ namespace Game.Ui
 
         void OnDestroy() => Unsubscribe();
         void Subscribe() => _dispatcher.AddListener(this);
-        void Unsubscribe() => _dispatcher.RemoveListener(this);
+        void Unsubscribe() => _dispatcher?.RemoveListener(this);
     }
 }

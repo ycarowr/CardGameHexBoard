@@ -11,6 +11,8 @@ namespace HexCardGame.UI
 
     public class UiCardPool : MonoBehaviour, IUiCardPool
     {
+        public Renderer Renderer;
+        public Vector3 Size => Renderer.bounds.size;
         public ICardData Data { get; private set; }
         public UiMotion Motion { get; private set; }
         public MonoBehaviour MonoBehaviour => this;
