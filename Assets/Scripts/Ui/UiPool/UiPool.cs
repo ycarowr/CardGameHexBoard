@@ -7,7 +7,7 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiEventListener, IRestartGame, ISelectPoolPosition,
+    public class UiPool : UiEventListener, IRestartGame, ISelectPoolPosition, ICreatePool<CardPool>,
         IPickCard, IReturnCard,
         IRevealCard, IRevealPool
     {
@@ -15,6 +15,9 @@ namespace HexCardGame.UI
         [SerializeField] Transform deckPosition;
         [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
+        IPool<CardPool> CurrentPool { get; set; }
+
+        void ICreatePool<CardPool>.OnCreatePool(IPool<CardPool> pool) => CurrentPool = pool;
 
         void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId)
         {
@@ -30,8 +33,11 @@ namespace HexCardGame.UI
         void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
             Logger.Log<UiPool>("Return Card Received", Color.blue);
 
-        void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId) =>
+        void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId)
+        {
             Logger.Log<UiPool>("Reveal Card received", Color.blue);
+            AddCard(cardPool, positionId, CurrentPool.IsPositionLocked(positionId));
+        }
 
         void IRevealPool.OnRevealPool(IPool<CardPool> pool)
         {
@@ -40,8 +46,9 @@ namespace HexCardGame.UI
             var positions = PoolPositionUtility.GetAllIndices();
             foreach (var i in positions)
             {
-                var cardHand = pool.GetCardAt(i);
-                AddCard(cardHand, i);
+                var cardPool = pool.GetCardAt(i);
+                var isLocked = pool.IsPositionLocked(i);
+                AddCard(cardPool, i, isLocked);
             }
         }
 
@@ -50,15 +57,19 @@ namespace HexCardGame.UI
 
         void Clear()
         {
+            CurrentPool = null;
             foreach (var i in poolCardPositions)
                 i.Clear();
         }
 
-        void AddCard(CardPool cardPool, PositionId positionId)
+        void AddCard(CardPool cardPool, PositionId positionId, bool isLocked)
         {
             var uiPosition = GetPosition(positionId);
             var template = parameters.UiCardPoolTemplate.gameObject;
             var uiCard = ObjectPooler.Instance.Get<UiCardPool>(template);
+            if (isLocked)
+                uiCard.SetColor(parameters.Locked);
+            uiCard.transform.position = deckPosition.transform.position;
             uiCard.transform.SetParent(uiPosition.transform);
             uiPosition.SetData(uiCard);
         }

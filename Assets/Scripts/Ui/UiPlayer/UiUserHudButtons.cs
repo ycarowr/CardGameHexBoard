@@ -3,13 +3,13 @@
 namespace HexCardGame.UI
 {
     [RequireComponent(typeof(IUiUserInput))]
-    [RequireComponent(typeof(IUiPlayer))]
+    [RequireComponent(typeof(UiUser))]
     public class UiUserHudButtons : MonoBehaviour,
         UiButtonPassTurn.IPressPassTurn,
         UiButtonLose.IPressLose,
         UiButtonWin.IPressWin
     {
-        IUiPlayer Ui { get; set; }
+        UiUser Ui { get; set; }
         IUiUserInput UserInput { get; set; }
 
         //----------------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ namespace HexCardGame.UI
         void Awake()
         {
             UserInput = GetComponent<IUiUserInput>();
-            Ui = GetComponent<IUiPlayer>();
+            Ui = GetComponent<UiUser>();
             var buttons = GetComponentsInChildren<UiButton>();
             foreach (var button in buttons)
                 button.SetHandler(this);

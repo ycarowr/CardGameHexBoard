@@ -38,6 +38,7 @@ namespace HexCardGame.Runtime.Game
 
     public interface ICardGame
     {
+        void RevealCardHigherPosition(PlayerId playerId);
         void RevealCardFromLibrary(PlayerId playerId, PositionId positionId);
         void DrawCardFromLibrary(PlayerId playerId);
         void PickCardFromPosition(PlayerId playerId, PositionId positionId);

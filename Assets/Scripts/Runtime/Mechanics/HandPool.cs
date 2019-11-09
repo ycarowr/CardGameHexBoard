@@ -26,7 +26,10 @@ namespace HexCardGame.Runtime.Game
                 return;
             if (!Game.IsTurnInProgress)
                 return;
-            if (!Game.Pool.HasDataAt(positionId))
+            var pool = Game.Pool;
+            if (pool.IsPositionLocked(positionId))
+                return;
+            if (!pool.HasDataAt(positionId))
                 return;
 
             var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);

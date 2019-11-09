@@ -1,5 +1,4 @@
 ﻿using Game.Ui;
-using HexCardGame;
 using HexCardGame.UI;
 using Tools.Input.Mouse;
 using UnityEngine;
@@ -10,16 +9,16 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(IMouseInput))]
     public class UiCardDrawerClick : UiEventListener
     {
-        [SerializeField] UiHand uiHand;
+        [SerializeField] UiLibraryMenu menu;
         IMouseInput Input { get; set; }
 
         protected override void Awake()
         {
             base.Awake();
             Input = GetComponent<IMouseInput>();
-            Input.OnPointerClick += DrawCard;
+            Input.OnPointerClick += ShowMenu;
         }
 
-        void DrawCard(PointerEventData obj) => GameData.CurrentGameInstance.DrawCardFromLibrary(PlayerId.User);
+        void ShowMenu(PointerEventData obj) => menu.Show();
     }
 }

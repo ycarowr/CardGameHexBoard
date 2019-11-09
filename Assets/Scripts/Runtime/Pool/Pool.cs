@@ -27,7 +27,7 @@ namespace HexCardGame.Runtime.GamePool
         bool HasDataAt(PositionId id);
     }
 
-    public class Pool<T> : Position<T>, IPool<T> where T : class
+    public partial class Pool<T> : IPool<T> where T : class
     {
         public Pool(GameParameters gameParams, IDispatcher dispatcher)
         {
@@ -47,94 +47,16 @@ namespace HexCardGame.Runtime.GamePool
             return size;
         }
 
-        public bool IsPositionLocked(PositionId positionId) => Get(positionId).IsLocked;
-
-        public void Unlock(PositionId positionId)
-        {
-            switch (positionId)
-            {
-                case PositionId.Zero:
-                    break;
-                case PositionId.One:
-                    Get(PositionId.Zero).Unlock();
-                    break;
-                case PositionId.Two:
-                    Get(PositionId.Zero).Unlock();
-                    break;
-                case PositionId.Three:
-                    Get(PositionId.One).Unlock();
-                    break;
-                case PositionId.Four:
-                    Get(PositionId.One).Unlock();
-                    Get(PositionId.Two).Unlock();
-                    break;
-                case PositionId.Five:
-                    Get(PositionId.Two).Unlock();
-                    break;
-                case PositionId.Six:
-                    Get(PositionId.Three).Unlock();
-                    break;
-                case PositionId.Seven:
-                    Get(PositionId.Three).Unlock();
-                    Get(PositionId.Four).Unlock();
-                    break;
-                case PositionId.Eight:
-                    Get(PositionId.Five).Unlock();
-                    Get(PositionId.Four).Unlock();
-                    break;
-                case PositionId.Nine:
-                    Get(PositionId.Five).Unlock();
-                    break;
-            }
-        }
-
-        public void Lock(PositionId positionId)
-        {
-            switch (positionId)
-            {
-                case PositionId.Zero:
-                    break;
-                case PositionId.One:
-                    Get(PositionId.Zero).Lock();
-                    break;
-                case PositionId.Two:
-                    Get(PositionId.Zero).Lock();
-                    break;
-                case PositionId.Three:
-                    Get(PositionId.One).Lock();
-                    break;
-                case PositionId.Four:
-                    Get(PositionId.One).Lock();
-                    Get(PositionId.Two).Lock();
-                    break;
-                case PositionId.Five:
-                    Get(PositionId.Two).Lock();
-                    break;
-                case PositionId.Six:
-                    Get(PositionId.Three).Lock();
-                    break;
-                case PositionId.Seven:
-                    Get(PositionId.Three).Lock();
-                    Get(PositionId.Four).Lock();
-                    break;
-                case PositionId.Eight:
-                    Get(PositionId.Five).Lock();
-                    Get(PositionId.Four).Lock();
-                    break;
-                case PositionId.Nine:
-                    Get(PositionId.Five).Lock();
-                    break;
-            }
-        }
-
         Position<T> Get(PositionId positionId) => Positions[(int) positionId];
 
         void CreatePool()
         {
-            var size = PoolPositionUtility.GetAllIndicesInt().Length;
+            var positions = PoolPositionUtility.GetAllIndices();
+            var size = positions.Length;
             Positions = new Position<T>[size];
-            for (var i = 0; i < size; i++)
-                Positions[i] = new Position<T>();
+            foreach (var i in positions)
+                Positions[(int) i] = new Position<T>(i, Dispatcher);
+
             OnCreatePool();
         }
 
@@ -156,7 +78,9 @@ namespace HexCardGame.Runtime.GamePool
         }
 
         public void AddCardAt(T card, PositionId id) => Get(id)?.SetData(card);
+
         public void RemoveCardAt(PositionId id) => Get(id)?.SetData(null);
+
         public bool HasDataAt(PositionId id) => Get(id).HasData;
 
         public void Clear()
