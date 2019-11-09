@@ -657,8 +657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4f6dbb39d7a874ea7d2a284fa8d274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: {fileID: 450747419136016771}
   buttonClose: {fileID: 6229411845314326123}
+  content: {fileID: 450747419136016771}
 --- !u!1 &3837031746611963852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,7 +2607,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &626615795928047315
 MonoBehaviour:
@@ -2730,7 +2730,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &9128478918517563748
 MonoBehaviour:
