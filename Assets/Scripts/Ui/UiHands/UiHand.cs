@@ -56,10 +56,10 @@ namespace HexCardGame.UI
         [Button]
         public IUiCard GetCard()
         {
-            var cardGo = Instantiate(cardPrefab, cardHand.transform);
-            var uiCard = cardGo.GetComponent<IUiCard>();
+            var uiCard = ObjectPooler.Instance.Get<IUiCard>(cardPrefab);
+            uiCard.transform.SetParent(cardHand.transform);
             uiCard.transform.position = deckPosition.position;
-            uiCard.gameObject.SetActive(true);
+            uiCard.Initialize();
             cardHand.AddCard(uiCard);
             return uiCard;
         }
@@ -75,7 +75,7 @@ namespace HexCardGame.UI
             if (removed != null)
                 _cards.Remove(removed);
 
-            Destroy(removed?.gameObject);
+            ObjectPooler.Instance.Release(removed?.gameObject);
         }
 
         void SelectCard(IUiCard uiCard) => SelectedCard = _cards[uiCard];

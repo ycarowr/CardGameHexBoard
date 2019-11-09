@@ -98,8 +98,8 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         #region Unity Callbacks
-
-        void Awake()
+        
+        public void Initialize()
         {
             //components
             MyTransform = transform;

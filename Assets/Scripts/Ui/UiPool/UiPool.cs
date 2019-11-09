@@ -22,9 +22,7 @@ namespace HexCardGame.UI
             var position = GetPosition(positionId);
             if (!position.HasData)
                 return;
-            var uiCardPool = position.Data;
-            position.SetData(null);
-            Destroy(uiCardPool.MonoBehaviour.gameObject);
+            position.Clear();
         }
 
         void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
@@ -56,8 +54,9 @@ namespace HexCardGame.UI
         void AddCard(CardPool cardPool, PositionId positionId)
         {
             var uiPosition = GetPosition(positionId);
-            var uiCard = Instantiate(parameters.UiCardPoolTemplate, deckPosition.position, Quaternion.identity,
-                uiPosition.transform);
+            var template = parameters.UiCardPoolTemplate.gameObject;
+            var uiCard = ObjectPooler.Instance.Get<UiCardPool>(template);
+            uiCard.transform.SetParent(uiPosition.transform);
             uiPosition.SetData(uiCard);
         }
 

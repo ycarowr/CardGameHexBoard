@@ -29,8 +29,11 @@ namespace HexCardGame.UI
 
         public void Clear()
         {
-            Destroy(Data.MonoBehaviour.gameObject);
-            SetData(null);
+            if (HasData)
+            {
+                ObjectPooler.Instance.Release(Data.MonoBehaviour.gameObject);
+                SetData(null);
+            }
         }
     }
 }
