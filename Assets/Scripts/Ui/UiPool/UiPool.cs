@@ -5,15 +5,19 @@ using UnityEngine;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiGameInputRequester
+    public class UiPool : UiGameDataAccess
     {
-        UiPoolPositioning _positioning;
         [SerializeField] Transform libraryPosition;
         [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
         IPool<CardPool> CurrentPool => GameData.CurrentGameInstance.Pool;
 
-        public void PickCard(PositionId positionId)
+        public UiPoolPosition[] PoolCardPositions => poolCardPositions;
+
+        public UiPoolParameters Parameters => parameters;
+        bool IsPositionLocked(PositionId positionId) => CurrentPool.IsPositionLocked(positionId);
+
+        public void RemoveCard(PositionId positionId)
         {
             var position = GetPosition(positionId);
             if (!position.HasData)
@@ -22,43 +26,14 @@ namespace HexCardGame.UI
             position.Clear();
         }
 
-        public void ReturnCard(CardPool cardPool, PositionId positionId)
-        {
-            var isLocked = CurrentPool.IsPositionLocked(positionId);
-            AddCard(cardPool, positionId, isLocked);
-        }
-
-        public void RevealCard(CardPool cardPool, PositionId positionId) =>
-            AddCard(cardPool, positionId, CurrentPool.IsPositionLocked(positionId));
-
-        public void RevealPool(IPool<CardPool> pool)
-        {
-            var positions = PoolPositionUtility.GetAllIndices();
-            foreach (var i in positions)
-            {
-                var cardPool = pool.GetCardAt(i);
-                var isLocked = pool.IsPositionLocked(i);
-                AddCard(cardPool, i, isLocked);
-            }
-        }
-
-        public void SelectPoolPosition(PositionId positionId) =>
-            GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
-
-        public void Clear()
-        {
-            foreach (var i in poolCardPositions)
-                i.Clear();
-        }
-
-        void AddCard(CardPool cardPool, PositionId positionId, bool isLocked)
+        public void AddCard(CardPool cardPool, PositionId positionId)
         {
             var uiPosition = GetPosition(positionId);
-            var template = parameters.UiCardPoolTemplate.gameObject;
+            var template = Parameters.UiCardPoolTemplate.gameObject;
             var uiCard = ObjectPooler.Instance.Get<UiCardPool>(template);
             uiCard.SetAndUpdateView(cardPool.Data);
-            if (isLocked)
-                uiCard.SetColor(parameters.Locked);
+            if (IsPositionLocked(positionId))
+                uiCard.SetColor(Parameters.Locked);
             uiCard.transform.position = libraryPosition.transform.position;
             uiCard.transform.SetParent(uiPosition.transform);
             uiPosition.SetData(uiCard);
@@ -66,33 +41,16 @@ namespace HexCardGame.UI
 
         public UiPoolPosition GetPosition(PositionId positionId)
         {
-            foreach (var i in poolCardPositions)
+            foreach (var i in PoolCardPositions)
                 if (i.Id == positionId)
                     return i;
             return null;
         }
 
-        protected override void Awake()
+        public void Clear()
         {
-            base.Awake();
-            _positioning = new UiPoolPositioning(this, parameters);
-            UpdatePositions();
-        }
-
-        void UpdatePositions()
-        {
-            var positions = PoolPositionUtility.GetAllIndices();
-            foreach (var i in positions)
-            {
-                var position = GetPosition(i);
-                position.transform.position = _positioning.GetPositionFor(i);
-            }
-        }
-
-        void Update()
-        {
-            _positioning.Update();
-            UpdatePositions();
+            foreach (var i in PoolCardPositions)
+                i.Clear();
         }
     }
 }

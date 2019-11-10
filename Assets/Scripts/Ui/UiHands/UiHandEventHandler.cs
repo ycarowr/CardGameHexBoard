@@ -3,12 +3,13 @@ using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
+using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
     [RequireComponent(typeof(UiHandRegistry))]
     public class UiHandEventHandler : UiEventListener, IDrawCard, IPickCard, ICreateBoardElement, ISelectBoardPosition,
-        IRestartGame, ISelectPoolPosition, IReturnCard
+        IRestartGame, ISelectReturnPoolPosition, IReturnCard
     {
         UiHandRegistry Registry { get; set; }
 
@@ -33,7 +34,7 @@ namespace HexCardGame.UI
         {
             if (!IsMyEvent(id))
                 return;
-
+            Logger.Log<UiHandEventHandler>("Pick Received");
             Registry.CreateCardFromPool(cardHand, positionId);
         }
 
@@ -43,14 +44,14 @@ namespace HexCardGame.UI
         {
             if (!IsMyEvent(id))
                 return;
-
+            Logger.Log<UiHandEventHandler>("return received");
             Registry.RemoveCard(cardHand);
         }
 
         void ISelectBoardPosition.OnSelectBoardPosition(Vector3Int position) => Registry.SelectBoardPosition(position);
 
-        void ISelectPoolPosition.OnSelectPoolPosition(PlayerId id, PositionId positionId) =>
-            Registry.SelectPoolPosition(id, positionId);
+        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(PlayerId id, PositionId positionId) =>
+            Registry.ReturnCardToPosition(id, positionId);
 
         bool IsMyEvent(PlayerId id) => Registry.Id == id;
 

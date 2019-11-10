@@ -90,7 +90,7 @@ namespace HexCardGame.UI
             SelectedCard = null;
         }
 
-        public void SelectPoolPosition(PlayerId id, PositionId positionId)
+        public void ReturnCardToPosition(PlayerId id, PositionId positionId)
         {
             if (SelectedCard == null)
                 return;

@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 8647016433453934828, guid: b8fe88e33884c794f95c12cf1cf83068,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 8647016433453934828, guid: b8fe88e33884c794f95c12cf1cf83068,
         type: 3}
@@ -440,6 +440,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3001843260037296054, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 705204965581925246, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 238350004015927516, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538611498135411047, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542851923709610447, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598480945331931592, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296553664843254177, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690581640822800438, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033302085328147657, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753820935282402041, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053302911980951369, guid: b8fe88e33884c794f95c12cf1cf83068,
+        type: 3}
+      propertyPath: cardHandSelector
+      value: 
+      objectReference: {fileID: 1337570797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
 --- !u!1001 &2156035524673360644

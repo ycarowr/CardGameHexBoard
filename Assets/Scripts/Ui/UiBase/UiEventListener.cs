@@ -5,7 +5,7 @@ namespace Game.Ui
     /// <summary>
     ///     Base class for all classes interested on events that happen inside the FSM.
     /// </summary>
-    public abstract class UiEventListener : UiGameInputRequester, IListener
+    public abstract class UiEventListener : UiGameDataAccess, IListener
     {
         /// <summary> Reference to the observer. </summary>
         protected IDispatcher Dispatcher;

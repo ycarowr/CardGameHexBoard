@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7b4889ffbc49c59b505695d4579b6e, type: 3}
   m_Name: UiPoolParameters
   m_EditorClassIdentifier: 
+  locked: {r: 1, g: 1, b: 1, a: 0.39215687}
   poolMovementSpeed: 10
-  spacingX: 0.025
-  spacingY: 0.025
+  spacingX: 0
+  spacingY: 0
   uiCardPoolTemplate: {fileID: 5464038742142501973, guid: 5b4853904160e3a47acfc40a6e3e4e35,
     type: 3}
   uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
-  locked: {r: 1, g: 1, b: 1, a: 0.39215687}
   unlocked: {r: 1, g: 1, b: 1, a: 1}

@@ -6,7 +6,7 @@ namespace Game.Ui
     /// <summary>
     ///     Base class for all classes interested on send input to the game data.
     /// </summary>
-    public abstract class UiGameInputRequester : MonoBehaviour
+    public abstract class UiGameDataAccess : MonoBehaviour
     {
         /// <summary> Reference to the game data. </summary>
         protected GameData GameData;

@@ -13,7 +13,7 @@ namespace HexCardGame.UI
         void DrawBoundaries()
         {
             if (Positioning == null)
-                Positioning = new UiPoolPositioning(uiPool, parameters);
+                Positioning = new UiPoolPositioning(uiPool);
             else
                 Positioning.Update();
             DrawSquare();

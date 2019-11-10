@@ -12,11 +12,11 @@ namespace HexCardGame.UI
         public const int MaxColumnsY = 4;
         readonly Dictionary<PositionId, Vector3> _positions = new Dictionary<PositionId, Vector3>();
 
-        public UiPoolPositioning(UiPool pool, UiPoolParameters parameters)
+        public UiPoolPositioning(UiPool uiPool)
         {
-            Pool = pool;
-            Parameters = parameters;
-            Size = parameters.UiCardSize.Value;
+            UiPool = uiPool;
+            Parameters = uiPool.Parameters;
+            Size = Parameters.UiCardSize.Value;
             UpdatePositions();
         }
 
@@ -31,7 +31,7 @@ namespace HexCardGame.UI
         public float MaxY => GetMaxY() + HalfHeight;
 
 
-        UiPool Pool { get; }
+        UiPool UiPool { get; }
         UiPoolParameters Parameters { get; }
         public void Update() => UpdatePositions();
 
@@ -39,7 +39,7 @@ namespace HexCardGame.UI
 
         void UpdatePositions()
         {
-            var zero = Pool.transform.position;
+            var zero = UiPool.transform.position;
             var cardsPerRow = MaxRowsX;
             var positionCount = 0;
             var totalY = HalfHeight + MaxColumnsY * Height + MaxColumnsY * Parameters.SpacingY;
