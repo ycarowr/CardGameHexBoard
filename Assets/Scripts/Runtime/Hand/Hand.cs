@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Tools;
 using Tools.GenericCollection;
 using Tools.Patterns.Observer;
 
@@ -42,10 +41,6 @@ namespace HexCardGame.Runtime
         public List<CardHand> Cards => Units;
         public void Empty() => Clear();
 
-        void OnCreateHand()
-        {
-            Logger.Log<Hand>("Create Hands");
-            Dispatcher.Notify<ICreateHand>(i => i.OnCreateHand(this, Id));
-        }
+        void OnCreateHand() => Dispatcher.Notify<ICreateHand>(i => i.OnCreateHand(this, Id));
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Extensions;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace HexCardGame.UI
 {
     public class UiPoolPositioning
     {
+        public const int LayerZ = 3;
         public const int MaxRowsX = 4;
         public const int MaxColumnsY = 4;
         readonly Dictionary<PositionId, Vector3> _positions = new Dictionary<PositionId, Vector3>();
@@ -65,7 +67,7 @@ namespace HexCardGame.UI
             if (!_positions.ContainsKey(i))
                 _positions.Add(i, position);
             else
-                _positions[i] = position;
+                _positions[i] = position.WithZ(LayerZ);
         }
 
 

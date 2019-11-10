@@ -1,15 +1,11 @@
 ﻿using Game.Ui;
 using HexCardGame.Runtime;
-using HexCardGame.Runtime.Game;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiEventListener, IRestartGame, ISelectPoolPosition,
-        IPickCard, IReturnCard,
-        IRevealCard, IRevealPool
+    public class UiPool : UiGameInputRequester
     {
         UiPoolPositioning _positioning;
         [SerializeField] Transform libraryPosition;
@@ -17,34 +13,26 @@ namespace HexCardGame.UI
         [SerializeField] UiPoolPosition[] poolCardPositions;
         IPool<CardPool> CurrentPool => GameData.CurrentGameInstance.Pool;
 
-        void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId)
+        public void PickCard(PositionId positionId)
         {
-            Logger.Log<UiPool>("pick Card Received", Color.blue);
             var position = GetPosition(positionId);
             if (!position.HasData)
                 return;
+
             position.Clear();
         }
 
-        void IRestartGame.OnRestart() => Clear();
-
-        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId)
+        public void ReturnCard(CardPool cardPool, PositionId positionId)
         {
-            Logger.Log<UiPool>("Return Card Received", Color.blue);
             var isLocked = CurrentPool.IsPositionLocked(positionId);
             AddCard(cardPool, positionId, isLocked);
         }
 
-        void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId)
-        {
-            Logger.Log<UiPool>("Reveal Card received", Color.blue);
+        public void RevealCard(CardPool cardPool, PositionId positionId) =>
             AddCard(cardPool, positionId, CurrentPool.IsPositionLocked(positionId));
-        }
 
-        void IRevealPool.OnRevealPool(IPool<CardPool> pool)
+        public void RevealPool(IPool<CardPool> pool)
         {
-            Logger.Log<UiPool>("On Reveal Pool received", Color.blue);
-
             var positions = PoolPositionUtility.GetAllIndices();
             foreach (var i in positions)
             {
@@ -54,10 +42,10 @@ namespace HexCardGame.UI
             }
         }
 
-        void ISelectPoolPosition.OnSelectPoolPosition(PlayerId playerId, PositionId positionId) =>
+        public void SelectPoolPosition(PositionId positionId) =>
             GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
 
-        void Clear()
+        public void Clear()
         {
             foreach (var i in poolCardPositions)
                 i.Clear();

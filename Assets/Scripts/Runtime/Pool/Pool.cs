@@ -1,4 +1,3 @@
-using Tools;
 using Tools.Patterns.Observer;
 
 namespace HexCardGame.Runtime.GamePool
@@ -60,11 +59,7 @@ namespace HexCardGame.Runtime.GamePool
             OnCreatePool();
         }
 
-        void OnCreatePool()
-        {
-            Logger.Log<Pool<T>>("Runtime Pool Dispatched");
-            Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
-        }
+        void OnCreatePool() => Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
 
         #region Storage
 

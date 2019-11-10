@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Tools;
 using Tools.Patterns.Observer;
 
 namespace HexCardGame.Runtime.GameScore
@@ -48,10 +47,6 @@ namespace HexCardGame.Runtime.GameScore
 
         void RegisterPlayer(PlayerId id) => _register.Add(id, 0);
 
-        void OnCreateScore()
-        {
-            Logger.Log<Score>("Runtime Score Dispatched");
-            Dispatcher.Notify<ICreateScore>(i => i.OnCreateScore(this));
-        }
+        void OnCreateScore() => Dispatcher.Notify<ICreateScore>(i => i.OnCreateScore(this));
     }
 }

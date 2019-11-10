@@ -99,11 +99,7 @@ namespace HexCardGame.UI
             SelectedCard = null;
         }
 
-        void SelectCard(IUiCard uiCard)
-        {
-            Debug.Log("Selected ");
-            SelectedCard = _registry[uiCard];
-        }
+        void SelectCard(IUiCard uiCard) => SelectedCard = _registry[uiCard];
 
         void Unselect() => SelectedCard = null;
     }

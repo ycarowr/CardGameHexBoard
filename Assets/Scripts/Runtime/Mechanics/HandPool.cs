@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Game
     [Event]
     public interface IPickCard
     {
-        void OnPickCard(PlayerId id, CardHand card, PositionId positionId);
+        void OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId);
     }
 
     [Event]

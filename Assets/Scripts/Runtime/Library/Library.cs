@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using HexCardGame.SharedData;
-using Tools;
 using Tools.Extensions.Arrays;
 using Tools.Patterns.Observer;
 
@@ -52,10 +51,6 @@ namespace HexCardGame.Runtime
 
         public CardData GetRandomDataFromPlayer(PlayerId id) => _registerByPlayer[id].RandomItem();
 
-        void OnCreateLibrary()
-        {
-            Logger.Log<Library>("Runtime Library Dispatched");
-            Dispatcher.Notify<ICreateLibrary>(i => i.OnCreateLibrary(this));
-        }
+        void OnCreateLibrary() => Dispatcher.Notify<ICreateLibrary>(i => i.OnCreateLibrary(this));
     }
 }

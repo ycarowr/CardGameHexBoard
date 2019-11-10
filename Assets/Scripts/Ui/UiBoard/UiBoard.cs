@@ -4,13 +4,11 @@ using HexCardGame.Runtime.GameBoard;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
     public class UiBoard : UiEventListener, ICreateBoard<BoardElement>, IPointerClickHandler, IRestartGame
     {
-        GameObject[] positions;
         [SerializeField] TileBase test;
         IBoard<BoardElement> CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
@@ -33,10 +31,8 @@ namespace HexCardGame.UI
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        [Button]
         void CreateBoardUi()
         {
-            Logger.Log<UiBoard>("Board View Created");
             foreach (var p in CurrentBoard.Positions)
                 TileMap.SetTile(p, test);
         }

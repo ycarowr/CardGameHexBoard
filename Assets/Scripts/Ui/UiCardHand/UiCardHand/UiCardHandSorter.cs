@@ -8,7 +8,7 @@ namespace Tools.UI.Card
     {
         //--------------------------------------------------------------------------------------------------------------
 
-        const int OffsetZ = -1;
+        const float OffsetZ = -0.3f;
         IUiCardPile CardHand { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ namespace Tools.UI.Card
             if (cards == null)
                 throw new ArgumentException("Can't sort a card list null");
 
-            var layerZ = 0;
+            var layerZ = 0f;
             foreach (var card in cards)
             {
                 var localCardPosition = card.transform.localPosition;

@@ -1,7 +1,6 @@
 ﻿using Game.Ui;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
@@ -18,16 +17,12 @@ namespace HexCardGame.UI
         public void SetData(IUiCardPool value)
         {
             Data = value;
-            Data?.Motion.MoveTo(transform.position, parameters.PoolMovementSpeed);
+            Data?.MoveTo(transform.position, parameters.PoolMovementSpeed, UiPoolPositioning.LayerZ);
         }
 
         void ILockPosition.OnLockPosition(PositionId positionId)
         {
-            if (id == positionId)
-            {
-                Logger.Log<ILockPosition>("Locked: " + positionId);
-                Data?.SetColor(parameters.Locked);
-            }
+            if (id == positionId) Data?.SetColor(parameters.Locked);
         }
 
         void IUnlockPosition.OnUnlockPosition(PositionId positionId)

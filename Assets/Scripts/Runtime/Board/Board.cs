@@ -1,7 +1,6 @@
 using HexCardGame.SharedData;
 using Tools.Patterns.Observer;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.Runtime.GameBoard
 {
@@ -63,10 +62,6 @@ namespace HexCardGame.Runtime.GameBoard
 
         public void Clear() => GeneratePositions();
 
-        void OnCreateBoard()
-        {
-            Logger.Log<Board<T>>("Runtime Board Dispatched");
-            Dispatcher.Notify<ICreateBoard<T>>(i => i.OnCreateBoard(this));
-        }
+        void OnCreateBoard() => Dispatcher.Notify<ICreateBoard<T>>(i => i.OnCreateBoard(this));
     }
 }
