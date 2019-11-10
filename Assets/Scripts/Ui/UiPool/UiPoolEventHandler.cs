@@ -16,7 +16,6 @@ namespace HexCardGame.UI
 
         void IPickCard.OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId)
         {
-            Logger.Log<UiPoolEventHandler>("Pick received");
             UiPool.RemoveCard(positionId);
         }
 
@@ -24,8 +23,7 @@ namespace HexCardGame.UI
 
         void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId)
         {
-            Logger.Log<UiPoolEventHandler>("return received");
-            UiPool.AddCard(cardPool, positionId);
+            UiPool.AddCard(cardPool, positionId, false);
         }
 
         void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId) =>
@@ -41,8 +39,10 @@ namespace HexCardGame.UI
             }
         }
 
-        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId) =>
+        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId)
+        {
             GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
+        }
 
         protected override void Awake()
         {

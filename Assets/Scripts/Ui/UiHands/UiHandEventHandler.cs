@@ -34,7 +34,6 @@ namespace HexCardGame.UI
         {
             if (!IsMyEvent(id))
                 return;
-            Logger.Log<UiHandEventHandler>("Pick Received");
             Registry.CreateCardFromPool(cardHand, positionId);
         }
 
@@ -44,14 +43,15 @@ namespace HexCardGame.UI
         {
             if (!IsMyEvent(id))
                 return;
-            Logger.Log<UiHandEventHandler>("return received");
             Registry.RemoveCard(cardHand);
         }
 
         void ISelectBoardPosition.OnSelectBoardPosition(Vector3Int position) => Registry.SelectBoardPosition(position);
 
-        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(PlayerId id, PositionId positionId) =>
+        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(PlayerId id, PositionId positionId)
+        {
             Registry.ReturnCardToPosition(id, positionId);
+        }
 
         bool IsMyEvent(PlayerId id) => Registry.Id == id;
 

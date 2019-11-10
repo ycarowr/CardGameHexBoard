@@ -26,7 +26,7 @@ namespace HexCardGame.UI
             position.Clear();
         }
 
-        public void AddCard(CardPool cardPool, PositionId positionId)
+        public void AddCard(CardPool cardPool, PositionId positionId, bool fromLibAnimation = true)
         {
             var uiPosition = GetPosition(positionId);
             var template = Parameters.UiCardPoolTemplate.gameObject;
@@ -34,7 +34,11 @@ namespace HexCardGame.UI
             uiCard.SetAndUpdateView(cardPool.Data);
             if (IsPositionLocked(positionId))
                 uiCard.SetColor(Parameters.Locked);
-            uiCard.transform.position = libraryPosition.transform.position;
+            if (fromLibAnimation)
+                uiCard.transform.position = libraryPosition.transform.position;
+            else
+                uiCard.transform.position = uiPosition.transform.position;
+                 
             uiCard.transform.SetParent(uiPosition.transform);
             uiPosition.SetData(uiCard);
         }

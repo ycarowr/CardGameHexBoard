@@ -38,7 +38,6 @@ namespace HexCardGame.Runtime.Game
             var cardHand = new CardHand(data);
             var hand = GetPlayerHand(playerId);
             hand.Add(cardHand);
-            Logger.Log<HandPool>("Pick Card ");
             OnPickCard(playerId, cardHand, positionId);
         }
 
@@ -61,7 +60,6 @@ namespace HexCardGame.Runtime.Game
             var data = cardHand.Data;
             var cardPool = new CardPool(data);
             Game.Pool.AddCardAt(cardPool, positionId);
-            Logger.Log<HandPool>("Return Card");
             OnReturnCard(playerId, cardHand, cardPool, positionId);
         }
 

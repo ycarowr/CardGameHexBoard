@@ -31,6 +31,7 @@ namespace HexCardGame.UI
         {
             if (!IsLocked)
                 return;
+
             IsLocked = false;
             Input.OnPointerClick += OnPointerClick;
         }
@@ -48,6 +49,8 @@ namespace HexCardGame.UI
         void OnPointerClick(PointerEventData eventData)
         {
             if (IsLocked)
+                return;
+            if (Position.HasData)
                 return;
             Dispatcher.Notify<ISelectReturnPoolPosition>(i => i.OnSelectReturnPoolPosition(PlayerId.User, Position.Id));
         }
