@@ -7,19 +7,19 @@ namespace HexCardGame.UI
     [Event]
     public interface ISelectBoardPosition
     {
-        void OnSelectPosition(Vector3Int position);
+        void OnSelectBoardPosition(Vector3Int position);
     }
 
     [RequireComponent(typeof(ITileMapInput))]
     public class UiBoardPositionSelector : UiEventListener, IUiInputElement, IOnClickTile
     {
-        [SerializeField] UiCardHand cardHand;
+        [SerializeField] UiCardHandSelector cardHandSelector;
 
         void IOnClickTile.OnClickTile(Vector3Int position)
         {
             if (IsLocked) return;
 
-            Dispatcher.Notify<ISelectBoardPosition>(i => i.OnSelectPosition(position));
+            Dispatcher.Notify<ISelectBoardPosition>(i => i.OnSelectBoardPosition(position));
         }
 
         public bool IsLocked { get; private set; }
@@ -30,8 +30,8 @@ namespace HexCardGame.UI
         {
             base.Awake();
             Lock();
-            cardHand.OnCardSelected += card => Unlock();
-            cardHand.OnCardUnSelect += Lock;
+            cardHandSelector.OnCardSelected += card => Unlock();
+            cardHandSelector.OnCardUnSelect += Lock;
         }
     }
 }

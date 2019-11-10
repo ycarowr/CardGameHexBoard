@@ -8,7 +8,7 @@ namespace HexCardGame.UI
     {
         readonly string defaultText = string.Empty;
 
-        [Tooltip("Color of the text."), SerializeField] 
+        [Tooltip("Color of the text."), SerializeField]
         protected Color color = Color.black;
 
         [Tooltip("TMPro Component assigned by the Editor or Automatically on Awake.")]

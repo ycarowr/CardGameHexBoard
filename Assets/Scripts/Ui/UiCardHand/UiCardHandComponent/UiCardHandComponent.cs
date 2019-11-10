@@ -17,7 +17,7 @@ namespace Tools.UI.Card
         Collider2D IUiCardComponents.Collider => MyCollider;
         Rigidbody2D IUiCardComponents.Rigidbody => MyRigidbody;
         IMouseInput IUiCardComponents.Input => MyInput;
-        UiCardHand IUiCardComponents.Hand => Hand;
+        UiCardHandSelector IUiCardComponents.HandSelector => HandSelector;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace Tools.UI.Card
         SpriteRenderer MyRenderer { get; set; }
         Rigidbody2D MyRigidbody { get; set; }
         IMouseInput MyInput { get; set; }
-        UiCardHand Hand { get; set; }
+        UiCardHandSelector HandSelector { get; set; }
         public MonoBehaviour MonoBehaviour => this;
         public Camera MainCamera => Camera.main;
         public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
@@ -83,7 +83,7 @@ namespace Tools.UI.Card
             if (!IsPlayer)
                 return;
 
-            Hand.SelectCard(this);
+            HandSelector.SelectCard(this);
             Fsm.Select();
         }
 
@@ -92,7 +92,7 @@ namespace Tools.UI.Card
         public void Draw() => Fsm.Draw();
 
         public void Discard() => Fsm.Discard();
-        
+
         public void SetAndUpdateView(ICardData data) => artwork.sprite = data.Artwork;
 
         #endregion
@@ -108,7 +108,7 @@ namespace Tools.UI.Card
             MyCollider = GetComponent<Collider2D>();
             MyRigidbody = GetComponent<Rigidbody2D>();
             MyInput = GetComponent<IMouseInput>();
-            Hand = transform.GetComponentInParent<UiCardHand>();
+            HandSelector = transform.GetComponentInParent<UiCardHandSelector>();
             MyRenderers = GetComponentsInChildren<SpriteRenderer>();
             MyRenderer = GetComponent<SpriteRenderer>();
 

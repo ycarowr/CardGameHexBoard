@@ -120,18 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &34383588 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2899150155539997726, guid: e8b95a7a71f382a40b6bbbd6789c9aea,
-    type: 3}
-  m_PrefabInstance: {fileID: 1395588140737072856}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fdbb9b5e9b2df94a8657c6572bf73ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &374543068 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5979081775563484480, guid: b8fe88e33884c794f95c12cf1cf83068,
@@ -168,12 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e577684f24150cc4b9f493b4b9942f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1468380460 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5462433120417405439, guid: e3a9f606605395e45bc037ec060a9c90,
-    type: 3}
-  m_PrefabInstance: {fileID: 2156035524673360644}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &117777948941175405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,6 +297,11 @@ PrefabInstance:
       propertyPath: cardHand
       value: 
       objectReference: {fileID: 1337570797}
+    - target: {fileID: 2899150155539997726, guid: e8b95a7a71f382a40b6bbbd6789c9aea,
+        type: 3}
+      propertyPath: cardHandSelector
+      value: 
+      objectReference: {fileID: 1337570797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8b95a7a71f382a40b6bbbd6789c9aea, type: 3}
 --- !u!1001 &1621070282487906477
@@ -453,11 +440,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5979081775563484480, guid: b8fe88e33884c794f95c12cf1cf83068,
-        type: 3}
-      propertyPath: deckPosition
-      value: 
-      objectReference: {fileID: 1468380460}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8fe88e33884c794f95c12cf1cf83068, type: 3}
 --- !u!1001 &2156035524673360644
@@ -959,21 +941,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiHands
       objectReference: {fileID: 0}
-    - target: {fileID: 856482792259604711, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
-      propertyPath: deckPosition
-      value: 
-      objectReference: {fileID: 1468380460}
-    - target: {fileID: 856482792259604711, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
-      propertyPath: boardSelector
-      value: 
-      objectReference: {fileID: 34383588}
-    - target: {fileID: 856482792259604711, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
-      propertyPath: uiPool
-      value: 
-      objectReference: {fileID: 374543068}
     - target: {fileID: 5479066457725894904, guid: ad164a00d0a10304aacefe40d867ac9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1029,26 +996,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1601316957285124258, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
-      propertyPath: deckPosition
-      value: 
-      objectReference: {fileID: 1468380460}
-    - target: {fileID: 1601316957285124258, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
+    - target: {fileID: 652846782, guid: ad164a00d0a10304aacefe40d867ac9f, type: 3}
       propertyPath: uiPool
       value: 
       objectReference: {fileID: 374543068}
-    - target: {fileID: 3670158220007463382, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
-      propertyPath: m_Mesh
+    - target: {fileID: 1337570794, guid: ad164a00d0a10304aacefe40d867ac9f, type: 3}
+      propertyPath: uiPool
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3670158221037507752, guid: ad164a00d0a10304aacefe40d867ac9f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 374543068}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad164a00d0a10304aacefe40d867ac9f, type: 3}
 --- !u!1001 &5708295473777823714

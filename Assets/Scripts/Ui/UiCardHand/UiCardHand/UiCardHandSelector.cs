@@ -8,7 +8,7 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Card Hand holds a register of cards.
     /// </summary>
-    public class UiCardHand : UiCardPile, IRestartGame
+    public class UiCardHandSelector : UiCardPile, IRestartGame
     {
         void IRestartGame.OnRestart() => Clear();
         //--------------------------------------------------------------------------------------------------------------

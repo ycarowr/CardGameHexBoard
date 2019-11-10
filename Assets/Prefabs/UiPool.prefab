@@ -972,6 +972,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4385382173156798299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905998821597243930}
+  m_Layer: 0
+  m_Name: LibraryPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &905998821597243930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385382173156798299}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.0500002, y: 2.5099998, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8647016433453934828}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5156479195252589519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1203,7 @@ Transform:
   - {fileID: 7690581640822800438}
   - {fileID: 1033302085328147657}
   - {fileID: 6753820935282402041}
+  - {fileID: 905998821597243930}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1188,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3378dd0568d3fa44ae1875d51589daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckPosition: {fileID: 0}
+  libraryPosition: {fileID: 905998821597243930}
   parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
   poolCardPositions:
   - {fileID: 4297822793026113789}

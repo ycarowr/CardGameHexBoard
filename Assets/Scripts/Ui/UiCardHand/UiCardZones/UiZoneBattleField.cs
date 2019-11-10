@@ -8,6 +8,6 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiZoneBattleField : UiBaseDropZone, ISelectBoardPosition
     {
-        public void OnSelectPosition(Vector3Int position) => CardHand?.PlaySelected();
+        public void OnSelectBoardPosition(Vector3Int position) => CardHandSelector?.PlaySelected();
     }
 }

@@ -16,11 +16,11 @@ namespace HexCardGame.SharedData
     public class CardData : ScriptableObject, ICardData
     {
         [SerializeField] Sprite artwork;
-        [Range(0, 5), SerializeField]  int cost;
-        [SerializeField, Multiline]  string description;
+        [Range(0, 5), SerializeField] int cost;
+        [SerializeField, Multiline] string description;
         [SerializeField] CardId id;
         [SerializeField] string nameCard;
-        [Range(0, 10), SerializeField]  int score;
+        [Range(0, 10), SerializeField] int score;
         [SerializeField] string stringId;
         [SerializeField] Tile tile;
 

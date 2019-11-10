@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Tools.UI.Card
 {
-    [RequireComponent(typeof(UiCardHand))]
+    [RequireComponent(typeof(UiCardHandSelector))]
     public class UiCardHandSorter : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Tools.UI.Card
 
         void Awake()
         {
-            CardHand = GetComponent<UiCardHand>();
+            CardHand = GetComponent<UiCardHandSelector>();
             CardHand.OnPileChanged += Sort;
         }
 

@@ -10,12 +10,12 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardGraveyard : UiCardPile
     {
-        [SerializeField, Tooltip("World point where the graveyard is positioned")] 
+        [SerializeField, Tooltip("World point where the graveyard is positioned")]
         Transform graveyardPosition;
 
         //--------------------------------------------------------------------------------------------------------------
 
-        UiCardHand CardHand { get; set; }
+        UiCardHandSelector CardHandSelector { get; set; }
 
 
         //--------------------------------------------------------------------------------------------------------------
@@ -25,8 +25,8 @@ namespace Tools.UI.Card
         protected override void Awake()
         {
             base.Awake();
-            CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
-            CardHand.OnCardPlayed += AddCard;
+            CardHandSelector = transform.parent.GetComponentInChildren<UiCardHandSelector>();
+            CardHandSelector.OnCardPlayed += AddCard;
         }
 
         #endregion

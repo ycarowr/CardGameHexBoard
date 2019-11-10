@@ -7,17 +7,15 @@ using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
-    public class UiPool : UiEventListener, IRestartGame, ISelectPoolPosition, ICreatePool<CardPool>,
+    public class UiPool : UiEventListener, IRestartGame, ISelectPoolPosition,
         IPickCard, IReturnCard,
         IRevealCard, IRevealPool
     {
         UiPoolPositioning _positioning;
-        [SerializeField] Transform deckPosition;
+        [SerializeField] Transform libraryPosition;
         [SerializeField] UiPoolParameters parameters;
         [SerializeField] UiPoolPosition[] poolCardPositions;
-        IPool<CardPool> CurrentPool { get; set; }
-
-        void ICreatePool<CardPool>.OnCreatePool(IPool<CardPool> pool) => CurrentPool = pool;
+        IPool<CardPool> CurrentPool => GameData.CurrentGameInstance.Pool;
 
         void IPickCard.OnPickCard(PlayerId id, CardHand card, PositionId positionId)
         {
@@ -61,7 +59,6 @@ namespace HexCardGame.UI
 
         void Clear()
         {
-            CurrentPool = null;
             foreach (var i in poolCardPositions)
                 i.Clear();
         }
@@ -74,7 +71,7 @@ namespace HexCardGame.UI
             uiCard.SetAndUpdateView(cardPool.Data);
             if (isLocked)
                 uiCard.SetColor(parameters.Locked);
-            uiCard.transform.position = deckPosition.transform.position;
+            uiCard.transform.position = libraryPosition.transform.position;
             uiCard.transform.SetParent(uiPosition.transform);
             uiPosition.SetData(uiCard);
         }

@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 8038468258090155770}
   - component: {fileID: 3832234228230628452}
   - component: {fileID: 7014083357942871512}
+  - component: {fileID: 652846782}
   m_Layer: 0
   m_Name: UiHandAi
   m_TagString: Untagged
@@ -90,11 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eefa2e3c37cf4747a440ff0cf6a434b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardHand: {fileID: 8038468258090155770}
-  cardPrefab: {fileID: 3245573509686006908, guid: da89c93580533da4abe22dd655a7d0ca,
-    type: 3}
-  deckPosition: {fileID: 0}
-  id: 2
 --- !u!114 &8038468258090155770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +131,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b6b3ec5ffdd264faba9b2b5e1c8330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &652846782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892541087366957453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff23b1ed7c77db34b8a4a677b39f627c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 3245573509686006908, guid: da89c93580533da4abe22dd655a7d0ca,
+    type: 3}
+  libraryPosition: {fileID: 7834452646295957603}
+  id: 2
+  uiPool: {fileID: 0}
+--- !u!1 &2327885816465320635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7834452646295957603}
+  m_Layer: 0
+  m_Name: LibraryPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7834452646295957603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327885816465320635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.93, y: 4.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5479066457725894904}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3670158220292412477
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +191,7 @@ GameObject:
   - component: {fileID: 3670158220292412450}
   - component: {fileID: 3670158220292412449}
   - component: {fileID: 856482792259604711}
+  - component: {fileID: 1337570794}
   m_Layer: 0
   m_Name: UiHandUser
   m_TagString: Untagged
@@ -223,11 +267,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eefa2e3c37cf4747a440ff0cf6a434b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardHand: {fileID: 3670158220292412448}
+--- !u!114 &1337570794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670158220292412477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff23b1ed7c77db34b8a4a677b39f627c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3245573509686006908, guid: da89c93580533da4abe22dd655a7d0ca,
     type: 3}
-  deckPosition: {fileID: 0}
+  libraryPosition: {fileID: 7834452646295957603}
   id: 0
+  uiPool: {fileID: 0}
 --- !u!1 &3670158220784557073
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +489,7 @@ Transform:
   m_Children:
   - {fileID: 3240129117941335146}
   - {fileID: 3670158220292412476}
+  - {fileID: 7834452646295957603}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

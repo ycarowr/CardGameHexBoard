@@ -11,13 +11,13 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(IMouseInput))]
     public abstract class UiBaseDropZone : UiEventListener
     {
-        protected UiCardHand CardHand { get; set; }
+        protected UiCardHandSelector CardHandSelector { get; set; }
         protected IMouseInput Input { get; set; }
 
         protected override void Awake()
         {
             base.Awake();
-            CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
+            CardHandSelector = transform.parent.GetComponentInChildren<UiCardHandSelector>();
             Input = GetComponent<IMouseInput>();
             Input.OnPointerUp += OnPointerUp;
         }

@@ -4,8 +4,8 @@ namespace HexCardGame.UI
 {
     public class UiLibraryDebug : MonoBehaviour
     {
-        [SerializeField] Transform card;
+        [SerializeField] UiCardSize cardSize;
 
-        void OnDrawGizmos() => Gizmos.DrawCube(transform.position, card.localScale);
+        void OnDrawGizmos() => Gizmos.DrawCube(transform.position, cardSize.Value);
     }
 }
