@@ -1,4 +1,5 @@
 ﻿using HexCardGame.SharedData;
+using Tools.Input.Mouse;
 using Tools.UiTransform;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace HexCardGame.UI
         [SerializeField] UiPoolParameters parameters;
 
         SpriteRenderer[] Renderers { get; set; }
+        IMouseInput Input { get; set; }
         public ICardData Data { get; private set; }
         public UiMotion Motion { get; private set; }
         public MonoBehaviour MonoBehaviour => this;

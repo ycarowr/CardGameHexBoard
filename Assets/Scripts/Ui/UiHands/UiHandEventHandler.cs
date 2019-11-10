@@ -3,7 +3,6 @@ using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
@@ -48,10 +47,8 @@ namespace HexCardGame.UI
 
         void ISelectBoardPosition.OnSelectBoardPosition(Vector3Int position) => Registry.SelectBoardPosition(position);
 
-        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(PlayerId id, PositionId positionId)
-        {
+        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(PlayerId id, PositionId positionId) =>
             Registry.ReturnCardToPosition(id, positionId);
-        }
 
         bool IsMyEvent(PlayerId id) => Registry.Id == id;
 

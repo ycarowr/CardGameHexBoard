@@ -38,7 +38,7 @@ namespace HexCardGame.UI
                 uiCard.transform.position = libraryPosition.transform.position;
             else
                 uiCard.transform.position = uiPosition.transform.position;
-                 
+
             uiCard.transform.SetParent(uiPosition.transform);
             uiPosition.SetData(uiCard);
         }

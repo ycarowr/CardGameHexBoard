@@ -4,7 +4,6 @@ using HexCardGame.Runtime;
 using HexCardGame.Runtime.GamePool;
 using Tools.UI.Card;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
@@ -95,7 +94,7 @@ namespace HexCardGame.UI
         {
             if (SelectedCard == null)
                 return;
-            
+
             GameData.CurrentGameInstance.ReturnCardToPosition(this.id, SelectedCard, positionId);
             SelectedCard = null;
         }

@@ -3,7 +3,6 @@ using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
 using HexCardGame.Runtime.GamePool;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
@@ -14,17 +13,13 @@ namespace HexCardGame.UI
     {
         UiPool UiPool { get; set; }
 
-        void IPickCard.OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId)
-        {
+        void IPickCard.OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
             UiPool.RemoveCard(positionId);
-        }
 
         void IRestartGame.OnRestart() => UiPool.Clear();
 
-        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId)
-        {
+        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
             UiPool.AddCard(cardPool, positionId, false);
-        }
 
         void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId) =>
             UiPool.AddCard(cardPool, positionId);
@@ -39,10 +34,8 @@ namespace HexCardGame.UI
             }
         }
 
-        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId)
-        {
+        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId) =>
             GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
-        }
 
         protected override void Awake()
         {

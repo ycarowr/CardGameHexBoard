@@ -7,8 +7,8 @@ namespace Tools.UI.Card
     /// </summary>
     public abstract class UiBaseCardState : IState
     {
-        const int LayerToRenderNormal = 0;
-        const int LayerToRenderTop = 1;
+        protected const int LayerToRenderNormal = 0;
+        protected const int LayerToRenderTop = 1;
 
         //--------------------------------------------------------------------------------------------------------------
 

@@ -1,16 +1,21 @@
 ﻿using Game.Ui;
 using HexCardGame.Runtime.GamePool;
+using Tools.Input.Mouse;
+using Tools.UI.Card;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace HexCardGame.UI
 {
-    [ExecuteInEditMode]
+    [ExecuteInEditMode, RequireComponent(typeof(IMouseInput))]
     public class UiPoolPosition : UiEventListener, IDataStorage<IUiCardPool>, ILockPosition, IUnlockPosition
     {
         [SerializeField] PositionId id;
         [SerializeField] UiPoolParameters parameters;
         public PositionId Id => id;
         BoxCollider2D Collider { get; set; }
+        UiCardHoverParticleSystem HoverParticles { get; set; }
+        IMouseInput Input { get; set; }
         public bool HasData => Data != null;
         public IUiCardPool Data { get; private set; }
 
@@ -33,6 +38,10 @@ namespace HexCardGame.UI
         protected override void Awake()
         {
             base.Awake();
+            HoverParticles = GetComponentInChildren<UiCardHoverParticleSystem>();
+            Input = GetComponent<IMouseInput>();
+            Input.OnPointerEnter += ShowParticlesHover;
+            Input.OnPointerExit += HideParticlesHover;
             Collider = GetComponent<BoxCollider2D>();
             Collider.size = parameters.UiCardSize.Value;
         }
@@ -45,5 +54,17 @@ namespace HexCardGame.UI
                 SetData(null);
             }
         }
+
+        void OnDestroy()
+        {
+            if (Input == null)
+                return;
+            Input.OnPointerEnter -= ShowParticlesHover;
+            Input.OnPointerExit -= HideParticlesHover;
+        }
+
+        void ShowParticlesHover(PointerEventData obj) => HoverParticles.Show();
+
+        void HideParticlesHover(PointerEventData obj) => HoverParticles.Hide();
     }
 }

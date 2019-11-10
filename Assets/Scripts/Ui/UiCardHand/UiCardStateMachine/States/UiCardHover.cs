@@ -10,9 +10,8 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         public UiCardHover(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
-            parameters)
-        {
-        }
+            parameters) =>
+            HoverParticleSystem = handler.gameObject.GetComponentInChildren<UiCardHoverParticleSystem>();
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -102,6 +101,7 @@ namespace Tools.UI.Card
 
         public override void OnEnterState()
         {
+            HoverParticleSystem.Show(LayerToRenderTop);
             MakeRenderFirst();
             SubscribeInput();
             CachePreviousValues();
@@ -112,6 +112,7 @@ namespace Tools.UI.Card
 
         public override void OnExitState()
         {
+            HoverParticleSystem.Hide(LayerToRenderNormal);
             ResetValues();
             UnsubscribeInput();
             DisableCollision();
@@ -126,6 +127,7 @@ namespace Tools.UI.Card
         Vector3 StartPosition { get; set; }
         Vector3 StartEuler { get; set; }
         Vector3 StartScale { get; set; }
+        UiCardHoverParticleSystem HoverParticleSystem { get; }
 
         #endregion
 
