@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Tools.UI.Card
+namespace HexCardGame.UI
 {
-    public class UiCardHoverParticleSystem : MonoBehaviour
+    public class UiHoverParticleSystem : MonoBehaviour
     {
         [SerializeField] ParticleSystem[] particles;
         [SerializeField] Renderer[] renderers;

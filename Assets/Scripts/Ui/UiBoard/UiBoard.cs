@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 
 namespace HexCardGame.UI
 {
-    public class UiBoard : UiEventListener, ICreateBoard<BoardElement>, IPointerClickHandler, IRestartGame
+    public class UiBoard : UiEventListener, ICreateBoard<BoardElement>, IRestartGame
     {
         [SerializeField] TileBase test;
         IBoard<BoardElement> CurrentBoard { get; set; }
@@ -17,10 +17,6 @@ namespace HexCardGame.UI
         {
             CurrentBoard = board;
             CreateBoardUi();
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
         }
 
         void IRestartGame.OnRestart() => TileMap.ClearAllTiles();

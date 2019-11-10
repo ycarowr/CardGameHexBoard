@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using HexCardGame.UI;
 using Tools.Patterns.StateMachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +12,7 @@ namespace Tools.UI.Card
 
         public UiCardHover(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
             parameters) =>
-            HoverParticleSystem = handler.gameObject.GetComponentInChildren<UiCardHoverParticleSystem>();
+            HoverParticleSystem = handler.gameObject.GetComponentInChildren<UiHoverParticleSystem>();
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -127,7 +128,7 @@ namespace Tools.UI.Card
         Vector3 StartPosition { get; set; }
         Vector3 StartEuler { get; set; }
         Vector3 StartScale { get; set; }
-        UiCardHoverParticleSystem HoverParticleSystem { get; }
+        UiHoverParticleSystem HoverParticleSystem { get; }
 
         #endregion
 

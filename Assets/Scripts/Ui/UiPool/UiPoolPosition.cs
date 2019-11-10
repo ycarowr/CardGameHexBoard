@@ -14,7 +14,7 @@ namespace HexCardGame.UI
         [SerializeField] UiPoolParameters parameters;
         public PositionId Id => id;
         BoxCollider2D Collider { get; set; }
-        UiCardHoverParticleSystem HoverParticles { get; set; }
+        UiHoverParticleSystem Hover { get; set; }
         IMouseInput Input { get; set; }
         public bool HasData => Data != null;
         public IUiCardPool Data { get; private set; }
@@ -38,7 +38,7 @@ namespace HexCardGame.UI
         protected override void Awake()
         {
             base.Awake();
-            HoverParticles = GetComponentInChildren<UiCardHoverParticleSystem>();
+            Hover = GetComponentInChildren<UiHoverParticleSystem>();
             Input = GetComponent<IMouseInput>();
             Input.OnPointerEnter += ShowParticlesHover;
             Input.OnPointerExit += HideParticlesHover;
@@ -63,8 +63,8 @@ namespace HexCardGame.UI
             Input.OnPointerExit -= HideParticlesHover;
         }
 
-        void ShowParticlesHover(PointerEventData obj) => HoverParticles.Show();
+        void ShowParticlesHover(PointerEventData obj) => Hover.Show();
 
-        void HideParticlesHover(PointerEventData obj) => HoverParticles.Hide();
+        void HideParticlesHover(PointerEventData obj) => Hover.Hide();
     }
 }
