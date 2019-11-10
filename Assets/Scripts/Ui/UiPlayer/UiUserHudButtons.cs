@@ -2,8 +2,7 @@
 
 namespace HexCardGame.UI
 {
-    [RequireComponent(typeof(IUiUserInput))]
-    [RequireComponent(typeof(UiUser))]
+    [RequireComponent(typeof(IUiUserInput)), RequireComponent(typeof(UiUser))]
     public class UiUserHudButtons : MonoBehaviour,
         UiButtonPassTurn.IPressPassTurn,
         UiButtonLose.IPressLose,

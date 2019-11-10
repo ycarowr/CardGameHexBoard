@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e393e6874eebd49966c70fc1a8cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  artwork: {fileID: 3245573509247951605}
   cardConfigsParameters: {fileID: 11400000, guid: f79f21692e2d8a746b39e9a2eadfd5df,
     type: 2}
 --- !u!212 &3245573509686006909

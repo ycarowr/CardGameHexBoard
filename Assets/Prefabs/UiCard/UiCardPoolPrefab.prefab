@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cdfedfc84d9ab4297305182e303cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  artwork: {fileID: 1470495016714939666}
   parameters: {fileID: 11400000, guid: 958c77552be5a8b4082e2a21a9dbb918, type: 2}
 --- !u!1 &2049028650320846460
 GameObject:

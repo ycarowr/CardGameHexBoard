@@ -19,9 +19,8 @@ namespace HexCardGame.UI
         void OnClickTile(Vector3Int position);
     }
 
-    [RequireComponent(typeof(IMouseInput))]
-    [RequireComponent(typeof(Tilemap))]
-    [RequireComponent(typeof(TilemapCollider2D))]
+    [RequireComponent(typeof(IMouseInput)), RequireComponent(typeof(Tilemap)),
+     RequireComponent(typeof(TilemapCollider2D))]
     public class UiTileMapInputHandler : MonoBehaviour, ITileMapInput
     {
         IMouseInput Input { get; set; }

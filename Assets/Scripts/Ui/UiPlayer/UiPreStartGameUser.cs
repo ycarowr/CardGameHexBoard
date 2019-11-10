@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace HexCardGame.UI
 {
-    [RequireComponent(typeof(IUiUserInput))]
-    [RequireComponent(typeof(IUiPlayer))]
+    [RequireComponent(typeof(IUiUserInput)), RequireComponent(typeof(IUiPlayer))]
     public class UiPreStartGameUser : UiEventListener, IPreGameStart
     {
         IUiUserInput UserInput { get; set; }

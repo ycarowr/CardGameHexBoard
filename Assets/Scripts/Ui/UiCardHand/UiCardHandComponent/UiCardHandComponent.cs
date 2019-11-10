@@ -1,12 +1,11 @@
 ﻿using Extensions;
+using HexCardGame.SharedData;
 using Tools.Input.Mouse;
 using UnityEngine;
 
 namespace Tools.UI.Card
 {
-    [RequireComponent(typeof(Collider2D))]
-    [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(IMouseInput))]
+    [RequireComponent(typeof(Collider2D)), RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(IMouseInput))]
     public class UiCardHandComponent : MonoBehaviour, IUiCard
     {
         //--------------------------------------------------------------------------------------------------------------
@@ -34,6 +33,7 @@ namespace Tools.UI.Card
 
         public string Name => gameObject.name;
         public UiCardParameters CardConfigsParameters => cardConfigsParameters;
+        [SerializeField] SpriteRenderer artwork;
         [SerializeField] public UiCardParameters cardConfigsParameters;
         UiCardHandFsm Fsm { get; set; }
         Transform MyTransform { get; set; }
@@ -92,6 +92,8 @@ namespace Tools.UI.Card
         public void Draw() => Fsm.Draw();
 
         public void Discard() => Fsm.Discard();
+        
+        public void SetAndUpdateView(ICardData data) => artwork.sprite = data.Artwork;
 
         #endregion
 
@@ -119,6 +121,7 @@ namespace Tools.UI.Card
             //fsm
             Fsm = new UiCardHandFsm(MainCamera, CardConfigsParameters, this);
         }
+
 
         void Update()
         {

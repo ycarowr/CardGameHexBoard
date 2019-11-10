@@ -1,21 +1,23 @@
 ﻿using HexCardGame.SharedData;
 using Tools.UiTransform;
 using UnityEngine;
-using Logger = Tools.Logger;
 
 namespace HexCardGame.UI
 {
     public interface IUiCardPool : IUiMotionHandler
     {
+        ICardData Data { get; }
         void SetColor(Color color);
+        void SetAndUpdateView(ICardData data);
     }
 
     public class UiCardPool : MonoBehaviour, IUiCardPool
     {
+        [SerializeField] SpriteRenderer artwork;
         [SerializeField] UiPoolParameters parameters;
-        public ICardData Data { get; private set; }
 
         SpriteRenderer[] Renderers { get; set; }
+        public ICardData Data { get; private set; }
         public UiMotion Motion { get; private set; }
         public MonoBehaviour MonoBehaviour => this;
 
@@ -23,6 +25,12 @@ namespace HexCardGame.UI
         {
             foreach (var i in Renderers)
                 i.color = color;
+        }
+
+        public void SetAndUpdateView(ICardData data)
+        {
+            Data = data;
+            UpdateUi();
         }
 
         void Awake()
@@ -34,12 +42,6 @@ namespace HexCardGame.UI
 
         void Update() => Motion.Update();
 
-        public void SetData(ICardData data)
-        {
-            Data = data;
-            UpdateUi();
-        }
-
-        void UpdateUi() => Logger.Log<UiCardPool>("Ui updated with dataId: " + Data.Id);
+        void UpdateUi() => artwork.sprite = Data.Artwork;
     }
 }

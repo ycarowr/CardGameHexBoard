@@ -6,7 +6,7 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(UiCardGraveyard))]
     public class UiCardGraveyardSorter : MonoBehaviour
     {
-        [SerializeField] [Tooltip("World point where the graveyard is positioned")]
+        [SerializeField, Tooltip("World point where the graveyard is positioned")] 
         Transform graveyardPosition;
 
         [SerializeField] UiCardParameters parameters;

@@ -1,4 +1,5 @@
-﻿using Tools.Patterns.StateMachine;
+﻿using HexCardGame.SharedData;
+using Tools.Patterns.StateMachine;
 
 namespace Tools.UI.Card
 {
@@ -16,5 +17,6 @@ namespace Tools.UI.Card
         void Draw();
         void Discard();
         void Initialize();
+        void SetAndUpdateView(ICardData data);
     }
 }

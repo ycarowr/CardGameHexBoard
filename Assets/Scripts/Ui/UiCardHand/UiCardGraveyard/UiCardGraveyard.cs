@@ -10,7 +10,7 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardGraveyard : UiCardPile
     {
-        [SerializeField] [Tooltip("World point where the graveyard is positioned")]
+        [SerializeField, Tooltip("World point where the graveyard is positioned")] 
         Transform graveyardPosition;
 
         //--------------------------------------------------------------------------------------------------------------

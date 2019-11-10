@@ -11,7 +11,7 @@ namespace HexCardGame.Runtime.Game
     [Event]
     public interface IReturnCard
     {
-        void OnReturnCard(PlayerId id, CardHand cardHand, PositionId positionId);
+        void OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId);
     }
 
     public class HandPool : BaseGameMechanics
@@ -59,11 +59,11 @@ namespace HexCardGame.Runtime.Game
             var data = cardHand.Data;
             var cardPool = new CardPool(data);
             Game.Pool.AddCardAt(cardPool, positionId);
-            OnReturnCard(playerId, cardHand, positionId);
+            OnReturnCard(playerId, cardHand, cardPool, positionId);
         }
 
-        void OnReturnCard(PlayerId playerId, CardHand cardHand, PositionId positionId) =>
-            Dispatcher.Notify<IReturnCard>(i => i.OnReturnCard(playerId, cardHand, positionId));
+        void OnReturnCard(PlayerId playerId, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
+            Dispatcher.Notify<IReturnCard>(i => i.OnReturnCard(playerId, cardHand, cardPool, positionId));
 
         IHand GetPlayerHand(PlayerId id)
         {

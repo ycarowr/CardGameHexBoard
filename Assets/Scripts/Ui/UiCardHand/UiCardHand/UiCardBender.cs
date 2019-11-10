@@ -29,10 +29,10 @@ namespace Tools.UI.Card
 
         [SerializeField] UiCardParameters parameters;
 
-        [SerializeField] [Tooltip("The Card Prefab")]
+        [SerializeField, Tooltip("The Card Prefab")] 
         UiCardHandComponent CardPrefab;
 
-        [SerializeField] [Tooltip("Transform used as anchor to position the cards.")]
+        [SerializeField, Tooltip("Transform used as anchor to position the cards.")] 
         Transform pivot;
 
         SpriteRenderer CardRenderer { get; set; }

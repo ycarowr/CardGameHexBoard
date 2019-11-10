@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace HexCardGame.UI
 {
-    [RequireComponent(typeof(IUiUserInput))]
-    [RequireComponent(typeof(IUiPlayer))]
+    [RequireComponent(typeof(IUiUserInput)), RequireComponent(typeof(IUiPlayer))]
     public class UiStartUserTurn : UiEventListener, IStartPlayerTurn
     {
         const float DelayToEnableInput = 2;

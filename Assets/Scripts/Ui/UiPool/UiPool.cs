@@ -30,8 +30,12 @@ namespace HexCardGame.UI
 
         void IRestartGame.OnRestart() => Clear();
 
-        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
+        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId)
+        {
             Logger.Log<UiPool>("Return Card Received", Color.blue);
+            var isLocked = CurrentPool.IsPositionLocked(positionId);
+            AddCard(cardPool, positionId, isLocked);
+        }
 
         void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId)
         {
@@ -67,6 +71,7 @@ namespace HexCardGame.UI
             var uiPosition = GetPosition(positionId);
             var template = parameters.UiCardPoolTemplate.gameObject;
             var uiCard = ObjectPooler.Instance.Get<UiCardPool>(template);
+            uiCard.SetAndUpdateView(cardPool.Data);
             if (isLocked)
                 uiCard.SetColor(parameters.Locked);
             uiCard.transform.position = deckPosition.transform.position;
