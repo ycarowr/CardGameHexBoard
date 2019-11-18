@@ -37,12 +37,19 @@ namespace HexCardGame.Runtime.Game
                     new Hand(ai.Id, args.GameParameters, Dispatcher)
                 };
 
+                //Create Inventories
+                Inventories = new[]
+                {
+                    new Inventory(user.Id, Parameters, Dispatcher),
+                    new Inventory(ai.Id, Parameters, Dispatcher)
+                };
+
                 //Create Score
                 Score = new Score(Players, args.GameParameters, args.Dispatcher);
             }
 
             //Create Board
-            Board = new Board<BoardElement>(args.GameParameters, Dispatcher);
+            Board = new Board<CreatureElement>(args.GameParameters, Dispatcher);
 
             //Create Pool
             Pool = new Pool<CardPool>(args.GameParameters, Dispatcher);

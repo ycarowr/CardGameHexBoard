@@ -1,4 +1,3 @@
-using System;
 using HexCardGame.SharedData;
 using Tools.Patterns.Observer;
 using UnityEngine;

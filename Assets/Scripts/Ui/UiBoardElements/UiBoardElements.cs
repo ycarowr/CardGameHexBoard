@@ -10,9 +10,9 @@ namespace HexCardGame.UI
     {
         Tilemap TileMap { get; set; }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position,
+        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int position,
             CardHand card) =>
-            TileMap.SetTile(position, boardElement.Data.Tile);
+            TileMap.SetTile(position, creatureElement.Data.Tile);
 
         void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
 

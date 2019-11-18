@@ -10,10 +10,11 @@ namespace HexCardGame.Runtime.Test
         readonly Vector3Int _v3IntPosition = new Vector3Int();
         CardHand _cardHand;
 
-        public void OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position, CardHand card)
+        public void OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int position,
+            CardHand card)
         {
             EventReceived = true;
-            Assert.IsTrue(boardElement.Data == _mockCardData);
+            Assert.IsTrue(creatureElement.Data == _mockCardData);
             Assert.IsTrue(position == _v3IntPosition);
             Assert.IsTrue(_cardHand == card);
         }

@@ -2,18 +2,17 @@
 using HexCardGame.Runtime;
 using HexCardGame.Runtime.GameBoard;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 namespace HexCardGame.UI
 {
-    public class UiBoard : UiEventListener, ICreateBoard<BoardElement>, IRestartGame
+    public class UiBoard : UiEventListener, ICreateBoard<CreatureElement>, IRestartGame
     {
         [SerializeField] TileBase test;
-        IBoard<BoardElement> CurrentBoard { get; set; }
+        IBoard<CreatureElement> CurrentBoard { get; set; }
         Tilemap TileMap { get; set; }
 
-        void ICreateBoard<BoardElement>.OnCreateBoard(IBoard<BoardElement> board)
+        void ICreateBoard<CreatureElement>.OnCreateBoard(IBoard<CreatureElement> board)
         {
             CurrentBoard = board;
             CreateBoardUi();

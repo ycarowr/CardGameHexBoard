@@ -29,9 +29,10 @@ namespace HexCardGame.Runtime.Game
 
         IScore Score { get; }
         IHand[] Hands { get; }
+        IInventory[] Inventories { get; }
         ILibrary Library { get; }
         IPool<CardPool> Pool { get; }
-        IBoard<BoardElement> Board { get; }
+        IBoard<CreatureElement> Board { get; }
         void ExecuteAiTurn(PlayerId id);
         void ForceWin(PlayerId id);
     }

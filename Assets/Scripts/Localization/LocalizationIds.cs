@@ -12,6 +12,7 @@
         Restart,
         Win,
         Lose,
-        PassTurn
+        PassTurn,
+        Gold
     }
 }

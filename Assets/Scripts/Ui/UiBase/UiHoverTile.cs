@@ -1,7 +1,4 @@
-﻿using System;
-using Tools.Input.Mouse;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace HexCardGame.UI
@@ -13,6 +10,11 @@ namespace HexCardGame.UI
         Tilemap TileMap { get; set; }
         UiHoverParticleSystem Hover { get; set; }
         Transform HoverTransform { get; set; }
+        public bool IsShowing { get; private set; }
+
+        public bool IsLocked { get; private set; }
+        public void Lock() => IsLocked = true;
+        public void Unlock() => IsLocked = false;
 
         void Awake()
         {
@@ -21,7 +23,7 @@ namespace HexCardGame.UI
             Hover = GetComponentInChildren<UiHoverParticleSystem>();
             HoverTransform = Hover.transform;
         }
-        
+
         void HideHover()
         {
             IsShowing = false;
@@ -51,10 +53,5 @@ namespace HexCardGame.UI
             var worldCellPosition = TileMap.CellToWorld(cellPosition);
             ShowHover(worldCellPosition);
         }
-
-        public bool IsLocked { get; private set; }
-        public void Lock() => IsLocked = true;
-        public void Unlock() => IsLocked = false;
-        public bool IsShowing { get; private set; }
     }
 }

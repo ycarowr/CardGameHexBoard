@@ -12,7 +12,7 @@ namespace HexCardGame.UI
     {
         UiHandRegistry Registry { get; set; }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, BoardElement boardElement, Vector3Int position,
+        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int position,
             CardHand card)
         {
             if (!IsMyEvent(id))

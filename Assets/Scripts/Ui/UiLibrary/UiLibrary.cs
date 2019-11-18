@@ -1,7 +1,4 @@
-﻿using System;
-using Game.Ui;
-using HexCardGame.Runtime;
-using Tools.Input.Mouse;
+﻿using Tools.Input.Mouse;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,8 +16,8 @@ namespace HexCardGame.UI
             Input.OnPointerEnter += ShowParticlesHover;
             Input.OnPointerExit += HideParticlesHover;
         }
-        
-        
+
+
         void OnDestroy()
         {
             if (Input == null)

@@ -13,6 +13,8 @@ namespace HexCardGame
 
         public BoardData BoardData;
         public PlayerDeck PlayerDeck;
+
+        [Range(0, 5)] public int StartingGold;
         public static GameParameters Load() => Resources.Load<GameParameters>(Path);
 
         //----------------------------------------------------------------------------------------------------------

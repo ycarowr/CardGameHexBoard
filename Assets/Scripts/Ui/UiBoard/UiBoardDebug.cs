@@ -8,15 +8,15 @@ using UnityEngine.Tilemaps;
 
 namespace Game.Ui
 {
-    public class UiBoardDebug : UiEventListener, ICreateBoard<BoardElement>
+    public class UiBoardDebug : UiEventListener, ICreateBoard<CreatureElement>
     {
         [SerializeField] BoardData data;
         GameObject[] positions;
         [SerializeField] GameObject textPosition;
         [SerializeField] Tilemap tileMap;
-        IBoard<BoardElement> CurrentBoard { get; set; }
+        IBoard<CreatureElement> CurrentBoard { get; set; }
 
-        void ICreateBoard<BoardElement>.OnCreateBoard(IBoard<BoardElement> board)
+        void ICreateBoard<CreatureElement>.OnCreateBoard(IBoard<CreatureElement> board)
         {
             CurrentBoard = board;
             DrawPositions();

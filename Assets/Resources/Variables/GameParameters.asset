@@ -31,5 +31,6 @@ MonoBehaviour:
       id: 0
       IsAi: 0
   Hand:
-    StartingHandCount: 3
     MaxHandSize: 7
+    StartingHandCount: 3
+  StartingGold: 2

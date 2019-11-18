@@ -20,7 +20,7 @@ namespace HexCardGame.Runtime.Game
             => GameMechanics.PoolLibrary.RevealCard(playerId, positionId);
 
         public void PlayElementAt(PlayerId playerId, CardHand card, Vector3Int position)
-            => GameMechanics.HandBoard.CreateBoardElementAt(playerId, card, position);
+            => GameMechanics.HandBoard.PlayCardAt(playerId, card, position);
 
         public void PickCardFromPosition(PlayerId playerId, PositionId positionId) =>
             GameMechanics.HandPool.PickCard(playerId, positionId);
