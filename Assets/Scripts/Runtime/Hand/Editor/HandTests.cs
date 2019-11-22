@@ -27,7 +27,7 @@ namespace HexCardGame.Runtime.Test
         public void HandCreated_Test() => Assert.IsTrue(_handCreated);
 
         [Test]
-        public void HandSize_Test() => Assert.IsTrue(_hand.MaxHandSize == Parameters.Hand.MaxHandSize);
+        public void HandSize_Test() => Assert.IsTrue(_hand.MaxHandSize == Parameters.Amounts.MaxHandSize);
 
         [Test]
         public void AddCard_Test()

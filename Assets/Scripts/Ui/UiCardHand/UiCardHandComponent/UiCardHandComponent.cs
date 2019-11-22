@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using Game.Ui;
+using HexCardGame;
 using HexCardGame.SharedData;
 using Tools.Input.Mouse;
 using UnityEngine;
@@ -48,7 +49,9 @@ namespace Tools.UI.Card
         public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
         public bool IsHovering => Fsm.IsCurrent<UiCardHover>();
         public bool IsDisabled => Fsm.IsCurrent<UiCardDisable>();
-        public bool IsPlayer => transform.CloserEdge(MainCamera, Screen.width, Screen.height) == 1;
+        public bool IsUser => id == PlayerId.User;
+        PlayerId id;
+        UiGameDataAccess dataAccess;
 
         #endregion
 
@@ -80,7 +83,7 @@ namespace Tools.UI.Card
         public void Select()
         {
             // to avoid the player selecting enemy's cards
-            if (!IsPlayer)
+            if (!dataAccess.IsMyTurn(id))
                 return;
 
             HandSelector.SelectCard(this);
@@ -93,7 +96,12 @@ namespace Tools.UI.Card
 
         public void Discard() => Fsm.Discard();
 
-        public void SetAndUpdateView(ICardData data) => artwork.sprite = data.Artwork;
+        public void SetAndUpdateView(ICardData data, PlayerId playerId, UiGameDataAccess access)
+        {
+            artwork.sprite = data.Artwork;
+            id = playerId;
+            dataAccess = access;
+        }
 
         #endregion
 

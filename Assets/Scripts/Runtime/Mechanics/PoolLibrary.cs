@@ -26,6 +26,13 @@ namespace HexCardGame.Runtime.Game
 
             var data = Game.Library.GetRandomData();
             var cardPool = new CardPool(data);
+            var inventory = GetInventory(playerId);
+            var actionPoints = Parameters.Amounts.ActionPointsConsume;
+            var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
+            if (!hasEnoughActionPoints)
+                return;
+
+            inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             pool.AddCardAt(cardPool, positionId);
             OnRevealCard(playerId, cardPool, positionId);
         }
@@ -38,15 +45,11 @@ namespace HexCardGame.Runtime.Game
             if (!Game.IsGameStarted)
                 return;
 
-            var pool = Game.Pool;
             var empty = FindEmpty();
             if (!empty.HasValue)
                 return;
 
-            var data = Game.Library.GetRandomData();
-            var cardPool = new CardPool(data);
-            pool.AddCardAt(cardPool, empty.Value);
-            OnRevealCard(playerId, cardPool, empty.Value);
+            RevealCard(playerId, empty.Value);
         }
 
         PositionId? FindEmpty()

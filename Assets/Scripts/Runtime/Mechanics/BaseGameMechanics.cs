@@ -12,5 +12,21 @@ namespace HexCardGame.Runtime.Game
         protected IDispatcher Dispatcher => Game.Dispatcher;
 
         protected GameParameters Parameters => Game.Parameters;
+
+        protected IHand GetPlayerHand(PlayerId id)
+        {
+            foreach (var i in Game.Hands)
+                if (i.Id == id)
+                    return i;
+            return null;
+        }
+
+        protected IInventory GetInventory(PlayerId id)
+        {
+            foreach (var i in Game.Inventories)
+                if (i.Id == id)
+                    return i;
+            return null;
+        }
     }
 }

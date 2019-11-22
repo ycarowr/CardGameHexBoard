@@ -1,6 +1,7 @@
-namespace HexCardGame.Runtime{
+namespace HexCardGame.Runtime
+{
     public interface IItem
     {
-        string ProductId { get; }
+        string ItemId { get; }
     }
 }

@@ -12,5 +12,7 @@ namespace Game.Ui
         protected GameData GameData;
 
         protected virtual void Awake() => GameData = GameData.Load();
+
+        public bool IsMyTurn(PlayerId id) => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(id);
     }
 }

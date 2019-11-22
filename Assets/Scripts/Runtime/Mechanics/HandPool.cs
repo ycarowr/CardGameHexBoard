@@ -31,11 +31,20 @@ namespace HexCardGame.Runtime.Game
                 return;
             if (!pool.HasDataAt(positionId))
                 return;
-
+            var isMyTurn = Game.TurnLogic.IsMyTurn(playerId);
+            if (!isMyTurn)
+                return;
             var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);
             var data = poolCard.Data;
             var cardHand = new CardHand(data);
             var hand = GetPlayerHand(playerId);
+            var actionPoints = Parameters.Amounts.ActionPointsConsume;
+            var inventory = GetInventory(playerId);
+            var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
+            if (!hasEnoughActionPoints)
+                return;
+
+            inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             hand.Add(cardHand);
             OnPickCard(playerId, cardHand, positionId);
         }
@@ -54,7 +63,16 @@ namespace HexCardGame.Runtime.Game
             var hand = GetPlayerHand(playerId);
             if (!hand.Has(cardHand))
                 return;
+            var isMyTurn = Game.TurnLogic.IsMyTurn(playerId);
+            if (!isMyTurn)
+                return;
+            var actionPoints = Parameters.Amounts.ActionPointsConsume;
+            var inventory = GetInventory(playerId);
+            var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
+            if (!hasEnoughActionPoints)
+                return;
 
+            inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             hand.Remove(cardHand);
             var data = cardHand.Data;
             var cardPool = new CardPool(data);
@@ -64,13 +82,5 @@ namespace HexCardGame.Runtime.Game
 
         void OnReturnCard(PlayerId playerId, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
             Dispatcher.Notify<IReturnCard>(i => i.OnReturnCard(playerId, cardHand, cardPool, positionId));
-
-        IHand GetPlayerHand(PlayerId id)
-        {
-            foreach (var i in Game.Hands)
-                if (i.Id == id)
-                    return i;
-            return null;
-        }
     }
 }

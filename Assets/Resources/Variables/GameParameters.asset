@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: GameParameters
   m_EditorClassIdentifier: 
   BoardData: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}
-  PlayerDeck: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}
+  Amounts:
+    MaxHandSize: 5
+    StartingHandCount: 3
+    ActionPointsPerTurn: 2
+    ActionPointsConsume: 1
+    StartingGold: 2
+    GoldPerTurn: 0
   Timers:
     TimeUntilAiDoTurn: 2.5
     TimeUntilAiFinishTurn: 3.5
@@ -26,11 +32,9 @@ MonoBehaviour:
     AiPlayer:
       id: 2
       IsAi: 1
+      LibraryData: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}
     userId: 0
     UserPlayer:
       id: 0
       IsAi: 0
-  Hand:
-    MaxHandSize: 7
-    StartingHandCount: 3
-  StartingGold: 2
+      LibraryData: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}

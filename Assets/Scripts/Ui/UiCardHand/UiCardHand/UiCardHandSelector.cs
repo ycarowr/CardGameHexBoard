@@ -40,7 +40,7 @@ namespace Tools.UI.Card
 
             //disable all cards
             DisableCards();
-            NotifyCardSelected();
+            OnCardSelected?.Invoke(SelectedCard);
         }
 
         /// <summary>
@@ -109,9 +109,6 @@ namespace Tools.UI.Card
             foreach (var otherCard in Cards)
                 otherCard.Enable();
         }
-
-        [Button]
-        void NotifyCardSelected() => OnCardSelected?.Invoke(SelectedCard);
 
         #endregion
     }

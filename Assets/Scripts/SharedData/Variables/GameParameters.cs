@@ -12,13 +12,28 @@ namespace HexCardGame
         //----------------------------------------------------------------------------------------------------------
 
         public BoardData BoardData;
-        public PlayerDeck PlayerDeck;
-
-        [Range(0, 5)] public int StartingGold;
         public static GameParameters Load() => Resources.Load<GameParameters>(Path);
 
         //----------------------------------------------------------------------------------------------------------
 
+        #region Amounts
+
+        [Serializable]
+        public class AmountsConfigs
+        {
+            [Range(0, 5)] public int ActionPointsConsume;
+            [Range(0, 5)] public int ActionPointsPerTurn;
+            [Range(0, 5)] public int GoldPerTurn;
+            [Range(1, 10)] public int MaxHandSize;
+            [Range(0, 5)] public int StartingGold;
+            [Range(1, 10)] public int StartingHandCount;
+        }
+
+        public AmountsConfigs Amounts = new AmountsConfigs();
+
+        #endregion
+
+        //----------------------------------------------------------------------------------------------------------
 
         #region Game Start
 
@@ -60,7 +75,6 @@ namespace HexCardGame
         [Serializable]
         public class PlayerProfiles
         {
-            [Tooltip("Configurations for Top player")]
             public Player AiPlayer = new Player
             {
                 IsAi = true,
@@ -81,27 +95,13 @@ namespace HexCardGame
             public class Player
             {
                 public PlayerId id;
-
-                [Tooltip("Whether this player is driven by an AI system or not")]
                 public bool IsAi;
+                public PlayerDeck LibraryData;
             }
         }
 
         #endregion
 
         //----------------------------------------------------------------------------------------------------------
-
-        #region Hand 
-
-        [Serializable]
-        public class HandConfigs
-        {
-            [Range(1, 10)] public int MaxHandSize;
-            [Range(1, 10)] public int StartingHandCount;
-        }
-
-        public HandConfigs Hand = new HandConfigs();
-
-        #endregion
     }
 }

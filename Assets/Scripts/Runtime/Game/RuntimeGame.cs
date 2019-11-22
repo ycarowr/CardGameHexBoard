@@ -58,8 +58,8 @@ namespace HexCardGame.Runtime.Game
                 //Create Library
                 var libData = new Dictionary<PlayerId, CardData[]>
                 {
-                    {PlayerId.User, args.GameParameters.PlayerDeck.GetDeck()},
-                    {PlayerId.Ai, args.GameParameters.PlayerDeck.GetDeck()}
+                    {PlayerId.User, args.GameParameters.Profiles.UserPlayer.LibraryData.GetDeck()},
+                    {PlayerId.Ai, args.GameParameters.Profiles.AiPlayer.LibraryData.GetDeck()}
                 };
 
                 Library = new Library(libData, Dispatcher);

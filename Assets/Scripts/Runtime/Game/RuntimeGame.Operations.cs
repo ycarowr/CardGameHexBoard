@@ -12,6 +12,7 @@ namespace HexCardGame.Runtime.Game
         public void StartPlayerTurn() => GameMechanics.StartPlayerTurn.Execute();
         public void FinishPlayerTurn() => GameMechanics.FinishPlayerTurn.Execute();
         public void DrawCardFromLibrary(PlayerId playerId) => GameMechanics.HandLibrary.DrawCard(playerId);
+        public void FreeDrawCardFromLibrary(PlayerId playerId) => GameMechanics.HandLibrary.FreeDrawCard(playerId);
 
         public void RevealCardHigherPosition(PlayerId playerId) =>
             GameMechanics.PoolLibrary.RevealCardHigherPosition(playerId);

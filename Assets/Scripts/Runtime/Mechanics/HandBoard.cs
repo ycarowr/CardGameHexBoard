@@ -28,11 +28,16 @@ namespace HexCardGame.Runtime.Game
                 return;
             var cost = card.Cost;
             var inventory = GetInventory(playerId);
-            var hasEnoughGold = inventory.GetAmount(Gold.Id) >= cost;
+            var hasEnoughGold = inventory.GetAmount(Inventory.GoldItem) >= cost;
             if (!hasEnoughGold)
                 return;
-            inventory.RemoveItem(Gold.Id, cost);
-            
+            var actionPoints = Parameters.Amounts.ActionPointsConsume;
+            var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
+            if (!hasEnoughActionPoints)
+                return;
+
+            inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
+            inventory.RemoveItem(Inventory.GoldItem, cost);
             hand.Remove(card);
             var creature = new CreatureElement(card.Data, playerId);
             Game.Board.AddDataAt(creature, position);
@@ -40,22 +45,7 @@ namespace HexCardGame.Runtime.Game
         }
 
         void OnCreateCreature(PlayerId playerId, CreatureElement creatureElement, Vector3Int position, CardHand card) =>
-            Dispatcher.Notify<ICreateBoardElement>(i => i.OnCreateBoardElement(playerId, creatureElement, position, card));
-
-        IHand GetPlayerHand(PlayerId id)
-        {
-            foreach (var i in Game.Hands)
-                if (i.Id == id)
-                    return i;
-            return null;
-        }
-
-        IInventory GetInventory(PlayerId id)
-        {
-            foreach (var i in Game.Inventories)
-                if (i.Id == id)
-                    return i;
-            return null;
-        }
+            Dispatcher.Notify<ICreateBoardElement>(i =>
+                i.OnCreateBoardElement(playerId, creatureElement, position, card));
     }
 }

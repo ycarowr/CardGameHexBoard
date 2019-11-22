@@ -28,20 +28,25 @@ namespace HexCardGame.Runtime.Game
             if (Game.IsGameStarted) return;
 
             Game.IsGameStarted = true;
-
             Game.TurnLogic.DecideStarterPlayer();
-
+            GetStartingGold();
             DrawStartingHands();
             RevealPool();
-
             OnGameStarted(Game.TurnLogic.StarterPlayer);
+        }
+
+        void GetStartingGold()
+        {
+            var players = Game.TurnLogic.Players;
+            foreach (var p in players)
+                GetInventory(p.Id).AddItem(Inventory.GoldItem, Parameters.Amounts.StartingGold);
         }
 
         void DrawStartingHands()
         {
             foreach (var player in Game.TurnLogic.Players)
-                for (var i = 0; i < Parameters.Hand.StartingHandCount; i++)
-                    Game.DrawCardFromLibrary(player.Id);
+                for (var i = 0; i < Parameters.Amounts.StartingHandCount; i++)
+                    Game.FreeDrawCardFromLibrary(player.Id);
         }
 
         void RevealPool()

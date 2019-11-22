@@ -32,7 +32,7 @@ namespace Tools.UI.Card
 
         void ResetValues()
         {
-            var rotationSpeed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
+            var rotationSpeed = Handler.IsUser ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
             Handler.RotateTo(StartEuler, rotationSpeed);
             Handler.MoveTo(StartPosition, Parameters.HoverSpeed);
             Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
@@ -43,7 +43,7 @@ namespace Tools.UI.Card
             if (Parameters.HoverRotation)
                 return;
 
-            var speed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
+            var speed = Handler.IsUser ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
 
             Handler.RotateTo(Vector3.zero, speed);
         }

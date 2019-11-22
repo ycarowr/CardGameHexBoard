@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace HexCardGame.UI
 {
-    public class UiGold : UiEventListener, IAddItem, IRemoveItem
+    public class UiActionPoint : UiEventListener, IAddItem, IRemoveItem
     {
         const string Colon = ": ";
         readonly StringBuilder _stringBuilder = new StringBuilder();
-        readonly LocalizationIds _textId = LocalizationIds.Gold;
+        readonly LocalizationIds _textId = LocalizationIds.ActionPoint;
         [SerializeField] PlayerId id;
         TextMeshPro MyText { get; set; }
         string PreBuiltText { get; set; }
@@ -19,14 +19,14 @@ namespace HexCardGame.UI
         public void OnAddItem(PlayerId playerId, IItem item, int total, int amount)
         {
             if (IsMyEvent(playerId))
-                if (item.ItemId == Gold.Id)
+                if (item.ItemId == ActionPoint.Id)
                     MyText.text = Build(total.ToString());
         }
 
         public void OnRemoveItem(PlayerId playerId, IItem item, int total, int amount)
         {
             if (IsMyEvent(playerId))
-                if (item.ItemId == Gold.Id)
+                if (item.ItemId == ActionPoint.Id)
                     MyText.text = Build(total.ToString());
         }
 

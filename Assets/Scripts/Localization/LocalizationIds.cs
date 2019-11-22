@@ -13,6 +13,7 @@
         Win,
         Lose,
         PassTurn,
-        Gold
+        Gold,
+        ActionPoint
     }
 }

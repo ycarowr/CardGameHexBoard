@@ -1,4 +1,6 @@
-﻿using HexCardGame.SharedData;
+﻿using Game.Ui;
+using HexCardGame;
+using HexCardGame.SharedData;
 using Tools.Patterns.StateMachine;
 
 namespace Tools.UI.Card
@@ -8,7 +10,7 @@ namespace Tools.UI.Card
         bool IsDragging { get; }
         bool IsHovering { get; }
         bool IsDisabled { get; }
-        bool IsPlayer { get; }
+        bool IsUser { get; }
         void Disable();
         void Enable();
         void Select();
@@ -17,6 +19,6 @@ namespace Tools.UI.Card
         void Draw();
         void Discard();
         void Initialize();
-        void SetAndUpdateView(ICardData data);
+        void SetAndUpdateView(ICardData data, PlayerId playerId, UiGameDataAccess dataAccess);
     }
 }

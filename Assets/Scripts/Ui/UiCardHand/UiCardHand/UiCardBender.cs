@@ -80,7 +80,7 @@ namespace Tools.UI.Card
                     var zAxisRot = pivotLocationFactor == 1 ? 0 : 180;
                     var rotation = new Vector3(0, 0, angleTwist - zAxisRot);
                     var position = new Vector3(xPos, yPos, card.transform.position.z);
-                    var rotSpeed = card.IsPlayer ? parameters.RotationSpeed : parameters.RotationSpeedP2;
+                    var rotSpeed = card.IsUser ? parameters.RotationSpeed : parameters.RotationSpeedP2;
                     card.RotateTo(rotation, rotSpeed);
                     card.MoveTo(position, parameters.MovementSpeed);
                 }

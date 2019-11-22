@@ -23,12 +23,14 @@
                 return;
             if (Game.IsGameFinished)
                 return;
+            Game.TurnLogic.UpdateCurrentPlayer();
 
+            var playerId = Game.TurnLogic.CurrentPlayerId;
+            var inventory = GetInventory(playerId);
 
             Game.IsTurnInProgress = true;
-            Game.TurnLogic.UpdateCurrentPlayer();
-            var playerId = Game.TurnLogic.CurrentPlayerId;
-            Game.DrawCardFromLibrary(playerId);
+            Game.FreeDrawCardFromLibrary(playerId);
+            inventory.AddItem(Inventory.ActionPointItem, Parameters.Amounts.ActionPointsPerTurn);
             OnStartedCurrentPlayerTurn(Game.TurnLogic.CurrentPlayer);
         }
 
