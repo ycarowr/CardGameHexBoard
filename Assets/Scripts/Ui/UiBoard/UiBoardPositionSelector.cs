@@ -18,7 +18,7 @@ namespace HexCardGame.UI
         void IOnClickTile.OnClickTile(Vector3Int position)
         {
             if (IsLocked) return;
-
+            
             Dispatcher.Notify<ISelectBoardPosition>(i => i.OnSelectBoardPosition(position));
         }
 

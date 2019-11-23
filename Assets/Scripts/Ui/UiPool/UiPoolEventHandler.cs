@@ -34,8 +34,10 @@ namespace HexCardGame.UI
             }
         }
 
-        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId) =>
-            GameData.CurrentGameInstance.PickCardFromPosition(PlayerId.User, positionId);
+        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId)
+        {
+            GameData.CurrentGameInstance.PickCardFromPosition(playerId, positionId);
+        }
 
         protected override void Awake()
         {

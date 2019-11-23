@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 2224021344975234129}
   - component: {fileID: 4403647402682449733}
   - component: {fileID: 729401954}
-  - component: {fileID: 729401955}
   - component: {fileID: 1053302911980951369}
   m_Layer: 0
   m_Name: UiPool
@@ -138,18 +137,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9758cb760cb593e469127712daf2e9fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &729401955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6697261032338253571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e45c775fef1bb46ad16aea13b592b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1053302911980951369

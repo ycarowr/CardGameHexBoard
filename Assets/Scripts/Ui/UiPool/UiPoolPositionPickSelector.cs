@@ -49,9 +49,9 @@ namespace HexCardGame.UI
         {
             if (IsLocked)
                 return;
-
             if (!Position.HasData)
                 return;
+
             Dispatcher.Notify<ISelectPickPoolPosition>(i => i.OnSelectPickPoolPosition(PlayerId.User, Position.Id));
         }
     }
