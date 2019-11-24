@@ -85,7 +85,7 @@ namespace HexCardGame.UI
         {
             if (SelectedCard == null)
                 return;
-            
+
             GameData.CurrentGameInstance.PlayElementAt(id, SelectedCard, position);
             CardHandSelector.Unselect();
             SelectedCard = null;

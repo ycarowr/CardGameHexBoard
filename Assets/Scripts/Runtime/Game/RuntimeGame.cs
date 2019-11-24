@@ -31,14 +31,14 @@ namespace HexCardGame.Runtime.Game
                 Players = new[] {user, ai};
 
                 //Create Hands
-                Hands = new[]
+                Hands = new IHand[]
                 {
                     new Hand(user.Id, args.GameParameters, Dispatcher),
                     new Hand(ai.Id, args.GameParameters, Dispatcher)
                 };
 
                 //Create Inventories
-                Inventories = new[]
+                Inventories = new IInventory[]
                 {
                     new Inventory(user.Id, Parameters, Dispatcher),
                     new Inventory(ai.Id, Parameters, Dispatcher)
@@ -50,6 +50,9 @@ namespace HexCardGame.Runtime.Game
 
             //Create Board
             Board = new Board<CreatureElement>(args.GameParameters, Dispatcher);
+
+            //Create Board Manipulation
+            BoardManipulation = new BoardManipulationDoubleHeight<CreatureElement>(Board);
 
             //Create Pool
             Pool = new Pool<CardPool>(args.GameParameters, Dispatcher);

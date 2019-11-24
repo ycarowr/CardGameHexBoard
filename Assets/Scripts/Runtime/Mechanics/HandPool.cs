@@ -1,5 +1,4 @@
 ﻿using HexCardGame.Runtime.GamePool;
-using UnityEngine;
 
 namespace HexCardGame.Runtime.Game
 {
@@ -35,7 +34,7 @@ namespace HexCardGame.Runtime.Game
             var isMyTurn = Game.TurnLogic.IsMyTurn(playerId);
             if (!isMyTurn)
                 return;
-            
+
             var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);
             var data = poolCard.Data;
             var cardHand = new CardHand(data);

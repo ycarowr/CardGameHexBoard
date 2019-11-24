@@ -35,7 +35,6 @@ namespace HexCardGame.SharedData
             foreach (var i in UndesiredPositions)
                 if (i.x == position.x && i.y == position.y)
                     return true;
-
             return false;
         }
     }

@@ -17,7 +17,7 @@ namespace HexCardGame.Runtime.GameBoard
         public bool HasData => Data != null;
         public T Data { get; private set; }
         public void SetData(T value) => Data = value;
-        static Vector3Int AsVector3Int(Position<T> p) => new Vector3Int(p.x, p.y, 0);
+        public static Vector3Int AsVector3Int(Position<T> p) => new Vector3Int(p.x, p.y, 0);
         static Vector2Int AsVector2Int(Position<T> p) => new Vector2Int(p.x, p.y);
 
         public static bool AreEqual(Position<T> p1, Position<T> p2)

@@ -33,6 +33,7 @@ namespace HexCardGame.Runtime.Game
         ILibrary Library { get; }
         IPool<CardPool> Pool { get; }
         IBoard<CreatureElement> Board { get; }
+        IBoardManipulation<CreatureElement> BoardManipulation { get; }
         void ExecuteAiTurn(PlayerId id);
         void ForceWin(PlayerId id);
     }

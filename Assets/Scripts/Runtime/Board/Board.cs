@@ -13,6 +13,8 @@ namespace HexCardGame.Runtime.GameBoard
     public interface IBoard<T> : IBoardDataStorage<T> where T : class
     {
         Position<T>[] Positions { get; }
+        int MaxX { get; }
+        int MaxY { get; }
         bool HasPosition(int x, int y);
         Position<T> GetPosition(int x, int y);
         Position<T> GetPosition(Vector3Int position);
@@ -29,9 +31,9 @@ namespace HexCardGame.Runtime.GameBoard
         }
 
         IDispatcher Dispatcher { get; }
+        public BoardData Data { get; }
         public int MaxX => Data.MaxX;
         public int MaxY => Data.MaxY;
-        public BoardData Data { get; }
         public Position<T>[] Positions { get; private set; }
 
         public void GeneratePositions()

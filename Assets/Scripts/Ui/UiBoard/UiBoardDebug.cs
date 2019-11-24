@@ -36,7 +36,7 @@ namespace Game.Ui
                 var gameObj = Instantiate(textPosition, worldPosition, identity, transform);
                 positions[i] = gameObj;
                 var tmpText = gameObj.GetComponent<TMP_Text>();
-                var sPosition = $"y:{p.x}\nx:{p.y}";
+                var sPosition = $"x:{p.x}\ny:{p.y}";
                 tmpText.text = sPosition;
                 tmpText.name = uiPosition + sPosition;
             }

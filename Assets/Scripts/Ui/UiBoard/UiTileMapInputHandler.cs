@@ -19,6 +19,12 @@ namespace HexCardGame.UI
         void OnClickTile(Vector3Int position);
     }
 
+    [Event]
+    public interface IOnRightClickTile
+    {
+        void OnRightClickTile(Vector3Int position, Vector2 screenPosition);
+    }
+
     [RequireComponent(typeof(IMouseInput)), RequireComponent(typeof(Tilemap)),
      RequireComponent(typeof(TilemapCollider2D))]
     public class UiTileMapInputHandler : MonoBehaviour, ITileMapInput
@@ -36,9 +42,19 @@ namespace HexCardGame.UI
         {
             if (IsLocked)
                 return;
-            var worldPoint = ScreenToWorldPosition(eventData.position);
-            var position = TileMap.WorldToCell(worldPoint);
-            Dispatcher.Notify<IOnClickTile>(i => i.OnClickTile(position));
+            var screenPosition = eventData.position;
+            var worldPosition = ScreenToWorldPosition(eventData.position);
+            var boardPosition = TileMap.WorldToCell(worldPosition);
+
+            switch (eventData.button)
+            {
+                case PointerEventData.InputButton.Left:
+                    Dispatcher.Notify<IOnClickTile>(i => i.OnClickTile(boardPosition));
+                    break;
+                case PointerEventData.InputButton.Right:
+                    Dispatcher.Notify<IOnRightClickTile>(i => i.OnRightClickTile(boardPosition, screenPosition));
+                    break;
+            }
         }
 
         void Awake()

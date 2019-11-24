@@ -29,7 +29,10 @@ namespace HexCardGame.UI
         void CreateBoardUi()
         {
             foreach (var p in CurrentBoard.Positions)
+            {
                 TileMap.SetTile(p, test);
+                var worldPosition = TileMap.CellToWorld(p);
+            }
         }
     }
 }

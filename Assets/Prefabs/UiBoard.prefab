@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 2899150155539997726}
   - component: {fileID: 8080876291732921814}
   - component: {fileID: 2069608919788995808}
+  - component: {fileID: 4384270289186164106}
   m_Layer: 0
   m_Name: UiPositions
   m_TagString: Untagged
@@ -595,6 +596,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079aace72a00e814eb575a599212f892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4384270289186164106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9115395796258587164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d7e7fc357665046b5c2fefb3df3476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightTiles: {fileID: 0}
+  x: 3
+  y: 3
 --- !u!1001 &2940150264981201135
 PrefabInstance:
   m_ObjectHideFlags: 0
