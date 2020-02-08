@@ -28,10 +28,11 @@ namespace HexCardGame.UI
 
         void CreateBoardUi()
         {
-            foreach (var p in CurrentBoard.Positions)
+            foreach (var i in CurrentBoard.Positions)
             {
-                TileMap.SetTile(p, test);
-                var worldPosition = TileMap.CellToWorld(p);
+                var cell = new Vector3Int(i.x, i.y, 0);
+                TileMap.SetTile(cell, test);
+                TileMap.CellToWorld(i);
             }
         }
     }

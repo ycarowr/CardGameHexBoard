@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eed393bfcf7c7e4a9122539555cfd76, type: 3}
-  m_Name: BoardData
+  m_Script: {fileID: 11500000, guid: e4fa0a98a6a682645bb1ecdec201a9cb, type: 3}
+  m_Name: RectBoardData
   m_EditorClassIdentifier: 
-  MaxX: 7
-  MaxY: 5
-  UndesiredPositions:
-  - {x: 0, y: 0}
-  - {x: 0, y: 4}
-  - {x: 6, y: 1}
-  - {x: 6, y: 0}
-  - {x: 6, y: 3}
-  - {x: 6, y: 4}
+  width: 10
+  height: 10

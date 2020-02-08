@@ -4,16 +4,10 @@ namespace HexCardGame.Runtime.GameBoard
 {
     public class Position<T> : IDataStorage<T> where T : class
     {
-        public int x;
-        public int y;
-
-        public Position(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        int Z => -(x + y);
+        public Hex Hex { get; }
+        public int x => Hex.x;
+        public int y => Hex.y;
+        public Position(Hex hex) => Hex = hex;
         public bool HasData => Data != null;
         public T Data { get; private set; }
         public void SetData(T value) => Data = value;

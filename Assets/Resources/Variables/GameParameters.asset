@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340d871622354f14484f719e366a3e80, type: 3}
   m_Name: GameParameters
   m_EditorClassIdentifier: 
-  BoardData: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}
+  BoardData: {fileID: 11400000, guid: 38278a7c578c74842a186f4f8c5ae616, type: 2}
   Amounts:
-    MaxHandSize: 5
-    StartingHandCount: 3
-    ActionPointsPerTurn: 2
     ActionPointsConsume: 1
-    StartingGold: 2
+    ActionPointsPerTurn: 2
     GoldPerTurn: 0
+    MaxHandSize: 5
+    StartingGold: 2
+    StartingHandCount: 3
   Timers:
     TimeUntilAiDoTurn: 2.5
     TimeUntilAiFinishTurn: 3.5

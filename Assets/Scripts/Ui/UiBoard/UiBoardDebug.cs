@@ -62,15 +62,11 @@ namespace Game.Ui
 
         void OnDrawGizmos()
         {
-            for (var i = 0; i < data.MaxX; ++i)
-            for (var j = 0; j < data.MaxY; ++j)
+            foreach (var i in data.GetHexPositions())
             {
-                var cell = new Vector3Int(i, j, 0);
-                if (!data.UndesiredPositions.Contains((Vector2Int) cell))
-                {
-                    var position = tileMap.CellToWorld(cell);
-                    Gizmos.DrawWireSphere(position, 0.93f);
-                }
+                var cell = new Vector3Int(i.x, i.y, 0);
+                var position = tileMap.CellToWorld(cell);
+                Gizmos.DrawWireSphere(position, 0.93f);
             }
         }
     }

@@ -498,7 +498,7 @@ TilemapRenderer:
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
-  m_SortOrder: 0
+  m_SortOrder: 2
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d9b6788baf178488a3a472facd18a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: fa3e03dbfdd9a8f40a42b280e0ca624e, type: 2}
+  data: {fileID: 11400000, guid: 38278a7c578c74842a186f4f8c5ae616, type: 2}
   textPosition: {fileID: 3841204323083488389, guid: 6d6fcd6432db72747b94af95f210daaf,
     type: 3}
   tileMap: {fileID: 6600853016856763477}
@@ -608,9 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d7e7fc357665046b5c2fefb3df3476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightTiles: {fileID: 0}
-  x: 3
-  y: 3
+  highlightTiles: {fileID: 6384818685788350089, guid: 8dd8fca628ba39c4d9a340845db94289,
+    type: 3}
 --- !u!1001 &2940150264981201135
 PrefabInstance:
   m_ObjectHideFlags: 0

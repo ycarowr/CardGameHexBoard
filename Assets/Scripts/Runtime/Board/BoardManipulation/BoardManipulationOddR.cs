@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace HexCardGame.Runtime
 {
-    public class BoardManipulationDoubleHeight<T> : IBoardManipulation<T> where T : class
+    public class BoardManipulationOddR<T> : IBoardManipulation<T> where T : class
     {
         readonly Vector3Int[][] _oddrDirections;
 
-        public BoardManipulationDoubleHeight(IBoard<T> board)
+        public BoardManipulationOddR(IBoard<T> board)
         {
             Board = board;
             _oddrDirections = new Vector3Int[2][];
@@ -32,8 +32,6 @@ namespace HexCardGame.Runtime
         }
 
         IBoard<T> Board { get; }
-        int MaxX => Board.MaxX;
-        int MaxY => Board.MaxY;
 
         public Vector3Int[] GetNeighbours(int x, int y)
         {
@@ -92,28 +90,28 @@ namespace HexCardGame.Runtime
             return diagDescendant;
         }
 
-        public Vector3Int[] GetAllDiagonalAscendant(Vector3Int direction, int n)
+        public Vector3Int[] GetAllDiagonalAscendant(Vector3Int position, int n)
         {
             var diagAscendant = new Vector3Int[n];
+            var x = position.x;
+            var y = position.y;
 
-//            if (n > 0)
-//            {
-//                var max = Mathf.Min(y + n + 1, MaxX);
-//                for (var i = y; i < max; i++)
-//                {
-//                    if (i != y)
-//                        diagAscendant = diagAscendant.Merge(Get(x, i));
-//                }
-//            }
-//            else
-//            {
-//                var min = Mathf.Max(y + n, 0);
-//                for (var i = y; i >= min; i--)
-//                {
-//                    if (i != y)
-//                        diagAscendant = diagAscendant.Merge(Get(x, i));
-//                }
-//            }
+            diagAscendant = diagAscendant.Merge(Get(x, y));
+
+            Vector3Int[] positions;
+            for (var i = 1; i < 10; i++)
+            {
+                positions = Get(x - i, y + i);
+                if(positions != null)
+                    diagAscendant = diagAscendant.Merge(positions);
+            }
+
+            for (var i = 1; i < 10; i++)
+            {
+                positions = Get(x + i, y - i);
+                if(positions != null)
+                    diagAscendant = diagAscendant.Merge(positions);
+            }
 
             return diagAscendant;
         }

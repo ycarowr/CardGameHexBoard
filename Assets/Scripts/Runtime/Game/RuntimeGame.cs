@@ -52,7 +52,7 @@ namespace HexCardGame.Runtime.Game
             Board = new Board<CreatureElement>(args.GameParameters, Dispatcher);
 
             //Create Board Manipulation
-            BoardManipulation = new BoardManipulationDoubleHeight<CreatureElement>(Board);
+            BoardManipulation = new BoardManipulationOddR<CreatureElement>(Board);
 
             //Create Pool
             Pool = new Pool<CardPool>(args.GameParameters, Dispatcher);
