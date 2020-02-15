@@ -1,120 +1,137 @@
-﻿using HexCardGame.Runtime.GameBoard;
+﻿
+using HexCardGame.SharedData;
+using Tools.Extensions.Arrays;
 using UnityEngine;
 
-namespace HexCardGame.Runtime
+namespace HexBoardGame.Runtime
 {
-    public class BoardManipulationOddR<T> : IBoardManipulation<T> where T : class
+    /// <summary>
+    ///     The way to manipulate a board in the Odd-Row layout.
+    /// </summary>
+    public class BoardManipulationOddR : IBoardManipulation
     {
-        readonly Vector3Int[][] _oddrDirections;
-
-        public BoardManipulationOddR(IBoard<T> board)
+        static readonly Hex[] NeighboursDirections =
         {
-            Board = board;
-            _oddrDirections = new Vector3Int[2][];
-            _oddrDirections[0] = new[]
+            new Hex(1, 0), new Hex(1, -1), new Hex(0, -1),
+            new Hex(-1, 0), new Hex(-1, 1), new Hex(0, 1)
+        };
+
+        readonly Hex[] _hexPoints;
+
+        public BoardManipulationOddR(BoardData dataShape) => _hexPoints = dataShape.GetHexPoints();
+
+        public Vector3Int[] GetNeighbours(Vector3Int cell)
+        {
+            var point = ConvertHexCoordinate(cell);
+            var center = GetIfExistsOrEmpty(point);
+            var neighbours = new Hex[] { };
+            foreach (var direction in NeighboursDirections)
             {
-                new Vector3Int(+1, 0, 0),
-                new Vector3Int(0, -1, 0),
-                new Vector3Int(-1, -1, 0),
-                new Vector3Int(-1, 0, 0),
-                new Vector3Int(-1, +1, 0),
-                new Vector3Int(0, +1, 0)
-            };
-            _oddrDirections[1] = new[]
-            {
-                new Vector3Int(+1, 0, 0),
-                new Vector3Int(+1, -1, 0),
-                new Vector3Int(0, -1, 0),
-                new Vector3Int(-1, 0, 0),
-                new Vector3Int(0, +1, 0),
-                new Vector3Int(+1, +1, 0)
-            };
-        }
-
-        IBoard<T> Board { get; }
-
-        public Vector3Int[] GetNeighbours(int x, int y)
-        {
-            var parity = y & 1;
-            var currentDirection = _oddrDirections[parity];
-            var neighbors = new Vector3Int[] { };
-            foreach (var direction in currentDirection)
-                neighbors = neighbors.Merge(Get(direction.x + x, direction.y + y));
-            return neighbors;
-        }
-
-        public Vector3Int[] Get(int x, int y) => new[] {new Vector3Int(x, y, 0)};
-        public Vector3Int[] GetVertical(Vector3Int direction) => GetVertical(direction, 10);
-
-        public Vector3Int[] GetHorizontal(Vector3Int direction) => new Vector3Int[1];
-        public Vector3Int[] GetDiagonalAscendant(Vector3Int direction) => GetAllDiagonalAscendant(direction, 10);
-        public Vector3Int[] GetDiagonalDescendent(Vector3Int direction) => GetAllDiagonalDescendant(direction, 10);
-
-
-        #region Sequence
-
-        public Vector3Int[] GetVertical(Vector3Int direction, int n)
-        {
-            var vertical = new Vector3Int[n];
-//            if (n > 0)
-//            {
-//                for (var i = 0; i <= n; i++)
-//                    vertical = vertical.Merge(Get(x + i, y));
-//            }
-//            else
-//            {
-//                for (var i = 0; i <= -n; i++)
-//                    vertical = vertical.Merge(Get(x - i, y));
-//            }
-
-            return vertical;
-        }
-
-        public Vector3Int[] GetAllDiagonalDescendant(Vector3Int direction, int n)
-        {
-            var diagDescendant = new Vector3Int[n];
-
-//            if (n > 0)
-//            {
-//                var max = Mathf.Min(n, MaxX);
-//                for (var i = 1; i <= max; i++)
-//                    diagDescendant = diagDescendant.Merge(Get(x - i, y + i));
-//            }
-//            else
-//            {
-//                var max = Mathf.Min(x - n, MaxX);
-//                for (var i = 0; i < max; i++)
-//                    diagDescendant = diagDescendant.Merge(Get(x + i, y - i));
-//            }
-
-            return diagDescendant;
-        }
-
-        public Vector3Int[] GetAllDiagonalAscendant(Vector3Int position, int n)
-        {
-            var diagAscendant = new Vector3Int[n];
-            var x = position.x;
-            var y = position.y;
-
-            diagAscendant = diagAscendant.Merge(Get(x, y));
-
-            Vector3Int[] positions;
-            for (var i = 1; i < 10; i++)
-            {
-                positions = Get(x - i, y + i);
-                if(positions != null)
-                    diagAscendant = diagAscendant.Merge(positions);
+                var neighbour = Hex.Add(center[0], direction);
+                var array = new[] {neighbour};
+                neighbours = neighbours.Append(array);
             }
-
-            for (var i = 1; i < 10; i++)
-            {
-                positions = Get(x + i, y - i);
-                if(positions != null)
-                    diagAscendant = diagAscendant.Merge(positions);
-            }
-
-            return diagAscendant;
+            
+            return ConvertGroup(neighbours);
         }
+
+        /// <summary>
+        ///     If the point is present among the starting configuration returns it. Otherwise returns a empty array.
+        /// </summary>
+        Hex[] GetIfExistsOrEmpty(Hex hex)
+        {
+            foreach (var i in _hexPoints)
+                if (i == hex)
+                    return new[] {i};
+
+            return new Hex[] { };
+        }
+
+        #region Operations
+
+        public bool Contains(Vector3Int cell)
+        {
+            var center = ConvertHexCoordinate(cell);
+            return GetIfExistsOrEmpty(center).Length > 0;
+        }
+
+        public Vector3Int[] GetVertical(Vector3Int cell, int length) => new Vector3Int[] { };
+
+        public Vector3Int[] GetHorizontal(Vector3Int cell, int length)
+        {
+            var center = ConvertHexCoordinate(cell);
+            var halfLength = length / 2;
+            var points = GetIfExistsOrEmpty(center);
+            var x = center.q;
+            var y = center.r;
+
+            for (var i = 1; i <= halfLength; i++)
+                points = points.Append(GetIfExistsOrEmpty(new Hex(x + i, y)));
+
+            for (var i = -1; i >= -halfLength; i--)
+                points = points.Append(GetIfExistsOrEmpty(new Hex(x + i, y)));
+            
+            return ConvertGroup(points);
+        }
+
+        public Vector3Int[] GetDiagonalAscendant(Vector3Int cell, int length)
+        {
+            var center = ConvertHexCoordinate(cell);
+            var halfLength = length / 2;
+            var points = GetIfExistsOrEmpty(center);
+            var x = center.q;
+            var y = center.r;
+
+            for (var i = 1; i <= halfLength; i++)
+                points = points.Append(GetIfExistsOrEmpty(new Hex(x, y + i)));
+
+            for (var i = -1; i >= -halfLength; i--)
+                points = points.Append(GetIfExistsOrEmpty(new Hex(x, y + i)));
+
+            return ConvertGroup(points);
+        }
+
+        public Vector3Int[] GetDiagonalDescendant(Vector3Int cell, int length)
+        {
+            var center = ConvertHexCoordinate(cell);
+            var halfLength = length / 2;
+            var points = GetIfExistsOrEmpty(center);
+            var x = center.q;
+            var y = center.r;
+
+            for (var i = 1; i <= halfLength; i++)
+                points = points.Append(GetIfExistsOrEmpty(new Hex(x - i, y + i)));
+
+            for (var i = -1; i >= -halfLength; i--)
+                points = points.Append(GetIfExistsOrEmpty(new Hex(x - i, y + i)));
+
+            return ConvertGroup(points);
+        }
+
+        public static Hex[] ConvertGroup(params Vector3Int[] input)
+        {
+            var output = new Hex[input.Length];
+            for (var i = 0; i < input.Length; i++) 
+                output[i] = ConvertHexCoordinate(input[i]);
+            return output;
+        }
+        
+        public static Vector3Int[] ConvertGroup(params Hex[] input)
+        {
+            var output = new Vector3Int[input.Length];
+            for (var i = 0; i < input.Length; i++) 
+                output[i] = ConvertCellCoordinate(input[i]);
+            
+            input.Print(" Input: ---------------------- ");
+            output.Print(" Output: ---------------------- ");
+            return output;
+        }
+
+        public static Hex ConvertHexCoordinate(Vector3Int cell) =>
+            OffsetCoordHelper.RoffsetToCube(OffsetCoord.Parity.Odd, new OffsetCoord(cell.x, cell.y));
+
+        public static Vector3Int ConvertCellCoordinate(Hex hex) =>
+            OffsetCoordHelper.RoffsetFromCube(OffsetCoord.Parity.Odd, hex).ToVector3Int();
 
         #endregion
     }

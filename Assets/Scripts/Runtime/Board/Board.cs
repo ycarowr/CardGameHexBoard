@@ -1,4 +1,6 @@
+using HexBoardGame.Runtime;
 using HexCardGame.SharedData;
+using Tools.Extensions.Arrays;
 using Tools.Patterns.Observer;
 using UnityEngine;
 
@@ -34,14 +36,20 @@ namespace HexCardGame.Runtime.GameBoard
 
         public void GeneratePositions()
         {
-            var positions = Data.GetHexPositions();
-            Positions = new Position<T>[positions.Length];
-            for (var index = 0; index < positions.Length; index++)
+            var hexPoints = Data.GetHexPoints();
+            var cellPoints = BoardManipulationOddR.ConvertGroup(hexPoints);
+            cellPoints.Print("CellPoints: ");
+            Positions = new Position<T>[cellPoints.Length];
+            for (var index = 0; index < cellPoints.Length; index++)
             {
-                var i = positions[index];
+                var i = cellPoints[index];
                 Positions[index] = new Position<T>(i);
             }
 
+            foreach (var i in Positions)
+            {
+                Debug.Log("Generated position: "+ i.Cell);
+            }
             OnCreateBoard();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HexBoardGame.Runtime;
 using HexCardGame.Runtime;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace HexCardGame.SharedData
 {
     public abstract class BoardData : ScriptableObject
     {
-        public abstract Hex[] GetHexPositions();
+        public abstract Hex[] GetHexPoints();
     }
 
     [CreateAssetMenu(menuName = "Data/BoardData", fileName = "HexagonalBoardData")]
@@ -14,23 +15,18 @@ namespace HexCardGame.SharedData
     {
         [Range(1, 10)] public int radius;
         
-        public override Hex[] GetHexPositions()
+        public override Hex[] GetHexPoints()
         {
-            var positions = new List<Hex>();
-            // radius = 1
-            // -1, 0, 1
-            //
-            
-//           positions.Add(new Hex(-1, -1));
+            var points = new List<Hex>();
             for (var x = -radius; x <= radius; x++)
             {
-                var yMin = Mathf.Max(-radius, -x -radius);//-1
-                var yMax = Mathf.Min(radius, -x +radius); // 1
-                for (var y = yMin; y <= yMax; y++) 
-                    positions.Add(new Hex(x, y));
+                var yMin = Mathf.Max(-radius, -x - radius);
+                var yMax = Mathf.Min(radius, -x + radius);
+                for (var y = yMin; y <= yMax; y++)
+                    points.Add(new Hex(x, y));
             }
 
-            return positions.ToArray();
+            return points.ToArray();
         }
     }
 }

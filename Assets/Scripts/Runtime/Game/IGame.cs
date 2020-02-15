@@ -1,4 +1,5 @@
-﻿using HexCardGame.Runtime.GameBoard;
+﻿using HexBoardGame.Runtime;
+using HexCardGame.Runtime.GameBoard;
 using HexCardGame.Runtime.GamePool;
 using HexCardGame.Runtime.GameScore;
 using HexCardGame.Runtime.GameTurn;
@@ -33,7 +34,7 @@ namespace HexCardGame.Runtime.Game
         ILibrary Library { get; }
         IPool<CardPool> Pool { get; }
         IBoard<CreatureElement> Board { get; }
-        IBoardManipulation<CreatureElement> BoardManipulation { get; }
+        IBoardManipulation BoardManipulation { get; }
         void ExecuteAiTurn(PlayerId id);
         void ForceWin(PlayerId id);
     }

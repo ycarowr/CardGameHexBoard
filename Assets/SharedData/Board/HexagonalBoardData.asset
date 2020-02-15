@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ea14141a5c1f0448fac525d75d517e, type: 3}
   m_Name: HexagonalBoardData
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 2

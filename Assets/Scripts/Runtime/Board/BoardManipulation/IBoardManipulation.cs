@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
 
-namespace HexCardGame.Runtime
+namespace HexBoardGame.Runtime
 {
-    public interface IBoardManipulation<T> where T : class
+    /// <summary>
+    ///     Interface that manipulates a board shape.
+    /// </summary>
+    public interface IBoardManipulation
     {
-        Vector3Int[] GetNeighbours(int x, int y);
-//        Vector3Int[] Get(int x, int y);
-//        Vector3Int[] GetVertical(int x, int y);
-//        Vector3Int[] GetHorizontal(int x, int y);
-        Vector3Int[] GetAllDiagonalAscendant(Vector3Int position, int n);
-//        Vector3Int[] GetDiagonalDescendent(int x, int y);
+        bool Contains(Vector3Int cell);
+        Vector3Int[] GetNeighbours(Vector3Int cell);
+        Vector3Int[] GetVertical(Vector3Int cell, int length);
+        Vector3Int[] GetHorizontal(Vector3Int cell, int length);
+        Vector3Int[] GetDiagonalAscendant(Vector3Int cell, int length);
+        Vector3Int[] GetDiagonalDescendant(Vector3Int cell, int length);
+
+        //TODO:
+        //1. Range
+        //2. Path finding
+        //3. More useful methods...
     }
 }

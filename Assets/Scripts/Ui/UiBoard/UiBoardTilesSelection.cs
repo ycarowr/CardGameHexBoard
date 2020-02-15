@@ -1,4 +1,5 @@
 ﻿using Game.Ui;
+using HexBoardGame.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,7 +37,7 @@ namespace HexCardGame.UI
 
         void OnPressNeighbours()
         {
-            var selection = GameData.CurrentGameInstance.BoardManipulation.GetNeighbours(Selection.x, Selection.y);
+            var selection = GameData.CurrentGameInstance.BoardManipulation.GetNeighbours(Selection);
             boardHighlight.Show(selection);
             Hide();
         }
@@ -44,7 +45,7 @@ namespace HexCardGame.UI
         void OnPressDiagonalAsc()
         {
             
-            var selection = GameData.CurrentGameInstance.BoardManipulation.GetAllDiagonalAscendant(Selection, 10);
+            var selection = GameData.CurrentGameInstance.BoardManipulation.GetDiagonalAscendant(Selection, 10);
             boardHighlight.Show(selection);
             Hide();
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HexBoardGame.Runtime;
 using HexCardGame.Runtime.GameBoard;
 using HexCardGame.Runtime.GamePool;
 using HexCardGame.Runtime.GameScore;
@@ -52,7 +53,7 @@ namespace HexCardGame.Runtime.Game
             Board = new Board<CreatureElement>(args.GameParameters, Dispatcher);
 
             //Create Board Manipulation
-            BoardManipulation = new BoardManipulationOddR<CreatureElement>(Board);
+            BoardManipulation = new BoardManipulationOddR(args.GameParameters.BoardData);
 
             //Create Pool
             Pool = new Pool<CardPool>(args.GameParameters, Dispatcher);

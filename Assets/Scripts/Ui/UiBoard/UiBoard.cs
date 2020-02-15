@@ -30,9 +30,10 @@ namespace HexCardGame.UI
         {
             foreach (var i in CurrentBoard.Positions)
             {
-                var cell = new Vector3Int(i.x, i.y, 0);
+                var cell = i.Cell;
+                Debug.Log("Create Cell For: "+ cell);
                 TileMap.SetTile(cell, test);
-                TileMap.CellToWorld(i);
+                TileMap.CellToWorld(i.Cell);
             }
         }
     }

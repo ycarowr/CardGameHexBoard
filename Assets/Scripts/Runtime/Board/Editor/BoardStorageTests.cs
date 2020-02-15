@@ -27,13 +27,13 @@ namespace HexCardGame.Runtime.Test
             for (var i = 0; i < positions.Length; i++)
             {
                 var position = positions[i];
-                _board.AddDataAt(testSample[i], position);
+                _board.AddDataAt(testSample[i], position.Cell);
             }
 
             for (var i = 0; i < positions.Length; i++)
             {
                 var data1 = testSample[i];
-                var data2 = _board.GetDataFrom(positions[i]);
+                var data2 = _board.GetDataFrom(positions[i].Cell);
                 Assert.IsTrue(data1 == data2);
             }
         }
@@ -49,11 +49,11 @@ namespace HexCardGame.Runtime.Test
             for (var i = 0; i < positions.Length; i++)
             {
                 var position = positions[i];
-                _board.AddDataAt(testSample[i], position);
+                _board.AddDataAt(testSample[i], position.Cell);
             }
 
             foreach (var i in positions)
-                Assert.IsTrue(_board.HasDataAt(i));
+                Assert.IsTrue(_board.HasDataAt(i.Cell));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace HexCardGame.Runtime.Test
             for (var i = 0; i < positions.Length; i++)
             {
                 var position = positions[i];
-                _board.AddDataAt(testSample[i], position);
+                _board.AddDataAt(testSample[i], position.Cell);
             }
 
             foreach (var i in testSample)
@@ -85,14 +85,15 @@ namespace HexCardGame.Runtime.Test
             for (var i = 0; i < positions.Length; i++)
             {
                 var position = positions[i];
-                _board.AddDataAt(testSample[i], position);
+                _board.AddDataAt(testSample[i], position.Cell);
             }
 
             foreach (var i in positions)
             {
-                _board.RemoveDataAt(i);
-                Assert.IsTrue(_board.GetDataFrom(i) == null);
-                Assert.IsFalse(_board.HasDataAt(i));
+                var cell = i.Cell;
+                _board.RemoveDataAt(cell);
+                Assert.IsTrue(_board.GetDataFrom(cell) == null);
+                Assert.IsFalse(_board.HasDataAt(cell));
             }
         }
 
@@ -107,17 +108,17 @@ namespace HexCardGame.Runtime.Test
             for (var i = 0; i < positions.Length; i++)
             {
                 var position = positions[i];
-                _board.AddDataAt(testSample[i], position);
+                _board.AddDataAt(testSample[i], position.Cell);
             }
 
             for (var i = 0; i < positions.Length; i++)
             {
                 var data1 = testSample[i];
                 _board.RemoveData(data1);
-                var data2 = _board.GetDataFrom(positions[i]);
+                var data2 = _board.GetDataFrom(positions[i].Cell);
                 Assert.IsTrue(data2 == null);
                 Assert.IsFalse(_board.HasData(data1));
-                Assert.IsFalse(_board.HasDataAt(positions[i]));
+                Assert.IsFalse(_board.HasDataAt(positions[i].Cell));
             }
         }
 

@@ -32,7 +32,7 @@ namespace Game.Ui
             for (var i = 0; i < CurrentBoard.Positions.Length; i++)
             {
                 var p = CurrentBoard.Positions[i];
-                var worldPosition = tileMap.CellToWorld(p);
+                var worldPosition = tileMap.CellToWorld(p.Cell);
                 var gameObj = Instantiate(textPosition, worldPosition, identity, transform);
                 positions[i] = gameObj;
                 var tmpText = gameObj.GetComponent<TMP_Text>();
@@ -62,9 +62,9 @@ namespace Game.Ui
 
         void OnDrawGizmos()
         {
-            foreach (var i in data.GetHexPositions())
+            foreach (var i in data.GetHexPoints())
             {
-                var cell = new Vector3Int(i.x, i.y, 0);
+                var cell = new Vector3Int(i.q, i.r, 0);
                 var position = tileMap.CellToWorld(cell);
                 Gizmos.DrawWireSphere(position, 0.93f);
             }

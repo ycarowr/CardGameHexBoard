@@ -19,7 +19,7 @@ namespace HexCardGame.UI
         {
             foreach (var p in board.Positions)
             {
-                var worldPosition = TileMap.CellToWorld(p);
+                var worldPosition = TileMap.CellToWorld(p.Cell);
                 var highlight = Instantiate(highlightTiles, worldPosition, Quaternion.identity, transform)
                     .GetComponent<UiHoverParticleSystem>();
                 var v3IntPosition = new Vector3Int(p.x, p.y, 0);

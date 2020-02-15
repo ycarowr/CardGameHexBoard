@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HexBoardGame.Runtime;
 using HexCardGame.Runtime;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace HexCardGame.SharedData
         [Range(1, 10)] public int width;
         [Range(1, 10)] public int height;
         
-        public override Hex[] GetHexPositions()
+        public override Hex[] GetHexPoints()
         {
             var positions = new List<Hex>();
             for (var y = 0; y < height; y++) {
