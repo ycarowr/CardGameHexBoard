@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7751272535449049185}
   - component: {fileID: 7751272535449049184}
   m_Layer: 0
-  m_Name: ObjectPooler
+  m_Name: UiObjectPooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,4 +48,5 @@ MonoBehaviour:
   models:
   - {fileID: 3245573509686006908, guid: da89c93580533da4abe22dd655a7d0ca, type: 3}
   - {fileID: 1470495017282984859, guid: 5b4853904160e3a47acfc40a6e3e4e35, type: 3}
+  - {fileID: 3847668249280665039, guid: 5c068ad23536b5d4f9d1922f6c1e5b08, type: 3}
   startSize: 10

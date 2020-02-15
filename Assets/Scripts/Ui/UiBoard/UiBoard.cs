@@ -31,7 +31,6 @@ namespace HexCardGame.UI
             foreach (var i in CurrentBoard.Positions)
             {
                 var cell = i.Cell;
-                Debug.Log("Create Cell For: "+ cell);
                 TileMap.SetTile(cell, test);
                 TileMap.CellToWorld(i.Cell);
             }

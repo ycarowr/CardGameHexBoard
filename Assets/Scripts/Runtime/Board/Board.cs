@@ -38,17 +38,11 @@ namespace HexCardGame.Runtime.GameBoard
         {
             var hexPoints = Data.GetHexPoints();
             var cellPoints = BoardManipulationOddR.ConvertGroup(hexPoints);
-            cellPoints.Print("CellPoints: ");
             Positions = new Position<T>[cellPoints.Length];
             for (var index = 0; index < cellPoints.Length; index++)
             {
                 var i = cellPoints[index];
                 Positions[index] = new Position<T>(i);
-            }
-
-            foreach (var i in Positions)
-            {
-                Debug.Log("Generated position: "+ i.Cell);
             }
             OnCreateBoard();
         }

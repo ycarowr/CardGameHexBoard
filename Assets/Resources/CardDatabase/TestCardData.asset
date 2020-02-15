@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ed267aecb8c0542aaaa9d9532d64d1, type: 3}
   m_Name: TestCardData
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: f71a29827c16c7546a41690b20dcb93d, type: 3}
+  artwork: {fileID: 21300000, guid: 20455dcba2870e24eb931aa4570255c7, type: 3}
   cost: 1
   description: This is a test card.
   id: 0
   nameCard: TestCard
   score: 4
   stringId: TestCard
-  tile: {fileID: 11400000, guid: e20a910fd4f9eb04aaf66f82bdfc9a1f, type: 2}
+  tile: {fileID: 0}

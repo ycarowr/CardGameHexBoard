@@ -122,8 +122,6 @@ namespace HexBoardGame.Runtime
             for (var i = 0; i < input.Length; i++) 
                 output[i] = ConvertCellCoordinate(input[i]);
             
-            input.Print(" Input: ---------------------- ");
-            output.Print(" Output: ---------------------- ");
             return output;
         }
 
