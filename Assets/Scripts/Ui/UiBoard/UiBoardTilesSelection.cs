@@ -13,6 +13,7 @@ namespace HexCardGame.UI
         [SerializeField] RectTransform menu;
         [SerializeField] Button neighboursButton;
         [SerializeField] Button diagonalAscButton;
+        [SerializeField] Button diagonalDesButton;
 
         Vector3Int Selection { get; set; }
 
@@ -32,6 +33,14 @@ namespace HexCardGame.UI
             hideButton.onClick.AddListener(Hide);
             neighboursButton.onClick.AddListener(OnPressNeighbours);
             diagonalAscButton.onClick.AddListener(OnPressDiagonalAsc);
+            diagonalDesButton.onClick.AddListener(OnPressDiagonalDes);
+            Hide();
+        }
+
+        void OnPressDiagonalDes()
+        {
+            var selection = GameData.CurrentGameInstance.BoardManipulation.GetDiagonalDescendant(Selection, 10);
+            boardHighlight.Show(selection);
             Hide();
         }
 
