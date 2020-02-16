@@ -1,4 +1,5 @@
-﻿using Game.Ui;
+﻿using System.Collections.Generic;
+using Game.Ui;
 using HexCardGame.Runtime;
 using HexCardGame.Runtime.Game;
 using HexCardGame.SharedData;
@@ -9,6 +10,7 @@ namespace HexCardGame.UI
 {
     public class UiBoardElements : UiEventListener, ICreateBoardElement, IRestartGame
     {
+        readonly HashSet<GameObject> _boardElements = new HashSet<GameObject>();
         [SerializeField] GameObject boardElementPrefab;
         Tilemap TileMap { get; set; }
         protected override void Awake()
@@ -26,6 +28,7 @@ namespace HexCardGame.UI
         void CreateElement(CreatureElement creatureElement, ICardData data, Vector3Int cell)
         {
             var element = ObjectPooler.Instance.Get(boardElementPrefab);
+            _boardElements.Add(element);
             var elementTransform = element.transform;
             var boardElement = element.GetComponent<UiBoardElement>();
             elementTransform.SetParent(transform);
@@ -33,7 +36,12 @@ namespace HexCardGame.UI
             boardElement.SetElement(creatureElement);
         }
 
-        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
-
+        void IRestartGame.OnRestart()
+        {
+            foreach (var element in _boardElements) 
+                ObjectPooler.Instance.Release(element);
+            _boardElements.Clear();
+            TileMap.ClearAllTiles();
+        }
     }
 }
