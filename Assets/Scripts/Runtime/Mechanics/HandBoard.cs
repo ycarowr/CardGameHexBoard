@@ -36,6 +36,10 @@ namespace HexCardGame.Runtime.Game
             if (!hasEnoughActionPoints)
                 return;
 
+            var isPositionBusy = Game.Board.GetPosition(position).HasData;
+            if (isPositionBusy)
+                return;
+
             inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             inventory.RemoveItem(Inventory.GoldItem, cost);
             hand.Remove(card);
