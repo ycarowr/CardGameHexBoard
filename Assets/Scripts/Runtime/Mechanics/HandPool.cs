@@ -34,11 +34,13 @@ namespace HexCardGame.Runtime.Game
             var isMyTurn = Game.TurnLogic.IsMyTurn(playerId);
             if (!isMyTurn)
                 return;
-
+            var hand = GetPlayerHand(playerId);
+            var handSize = hand.Cards.Count;
+            if (handSize >= hand.MaxHandSize)
+                return;
             var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);
             var data = poolCard.Data;
             var cardHand = new CardHand(data);
-            var hand = GetPlayerHand(playerId);
             var actionPoints = Parameters.Amounts.ActionPointsConsume;
             var inventory = GetInventory(playerId);
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;

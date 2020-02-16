@@ -31,6 +31,7 @@
             Game.IsTurnInProgress = true;
             Game.FreeDrawCardFromLibrary(playerId);
             inventory.AddItem(Inventory.ActionPointItem, Parameters.Amounts.ActionPointsPerTurn);
+            inventory.AddItem(Inventory.GoldItem, Parameters.Amounts.GoldPerTurn);
             OnStartedCurrentPlayerTurn(Game.TurnLogic.CurrentPlayer);
         }
 

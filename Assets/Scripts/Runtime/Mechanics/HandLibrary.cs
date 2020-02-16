@@ -17,9 +17,13 @@
             if (!Game.IsGameStarted)
                 return;
 
+            var hand = GetPlayerHand(playerId);
+            var handSize = hand.Cards.Count;
+            if (handSize >= hand.MaxHandSize)
+                return;
+            
             var data = Game.Library.GetRandomData();
             var card = new CardHand(data);
-            var hand = GetPlayerHand(playerId);
             hand.Add(card);
             OnDrawCard(playerId, card);
         }
@@ -28,10 +32,13 @@
         {
             if (!Game.IsGameStarted)
                 return;
+            var hand = GetPlayerHand(playerId);
+            var handSize = hand.Cards.Count;
+            if(handSize >= hand.MaxHandSize)
+                return;
 
             var data = Game.Library.GetRandomData();
             var card = new CardHand(data);
-            var hand = GetPlayerHand(playerId);
             var actionPoints = Parameters.Amounts.ActionPointsConsume;
             var inventory = GetInventory(playerId);
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
