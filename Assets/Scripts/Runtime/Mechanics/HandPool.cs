@@ -38,15 +38,15 @@ namespace HexCardGame.Runtime.Game
             var handSize = hand.Cards.Count;
             if (handSize >= hand.MaxHandSize)
                 return;
-            var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);
-            var data = poolCard.Data;
-            var cardHand = new CardHand(data);
-            var actionPoints = Parameters.Amounts.ActionPointsConsume;
             var inventory = GetInventory(playerId);
+            var actionPoints = Parameters.Amounts.ActionPointsConsume;
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
             if (!hasEnoughActionPoints)
                 return;
-
+            
+            var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);
+            var data = poolCard.Data;
+            var cardHand = new CardHand(data);
             inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             hand.Add(cardHand);
             OnPickCard(playerId, cardHand, positionId);
