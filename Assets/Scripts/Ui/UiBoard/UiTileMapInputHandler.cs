@@ -16,13 +16,13 @@ namespace HexCardGame.UI
     [Event]
     public interface IOnClickTile
     {
-        void OnClickTile(Vector3Int position);
+        void OnClickTile(Vector3Int cell);
     }
 
     [Event]
     public interface IOnRightClickTile
     {
-        void OnRightClickTile(Vector3Int position, Vector2 screenPosition);
+        void OnRightClickTile(Vector3Int cell, Vector2 screenPosition);
     }
 
     [RequireComponent(typeof(IMouseInput)), RequireComponent(typeof(Tilemap)),
@@ -43,16 +43,15 @@ namespace HexCardGame.UI
             if (IsLocked)
                 return;
             var screenPosition = eventData.position;
-            var worldPosition = ScreenToWorldPosition(eventData.position);
-            var boardPosition = TileMap.WorldToCell(worldPosition);
+            var cell = ConvertPixelToCell(screenPosition);
 
             switch (eventData.button)
             {
                 case PointerEventData.InputButton.Left:
-                    Dispatcher.Notify<IOnClickTile>(i => i.OnClickTile(boardPosition));
+                    Dispatcher.Notify<IOnClickTile>(i => i.OnClickTile(cell));
                     break;
                 case PointerEventData.InputButton.Right:
-                    Dispatcher.Notify<IOnRightClickTile>(i => i.OnRightClickTile(boardPosition, screenPosition));
+                    Dispatcher.Notify<IOnRightClickTile>(i => i.OnRightClickTile(cell, screenPosition));
                     break;
             }
         }
@@ -66,6 +65,11 @@ namespace HexCardGame.UI
             Input.OnPointerClick += OnPointerClick;
         }
 
-        Vector3 ScreenToWorldPosition(Vector3 point) => Camera.ScreenToWorldPoint(point);
+        Vector3Int ConvertPixelToCell(Vector2 screenPoint)
+        {
+            var worldPosition = Camera.ScreenToWorldPoint(screenPoint);
+            var cell = TileMap.WorldToCell(worldPosition);
+            return cell;
+        }
     }
 }

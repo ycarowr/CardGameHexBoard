@@ -4797,6 +4797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7189f3cea072f3849aedce3ba3cbc9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {fileID: 11400000, guid: d7e729f05df6fc14e99e0469edd9fbe9, type: 2}
   particles:
   - {fileID: 4918264174273478979}
   renderers:

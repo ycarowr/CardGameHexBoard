@@ -7,6 +7,7 @@ namespace HexCardGame.UI
 {
     public class UiBoardTilesSelection : UiEventListener, IOnRightClickTile
     {
+        [SerializeField] Canvas canvas;
         [SerializeField] UiBoardHightlight boardHighlight;
         [SerializeField] GameObject content;
         [SerializeField] Button hideButton;
@@ -17,13 +18,18 @@ namespace HexCardGame.UI
 
         Vector3Int Selection { get; set; }
 
-        void IOnRightClickTile.OnRightClickTile(Vector3Int position, Vector2 screenPosition)
+        void IOnRightClickTile.OnRightClickTile(Vector3Int cell, Vector2 screenPoint)
         {
-            var rect = menu.rect;
-            var offsetX = rect.size.x / 2;
-            var offsetY = -rect.size.y / 2;
-            menu.anchoredPosition = screenPosition + new Vector2(offsetX, offsetY);
-            Selection = position;
+            var referenceResolution = canvas.GetComponent<CanvasScaler>().referenceResolution;
+            var currentResolution = new Vector2(Screen.width, Screen.height);
+            var factorResolution = currentResolution / referenceResolution;
+            var rectSize = menu.rect.size;
+            var offsetX = rectSize.x / 2;
+            var offsetY = -rectSize.y / 2;
+            //TODO (Bug):
+            //Demands Full HD resolution or any equivalent aspect ratio (1.77), otherwise the placement is done in a wrong way.
+            menu.anchoredPosition = screenPoint / factorResolution + new Vector2(offsetX, offsetY);
+            Selection = cell;
             Show();
         }
 

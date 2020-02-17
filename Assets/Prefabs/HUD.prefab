@@ -3544,6 +3544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9128478918517563746}
     m_Modifications:
+    - target: {fileID: 2260277248989696971, guid: a09b3d6bc212b2f4fba9954cc92fd696,
+        type: 3}
+      propertyPath: m_Name
+      value: UiBoardTilesSelection
+      objectReference: {fileID: 0}
     - target: {fileID: 2260277248989696972, guid: a09b3d6bc212b2f4fba9954cc92fd696,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3649,11 +3654,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2260277248989696971, guid: a09b3d6bc212b2f4fba9954cc92fd696,
+    - target: {fileID: 2260277248989696973, guid: a09b3d6bc212b2f4fba9954cc92fd696,
         type: 3}
-      propertyPath: m_Name
-      value: UiBoardTilesSelection
-      objectReference: {fileID: 0}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 9128478918517563747}
     - target: {fileID: 2260277248989696973, guid: a09b3d6bc212b2f4fba9954cc92fd696,
         type: 3}
       propertyPath: menu

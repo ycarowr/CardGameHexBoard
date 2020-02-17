@@ -16,8 +16,8 @@ MonoBehaviour:
   Amounts:
     ActionPointsConsume: 1
     ActionPointsPerTurn: 2
-    GoldPerTurn: 1
-    MaxHandSize: 5
+    GoldPerTurn: 2
+    MaxHandSize: 10
     StartingGold: 2
     StartingHandCount: 3
   Timers:

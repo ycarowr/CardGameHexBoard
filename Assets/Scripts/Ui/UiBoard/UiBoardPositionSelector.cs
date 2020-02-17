@@ -15,10 +15,10 @@ namespace HexCardGame.UI
     {
         [SerializeField] UiCardHandSelector cardHandSelector;
 
-        void IOnClickTile.OnClickTile(Vector3Int position)
+        void IOnClickTile.OnClickTile(Vector3Int cell)
         {
             if (IsLocked) return;
-            Dispatcher.Notify<ISelectBoardPosition>(i => i.OnSelectBoardPosition(position));
+            Dispatcher.Notify<ISelectBoardPosition>(i => i.OnSelectBoardPosition(cell));
         }
 
         public bool IsLocked { get; private set; }

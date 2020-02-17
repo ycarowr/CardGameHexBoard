@@ -979,6 +979,18 @@ PrefabInstance:
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[8].time
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8355432901985242553, guid: 8dd8fca628ba39c4d9a340845db94289,
+        type: 3}
+      propertyPath: colorPalette
+      value: 
+      objectReference: {fileID: 11400000, guid: d7e729f05df6fc14e99e0469edd9fbe9,
+        type: 2}
+    - target: {fileID: 8355432901985242553, guid: 8dd8fca628ba39c4d9a340845db94289,
+        type: 3}
+      propertyPath: color
+      value: 
+      objectReference: {fileID: 11400000, guid: dc281d6b627cea942ad2c870e5e9962c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dd8fca628ba39c4d9a340845db94289, type: 3}
 --- !u!4 &1707589948974063728 stripped
