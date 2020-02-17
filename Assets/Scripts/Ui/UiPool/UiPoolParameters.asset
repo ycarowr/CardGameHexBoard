@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locked: {r: 1, g: 1, b: 1, a: 0.39215687}
   poolMovementSpeed: 10
-  spacingX: 0.2
-  spacingY: 0.1
+  spacingX: 0.08
+  spacingY: 0.08
   uiCardPoolTemplate: {fileID: 5464038742142501973, guid: 5b4853904160e3a47acfc40a6e3e4e35,
     type: 3}
   uiCardSize: {fileID: 11400000, guid: b8bf0ecfb0b782c49896e36c90072496, type: 2}
