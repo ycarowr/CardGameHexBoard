@@ -9,7 +9,6 @@ namespace HexCardGame
         private EventsDispatcher _dispatcher;
         private GameController _gameController;
         private GameParameters _gameParameters;
-
         [SerializeField] private PlayerEntry[] registry;
 
         private void Awake()
@@ -36,6 +35,14 @@ namespace HexCardGame
 
             throw new ArgumentException($"Player {player} is not registered");
         }
+        
+        private bool IsReady()
+        {
+            foreach (var entry in registry)
+                if (!entry.IsValid)
+                    return false;
+            return true;
+        }
 
         private void HandleSpawnPlayer()
         {
@@ -48,7 +55,8 @@ namespace HexCardGame
             var localPlayer = new Player(localPlayerNetworkId, localPlayerSeat, _gameParameters, _dispatcher);
             var remotePlayer = new Player(remotePlayerNetworkId, remotePlayerSeat, _gameParameters, _dispatcher);
 
-            _gameController.StartBattle(localPlayer, remotePlayer);
+            if(IsReady())
+                _gameController.StartBattle(localPlayer, remotePlayer);
         }
 
         [Serializable]
