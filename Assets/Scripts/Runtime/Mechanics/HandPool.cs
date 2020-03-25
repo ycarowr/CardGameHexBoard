@@ -43,7 +43,7 @@ namespace HexCardGame.Runtime.Game
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
             if (!hasEnoughActionPoints)
                 return;
-            
+
             var poolCard = Game.Pool.GetAndRemoveCardAt(positionId);
             var data = poolCard.Data;
             var cardHand = new CardHand(data);
@@ -52,8 +52,10 @@ namespace HexCardGame.Runtime.Game
             OnPickCard(seatType, cardHand, positionId);
         }
 
-        void OnPickCard(SeatType seatType, CardHand cardHand, PositionId positionId) =>
+        private void OnPickCard(SeatType seatType, CardHand cardHand, PositionId positionId)
+        {
             Dispatcher.Notify<IPickCard>(i => i.OnPickCard(seatType, cardHand, positionId));
+        }
 
         public void ReturnCard(SeatType seatType, CardHand cardHand, PositionId positionId)
         {
@@ -83,7 +85,9 @@ namespace HexCardGame.Runtime.Game
             OnReturnCard(seatType, cardHand, cardPool, positionId);
         }
 
-        void OnReturnCard(SeatType seatType, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
+        private void OnReturnCard(SeatType seatType, CardHand cardHand, CardPool cardPool, PositionId positionId)
+        {
             Dispatcher.Notify<IReturnCard>(i => i.OnReturnCard(seatType, cardHand, cardPool, positionId));
+        }
     }
 }

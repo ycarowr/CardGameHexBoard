@@ -38,7 +38,7 @@ namespace Tools.UI.Card
         /// <summary>
         ///     Event raised when add or remove a card.
         /// </summary>
-        event Action<IUiCard[]> onPileChanged = hand => { };
+        private event Action<IUiCard[]> onPileChanged = hand => { };
 
         public Action<IUiCard[]> OnPileChanged
         {
@@ -100,9 +100,15 @@ namespace Tools.UI.Card
         ///     Notify all listeners of this pile that some change has been made.
         /// </summary>
         [Button]
-        public void NotifyPileChange() => onPileChanged?.Invoke(Cards.ToArray());
+        public void NotifyPileChange()
+        {
+            onPileChanged?.Invoke(Cards.ToArray());
+        }
 
-        void Update() => NotifyPileChange();
+        private void Update()
+        {
+            NotifyPileChange();
+        }
 
         #endregion
 

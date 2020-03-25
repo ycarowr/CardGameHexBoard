@@ -16,7 +16,10 @@ namespace HexCardGame.Runtime.Test
         }
 
         [TearDown]
-        public virtual void TearDown() => Dispatcher.RemoveListener(this);
+        public virtual void TearDown()
+        {
+            Dispatcher.RemoveListener(this);
+        }
 
         [Test]
         public abstract void Create();

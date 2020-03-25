@@ -35,21 +35,21 @@ namespace HexCardGame.Runtime.Game
             OnGameStarted(Game.TurnLogic.StarterPlayer);
         }
 
-        void GetStartingGold()
+        private void GetStartingGold()
         {
             var players = Game.TurnLogic.Players;
             foreach (var p in players)
                 GetInventory(p.Seat).AddItem(Inventory.GoldItem, Parameters.Amounts.StartingGold);
         }
 
-        void DrawStartingHands()
+        private void DrawStartingHands()
         {
             foreach (var player in Game.TurnLogic.Players)
                 for (var i = 0; i < Parameters.Amounts.StartingHandCount; i++)
                     Game.FreeDrawCardFromLibrary(player.Seat);
         }
 
-        void RevealPool()
+        private void RevealPool()
         {
             var library = Game.Library;
             var pool = Game.Pool;
@@ -64,7 +64,14 @@ namespace HexCardGame.Runtime.Game
             OnRevealPool(pool);
         }
 
-        void OnRevealPool(IPool<CardPool> pool) => Dispatcher.Notify<IRevealPool>(i => i.OnRevealPool(pool));
-        void OnGameStarted(IPlayer starterPlayer) => Dispatcher.Notify<IStartGame>(i => i.OnStartGame(starterPlayer));
+        private void OnRevealPool(IPool<CardPool> pool)
+        {
+            Dispatcher.Notify<IRevealPool>(i => i.OnRevealPool(pool));
+        }
+
+        private void OnGameStarted(IPlayer starterPlayer)
+        {
+            Dispatcher.Notify<IStartGame>(i => i.OnStartGame(starterPlayer));
+        }
     }
 }

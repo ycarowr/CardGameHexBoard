@@ -1,6 +1,5 @@
 using HexBoardGame.Runtime;
 using HexCardGame.SharedData;
-using Tools.Extensions.Arrays;
 using Tools.Patterns.Observer;
 using UnityEngine;
 
@@ -30,7 +29,7 @@ namespace HexCardGame.Runtime.GameBoard
             GeneratePositions();
         }
 
-        IDispatcher Dispatcher { get; }
+        private IDispatcher Dispatcher { get; }
         public BoardData Data { get; }
         public Position<T>[] Positions { get; private set; }
 
@@ -44,11 +43,19 @@ namespace HexCardGame.Runtime.GameBoard
                 var i = cellPoints[index];
                 Positions[index] = new Position<T>(i);
             }
+
             OnCreateBoard();
         }
 
-        public bool HasPosition(int x, int y) => GetPosition(x, y) != null;
-        public Position<T> GetPosition(Vector3Int p) => GetPosition(p.x, p.y);
+        public bool HasPosition(int x, int y)
+        {
+            return GetPosition(x, y) != null;
+        }
+
+        public Position<T> GetPosition(Vector3Int p)
+        {
+            return GetPosition(p.x, p.y);
+        }
 
         public Position<T> GetPosition(int x, int y)
         {
@@ -63,8 +70,14 @@ namespace HexCardGame.Runtime.GameBoard
             return null;
         }
 
-        public void Clear() => GeneratePositions();
+        public void Clear()
+        {
+            GeneratePositions();
+        }
 
-        void OnCreateBoard() => Dispatcher.Notify<ICreateBoard<T>>(i => i.OnCreateBoard(this));
+        private void OnCreateBoard()
+        {
+            Dispatcher.Notify<ICreateBoard<T>>(i => i.OnCreateBoard(this));
+        }
     }
 }

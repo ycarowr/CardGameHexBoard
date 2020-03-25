@@ -8,8 +8,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Variables/GameEventsDispatcher")]
 public class EventsDispatcher : ObserverAtt<EventAttribute>
 {
-    const string FilePath = "Variables/GameEventsDispatcher";
-    public static EventsDispatcher Load() => Resources.Load<EventsDispatcher>(FilePath);
+    private const string FilePath = "Variables/GameEventsDispatcher";
+
+    public static EventsDispatcher Load()
+    {
+        return Resources.Load<EventsDispatcher>(FilePath);
+    }
 }
 
 [AttributeUsage(AttributeTargets.Interface, AllowMultiple = true)]

@@ -9,14 +9,21 @@ namespace HexCardGame
     public class GameData : ScriptableObject
     {
         public const string Path = "Variables/GameData";
-        IDispatcher _dispatcher;
-        [SerializeField] GameParameters gameParameters;
+        private IDispatcher _dispatcher;
+        [SerializeField] private GameParameters gameParameters;
 
         public IGame CurrentGameInstance { get; private set; }
-        public static GameData Load() => Resources.Load<GameData>(Path);
+
+        public static GameData Load()
+        {
+            return Resources.Load<GameData>(Path);
+        }
 
         /// <summary>  Clears the game data. </summary>
-        public void Clear() => CurrentGameInstance = null;
+        public void Clear()
+        {
+            CurrentGameInstance = null;
+        }
 
         public void CreateGame(IGameController controller, IPlayer localPlayer, IPlayer remotePlayer)
         {
@@ -31,7 +38,7 @@ namespace HexCardGame
             CurrentGameInstance = new RuntimeGame(turnBasedArgs);
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (_dispatcher == null)
                 _dispatcher = EventsDispatcher.Load();

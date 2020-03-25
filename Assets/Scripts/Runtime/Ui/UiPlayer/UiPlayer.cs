@@ -16,9 +16,25 @@ namespace HexCardGame.UI
     {
         public virtual SeatType Id => SeatType.Top;
         public GameData GameData { get; private set; }
-        public bool IsMyTurn() => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(Id);
-        public bool IsUser() => GameData.CurrentGameInstance.TurnLogic.IsUser();
-        public bool IsEnemy() => GameData.CurrentGameInstance.TurnLogic.IsEnemy();
-        protected virtual void Awake() => GameData = GameData.Load();
+
+        public bool IsMyTurn()
+        {
+            return GameData.CurrentGameInstance.TurnLogic.IsMyTurn(Id);
+        }
+
+        public bool IsUser()
+        {
+            return GameData.CurrentGameInstance.TurnLogic.IsUser();
+        }
+
+        public bool IsEnemy()
+        {
+            return GameData.CurrentGameInstance.TurnLogic.IsEnemy();
+        }
+
+        protected virtual void Awake()
+        {
+            GameData = GameData.Load();
+        }
     }
 }

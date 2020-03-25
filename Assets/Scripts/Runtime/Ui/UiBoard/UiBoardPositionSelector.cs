@@ -13,7 +13,7 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(ITileMapInput))]
     public class UiBoardPositionSelector : UiEventListener, IUiInputElement, IOnClickTile
     {
-        [SerializeField] UiCardHandSelector cardHandSelector;
+        [SerializeField] private UiCardHandSelector cardHandSelector;
 
         void IOnClickTile.OnClickTile(Vector3Int cell)
         {
@@ -22,8 +22,16 @@ namespace HexCardGame.UI
         }
 
         public bool IsLocked { get; private set; }
-        public void Lock() => IsLocked = true;
-        public void Unlock() => IsLocked = false;
+
+        public void Lock()
+        {
+            IsLocked = true;
+        }
+
+        public void Unlock()
+        {
+            IsLocked = false;
+        }
 
         protected override void Awake()
         {

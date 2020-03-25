@@ -13,7 +13,10 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        protected UiMotionBaseCard(IUiCard handler) => Handler = handler;
+        protected UiMotionBaseCard(IUiCard handler)
+        {
+            Handler = handler;
+        }
 
         /// <summary>
         ///     Whether the component is still operating or not.
@@ -62,7 +65,10 @@ namespace Tools.UI.Card
         /// <summary>
         ///     Ends the motion and dispatch motion ends.
         /// </summary>
-        protected virtual void OnMotionEnds() => OnFinishMotion?.Invoke();
+        protected virtual void OnMotionEnds()
+        {
+            OnFinishMotion?.Invoke();
+        }
 
         /// <summary>
         ///     Keep the motion on update.
@@ -90,7 +96,7 @@ namespace Tools.UI.Card
         /// </summary>
         /// <param name="delay"></param>
         /// <returns></returns>
-        IEnumerator AllowMotion(float delay)
+        private IEnumerator AllowMotion(float delay)
         {
             yield return new WaitForSeconds(delay);
             IsOperating = true;
@@ -100,6 +106,9 @@ namespace Tools.UI.Card
         ///     Stop the motion. It won't trigger OnFinishMotion.
         ///     TODO: Cancel the Delay Coroutine.
         /// </summary>
-        public virtual void StopMotion() => IsOperating = false;
+        public virtual void StopMotion()
+        {
+            IsOperating = false;
+        }
     }
 }

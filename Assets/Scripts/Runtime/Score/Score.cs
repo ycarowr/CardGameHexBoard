@@ -20,7 +20,7 @@ namespace HexCardGame.Runtime.GameScore
 
     public class Score : IScore
     {
-        readonly Dictionary<SeatType, int> _register = new Dictionary<SeatType, int>();
+        private readonly Dictionary<SeatType, int> _register = new Dictionary<SeatType, int>();
 
         public Score(IPlayer[] players, GameParameters parameters, IDispatcher dispatcher)
         {
@@ -31,11 +31,23 @@ namespace HexCardGame.Runtime.GameScore
             OnCreateScore();
         }
 
-        IDispatcher Dispatcher { get; }
-        GameParameters Parameters { get; }
-        public void Add(SeatType id, int amount) => _register[id] += amount;
-        public void Remove(SeatType id, int amount) => _register[id] -= amount;
-        public int GetScoreForPlayer(SeatType id) => _register[id];
+        private IDispatcher Dispatcher { get; }
+        private GameParameters Parameters { get; }
+
+        public void Add(SeatType id, int amount)
+        {
+            _register[id] += amount;
+        }
+
+        public void Remove(SeatType id, int amount)
+        {
+            _register[id] -= amount;
+        }
+
+        public int GetScoreForPlayer(SeatType id)
+        {
+            return _register[id];
+        }
 
         public void Clear()
         {
@@ -45,8 +57,14 @@ namespace HexCardGame.Runtime.GameScore
                 RegisterPlayer(id);
         }
 
-        void RegisterPlayer(SeatType id) => _register.Add(id, 0);
+        private void RegisterPlayer(SeatType id)
+        {
+            _register.Add(id, 0);
+        }
 
-        void OnCreateScore() => Dispatcher.Notify<ICreateScore>(i => i.OnCreateScore(this));
+        private void OnCreateScore()
+        {
+            Dispatcher.Notify<ICreateScore>(i => i.OnCreateScore(this));
+        }
     }
 }

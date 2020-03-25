@@ -10,9 +10,9 @@ namespace HexCardGame.UI
     public class UiButtonRestart : UiButton,
         IListener, IPreGameStart, IFinishGame
     {
-        const float DelayToShow = 3.5f;
-        EventsDispatcher _dispatcher;
-        UITextMeshImage UiButton { get; set; }
+        private const float DelayToShow = 3.5f;
+        private EventsDispatcher _dispatcher;
+        private UITextMeshImage UiButton { get; set; }
 
         protected override void OnSetHandler(IButtonHandler handler)
         {
@@ -20,7 +20,7 @@ namespace HexCardGame.UI
                 AddListener(restart.PressRestart);
         }
 
-        IEnumerator ShowButton()
+        private IEnumerator ShowButton()
         {
             yield return new WaitForSeconds(DelayToShow);
             UiButton.Enabled = true;
@@ -35,9 +35,15 @@ namespace HexCardGame.UI
 
         #region Game Events
 
-        void IFinishGame.OnFinishGame(IPlayer winner) => StartCoroutine(ShowButton());
+        void IFinishGame.OnFinishGame(IPlayer winner)
+        {
+            StartCoroutine(ShowButton());
+        }
 
-        void IPreGameStart.OnPreGameStart(IPlayer[] players) => UiButton.Enabled = false;
+        void IPreGameStart.OnPreGameStart(IPlayer[] players)
+        {
+            UiButton.Enabled = false;
+        }
 
         #endregion
 
@@ -53,9 +59,15 @@ namespace HexCardGame.UI
                 GetComponent<Image>());
         }
 
-        void Start() => _dispatcher.AddListener(this);
+        private void Start()
+        {
+            _dispatcher.AddListener(this);
+        }
 
-        void OnDestroy() => _dispatcher.RemoveListener(this);
+        private void OnDestroy()
+        {
+            _dispatcher.RemoveListener(this);
+        }
 
         #endregion
 

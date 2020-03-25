@@ -14,7 +14,7 @@ namespace Tools.UI.Card
 
         #region Unitycallbacks
 
-        void Awake()
+        private void Awake()
         {
             CardHandSelector = GetComponent<UiCardHandSelector>();
             CardRenderer = CardPrefab.GetComponent<SpriteRenderer>();
@@ -27,17 +27,17 @@ namespace Tools.UI.Card
 
         #region Fields and Properties
 
-        [SerializeField] UiCardParameters parameters;
+        [SerializeField] private UiCardParameters parameters;
 
         [SerializeField, Tooltip("The Card Prefab")]
-        UiCardHandComponent CardPrefab;
+        private UiCardHandComponent CardPrefab;
 
         [SerializeField, Tooltip("Transform used as anchor to position the cards.")]
-        Transform pivot;
+        private Transform pivot;
 
-        SpriteRenderer CardRenderer { get; set; }
-        float CardWidth => CardRenderer.bounds.size.x;
-        UiCardHandSelector CardHandSelector { get; set; }
+        private SpriteRenderer CardRenderer { get; set; }
+        private float CardWidth => CardRenderer.bounds.size.x;
+        private UiCardHandSelector CardHandSelector { get; set; }
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace Tools.UI.Card
 
         #region Operations
 
-        void Bend(IUiCard[] cards)
+        private void Bend(IUiCard[] cards)
         {
             if (cards == null)
                 throw new ArgumentException("Can't bend a card list null");
@@ -95,7 +95,7 @@ namespace Tools.UI.Card
         /// </summary>
         /// <param name="fullAngle"></param>
         /// <returns></returns>
-        static float CalcFirstAngle(float fullAngle)
+        private static float CalcFirstAngle(float fullAngle)
         {
             var magicMathFactor = 0.1f;
             return -(fullAngle / 2) + fullAngle * magicMathFactor;
@@ -106,7 +106,7 @@ namespace Tools.UI.Card
         /// </summary>
         /// <param name="quantityOfCards"></param>
         /// <returns></returns>
-        float CalcHandWidth(int quantityOfCards)
+        private float CalcHandWidth(int quantityOfCards)
         {
             var widthCards = quantityOfCards * CardWidth;
             var widthSpacing = (quantityOfCards - 1) * parameters.Spacing;

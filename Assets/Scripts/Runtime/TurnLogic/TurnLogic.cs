@@ -28,8 +28,16 @@ namespace HexCardGame.Runtime.GameTurn
         public IPlayer NextPlayer => GetPlayer(NextSeatType);
         public IPlayer StarterPlayer => GetPlayer(StarterSeatType);
         public int PlayersCount => Players.Length;
-        public bool IsMyTurn(IPlayer player) => CurrentPlayer == player;
-        public bool IsMyTurn(SeatType id) => CurrentSeatType == id;
+
+        public bool IsMyTurn(IPlayer player)
+        {
+            return CurrentPlayer == player;
+        }
+
+        public bool IsMyTurn(SeatType id)
+        {
+            return CurrentSeatType == id;
+        }
 
         #endregion
 
@@ -58,9 +66,12 @@ namespace HexCardGame.Runtime.GameTurn
             CurrentSeatType = StarterSeatType;
         }
 
-        public IPlayer GetOpponent(IPlayer player) => player.Seat == SeatType.Bottom
-            ? GetPlayer(SeatType.Top)
-            : GetPlayer(SeatType.Bottom);
+        public IPlayer GetOpponent(IPlayer player)
+        {
+            return player.Seat == SeatType.Bottom
+                ? GetPlayer(SeatType.Top)
+                : GetPlayer(SeatType.Bottom);
+        }
 
         public IPlayer GetPlayer(SeatType id)
         {
@@ -71,12 +82,25 @@ namespace HexCardGame.Runtime.GameTurn
             return null;
         }
 
-        public bool IsUser() => CurrentSeatType == SeatType.Bottom;
-        public bool IsEnemy() => CurrentSeatType == SeatType.Top;
+        public bool IsUser()
+        {
+            return CurrentSeatType == SeatType.Bottom;
+        }
 
-        public void SetCurrentSeat(SeatType current) => CurrentSeatType = current;
+        public bool IsEnemy()
+        {
+            return CurrentSeatType == SeatType.Top;
+        }
 
-        public void SetStarterSeat(SeatType first) => StarterSeatType = first;
+        public void SetCurrentSeat(SeatType current)
+        {
+            CurrentSeatType = current;
+        }
+
+        public void SetStarterSeat(SeatType first)
+        {
+            StarterSeatType = first;
+        }
 
         #endregion
     }

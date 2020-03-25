@@ -6,10 +6,13 @@ namespace HexCardGame.UI
     public class UiLibraryMenu : UiEventListener, UiButtonReveal.IPressReveal, UiButtonDraw.IPressDraw,
         UiButtonCloseLibrary.IPressCloseLibrary
     {
-        [SerializeField] GameObject buttonClose;
-        [SerializeField] GameObject content;
+        [SerializeField] private GameObject buttonClose;
+        [SerializeField] private GameObject content;
 
-        void UiButtonCloseLibrary.IPressCloseLibrary.CloseLibrary() => Hide();
+        void UiButtonCloseLibrary.IPressCloseLibrary.CloseLibrary()
+        {
+            Hide();
+        }
 
         void UiButtonDraw.IPressDraw.Draw()
         {

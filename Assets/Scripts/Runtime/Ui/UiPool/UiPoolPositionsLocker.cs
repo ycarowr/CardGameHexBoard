@@ -5,8 +5,8 @@ namespace HexCardGame.UI
 {
     public class UiPoolPositionsLocker : MonoBehaviour, IUiInputElement
     {
-        [SerializeField] UiCardHandSelector cardHandSelector;
-        UiPoolPositionPickSelector[] Positions { get; set; }
+        [SerializeField] private UiCardHandSelector cardHandSelector;
+        private UiPoolPositionPickSelector[] Positions { get; set; }
 
         public bool IsLocked { get; private set; }
 
@@ -24,22 +24,25 @@ namespace HexCardGame.UI
                 i.Unlock();
         }
 
-        void Awake()
+        private void Awake()
         {
             Positions = GetComponentsInChildren<UiPoolPositionPickSelector>();
             Subscribe();
         }
 
-        void OnDestroy() => Unsubscribe();
+        private void OnDestroy()
+        {
+            Unsubscribe();
+        }
 
-        void Subscribe()
+        private void Subscribe()
         {
             cardHandSelector.OnCardSelected += card => Lock();
             cardHandSelector.OnCardPlayed += uiCard => Unlock();
             cardHandSelector.OnCardUnSelect += Unlock;
         }
 
-        void Unsubscribe()
+        private void Unsubscribe()
         {
             cardHandSelector.OnCardSelected -= card => Lock();
             cardHandSelector.OnCardPlayed -= uiCard => Unlock();

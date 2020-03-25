@@ -48,8 +48,11 @@ namespace HexCardGame.Runtime.Game
             OnCreateCreature(seatType, creature, position, card);
         }
 
-        void OnCreateCreature(SeatType seatType, CreatureElement creatureElement, Vector3Int position, CardHand card) =>
+        private void OnCreateCreature(SeatType seatType, CreatureElement creatureElement, Vector3Int position,
+            CardHand card)
+        {
             Dispatcher.Notify<ICreateBoardElement>(i =>
                 i.OnCreateBoardElement(seatType, creatureElement, position, card));
+        }
     }
 }

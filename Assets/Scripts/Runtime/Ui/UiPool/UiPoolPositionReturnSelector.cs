@@ -15,8 +15,8 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(IMouseInput))]
     public class UiPoolPositionReturnSelector : UiEventListener, IUiInputElement
     {
-        UiPoolPosition Position { get; set; }
-        IMouseInput Input { get; set; }
+        private UiPoolPosition Position { get; set; }
+        private IMouseInput Input { get; set; }
         public bool IsLocked { get; private set; }
 
         public void Lock()
@@ -46,13 +46,14 @@ namespace HexCardGame.UI
             Input.OnPointerClick += OnPointerClick;
         }
 
-        void OnPointerClick(PointerEventData eventData)
+        private void OnPointerClick(PointerEventData eventData)
         {
             if (IsLocked)
                 return;
             if (Position.HasData)
                 return;
-            Dispatcher.Notify<ISelectReturnPoolPosition>(i => i.OnSelectReturnPoolPosition(SeatType.Bottom, Position.Id));
+            Dispatcher.Notify<ISelectReturnPoolPosition>(
+                i => i.OnSelectReturnPoolPosition(SeatType.Bottom, Position.Id));
         }
     }
 }

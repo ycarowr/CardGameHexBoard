@@ -1,5 +1,4 @@
 ﻿using Game.Ui;
-using HexBoardGame.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,16 +6,16 @@ namespace HexCardGame.UI
 {
     public class UiBoardTilesSelection : UiEventListener, IOnRightClickTile
     {
-        [SerializeField] Canvas canvas;
-        [SerializeField] UiBoardHightlight boardHighlight;
-        [SerializeField] GameObject content;
-        [SerializeField] Button hideButton;
-        [SerializeField] RectTransform menu;
-        [SerializeField] Button neighboursButton;
-        [SerializeField] Button diagonalAscButton;
-        [SerializeField] Button diagonalDesButton;
+        [SerializeField] private UiBoardHightlight boardHighlight;
+        [SerializeField] private Canvas canvas;
+        [SerializeField] private GameObject content;
+        [SerializeField] private Button diagonalAscButton;
+        [SerializeField] private Button diagonalDesButton;
+        [SerializeField] private Button hideButton;
+        [SerializeField] private RectTransform menu;
+        [SerializeField] private Button neighboursButton;
 
-        Vector3Int Selection { get; set; }
+        private Vector3Int Selection { get; set; }
 
         void IOnRightClickTile.OnRightClickTile(Vector3Int cell, Vector2 screenPoint)
         {
@@ -43,30 +42,36 @@ namespace HexCardGame.UI
             Hide();
         }
 
-        void OnPressDiagonalDes()
+        private void OnPressDiagonalDes()
         {
             var selection = GameData.CurrentGameInstance.BoardManipulation.GetDiagonalDescendant(Selection, 10);
             boardHighlight.Show(selection);
             Hide();
         }
 
-        void OnPressNeighbours()
+        private void OnPressNeighbours()
         {
             var selection = GameData.CurrentGameInstance.BoardManipulation.GetNeighbours(Selection);
             boardHighlight.Show(selection);
             Hide();
         }
-        
-        void OnPressDiagonalAsc()
+
+        private void OnPressDiagonalAsc()
         {
-            
             var selection = GameData.CurrentGameInstance.BoardManipulation.GetDiagonalAscendant(Selection, 10);
             boardHighlight.Show(selection);
             Hide();
         }
 
 
-        void Show() => content.SetActive(true);
-        void Hide() => content.SetActive(false);
+        private void Show()
+        {
+            content.SetActive(true);
+        }
+
+        private void Hide()
+        {
+            content.SetActive(false);
+        }
     }
 }

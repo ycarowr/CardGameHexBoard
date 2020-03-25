@@ -7,8 +7,8 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(UiPool))]
     public class UiPoolSort : UiGameDataAccess
     {
-        UiPoolPositioning Positioning { get; set; }
-        UiPool UiPool { get; set; }
+        private UiPoolPositioning Positioning { get; set; }
+        private UiPool UiPool { get; set; }
 
         protected override void Awake()
         {
@@ -18,7 +18,7 @@ namespace HexCardGame.UI
             UpdatePositions();
         }
 
-        void UpdatePositions()
+        private void UpdatePositions()
         {
             var positions = PoolPositionUtility.GetAllIndices();
             foreach (var i in positions)
@@ -29,7 +29,7 @@ namespace HexCardGame.UI
         }
 
 #if UNITY_EDITOR
-        void Update()
+        private void Update()
         {
             Positioning.Update();
             UpdatePositions();

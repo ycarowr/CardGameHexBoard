@@ -15,14 +15,14 @@ namespace HexCardGame.SharedData
     [CreateAssetMenu(menuName = "Data/Card")]
     public class CardData : ScriptableObject, ICardData
     {
-        [SerializeField] Sprite artwork;
-        [Range(0, 5), SerializeField] int cost;
-        [SerializeField, Multiline] string description;
-        [SerializeField] CardId id;
-        [SerializeField] string nameCard;
-        [Range(0, 10), SerializeField] int score;
-        [SerializeField] string stringId;
-        [SerializeField] Tile tile;
+        [SerializeField] private Sprite artwork;
+        [Range(0, 5), SerializeField] private int cost;
+        [SerializeField, Multiline] private string description;
+        [SerializeField] private CardId id;
+        [SerializeField] private string nameCard;
+        [Range(0, 10), SerializeField] private int score;
+        [SerializeField] private string stringId;
+        [SerializeField] private Tile tile;
 
         // -------------------------------------------------------------------------------------------------------------
 

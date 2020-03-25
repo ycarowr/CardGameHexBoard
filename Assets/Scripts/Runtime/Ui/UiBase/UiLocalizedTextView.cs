@@ -5,7 +5,7 @@ namespace HexCardGame.UI
 {
     public class UiLocalizedTextView : UiText
     {
-        [SerializeField] LocalizationIds id;
+        [SerializeField] private LocalizationIds id;
 
         protected override void Awake()
         {

@@ -7,24 +7,26 @@ namespace Tools.UI.Card
     public class UiCardDrag : UiBaseCardState
     {
         public UiCardDrag(IUiCard handler, Camera camera, BaseStateMachine fsm, UiCardParameters parameters) : base(
-            handler, fsm, parameters) =>
+            handler, fsm, parameters)
+        {
             MyCamera = camera;
+        }
         //--------------------------------------------------------------------------------------------------------------
 
-        Vector3 StartEuler { get; set; }
-        Camera MyCamera { get; }
+        private Vector3 StartEuler { get; set; }
+        private Camera MyCamera { get; }
 
         //--------------------------------------------------------------------------------------------------------------
 
 
-        Vector3 WorldPoint()
+        private Vector3 WorldPoint()
         {
             var mousePosition = Handler.Input.MousePosition;
             var worldPoint = MyCamera.ScreenToWorldPoint(mousePosition);
             return worldPoint;
         }
 
-        void FollowCursor()
+        private void FollowCursor()
         {
             var myZ = Handler.transform.position.z;
             Handler.transform.position = WorldPoint().WithZ(myZ);
@@ -34,7 +36,10 @@ namespace Tools.UI.Card
 
         #region Operations
 
-        public override void OnUpdate() => FollowCursor();
+        public override void OnUpdate()
+        {
+            FollowCursor();
+        }
 
         public override void OnEnterState()
         {

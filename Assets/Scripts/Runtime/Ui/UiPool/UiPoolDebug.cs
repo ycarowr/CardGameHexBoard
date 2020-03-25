@@ -5,12 +5,16 @@ namespace HexCardGame.UI
 {
     public class UiPoolDebug : MonoBehaviour
     {
-        [SerializeField] UiPoolParameters parameters;
-        [SerializeField] UiPool uiPool;
-        UiPoolPositioning Positioning { get; set; }
-        void OnDrawGizmos() => DrawBoundaries();
+        [SerializeField] private UiPoolParameters parameters;
+        [SerializeField] private UiPool uiPool;
+        private UiPoolPositioning Positioning { get; set; }
 
-        void DrawBoundaries()
+        private void OnDrawGizmos()
+        {
+            DrawBoundaries();
+        }
+
+        private void DrawBoundaries()
         {
             if (Positioning == null)
                 Positioning = new UiPoolPositioning(uiPool);
@@ -27,7 +31,7 @@ namespace HexCardGame.UI
             }
         }
 
-        void DrawSquare()
+        private void DrawSquare()
         {
             //boundaries
             Gizmos.DrawLine(new Vector3(Positioning.MinX, Positioning.MinY),

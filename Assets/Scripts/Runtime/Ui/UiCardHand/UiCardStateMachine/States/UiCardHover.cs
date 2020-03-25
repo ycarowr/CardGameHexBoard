@@ -11,18 +11,20 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         public UiCardHover(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
-            parameters) =>
+            parameters)
+        {
             HoverParticleSystem = handler.gameObject.GetComponentInChildren<UiHoverParticleSystem>();
+        }
 
         //--------------------------------------------------------------------------------------------------------------
 
-        void OnPointerExit(PointerEventData obj)
+        private void OnPointerExit(PointerEventData obj)
         {
             if (Fsm.IsCurrent(this))
                 Handler.Enable();
         }
 
-        void OnPointerDown(PointerEventData eventData)
+        private void OnPointerDown(PointerEventData eventData)
         {
             if (Fsm.IsCurrent(this))
                 Handler.Select();
@@ -30,7 +32,7 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        void ResetValues()
+        private void ResetValues()
         {
             var rotationSpeed = Handler.IsUser ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
             Handler.RotateTo(StartEuler, rotationSpeed);
@@ -38,7 +40,7 @@ namespace Tools.UI.Card
             Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
         }
 
-        void SetRotation()
+        private void SetRotation()
         {
             if (Parameters.HoverRotation)
                 return;
@@ -51,7 +53,7 @@ namespace Tools.UI.Card
         /// <summary>
         ///     View Math.
         /// </summary>
-        void SetPosition()
+        private void SetPosition()
         {
             var camera = Handler.MainCamera;
             var halfCardHeight = new Vector3(0, Handler.MyRenderer.bounds.size.y / 2);
@@ -66,33 +68,33 @@ namespace Tools.UI.Card
             Handler.MoveTo(final, Parameters.HoverSpeed);
         }
 
-        void SetScale()
+        private void SetScale()
         {
             var currentScale = Handler.transform.localScale;
             var finalScale = currentScale * Parameters.HoverScale;
             Handler.ScaleTo(finalScale, Parameters.ScaleSpeed);
         }
 
-        void CachePreviousValues()
+        private void CachePreviousValues()
         {
             StartPosition = Handler.transform.position;
             StartEuler = Handler.transform.eulerAngles;
             StartScale = Handler.transform.localScale;
         }
 
-        void SubscribeInput()
+        private void SubscribeInput()
         {
             Handler.Input.OnPointerExit += OnPointerExit;
             Handler.Input.OnPointerDown += OnPointerDown;
         }
 
-        void UnsubscribeInput()
+        private void UnsubscribeInput()
         {
             Handler.Input.OnPointerExit -= OnPointerExit;
             Handler.Input.OnPointerDown -= OnPointerDown;
         }
 
-        void CalcEdge()
+        private void CalcEdge()
         {
         }
 
@@ -125,10 +127,10 @@ namespace Tools.UI.Card
 
         #region Properties
 
-        Vector3 StartPosition { get; set; }
-        Vector3 StartEuler { get; set; }
-        Vector3 StartScale { get; set; }
-        UiHoverParticleSystem HoverParticleSystem { get; }
+        private Vector3 StartPosition { get; set; }
+        private Vector3 StartEuler { get; set; }
+        private Vector3 StartScale { get; set; }
+        private UiHoverParticleSystem HoverParticleSystem { get; }
 
         #endregion
 

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using HexCardGame.Runtime;
+﻿using HexCardGame.Runtime;
 using HexCardGame.Runtime.GameBoard;
 using HexCardGame.SharedData;
 using TMPro;
@@ -10,11 +9,11 @@ namespace Game.Ui
 {
     public class UiBoardDebug : UiEventListener, ICreateBoard<CreatureElement>
     {
-        [SerializeField] BoardData data;
-        GameObject[] positions;
-        [SerializeField] GameObject textPosition;
-        [SerializeField] Tilemap tileMap;
-        IBoard<CreatureElement> CurrentBoard { get; set; }
+        [SerializeField] private BoardData data;
+        private GameObject[] positions;
+        [SerializeField] private GameObject textPosition;
+        [SerializeField] private Tilemap tileMap;
+        private IBoard<CreatureElement> CurrentBoard { get; set; }
 
         void ICreateBoard<CreatureElement>.OnCreateBoard(IBoard<CreatureElement> board)
         {
@@ -23,7 +22,7 @@ namespace Game.Ui
         }
 
         [Button]
-        void DrawPositions()
+        private void DrawPositions()
         {
             const string uiPosition = "UiPosition_";
             var identity = Quaternion.identity;
@@ -43,7 +42,7 @@ namespace Game.Ui
         }
 
         [Button]
-        void ClearPositions()
+        private void ClearPositions()
         {
             if (positions == null)
                 return;
@@ -53,14 +52,14 @@ namespace Game.Ui
         }
 
         [Button]
-        void RegenerateBoard()
+        private void RegenerateBoard()
         {
             tileMap.ClearAllTiles();
             CurrentBoard?.Clear();
             CurrentBoard?.GeneratePositions();
         }
 
-        void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             foreach (var i in data.GetHexPoints())
             {

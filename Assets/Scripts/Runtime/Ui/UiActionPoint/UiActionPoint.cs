@@ -9,12 +9,12 @@ namespace HexCardGame.UI
 {
     public class UiActionPoint : UiEventListener, IAddItem, IRemoveItem
     {
-        const string Colon = ": ";
-        readonly StringBuilder _stringBuilder = new StringBuilder();
-        readonly LocalizationIds _textId = LocalizationIds.ActionPoint;
-        [SerializeField] SeatType id;
-        TextMeshPro MyText { get; set; }
-        string PreBuiltText { get; set; }
+        private const string Colon = ": ";
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
+        private readonly LocalizationIds _textId = LocalizationIds.ActionPoint;
+        [SerializeField] private SeatType id;
+        private TextMeshPro MyText { get; set; }
+        private string PreBuiltText { get; set; }
 
         public void OnAddItem(SeatType seatType, IItem item, int total, int amount)
         {
@@ -39,7 +39,7 @@ namespace HexCardGame.UI
             PreBuiltText = _stringBuilder.ToString();
         }
 
-        string Build(string text)
+        private string Build(string text)
         {
             _stringBuilder.Length = 0;
             _stringBuilder.Append(PreBuiltText);
@@ -47,6 +47,9 @@ namespace HexCardGame.UI
             return _stringBuilder.ToString();
         }
 
-        bool IsMyEvent(SeatType seatType) => seatType == id;
+        private bool IsMyEvent(SeatType seatType)
+        {
+            return seatType == id;
+        }
     }
 }

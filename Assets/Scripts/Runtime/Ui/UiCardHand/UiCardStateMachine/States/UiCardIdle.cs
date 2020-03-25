@@ -12,10 +12,12 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         public UiCardIdle(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
-            parameters) =>
+            parameters)
+        {
             DefaultSize = Handler.transform.localScale;
+        }
 
-        Vector3 DefaultSize { get; }
+        private Vector3 DefaultSize { get; }
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -47,13 +49,13 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        void OnPointerEnter(PointerEventData obj)
+        private void OnPointerEnter(PointerEventData obj)
         {
             if (Fsm.IsCurrent(this))
                 Handler.Hover();
         }
 
-        void OnPointerDown(PointerEventData eventData)
+        private void OnPointerDown(PointerEventData eventData)
         {
             if (Fsm.IsCurrent(this))
                 Handler.Select();

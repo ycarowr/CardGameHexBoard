@@ -4,9 +4,9 @@ namespace HexCardGame.Runtime.Test
 {
     public class HandTests : BaseTest, ICreateHand
     {
-        readonly SeatType _id = SeatType.Bottom;
-        IHand _hand;
-        bool _handCreated;
+        private readonly SeatType _id = SeatType.Bottom;
+        private IHand _hand;
+        private bool _handCreated;
 
         public void OnCreateHand(IHand hand, SeatType id)
         {
@@ -21,13 +21,22 @@ namespace HexCardGame.Runtime.Test
             _hand = null;
         }
 
-        public override void Create() => _hand = new Hand(_id, Parameters, Dispatcher);
+        public override void Create()
+        {
+            _hand = new Hand(_id, Parameters, Dispatcher);
+        }
 
         [Test]
-        public void HandCreated_Test() => Assert.IsTrue(_handCreated);
+        public void HandCreated_Test()
+        {
+            Assert.IsTrue(_handCreated);
+        }
 
         [Test]
-        public void HandSize_Test() => Assert.IsTrue(_hand.MaxHandSize == Parameters.Amounts.MaxHandSize);
+        public void HandSize_Test()
+        {
+            Assert.IsTrue(_hand.MaxHandSize == Parameters.Amounts.MaxHandSize);
+        }
 
         [Test]
         public void AddCard_Test()
@@ -56,6 +65,9 @@ namespace HexCardGame.Runtime.Test
             Assert.IsFalse(_hand.Has(card1));
         }
 
-        CardHand GetTestCard() => new CardHand(null);
+        private CardHand GetTestCard()
+        {
+            return new CardHand(null);
+        }
     }
 }

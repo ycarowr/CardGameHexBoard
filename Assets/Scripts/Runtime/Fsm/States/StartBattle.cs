@@ -49,7 +49,7 @@ namespace HexCardGame
             Fsm.Controller.MonoBehaviour.StartCoroutine(NextStateRoutine(nextState));
         }
 
-        IEnumerator NextStateRoutine(BaseBattleState nextState)
+        private IEnumerator NextStateRoutine(BaseBattleState nextState)
         {
             yield return new WaitForSeconds(GameParameters.Timers.TimeUntilFirstPlayer);
             OnNextState(nextState);
@@ -61,13 +61,13 @@ namespace HexCardGame
 
         #region Coroutines
 
-        IEnumerator PreGameRoutine()
+        private IEnumerator PreGameRoutine()
         {
             yield return new WaitForSeconds(GameParameters.Timers.TimeUntilPreGameEvent);
             Game.PreStartGame();
         }
 
-        IEnumerator StartGameRoutine()
+        private IEnumerator StartGameRoutine()
         {
             var preGame = GameParameters.Timers.TimeUntilPreGameEvent;
             var startGame = GameParameters.Timers.TimeUntilStartGameEvent;

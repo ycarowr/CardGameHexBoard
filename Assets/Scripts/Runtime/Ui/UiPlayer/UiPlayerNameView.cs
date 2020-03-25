@@ -5,17 +5,20 @@ namespace HexCardGame.UI
 {
     public class UiPlayerNameView : MonoBehaviour
     {
-        string PlayerText { get; set; }
-        UiText UiText { get; set; }
-        IUiPlayer Ui { get; set; }
+        private string PlayerText { get; set; }
+        private UiText UiText { get; set; }
+        private IUiPlayer Ui { get; set; }
 
-        void Awake()
+        private void Awake()
         {
             Ui = GetComponentInParent<IUiPlayer>();
             UiText = GetComponent<UiText>();
             PlayerText = Localization.Instance.Get(LocalizationIds.Player);
         }
 
-        void Start() => UiText.SetText(PlayerText + ": " + Ui.Id);
+        private void Start()
+        {
+            UiText.SetText(PlayerText + ": " + Ui.Id);
+        }
     }
 }

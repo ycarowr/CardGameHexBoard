@@ -6,8 +6,11 @@ namespace HexCardGame.SharedData
     public class PlayerDeck : ScriptableObject
     {
         [Tooltip("Deck of a player."), SerializeField]
-        CardData[] deck;
+        private CardData[] deck;
 
-        public CardData[] GetDeck() => deck;
+        public CardData[] GetDeck()
+        {
+            return deck;
+        }
     }
 }

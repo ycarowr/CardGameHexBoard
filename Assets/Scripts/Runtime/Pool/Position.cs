@@ -28,7 +28,11 @@ namespace HexCardGame.Runtime.GamePool
         public bool IsLocked { get; private set; }
         public bool HasData => Data != null;
         public T Data { get; private set; }
-        public void SetData(T value) => Data = value;
+
+        public void SetData(T value)
+        {
+            Data = value;
+        }
 
         public void Lock()
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 [CustomEditor(typeof(CardData), true)]
 public class CardDataEditor : Editor
 {
-    CardData MyTarget => target as CardData;
+    private CardData MyTarget => target as CardData;
 
     public override void OnInspectorGUI()
     {
@@ -26,19 +26,37 @@ public class CardDataEditor : Editor
             CleanRefs();
     }
 
-    void CleanRefs() => MyTarget.Artwork = null;
+    private void CleanRefs()
+    {
+        MyTarget.Artwork = null;
+    }
 
-    void Space() => GUILayout.Space(25);
+    private void Space()
+    {
+        GUILayout.Space(25);
+    }
 
-    void Bh() => EditorGUILayout.BeginHorizontal();
+    private void Bh()
+    {
+        EditorGUILayout.BeginHorizontal();
+    }
 
-    void Eh() => EditorGUILayout.EndHorizontal();
+    private void Eh()
+    {
+        EditorGUILayout.EndHorizontal();
+    }
 
-    void Bv() => EditorGUILayout.BeginVertical();
+    private void Bv()
+    {
+        EditorGUILayout.BeginVertical();
+    }
 
-    void Ev() => EditorGUILayout.EndVertical();
+    private void Ev()
+    {
+        EditorGUILayout.EndVertical();
+    }
 
-    void Label(string text, bool isBold = false)
+    private void Label(string text, bool isBold = false)
     {
         Bv();
         if (isBold)

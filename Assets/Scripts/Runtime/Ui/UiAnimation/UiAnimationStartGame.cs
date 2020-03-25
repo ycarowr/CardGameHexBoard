@@ -5,8 +5,8 @@ namespace HexCardGame.UI
 {
     public class UiAnimationStartGame : UiAnimation, IStartGame
     {
-        const float DelayToNotify = 0.75f;
-        TMP_Text Text;
+        private const float DelayToNotify = 0.75f;
+        private TMP_Text Text;
 
         void IStartGame.OnStartGame(IPlayer player)
         {

@@ -22,7 +22,10 @@ namespace HexCardGame
             IsInitialized = true;
         }
 
-        ~BaseBattleState() => Dispatcher.RemoveListener(this);
+        ~BaseBattleState()
+        {
+            Dispatcher.RemoveListener(this);
+        }
 
         #endregion
 
@@ -42,7 +45,10 @@ namespace HexCardGame
 
         #region Operations
 
-        public virtual void OnClear() => Dispatcher.RemoveListener(this);
+        public virtual void OnClear()
+        {
+            Dispatcher.RemoveListener(this);
+        }
 
         public virtual void OnInitialize()
         {
@@ -70,7 +76,10 @@ namespace HexCardGame
             Fsm.PushState(nextState);
         }
 
-        void IRestartGame.OnRestart() => OnClear();
+        void IRestartGame.OnRestart()
+        {
+            OnClear();
+        }
 
         #endregion
 

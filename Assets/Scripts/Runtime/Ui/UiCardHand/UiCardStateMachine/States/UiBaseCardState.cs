@@ -86,12 +86,18 @@ namespace Tools.UI.Card
         /// <summary>
         ///     Disables the collision with this card.
         /// </summary>
-        protected void DisableCollision() => Handler.Collider.enabled = false;
+        protected void DisableCollision()
+        {
+            Handler.Collider.enabled = false;
+        }
 
         /// <summary>
         ///     Enables the collision with this card.
         /// </summary>
-        protected void EnableCollision() => Handler.Collider.enabled = true;
+        protected void EnableCollision()
+        {
+            Handler.Collider.enabled = true;
+        }
 
         /// <summary>
         ///     Remove any alpha channel in all renderers.

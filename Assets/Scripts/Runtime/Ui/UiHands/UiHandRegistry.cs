@@ -10,14 +10,14 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(UiCardHandSelector))]
     public class UiHandRegistry : UiEventListener
     {
-        readonly Dictionary<IUiCard, CardHand> _registry = new Dictionary<IUiCard, CardHand>();
-        [SerializeField] GameObject cardPrefab;
-        [SerializeField] SeatType id;
-        [SerializeField] Transform libraryPosition;
-        [SerializeField] UiPool uiPool;
-        CardHand SelectedCard { get; set; }
-        ObjectPooler Pooler => ObjectPooler.Instance;
-        UiCardHandSelector CardHandSelector { get; set; }
+        private readonly Dictionary<IUiCard, CardHand> _registry = new Dictionary<IUiCard, CardHand>();
+        [SerializeField] private GameObject cardPrefab;
+        [SerializeField] private SeatType id;
+        [SerializeField] private Transform libraryPosition;
+        [SerializeField] private UiPool uiPool;
+        private CardHand SelectedCard { get; set; }
+        private ObjectPooler Pooler => ObjectPooler.Instance;
+        private UiCardHandSelector CardHandSelector { get; set; }
         public SeatType Id => id;
 
         protected override void Awake()
@@ -28,14 +28,16 @@ namespace HexCardGame.UI
             CardHandSelector.OnCardUnSelect += Unselect;
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             CardHandSelector.OnCardSelected -= SelectCard;
             CardHandSelector.OnCardUnSelect -= Unselect;
         }
 
-        public void CreateCardFromLibrary(CardHand cardHand) =>
+        public void CreateCardFromLibrary(CardHand cardHand)
+        {
             CreateUiCard(cardHand, libraryPosition.position);
+        }
 
         public void CreateCardFromPool(CardHand cardHand, PositionId positionId)
         {
@@ -56,7 +58,7 @@ namespace HexCardGame.UI
             SelectedCard = null;
         }
 
-        void CreateUiCard(CardHand card, Vector3 position)
+        private void CreateUiCard(CardHand card, Vector3 position)
         {
             var uiCard = Pooler.Get<IUiCard>(cardPrefab);
             var cardTransform = uiCard.transform;
@@ -100,8 +102,14 @@ namespace HexCardGame.UI
             SelectedCard = null;
         }
 
-        void SelectCard(IUiCard uiCard) => SelectedCard = _registry[uiCard];
+        private void SelectCard(IUiCard uiCard)
+        {
+            SelectedCard = _registry[uiCard];
+        }
 
-        void Unselect() => SelectedCard = null;
+        private void Unselect()
+        {
+            SelectedCard = null;
+        }
     }
 }

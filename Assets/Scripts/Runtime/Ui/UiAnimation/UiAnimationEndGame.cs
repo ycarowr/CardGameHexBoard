@@ -7,10 +7,10 @@ namespace HexCardGame.UI
 {
     public class UiAnimationEndGame : UiAnimation, IFinishGame
     {
-        const float DelayToNotify = 1f;
-        [SerializeField] SeatType id;
-        [SerializeField] LocalizationIds localizedText;
-        TMP_Text Text;
+        private const float DelayToNotify = 1f;
+        [SerializeField] private SeatType id;
+        [SerializeField] private LocalizationIds localizedText;
+        private TMP_Text Text;
 
         void IFinishGame.OnFinishGame(IPlayer winner)
         {

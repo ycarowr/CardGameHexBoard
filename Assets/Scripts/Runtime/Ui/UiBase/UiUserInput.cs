@@ -13,12 +13,21 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(CanvasGroup))]
     public class UiUserInput : MonoBehaviour, IUiUserInput
     {
-        CanvasGroup CanvasGroup { get; set; }
+        private CanvasGroup CanvasGroup { get; set; }
 
-        void IUiUserInput.Disable() => CanvasGroup.interactable = false;
+        void IUiUserInput.Disable()
+        {
+            CanvasGroup.interactable = false;
+        }
 
-        void IUiUserInput.Enable() => CanvasGroup.interactable = true;
+        void IUiUserInput.Enable()
+        {
+            CanvasGroup.interactable = true;
+        }
 
-        void Awake() => CanvasGroup = GetComponent<CanvasGroup>();
+        private void Awake()
+        {
+            CanvasGroup = GetComponent<CanvasGroup>();
+        }
     }
 }

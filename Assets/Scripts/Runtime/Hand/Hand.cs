@@ -32,15 +32,27 @@ namespace HexCardGame.Runtime
             OnCreateHand();
         }
 
-        IDispatcher Dispatcher { get; }
-        GameParameters Parameters { get; }
+        private IDispatcher Dispatcher { get; }
+        private GameParameters Parameters { get; }
 
         public SeatType Id { get; }
         public int MaxHandSize => Parameters.Amounts.MaxHandSize;
-        public int Size() => Units.Count;
-        public List<CardHand> Cards => Units;
-        public void Empty() => Clear();
 
-        void OnCreateHand() => Dispatcher.Notify<ICreateHand>(i => i.OnCreateHand(this, Id));
+        public int Size()
+        {
+            return Units.Count;
+        }
+
+        public List<CardHand> Cards => Units;
+
+        public void Empty()
+        {
+            Clear();
+        }
+
+        private void OnCreateHand()
+        {
+            Dispatcher.Notify<ICreateHand>(i => i.OnCreateHand(this, Id));
+        }
     }
 }

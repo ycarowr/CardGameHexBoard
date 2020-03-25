@@ -7,8 +7,8 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(IUiUserInput)), RequireComponent(typeof(IUiPlayer))]
     public class UiFinishUserTurn : UiEventListener, IFinishPlayerTurn
     {
-        IUiUserInput UserInput { get; set; }
-        IUiPlayer Ui { get; set; }
+        private IUiUserInput UserInput { get; set; }
+        private IUiPlayer Ui { get; set; }
 
         void IFinishPlayerTurn.OnFinishPlayerTurn(IPlayer player)
         {

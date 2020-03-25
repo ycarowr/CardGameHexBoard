@@ -8,14 +8,14 @@ namespace HexCardGame.UI
         UiButtonLose.IPressLose,
         UiButtonWin.IPressWin
     {
-        UiUser Ui { get; set; }
-        IUiUserInput UserInput { get; set; }
+        private UiUser Ui { get; set; }
+        private IUiUserInput UserInput { get; set; }
 
         //----------------------------------------------------------------------------------------------------------
 
-        #region Unity callback 
+        #region Unity callback
 
-        void Awake()
+        private void Awake()
         {
             UserInput = GetComponent<IUiUserInput>();
             Ui = GetComponent<UiUser>();
@@ -28,7 +28,10 @@ namespace HexCardGame.UI
 
         //----------------------------------------------------------------------------------------------------------
 
-        void DisableInput() => UserInput.Disable();
+        private void DisableInput()
+        {
+            UserInput.Disable();
+        }
 
         //----------------------------------------------------------------------------------------------------------
 

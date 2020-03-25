@@ -5,9 +5,13 @@ namespace HexCardGame.Runtime.Test
 {
     public class ScoreTest : BaseTest, ICreateScore
     {
-        bool _isCreated;
-        IScore _score;
-        public void OnCreateScore(IScore score) => _isCreated = true;
+        private bool _isCreated;
+        private IScore _score;
+
+        public void OnCreateScore(IScore score)
+        {
+            _isCreated = true;
+        }
 
         public override void TearDown()
         {
@@ -15,10 +19,16 @@ namespace HexCardGame.Runtime.Test
             base.TearDown();
         }
 
-        public override void Create() => _score = new Score(GetPlayers(), Parameters, Dispatcher);
+        public override void Create()
+        {
+            _score = new Score(GetPlayers(), Parameters, Dispatcher);
+        }
 
         [Test]
-        public void ScoreCreated_Test() => Assert.IsTrue(_isCreated);
+        public void ScoreCreated_Test()
+        {
+            Assert.IsTrue(_isCreated);
+        }
 
         [Test]
         public void AddScore_Test()
@@ -93,10 +103,13 @@ namespace HexCardGame.Runtime.Test
             Assert.IsTrue(stateAfterUser == 0);
         }
 
-        IPlayer[] GetPlayers() => new IPlayer[]
+        private IPlayer[] GetPlayers()
         {
-            new Player(0, SeatType.Bottom, Parameters, Dispatcher),
-            new Player(1, SeatType.Top, Parameters, Dispatcher)
-        };
+            return new IPlayer[]
+            {
+                new Player(0, SeatType.Bottom, Parameters, Dispatcher),
+                new Player(1, SeatType.Top, Parameters, Dispatcher)
+            };
+        }
     }
 }

@@ -11,9 +11,9 @@ namespace HexCardGame
 
         protected override SeatType Id => SeatType.Top;
 
-        Coroutine AiFinishTurnRoutine { get; set; }
-        float AiFinishTurnDelay => GameParameters.Timers.TimeUntilAiFinishTurn;
-        float AiDoTurnDelay => GameParameters.Timers.TimeUntilAiDoTurn;
+        private Coroutine AiFinishTurnRoutine { get; set; }
+        private float AiFinishTurnDelay => GameParameters.Timers.TimeUntilAiFinishTurn;
+        private float AiDoTurnDelay => GameParameters.Timers.TimeUntilAiDoTurn;
 
         protected override IEnumerator StartTurn()
         {
@@ -33,7 +33,7 @@ namespace HexCardGame
             AiFinishTurnRoutine = null;
         }
 
-        IEnumerator AiDoTurn()
+        private IEnumerator AiDoTurn()
         {
             yield return new WaitForSeconds(AiDoTurnDelay);
 
@@ -46,7 +46,7 @@ namespace HexCardGame
             Game.ExecuteAiTurn(Id);
         }
 
-        IEnumerator AiFinishTurn(float delay)
+        private IEnumerator AiFinishTurn(float delay)
         {
             yield return new WaitForSeconds(delay);
             if (!IsMyTurn)

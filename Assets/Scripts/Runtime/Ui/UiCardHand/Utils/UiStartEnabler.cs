@@ -9,6 +9,9 @@ namespace Tools.UI.Card
     {
         public bool IsActive;
 
-        void Start() => gameObject.SetActive(IsActive);
+        private void Start()
+        {
+            gameObject.SetActive(IsActive);
+        }
     }
 }

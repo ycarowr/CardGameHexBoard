@@ -10,7 +10,7 @@ namespace HexCardGame.UI
     public class UiHandEventHandler : UiEventListener, IDrawCard, IPickCard, ICreateBoardElement, ISelectBoardPosition,
         IRestartGame, ISelectReturnPoolPosition, IReturnCard
     {
-        UiHandRegistry Registry { get; set; }
+        private UiHandRegistry Registry { get; set; }
 
         void ICreateBoardElement.OnCreateBoardElement(SeatType id, CreatureElement creatureElement, Vector3Int position,
             CardHand card)
@@ -36,7 +36,10 @@ namespace HexCardGame.UI
             Registry.CreateCardFromPool(cardHand, positionId);
         }
 
-        void IRestartGame.OnRestart() => Registry.Clear();
+        void IRestartGame.OnRestart()
+        {
+            Registry.Clear();
+        }
 
         void IReturnCard.OnReturnCard(SeatType id, CardHand cardHand, CardPool cardPool, PositionId positionId)
         {
@@ -45,12 +48,20 @@ namespace HexCardGame.UI
             Registry.RemoveCard(cardHand);
         }
 
-        void ISelectBoardPosition.OnSelectBoardPosition(Vector3Int position) => Registry.SelectBoardPosition(position);
+        void ISelectBoardPosition.OnSelectBoardPosition(Vector3Int position)
+        {
+            Registry.SelectBoardPosition(position);
+        }
 
-        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(SeatType id, PositionId positionId) =>
+        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(SeatType id, PositionId positionId)
+        {
             Registry.ReturnCardToPosition(id, positionId);
+        }
 
-        bool IsMyEvent(SeatType id) => Registry.Id == id;
+        private bool IsMyEvent(SeatType id)
+        {
+            return Registry.Id == id;
+        }
 
         protected override void Awake()
         {

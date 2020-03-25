@@ -29,16 +29,24 @@ namespace HexCardGame.UI
      RequireComponent(typeof(TilemapCollider2D))]
     public class UiTileMapInputHandler : MonoBehaviour, ITileMapInput
     {
-        IMouseInput Input { get; set; }
-        IDispatcher Dispatcher { get; set; }
-        Tilemap TileMap { get; set; }
-        Camera Camera { get; set; }
+        private IMouseInput Input { get; set; }
+        private IDispatcher Dispatcher { get; set; }
+        private Tilemap TileMap { get; set; }
+        private Camera Camera { get; set; }
 
-        public void Lock() => Input.StopTracking();
-        public void Unlock() => Input.StartTracking();
+        public void Lock()
+        {
+            Input.StopTracking();
+        }
+
+        public void Unlock()
+        {
+            Input.StartTracking();
+        }
+
         public bool IsLocked => Input.IsTracking;
 
-        void OnPointerClick(PointerEventData eventData)
+        private void OnPointerClick(PointerEventData eventData)
         {
             if (IsLocked)
                 return;
@@ -56,7 +64,7 @@ namespace HexCardGame.UI
             }
         }
 
-        void Awake()
+        private void Awake()
         {
             Camera = Camera.main;
             TileMap = GetComponentInChildren<Tilemap>();
@@ -65,7 +73,7 @@ namespace HexCardGame.UI
             Input.OnPointerClick += OnPointerClick;
         }
 
-        Vector3Int ConvertPixelToCell(Vector2 screenPoint)
+        private Vector3Int ConvertPixelToCell(Vector2 screenPoint)
         {
             var worldPosition = Camera.ScreenToWorldPoint(screenPoint);
             var cell = TileMap.WorldToCell(worldPosition);

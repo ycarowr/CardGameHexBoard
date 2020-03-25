@@ -6,9 +6,9 @@ namespace HexCardGame.Runtime.Test
 {
     public partial class Mechanics_Test : ICreateBoardElement
     {
-        readonly MockCardData _mockCardData = new MockCardData();
-        readonly Vector3Int _v3IntPosition = new Vector3Int();
-        CardHand _cardHand;
+        private readonly MockCardData _mockCardData = new MockCardData();
+        private readonly Vector3Int _v3IntPosition = new Vector3Int();
+        private CardHand _cardHand;
 
         public void OnCreateBoardElement(SeatType id, CreatureElement creatureElement, Vector3Int position,
             CardHand card)

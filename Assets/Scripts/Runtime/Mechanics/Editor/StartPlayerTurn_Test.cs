@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Test
 {
     public partial class Mechanics_Test : IStartPlayerTurn
     {
-        IPlayer _player;
+        private IPlayer _player;
 
         public void OnStartPlayerTurn(IPlayer player)
         {

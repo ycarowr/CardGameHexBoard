@@ -6,8 +6,8 @@ namespace HexCardGame
     [RequireComponent(typeof(GameController))]
     public class PlayerRegistry : MonoBehaviour
     {
-        private GameController _gameController;
         private EventsDispatcher _dispatcher;
+        private GameController _gameController;
         private GameParameters _gameParameters;
 
         [SerializeField] private PlayerEntry[] registry;
@@ -44,10 +44,10 @@ namespace HexCardGame
 
             var localPlayerNetworkId = 0;
             var remotePlayerNetworkId = 1;
-            
+
             var localPlayer = new Player(localPlayerNetworkId, localPlayerSeat, _gameParameters, _dispatcher);
             var remotePlayer = new Player(remotePlayerNetworkId, remotePlayerSeat, _gameParameters, _dispatcher);
-            
+
             _gameController.StartBattle(localPlayer, remotePlayer);
         }
 

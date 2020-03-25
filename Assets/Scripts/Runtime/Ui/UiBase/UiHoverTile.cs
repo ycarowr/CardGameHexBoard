@@ -6,17 +6,25 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(Tilemap))]
     public class UiHoverTile : MonoBehaviour, IUiInputElement
     {
-        Camera Camera { get; set; }
-        Tilemap TileMap { get; set; }
-        UiHoverParticleSystem Hover { get; set; }
-        Transform HoverTransform { get; set; }
+        private Camera Camera { get; set; }
+        private Tilemap TileMap { get; set; }
+        private UiHoverParticleSystem Hover { get; set; }
+        private Transform HoverTransform { get; set; }
         public bool IsShowing { get; private set; }
 
         public bool IsLocked { get; private set; }
-        public void Lock() => IsLocked = true;
-        public void Unlock() => IsLocked = false;
 
-        void Awake()
+        public void Lock()
+        {
+            IsLocked = true;
+        }
+
+        public void Unlock()
+        {
+            IsLocked = false;
+        }
+
+        private void Awake()
         {
             Camera = Camera.main;
             TileMap = GetComponent<Tilemap>();
@@ -24,21 +32,24 @@ namespace HexCardGame.UI
             HoverTransform = Hover.transform;
         }
 
-        void HideHover()
+        private void HideHover()
         {
             IsShowing = false;
             Hover.Hide();
         }
 
-        void ShowHover(Vector3 position)
+        private void ShowHover(Vector3 position)
         {
             HoverTransform.position = position;
             Hover.Show();
         }
 
-        void Update() => CalculateHoverPosition();
+        private void Update()
+        {
+            CalculateHoverPosition();
+        }
 
-        void CalculateHoverPosition()
+        private void CalculateHoverPosition()
         {
             var mousePosition = Input.mousePosition;
             var worldHoverPosition = Camera.ScreenToWorldPoint(mousePosition);

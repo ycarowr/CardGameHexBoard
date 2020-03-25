@@ -11,8 +11,14 @@ namespace Game.Ui
         /// <summary> Reference to the game data. </summary>
         protected GameData GameData;
 
-        protected virtual void Awake() => GameData = GameData.Load();
+        protected virtual void Awake()
+        {
+            GameData = GameData.Load();
+        }
 
-        public bool IsMyTurn(SeatType id) => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(id);
+        public bool IsMyTurn(SeatType id)
+        {
+            return GameData.CurrentGameInstance.TurnLogic.IsMyTurn(id);
+        }
     }
 }

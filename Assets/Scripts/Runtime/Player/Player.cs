@@ -26,13 +26,16 @@ namespace HexCardGame
             GameParameters = gameParameters;
         }
 
-        IDispatcher Dispatcher { get; }
-        GameParameters GameParameters { get; }
+        private IDispatcher Dispatcher { get; }
+        private GameParameters GameParameters { get; }
 
         public int NetworkId { get; }
         public SeatType Seat { get; }
         public bool IsUser => Seat == GameParameters.Profiles.localPlayerSeat;
 
-        void OnCreatePlayer() => Dispatcher.Notify<ICreatePlayer>(i => i.OnCreatePlayer(this));
+        private void OnCreatePlayer()
+        {
+            Dispatcher.Notify<ICreatePlayer>(i => i.OnCreatePlayer(this));
+        }
     }
 }

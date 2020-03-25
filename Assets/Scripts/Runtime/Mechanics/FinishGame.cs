@@ -31,7 +31,9 @@
         }
 
         /// <summary> Dispatch end game to the listeners. </summary>
-        void OnGameFinished(IPlayer winner) =>
+        private void OnGameFinished(IPlayer winner)
+        {
             Dispatcher.Notify<IFinishGame>(i => i.OnFinishGame(winner));
+        }
     }
 }

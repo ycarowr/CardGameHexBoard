@@ -15,13 +15,13 @@ namespace HexCardGame.UI
 
     public class UiCardPool : MonoBehaviour, IUiCardPool
     {
-        const int LayerToRenderNormal = 0;
-        const int LayerToRenderTop = 1;
-        [SerializeField] SpriteRenderer artwork;
-        [SerializeField] UiPoolParameters parameters;
+        private const int LayerToRenderNormal = 0;
+        private const int LayerToRenderTop = 1;
+        [SerializeField] private SpriteRenderer artwork;
+        [SerializeField] private UiPoolParameters parameters;
 
-        SpriteRenderer[] Renderers { get; set; }
-        IMouseInput Input { get; set; }
+        private SpriteRenderer[] Renderers { get; set; }
+        private IMouseInput Input { get; set; }
         public ICardData Data { get; private set; }
         public UiMotion Motion { get; private set; }
         public MonoBehaviour MonoBehaviour => this;
@@ -51,24 +51,30 @@ namespace HexCardGame.UI
             UpdateUi();
         }
 
-        void Awake()
+        private void Awake()
         {
             Renderers = GetComponentsInChildren<SpriteRenderer>();
             GetComponent<BoxCollider2D>().size = parameters.UiCardSize.Value;
             Motion = new UiMotion(this);
         }
 
-        void Update() => Motion.Update();
+        private void Update()
+        {
+            Motion.Update();
+        }
 
-        void UpdateUi() => artwork.sprite = Data.Artwork;
+        private void UpdateUi()
+        {
+            artwork.sprite = Data.Artwork;
+        }
 
-        void MakeRenderFirst()
+        private void MakeRenderFirst()
         {
             for (var i = 0; i < Renderers.Length; i++)
                 Renderers[i].sortingOrder = LayerToRenderTop;
         }
 
-        void MakeRenderNormal()
+        private void MakeRenderNormal()
         {
             for (var i = 0; i < Renderers.Length; i++)
                 if (Renderers[i])

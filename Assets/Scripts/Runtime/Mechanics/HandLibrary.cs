@@ -21,7 +21,7 @@
             var handSize = hand.Cards.Count;
             if (handSize >= hand.MaxHandSize)
                 return;
-            
+
             var data = Game.Library.GetRandomData();
             var card = new CardHand(data);
             hand.Add(card);
@@ -34,7 +34,7 @@
                 return;
             var hand = GetPlayerHand(seatType);
             var handSize = hand.Cards.Count;
-            if(handSize >= hand.MaxHandSize)
+            if (handSize >= hand.MaxHandSize)
                 return;
 
             var data = Game.Library.GetRandomData();
@@ -50,7 +50,9 @@
             OnDrawCard(seatType, card);
         }
 
-        void OnDrawCard(SeatType seatType, CardHand card) =>
+        private void OnDrawCard(SeatType seatType, CardHand card)
+        {
             Dispatcher.Notify<IDrawCard>(i => i.OnDrawCard(seatType, card));
+        }
     }
 }

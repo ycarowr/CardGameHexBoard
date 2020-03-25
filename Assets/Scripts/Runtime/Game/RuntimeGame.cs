@@ -21,7 +21,7 @@ namespace HexCardGame.Runtime.Game
             InitializeTurnBasedStructures(args);
         }
 
-        void InitializeGameDataStructures(GameArgs args)
+        private void InitializeGameDataStructures(GameArgs args)
         {
             {
                 var localPlayer = args.LocalPlayer;
@@ -67,7 +67,7 @@ namespace HexCardGame.Runtime.Game
             }
         }
 
-        void InitializeTurnBasedStructures(GameArgs args)
+        private void InitializeTurnBasedStructures(GameArgs args)
         {
             TurnLogic = new TurnLogic(Players);
             BattleFsm = new BattleFsm(args, this);

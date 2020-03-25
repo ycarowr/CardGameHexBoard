@@ -6,7 +6,7 @@ namespace HexCardGame.UI
 {
     public class UiText : MonoBehaviour
     {
-        readonly string defaultText = string.Empty;
+        private readonly string defaultText = string.Empty;
 
         [Tooltip("Color of the text."), SerializeField]
         protected Color color = Color.black;
@@ -23,6 +23,9 @@ namespace HexCardGame.UI
             SetText(defaultText);
         }
 
-        public virtual void SetText(string text) => TmProText.text = text;
+        public virtual void SetText(string text)
+        {
+            TmProText.text = text;
+        }
     }
 }

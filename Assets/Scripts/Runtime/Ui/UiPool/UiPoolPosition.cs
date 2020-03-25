@@ -9,12 +9,12 @@ namespace HexCardGame.UI
     [ExecuteInEditMode, RequireComponent(typeof(IMouseInput))]
     public class UiPoolPosition : UiEventListener, IDataStorage<IUiCardPool>, ILockPosition, IUnlockPosition
     {
-        [SerializeField] PositionId id;
-        [SerializeField] UiPoolParameters parameters;
+        [SerializeField] private PositionId id;
+        [SerializeField] private UiPoolParameters parameters;
         public PositionId Id => id;
-        BoxCollider2D Collider { get; set; }
-        UiHoverParticleSystem Hover { get; set; }
-        IMouseInput Input { get; set; }
+        private BoxCollider2D Collider { get; set; }
+        private UiHoverParticleSystem Hover { get; set; }
+        private IMouseInput Input { get; set; }
         public bool HasData => Data != null;
         public IUiCardPool Data { get; private set; }
 
@@ -54,7 +54,7 @@ namespace HexCardGame.UI
             }
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             if (Input == null)
                 return;
@@ -62,8 +62,14 @@ namespace HexCardGame.UI
             Input.OnPointerExit -= HideParticlesHover;
         }
 
-        void ShowParticlesHover(PointerEventData obj) => Hover.Show();
+        private void ShowParticlesHover(PointerEventData obj)
+        {
+            Hover.Show();
+        }
 
-        void HideParticlesHover(PointerEventData obj) => Hover.Hide();
+        private void HideParticlesHover(PointerEventData obj)
+        {
+            Hover.Hide();
+        }
     }
 }

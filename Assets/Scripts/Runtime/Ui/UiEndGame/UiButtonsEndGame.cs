@@ -7,11 +7,14 @@ namespace HexCardGame.UI
         IButtonHandler,
         UiButtonRestart.IPressRestart
     {
-        IRestartGameHandler PlayerHandler { get; set; }
+        private IRestartGameHandler PlayerHandler { get; set; }
 
-        void UiButtonRestart.IPressRestart.PressRestart() => PlayerHandler.RestartGame();
+        void UiButtonRestart.IPressRestart.PressRestart()
+        {
+            PlayerHandler.RestartGame();
+        }
 
-        void Awake()
+        private void Awake()
         {
             PlayerHandler = GetComponent<IRestartGameHandler>();
 

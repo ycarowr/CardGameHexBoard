@@ -5,7 +5,7 @@ namespace HexCardGame.UI
 {
     public class UiButtonWin : UiButton
     {
-        UITextMeshImage UiButton { get; set; }
+        private UITextMeshImage UiButton { get; set; }
 
         protected override void OnSetHandler(IButtonHandler handler)
         {
@@ -13,10 +13,12 @@ namespace HexCardGame.UI
                 AddListener(win.PressWin);
         }
 
-        protected void Awake() =>
+        protected void Awake()
+        {
             UiButton = new UITextMeshImage(
                 GetComponentInChildren<TMP_Text>(),
                 GetComponent<Image>());
+        }
 
         public interface IPressWin
         {

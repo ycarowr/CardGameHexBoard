@@ -9,7 +9,7 @@ namespace Tools.UI.Card
 
         #region Fields
 
-        int Count { get; set; }
+        private int Count { get; set; }
 
         #endregion
 
@@ -17,7 +17,10 @@ namespace Tools.UI.Card
 
         #region Operations
 
-        public void Restart() => SceneManager.LoadScene(0);
+        public void Restart()
+        {
+            SceneManager.LoadScene(0);
+        }
 
         #endregion
 

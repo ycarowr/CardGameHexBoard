@@ -10,7 +10,7 @@ namespace HexCardGame.UI
         public const int LayerZ = 3;
         public const int MaxRowsX = 4;
         public const int MaxColumnsY = 4;
-        readonly Dictionary<PositionId, Vector3> _positions = new Dictionary<PositionId, Vector3>();
+        private readonly Dictionary<PositionId, Vector3> _positions = new Dictionary<PositionId, Vector3>();
 
         public UiPoolPositioning(UiPool uiPool)
         {
@@ -31,13 +31,20 @@ namespace HexCardGame.UI
         public float MaxY => GetMaxY() + HalfHeight;
 
 
-        UiPool UiPool { get; }
-        UiPoolParameters Parameters { get; }
-        public void Update() => UpdatePositions();
+        private UiPool UiPool { get; }
+        private UiPoolParameters Parameters { get; }
 
-        public Vector3 GetPositionFor(PositionId positionId) => _positions[positionId];
+        public void Update()
+        {
+            UpdatePositions();
+        }
 
-        void UpdatePositions()
+        public Vector3 GetPositionFor(PositionId positionId)
+        {
+            return _positions[positionId];
+        }
+
+        private void UpdatePositions()
         {
             var zero = UiPool.transform.position;
             var cardsPerRow = MaxRowsX;
@@ -62,7 +69,7 @@ namespace HexCardGame.UI
             }
         }
 
-        void SetPosition(PositionId i, Vector3 position)
+        private void SetPosition(PositionId i, Vector3 position)
         {
             if (!_positions.ContainsKey(i))
                 _positions.Add(i, position);
@@ -71,7 +78,7 @@ namespace HexCardGame.UI
         }
 
 
-        float GetMaxX()
+        private float GetMaxX()
         {
             var greaterX = -99999f;
             foreach (var i in _positions.Keys)
@@ -84,7 +91,7 @@ namespace HexCardGame.UI
             return greaterX;
         }
 
-        float GetMaxY()
+        private float GetMaxY()
         {
             var greaterY = -99999f;
             foreach (var i in _positions.Keys)
@@ -97,7 +104,7 @@ namespace HexCardGame.UI
             return greaterY;
         }
 
-        float GetMinX()
+        private float GetMinX()
         {
             var smaller = 99999f;
             foreach (var i in _positions.Keys)
@@ -110,7 +117,7 @@ namespace HexCardGame.UI
             return smaller;
         }
 
-        float GetMinY()
+        private float GetMinY()
         {
             var smaller = 99999f;
             foreach (var i in _positions.Keys)

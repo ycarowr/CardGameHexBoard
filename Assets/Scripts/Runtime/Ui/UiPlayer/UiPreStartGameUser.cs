@@ -7,8 +7,8 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(IUiUserInput)), RequireComponent(typeof(IUiPlayer))]
     public class UiPreStartGameUser : UiEventListener, IPreGameStart
     {
-        IUiUserInput UserInput { get; set; }
-        IUiPlayer Ui { get; set; }
+        private IUiUserInput UserInput { get; set; }
+        private IUiPlayer Ui { get; set; }
 
         void IPreGameStart.OnPreGameStart(IPlayer[] players)
         {

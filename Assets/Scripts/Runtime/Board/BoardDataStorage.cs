@@ -15,9 +15,15 @@ namespace HexCardGame.Runtime.GameBoard
 
     public partial class Board<T>
     {
-        public T GetDataFrom(Vector3Int vPosition) => GetPosition(vPosition).Data;
+        public T GetDataFrom(Vector3Int vPosition)
+        {
+            return GetPosition(vPosition).Data;
+        }
 
-        public void AddDataAt(T data, Vector3Int position) => GetPosition(position).SetData(data);
+        public void AddDataAt(T data, Vector3Int position)
+        {
+            GetPosition(position).SetData(data);
+        }
 
         public bool RemoveDataAt(Vector3Int vPosition)
         {
@@ -27,7 +33,10 @@ namespace HexCardGame.Runtime.GameBoard
             return data != null;
         }
 
-        public bool HasDataAt(Vector3Int position) => GetPosition(position).HasData;
+        public bool HasDataAt(Vector3Int position)
+        {
+            return GetPosition(position).HasData;
+        }
 
         public bool RemoveData(T data)
         {

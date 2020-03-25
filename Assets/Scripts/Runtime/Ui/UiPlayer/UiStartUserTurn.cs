@@ -8,9 +8,9 @@ namespace HexCardGame.UI
     [RequireComponent(typeof(IUiUserInput)), RequireComponent(typeof(IUiPlayer))]
     public class UiStartUserTurn : UiEventListener, IStartPlayerTurn
     {
-        const float DelayToEnableInput = 2;
-        IUiUserInput UserInput { get; set; }
-        IUiPlayer Ui { get; set; }
+        private const float DelayToEnableInput = 2;
+        private IUiUserInput UserInput { get; set; }
+        private IUiPlayer Ui { get; set; }
 
         //----------------------------------------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ namespace HexCardGame.UI
 
         //----------------------------------------------------------------------------------------------------------
 
-        IEnumerator EnableInput()
+        private IEnumerator EnableInput()
         {
             yield return new WaitForSeconds(DelayToEnableInput);
             UserInput.Enable();

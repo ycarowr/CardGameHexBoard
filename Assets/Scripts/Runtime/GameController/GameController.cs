@@ -19,9 +19,9 @@ namespace HexCardGame
 
     public class GameController : MonoBehaviour, IGameController
     {
-        GameParameters _gameParameters;
-        IDispatcher _dispatcher;
-        GameData _gameData;
+        private IDispatcher _dispatcher;
+        private GameData _gameData;
+        private GameParameters _gameParameters;
 
         /// <summary>  Handler for the state machine. Used to dispatch corotines. </summary>
         public MonoBehaviour MonoBehaviour => this;
@@ -33,7 +33,7 @@ namespace HexCardGame
             _gameData.Clear();
         }
 
-        void Awake()
+        private void Awake()
         {
             if (_gameData == null)
                 _gameData = GameData.Load();
@@ -44,20 +44,20 @@ namespace HexCardGame
         }
 
         [Button]
-        void StartLocalGame()
+        private void StartLocalGame()
         {
             var localPlayerSeat = _gameParameters.Profiles.localPlayer.seat;
             var remotePlayerSeat = _gameParameters.Profiles.remotePlayer.seat;
 
             var localPlayerNetworkId = 0;
             var remotePlayerNetworkId = 1;
-            
+
             var localPlayer = new Player(localPlayerNetworkId, localPlayerSeat, _gameParameters, _dispatcher);
             var remotePlayer = new Player(remotePlayerNetworkId, remotePlayerSeat, _gameParameters, _dispatcher);
-            
+
             StartBattle(localPlayer, remotePlayer);
         }
-        
+
 
         /// <summary>  Start the battle. Called only once after being initialized by the Bootstrapper. </summary>
         public void StartBattle(IPlayer localPlayer, IPlayer remotePlayer)

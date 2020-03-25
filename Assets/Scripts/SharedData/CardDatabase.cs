@@ -6,8 +6,12 @@ namespace HexCardGame.SharedData
     public class CardDatabase : Singleton<CardDatabase>
     {
         public const string Path = "CardDatabase";
-        CardData[] _register;
-        public void Load() => _register = Resources.LoadAll<CardData>(Path);
+        private CardData[] _register;
+
+        public void Load()
+        {
+            _register = Resources.LoadAll<CardData>(Path);
+        }
 
         public CardData GetData(CardId id)
         {

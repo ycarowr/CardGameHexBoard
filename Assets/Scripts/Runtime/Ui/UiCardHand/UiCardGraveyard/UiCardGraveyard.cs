@@ -11,11 +11,11 @@ namespace Tools.UI.Card
     public class UiCardGraveyard : UiCardPile
     {
         [SerializeField, Tooltip("World point where the graveyard is positioned")]
-        Transform graveyardPosition;
+        private Transform graveyardPosition;
 
         //--------------------------------------------------------------------------------------------------------------
 
-        UiCardHandSelector CardHandSelector { get; set; }
+        private UiCardHandSelector CardHandSelector { get; set; }
 
 
         //--------------------------------------------------------------------------------------------------------------

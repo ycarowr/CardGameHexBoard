@@ -14,6 +14,9 @@ namespace Game.Ui
             TMPText = GetComponent<TMP_Text>();
         }
 
-        protected void SetText(string s) => TMPText.text = s;
+        protected void SetText(string s)
+        {
+            TMPText.text = s;
+        }
     }
 }

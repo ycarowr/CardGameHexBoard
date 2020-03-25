@@ -4,7 +4,10 @@
     {
         #region Locking Logic
 
-        public bool IsPositionLocked(PositionId positionId) => Get(positionId).IsLocked;
+        public bool IsPositionLocked(PositionId positionId)
+        {
+            return Get(positionId).IsLocked;
+        }
 
         public void Unlock(PositionId positionId)
         {

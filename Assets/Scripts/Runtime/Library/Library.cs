@@ -20,8 +20,8 @@ namespace HexCardGame.Runtime
 
     public class Library : ILibrary
     {
-        readonly CardData[] _register;
-        readonly Dictionary<SeatType, CardData[]> _registerByPlayer;
+        private readonly CardData[] _register;
+        private readonly Dictionary<SeatType, CardData[]> _registerByPlayer;
 
         public Library(Dictionary<SeatType, CardData[]> playersLibrary, IDispatcher dispatcher)
         {
@@ -45,12 +45,22 @@ namespace HexCardGame.Runtime
             OnCreateLibrary();
         }
 
-        IDispatcher Dispatcher { get; }
+        private IDispatcher Dispatcher { get; }
         public int Size => _register.Length;
-        public CardData GetRandomData() => _register.RandomItem();
 
-        public CardData GetRandomDataFromPlayer(SeatType id) => _registerByPlayer[id].RandomItem();
+        public CardData GetRandomData()
+        {
+            return _register.RandomItem();
+        }
 
-        void OnCreateLibrary() => Dispatcher.Notify<ICreateLibrary>(i => i.OnCreateLibrary(this));
+        public CardData GetRandomDataFromPlayer(SeatType id)
+        {
+            return _registerByPlayer[id].RandomItem();
+        }
+
+        private void OnCreateLibrary()
+        {
+            Dispatcher.Notify<ICreateLibrary>(i => i.OnCreateLibrary(this));
+        }
     }
 }

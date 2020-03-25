@@ -4,9 +4,9 @@ namespace HexCardGame.UI
 {
     public class UiHoverParticleSystem : MonoBehaviour
     {
-        [SerializeField] ScriptableColor color;
-        [SerializeField] ParticleSystem[] particles;
-        [SerializeField] Renderer[] renderers;
+        [SerializeField] private ScriptableColor color;
+        [SerializeField] private ParticleSystem[] particles;
+        [SerializeField] private Renderer[] renderers;
 
         public void Show(int layer = -1)
         {

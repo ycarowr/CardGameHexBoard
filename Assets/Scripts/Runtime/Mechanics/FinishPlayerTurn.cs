@@ -27,8 +27,10 @@
         }
 
         /// <summary> Dispatch to the listeners. </summary>
-        void OnFinishedCurrentPlayerTurn(IPlayer currentPlayer) =>
+        private void OnFinishedCurrentPlayerTurn(IPlayer currentPlayer)
+        {
             Dispatcher.Notify<IFinishPlayerTurn>(i =>
                 i.OnFinishPlayerTurn(currentPlayer));
+        }
     }
 }

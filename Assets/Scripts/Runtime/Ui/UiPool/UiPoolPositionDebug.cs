@@ -4,9 +4,9 @@ namespace HexCardGame.UI
 {
     public class UiPoolPositionDebug : MonoBehaviour
     {
-        [SerializeField] UiCardSize uiCardSize;
+        [SerializeField] private UiCardSize uiCardSize;
 
-        void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawCube(transform.position, uiCardSize.Value);

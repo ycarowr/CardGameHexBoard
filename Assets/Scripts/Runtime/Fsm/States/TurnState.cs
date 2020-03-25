@@ -6,14 +6,17 @@ namespace HexCardGame
 {
     public abstract class TurnState : BaseBattleState, IFinishPlayerTurn
     {
-        protected TurnState(BattleFsm.BattleFsmArguments args) : base(args) => Fsm.RegisterPlayer(Id, this);
+        protected TurnState(BattleFsm.BattleFsmArguments args) : base(args)
+        {
+            Fsm.RegisterPlayer(Id, this);
+        }
 
         protected bool IsMyTurn => Game.TurnLogic.IsMyTurn(Id);
         protected abstract SeatType Id { get; }
         protected virtual bool IsAi => false;
         protected virtual bool IsUser => false;
-        Coroutine TimeOutRoutine { get; set; }
-        Coroutine TickRoutine { get; set; }
+        private Coroutine TimeOutRoutine { get; set; }
+        private Coroutine TickRoutine { get; set; }
 
 
         void IFinishPlayerTurn.OnFinishPlayerTurn(IPlayer player)

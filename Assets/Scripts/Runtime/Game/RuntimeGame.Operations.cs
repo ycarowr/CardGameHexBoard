@@ -7,27 +7,60 @@ namespace HexCardGame.Runtime.Game
     {
         #region Operations
 
-        public void StartGame() => GameMechanics.StartGame.Execute();
-        public void PreStartGame() => GameMechanics.PreStartGame.Execute();
-        public void StartPlayerTurn() => GameMechanics.StartPlayerTurn.Execute();
-        public void FinishPlayerTurn() => GameMechanics.FinishPlayerTurn.Execute();
-        public void DrawCardFromLibrary(SeatType seatType) => GameMechanics.HandLibrary.DrawCard(seatType);
-        public void FreeDrawCardFromLibrary(SeatType seatType) => GameMechanics.HandLibrary.FreeDrawCard(seatType);
+        public void StartGame()
+        {
+            GameMechanics.StartGame.Execute();
+        }
 
-        public void RevealCardHigherPosition(SeatType seatType) =>
+        public void PreStartGame()
+        {
+            GameMechanics.PreStartGame.Execute();
+        }
+
+        public void StartPlayerTurn()
+        {
+            GameMechanics.StartPlayerTurn.Execute();
+        }
+
+        public void FinishPlayerTurn()
+        {
+            GameMechanics.FinishPlayerTurn.Execute();
+        }
+
+        public void DrawCardFromLibrary(SeatType seatType)
+        {
+            GameMechanics.HandLibrary.DrawCard(seatType);
+        }
+
+        public void FreeDrawCardFromLibrary(SeatType seatType)
+        {
+            GameMechanics.HandLibrary.FreeDrawCard(seatType);
+        }
+
+        public void RevealCardHigherPosition(SeatType seatType)
+        {
             GameMechanics.PoolLibrary.RevealCardHigherPosition(seatType);
+        }
 
         public void RevealCardFromLibrary(SeatType seatType, PositionId positionId)
-            => GameMechanics.PoolLibrary.RevealCard(seatType, positionId);
+        {
+            GameMechanics.PoolLibrary.RevealCard(seatType, positionId);
+        }
 
         public void PlayElementAt(SeatType seatType, CardHand card, Vector3Int position)
-            => GameMechanics.HandBoard.PlayCardAt(seatType, card, position);
+        {
+            GameMechanics.HandBoard.PlayCardAt(seatType, card, position);
+        }
 
-        public void PickCardFromPosition(SeatType seatType, PositionId positionId) =>
+        public void PickCardFromPosition(SeatType seatType, PositionId positionId)
+        {
             GameMechanics.HandPool.PickCard(seatType, positionId);
+        }
 
-        public void ReturnCardToPosition(SeatType seatType, CardHand cardHand, PositionId positionId) =>
+        public void ReturnCardToPosition(SeatType seatType, CardHand cardHand, PositionId positionId)
+        {
             GameMechanics.HandPool.ReturnCard(seatType, cardHand, positionId);
+        }
 
         public void ExecuteAiTurn(SeatType id)
         {

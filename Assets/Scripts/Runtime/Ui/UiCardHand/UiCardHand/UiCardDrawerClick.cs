@@ -9,8 +9,8 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(IMouseInput))]
     public class UiCardDrawerClick : UiEventListener
     {
-        [SerializeField] UiLibraryMenu menu;
-        IMouseInput Input { get; set; }
+        [SerializeField] private UiLibraryMenu menu;
+        private IMouseInput Input { get; set; }
 
         protected override void Awake()
         {
@@ -19,6 +19,9 @@ namespace Tools.UI.Card
             Input.OnPointerClick += ShowMenu;
         }
 
-        void ShowMenu(PointerEventData obj) => menu.Show();
+        private void ShowMenu(PointerEventData obj)
+        {
+            menu.Show();
+        }
     }
 }

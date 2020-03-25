@@ -21,10 +21,10 @@ namespace Game.Fsm.Tests
             Dispatcher.AddListener(this);
             Controller = new GameObject("MockFsmController").AddComponent<MockFsmController>();
             Controller.Awake();
-            
+
             var localPlayerSeat = Parameters.Profiles.localPlayer.seat;
             var remotePlayerSeat = Parameters.Profiles.remotePlayer.seat;
-            
+
             var localPlayer = new Player(0, localPlayerSeat, Parameters, Dispatcher);
             var remotePlayer = new Player(1, remotePlayerSeat, Parameters, Dispatcher);
             GameData.CreateGame(Controller, localPlayer, remotePlayer);
@@ -39,8 +39,8 @@ namespace Game.Fsm.Tests
 
         public class MockFsmController : MonoBehaviour, IGameController
         {
-            EventsDispatcher _dispatcher;
-            GameData _gameData;
+            private EventsDispatcher _dispatcher;
+            private GameData _gameData;
             public MonoBehaviour MonoBehaviour => this;
 
             public void RestartGameImmediately()

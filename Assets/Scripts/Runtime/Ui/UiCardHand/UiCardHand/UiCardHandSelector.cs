@@ -10,7 +10,10 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardHandSelector : UiCardPile, IRestartGame
     {
-        void IRestartGame.OnRestart() => Clear();
+        void IRestartGame.OnRestart()
+        {
+            Clear();
+        }
         //--------------------------------------------------------------------------------------------------------------
 
         #region Properties
@@ -90,7 +93,10 @@ namespace Tools.UI.Card
         /// <summary>
         ///     Unselect the card which is currently selected. Nothing happens if current is null.
         /// </summary>
-        public void Unselect() => UnselectCard(SelectedCard);
+        public void Unselect()
+        {
+            UnselectCard(SelectedCard);
+        }
 
         /// <summary>
         ///     Disables input for all cards.

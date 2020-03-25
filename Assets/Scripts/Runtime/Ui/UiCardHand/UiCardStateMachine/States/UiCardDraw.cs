@@ -13,7 +13,7 @@ namespace Tools.UI.Card
         {
         }
 
-        Vector3 StartScale { get; set; }
+        private Vector3 StartScale { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -27,17 +27,26 @@ namespace Tools.UI.Card
             Handler.Movement.OnFinishMotion += GoToIdle;
         }
 
-        public override void OnExitState() => Handler.Movement.OnFinishMotion -= GoToIdle;
+        public override void OnExitState()
+        {
+            Handler.Movement.OnFinishMotion -= GoToIdle;
+        }
 
-        void GoToIdle() => Handler.Enable();
+        private void GoToIdle()
+        {
+            Handler.Enable();
+        }
 
-        void CachePreviousValue()
+        private void CachePreviousValue()
         {
             StartScale = Handler.transform.localScale;
             Handler.transform.localScale *= Parameters.StartSizeWhenDraw;
         }
 
-        void SetScale() => Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
+        private void SetScale()
+        {
+            Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
+        }
 
         #endregion
     }

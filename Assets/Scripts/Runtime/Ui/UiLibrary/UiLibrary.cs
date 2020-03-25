@@ -6,10 +6,10 @@ namespace HexCardGame.UI
 {
     public class UiLibrary : MonoBehaviour
     {
-        IMouseInput Input { get; set; }
-        UiHoverParticleSystem Hover { get; set; }
+        private IMouseInput Input { get; set; }
+        private UiHoverParticleSystem Hover { get; set; }
 
-        void Awake()
+        private void Awake()
         {
             Input = GetComponentInChildren<IMouseInput>();
             Hover = GetComponentInChildren<UiHoverParticleSystem>();
@@ -18,7 +18,7 @@ namespace HexCardGame.UI
         }
 
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             if (Input == null)
                 return;
@@ -26,8 +26,14 @@ namespace HexCardGame.UI
             Input.OnPointerExit -= HideParticlesHover;
         }
 
-        void ShowParticlesHover(PointerEventData obj) => Hover.Show();
+        private void ShowParticlesHover(PointerEventData obj)
+        {
+            Hover.Show();
+        }
 
-        void HideParticlesHover(PointerEventData obj) => Hover.Hide();
+        private void HideParticlesHover(PointerEventData obj)
+        {
+            Hover.Hide();
+        }
     }
 }

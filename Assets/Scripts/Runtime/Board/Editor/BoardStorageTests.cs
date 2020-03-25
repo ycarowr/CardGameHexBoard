@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Test
 {
     public class BoardStorageTests : BaseTest
     {
-        IBoard<MockBoardElement> _board;
+        private IBoard<MockBoardElement> _board;
 
         [TearDown]
         public override void TearDown()
@@ -14,7 +14,10 @@ namespace HexCardGame.Runtime.Test
             _board = null;
         }
 
-        public override void Create() => _board = new Board<MockBoardElement>(Parameters, Dispatcher);
+        public override void Create()
+        {
+            _board = new Board<MockBoardElement>(Parameters, Dispatcher);
+        }
 
         [Test]
         public void AddDataAt_Test()
@@ -122,6 +125,9 @@ namespace HexCardGame.Runtime.Test
             }
         }
 
-        MockBoardElement GetTestData() => new MockBoardElement();
+        private MockBoardElement GetTestData()
+        {
+            return new MockBoardElement();
+        }
     }
 }

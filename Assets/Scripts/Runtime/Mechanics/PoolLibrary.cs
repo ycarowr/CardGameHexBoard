@@ -37,8 +37,10 @@ namespace HexCardGame.Runtime.Game
             OnRevealCard(seatType, cardPool, positionId);
         }
 
-        void OnRevealCard(SeatType seatType, CardPool cardPool, PositionId positionId) =>
+        private void OnRevealCard(SeatType seatType, CardPool cardPool, PositionId positionId)
+        {
             Dispatcher.Notify<IRevealCard>(i => i.OnRevealCard(seatType, cardPool, positionId));
+        }
 
         public void RevealCardHigherPosition(SeatType seatType)
         {
@@ -52,7 +54,7 @@ namespace HexCardGame.Runtime.Game
             RevealCard(seatType, empty.Value);
         }
 
-        PositionId? FindEmpty()
+        private PositionId? FindEmpty()
         {
             var pool = Game.Pool;
             var positions = PoolPositionUtility.GetAllIndices();

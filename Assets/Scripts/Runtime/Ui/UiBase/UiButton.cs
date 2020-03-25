@@ -28,7 +28,10 @@ namespace HexCardGame.UI
             Button.onClick.AddListener(action);
         }
 
-        public void RemoveListener(UnityAction action) => Button.onClick.RemoveListener(action);
+        public void RemoveListener(UnityAction action)
+        {
+            Button.onClick.RemoveListener(action);
+        }
 
         /// <summary> Inject a button handler to handle the press event. </summary>
         /// <param name="handler"></param>

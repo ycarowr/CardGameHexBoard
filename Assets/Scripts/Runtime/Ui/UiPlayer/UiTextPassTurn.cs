@@ -2,7 +2,7 @@
 {
     public class UiTextPassTurn : UiText
     {
-        readonly string PassTurn = "Pass Turn";
+        private readonly string PassTurn = "Pass Turn";
 
         protected override void Awake()
         {

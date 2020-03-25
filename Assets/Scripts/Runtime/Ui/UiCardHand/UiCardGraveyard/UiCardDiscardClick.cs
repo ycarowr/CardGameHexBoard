@@ -10,17 +10,17 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(IMouseInput))]
     public class UiCardDiscardClick : MonoBehaviour
     {
-        UiCardUtils Utils { get; set; }
-        IMouseInput Input { get; set; }
+        private UiCardUtils Utils { get; set; }
+        private IMouseInput Input { get; set; }
 
-        void Awake()
+        private void Awake()
         {
             Utils = transform.parent.GetComponentInChildren<UiCardUtils>();
             Input = GetComponent<IMouseInput>();
             Input.OnPointerClick += PlayRandom;
         }
 
-        void PlayRandom(PointerEventData obj)
+        private void PlayRandom(PointerEventData obj)
         {
         }
     }

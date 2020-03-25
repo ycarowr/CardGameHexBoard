@@ -28,7 +28,7 @@ namespace HexCardGame.Runtime
             UpdateData();
         }
 
-        void UpdateData()
+        private void UpdateData()
         {
             Cost = Data.Cost;
             Score = Data.Score;

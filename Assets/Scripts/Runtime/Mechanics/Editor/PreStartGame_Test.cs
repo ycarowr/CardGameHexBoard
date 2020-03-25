@@ -5,7 +5,10 @@ namespace HexCardGame.Runtime.Test
 {
     public partial class Mechanics_Test : BaseTestMechanics, IPreGameStart
     {
-        public void OnPreGameStart(IPlayer[] players) => EventReceived = true;
+        public void OnPreGameStart(IPlayer[] players)
+        {
+            EventReceived = true;
+        }
 
         [Test]
         public void PreStartGame()

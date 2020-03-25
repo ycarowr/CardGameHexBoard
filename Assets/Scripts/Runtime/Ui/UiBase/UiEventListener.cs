@@ -18,8 +18,19 @@ namespace Game.Ui
             Subscribe();
         }
 
-        void OnDestroy() => Unsubscribe();
-        void Subscribe() => Dispatcher.AddListener(this);
-        void Unsubscribe() => Dispatcher?.RemoveListener(this);
+        private void OnDestroy()
+        {
+            Unsubscribe();
+        }
+
+        private void Subscribe()
+        {
+            Dispatcher.AddListener(this);
+        }
+
+        private void Unsubscribe()
+        {
+            Dispatcher?.RemoveListener(this);
+        }
     }
 }

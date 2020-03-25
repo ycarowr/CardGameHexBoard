@@ -2,7 +2,7 @@
 {
     public class UiButtonLose : UiButton
     {
-        UITextMeshImage UiButton { get; set; }
+        private UITextMeshImage UiButton { get; set; }
 
         protected override void OnSetHandler(IButtonHandler handler)
         {

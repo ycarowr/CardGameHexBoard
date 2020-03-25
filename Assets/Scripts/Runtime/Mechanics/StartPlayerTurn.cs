@@ -36,8 +36,10 @@
         }
 
         /// <summary> Dispatch start current player turn to the listeners. </summary>
-        void OnStartedCurrentPlayerTurn(IPlayer currentPlayer) =>
+        private void OnStartedCurrentPlayerTurn(IPlayer currentPlayer)
+        {
             Dispatcher.Notify<IStartPlayerTurn>(i =>
                 i.OnStartPlayerTurn(currentPlayer));
+        }
     }
 }

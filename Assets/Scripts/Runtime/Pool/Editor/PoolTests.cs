@@ -5,14 +5,24 @@ namespace HexCardGame.Runtime.Test
 {
     public class PoolTests : BaseTest, ICreatePool<CardPool>
     {
-        bool _isCreated;
-        IPool<CardPool> _pool;
-        public void OnCreatePool(IPool<CardPool> pool) => _isCreated = true;
+        private bool _isCreated;
+        private IPool<CardPool> _pool;
 
-        public override void Create() => _pool = new Pool<CardPool>(Parameters, Dispatcher);
+        public void OnCreatePool(IPool<CardPool> pool)
+        {
+            _isCreated = true;
+        }
+
+        public override void Create()
+        {
+            _pool = new Pool<CardPool>(Parameters, Dispatcher);
+        }
 
         [Test]
-        public void PoolCreated_Test() => Assert.IsTrue(_isCreated);
+        public void PoolCreated_Test()
+        {
+            Assert.IsTrue(_isCreated);
+        }
 
         [Test]
         public void AddCardAt_Test()
@@ -48,9 +58,12 @@ namespace HexCardGame.Runtime.Test
                 Assert.AreEqual(null, _pool.GetCardAt(i));
         }
 
-        CardPool GetTestCard() => new CardPool(null);
+        private CardPool GetTestCard()
+        {
+            return new CardPool(null);
+        }
 
-        void FillPool()
+        private void FillPool()
         {
             var card = GetTestCard();
             var positions = PoolPositionUtility.GetAllIndices();

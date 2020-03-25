@@ -24,7 +24,9 @@
         }
 
         /// <summary> Dispatch pre start game event to the listeners</summary>
-        void OnGamePreStarted(IPlayer[] players) =>
+        private void OnGamePreStarted(IPlayer[] players)
+        {
             Dispatcher.Notify<IPreGameStart>(i => i.OnPreGameStart(players));
+        }
     }
 }

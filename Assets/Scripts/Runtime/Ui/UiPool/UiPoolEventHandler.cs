@@ -11,18 +11,27 @@ namespace HexCardGame.UI
         IPickCard, IReturnCard,
         IRevealCard, IRevealPool
     {
-        UiPool UiPool { get; set; }
+        private UiPool UiPool { get; set; }
 
-        void IPickCard.OnPickCard(SeatType id, CardHand cardHand, PositionId positionId) =>
+        void IPickCard.OnPickCard(SeatType id, CardHand cardHand, PositionId positionId)
+        {
             UiPool.RemoveCard(positionId);
+        }
 
-        void IRestartGame.OnRestart() => UiPool.Clear();
+        void IRestartGame.OnRestart()
+        {
+            UiPool.Clear();
+        }
 
-        void IReturnCard.OnReturnCard(SeatType id, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
+        void IReturnCard.OnReturnCard(SeatType id, CardHand cardHand, CardPool cardPool, PositionId positionId)
+        {
             UiPool.AddCard(cardPool, positionId, false);
+        }
 
-        void IRevealCard.OnRevealCard(SeatType id, CardPool cardPool, PositionId positionId) =>
+        void IRevealCard.OnRevealCard(SeatType id, CardPool cardPool, PositionId positionId)
+        {
             UiPool.AddCard(cardPool, positionId);
+        }
 
         void IRevealPool.OnRevealPool(IPool<CardPool> pool)
         {
@@ -34,8 +43,10 @@ namespace HexCardGame.UI
             }
         }
 
-        void ISelectPickPoolPosition.OnSelectPickPoolPosition(SeatType seatType, PositionId positionId) =>
+        void ISelectPickPoolPosition.OnSelectPickPoolPosition(SeatType seatType, PositionId positionId)
+        {
             GameData.CurrentGameInstance.PickCardFromPosition(seatType, positionId);
+        }
 
         protected override void Awake()
         {

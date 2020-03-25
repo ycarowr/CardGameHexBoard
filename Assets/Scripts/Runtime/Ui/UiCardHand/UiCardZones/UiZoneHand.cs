@@ -7,6 +7,9 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiZoneHand : UiBaseDropZone
     {
-        protected override void OnPointerUp(PointerEventData eventData) => CardHandSelector?.Unselect();
+        protected override void OnPointerUp(PointerEventData eventData)
+        {
+            CardHandSelector?.Unselect();
+        }
     }
 }

@@ -9,6 +9,9 @@ namespace HexCardGame
         {
         }
 
-        void IFinishGame.OnFinishGame(IPlayer winner) => Fsm.EndBattle();
+        void IFinishGame.OnFinishGame(IPlayer winner)
+        {
+            Fsm.EndBattle();
+        }
     }
 }

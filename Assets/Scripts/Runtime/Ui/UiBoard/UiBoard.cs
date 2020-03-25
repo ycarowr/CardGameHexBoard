@@ -8,9 +8,9 @@ namespace HexCardGame.UI
 {
     public class UiBoard : UiEventListener, ICreateBoard<CreatureElement>, IRestartGame
     {
-        [SerializeField] TileBase test;
-        IBoard<CreatureElement> CurrentBoard { get; set; }
-        Tilemap TileMap { get; set; }
+        [SerializeField] private TileBase test;
+        private IBoard<CreatureElement> CurrentBoard { get; set; }
+        private Tilemap TileMap { get; set; }
 
         void ICreateBoard<CreatureElement>.OnCreateBoard(IBoard<CreatureElement> board)
         {
@@ -18,7 +18,10 @@ namespace HexCardGame.UI
             CreateBoardUi();
         }
 
-        void IRestartGame.OnRestart() => TileMap.ClearAllTiles();
+        void IRestartGame.OnRestart()
+        {
+            TileMap.ClearAllTiles();
+        }
 
         protected override void Awake()
         {
@@ -26,7 +29,7 @@ namespace HexCardGame.UI
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        void CreateBoardUi()
+        private void CreateBoardUi()
         {
             foreach (var i in CurrentBoard.Positions)
             {

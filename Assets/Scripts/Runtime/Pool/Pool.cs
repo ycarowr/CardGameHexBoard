@@ -34,7 +34,7 @@ namespace HexCardGame.Runtime.GamePool
             CreatePool();
         }
 
-        IDispatcher Dispatcher { get; }
+        private IDispatcher Dispatcher { get; }
         public Position<T>[] Positions { get; private set; }
 
         public int Size()
@@ -46,9 +46,12 @@ namespace HexCardGame.Runtime.GamePool
             return size;
         }
 
-        Position<T> Get(PositionId positionId) => Positions[(int) positionId];
+        private Position<T> Get(PositionId positionId)
+        {
+            return Positions[(int) positionId];
+        }
 
-        void CreatePool()
+        private void CreatePool()
         {
             var positions = PoolPositionUtility.GetAllIndices();
             var size = positions.Length;
@@ -59,11 +62,17 @@ namespace HexCardGame.Runtime.GamePool
             OnCreatePool();
         }
 
-        void OnCreatePool() => Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
+        private void OnCreatePool()
+        {
+            Dispatcher.Notify<ICreatePool<T>>(i => i.OnCreatePool(this));
+        }
 
         #region Storage
 
-        public T GetCardAt(PositionId id) => Get(id)?.Data;
+        public T GetCardAt(PositionId id)
+        {
+            return Get(id)?.Data;
+        }
 
         public T GetAndRemoveCardAt(PositionId id)
         {
@@ -72,11 +81,20 @@ namespace HexCardGame.Runtime.GamePool
             return card;
         }
 
-        public void AddCardAt(T card, PositionId id) => Get(id)?.SetData(card);
+        public void AddCardAt(T card, PositionId id)
+        {
+            Get(id)?.SetData(card);
+        }
 
-        public void RemoveCardAt(PositionId id) => Get(id)?.SetData(null);
+        public void RemoveCardAt(PositionId id)
+        {
+            Get(id)?.SetData(null);
+        }
 
-        public bool HasDataAt(PositionId id) => Get(id).HasData;
+        public bool HasDataAt(PositionId id)
+        {
+            return Get(id).HasData;
+        }
 
         public void Clear()
         {

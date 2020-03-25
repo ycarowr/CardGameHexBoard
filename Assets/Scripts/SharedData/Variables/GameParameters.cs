@@ -12,7 +12,11 @@ namespace HexCardGame
         //----------------------------------------------------------------------------------------------------------
 
         public BoardData BoardData;
-        public static GameParameters Load() => Resources.Load<GameParameters>(Path);
+
+        public static GameParameters Load()
+        {
+            return Resources.Load<GameParameters>(Path);
+        }
 
         //----------------------------------------------------------------------------------------------------------
 
@@ -75,16 +79,16 @@ namespace HexCardGame
         [Serializable]
         public class PlayerProfiles
         {
-            [Tooltip("Seat where the user player will be sitting.")]
-            public SeatType localPlayerSeat = SeatType.Bottom;
-
             [Tooltip("Configurations for Bottom player")]
             public Player localPlayer = new Player
             {
                 isAi = false,
                 seat = SeatType.Bottom
             };
-            
+
+            [Tooltip("Seat where the user player will be sitting.")]
+            public SeatType localPlayerSeat = SeatType.Bottom;
+
             public Player remotePlayer = new Player
             {
                 isAi = true,
@@ -94,9 +98,9 @@ namespace HexCardGame
             [Serializable]
             public class Player
             {
-                public SeatType seat;
                 public bool isAi;
                 public PlayerDeck libraryData;
+                public SeatType seat;
             }
         }
 

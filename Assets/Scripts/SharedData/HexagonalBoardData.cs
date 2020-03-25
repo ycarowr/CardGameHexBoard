@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using HexBoardGame.Runtime;
-using HexCardGame.Runtime;
 using UnityEngine;
 
 namespace HexCardGame.SharedData
@@ -14,7 +13,7 @@ namespace HexCardGame.SharedData
     public class HexagonalBoardData : BoardData
     {
         [Range(1, 10)] public int radius;
-        
+
         public override Hex[] GetHexPoints()
         {
             var points = new List<Hex>();

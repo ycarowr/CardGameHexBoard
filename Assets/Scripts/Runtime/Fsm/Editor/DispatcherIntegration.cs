@@ -7,21 +7,36 @@ namespace Game.Fsm.Tests
     public class MvcIntegrationTests : BaseBattleFsmTest, IStartGame, IFinishGame, IPreGameStart,
         IStartPlayerTurn, IFinishPlayerTurn
     {
-        bool _ended;
-        bool _playerFinished;
-        bool _playerStarted;
-        bool _preStarted;
-        bool _started;
+        private bool _ended;
+        private bool _playerFinished;
+        private bool _playerStarted;
+        private bool _preStarted;
+        private bool _started;
 
-        public void OnFinishGame(IPlayer winner) => _ended = true;
+        public void OnFinishGame(IPlayer winner)
+        {
+            _ended = true;
+        }
 
-        public void OnFinishPlayerTurn(IPlayer player) => _playerFinished = true;
+        public void OnFinishPlayerTurn(IPlayer player)
+        {
+            _playerFinished = true;
+        }
 
-        public void OnPreGameStart(IPlayer[] players) => _preStarted = true;
+        public void OnPreGameStart(IPlayer[] players)
+        {
+            _preStarted = true;
+        }
 
-        public void OnStartGame(IPlayer p) => _started = true;
+        public void OnStartGame(IPlayer p)
+        {
+            _started = true;
+        }
 
-        public void OnStartPlayerTurn(IPlayer player) => _playerStarted = true;
+        public void OnStartPlayerTurn(IPlayer player)
+        {
+            _playerStarted = true;
+        }
 
         [Test]
         public void PreStartGame()

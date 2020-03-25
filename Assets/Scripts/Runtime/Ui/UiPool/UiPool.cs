@@ -7,15 +7,19 @@ namespace HexCardGame.UI
 {
     public class UiPool : UiGameDataAccess
     {
-        [SerializeField] Transform libraryPosition;
-        [SerializeField] UiPoolParameters parameters;
-        [SerializeField] UiPoolPosition[] poolCardPositions;
-        IPool<CardPool> CurrentPool => GameData.CurrentGameInstance.Pool;
+        [SerializeField] private Transform libraryPosition;
+        [SerializeField] private UiPoolParameters parameters;
+        [SerializeField] private UiPoolPosition[] poolCardPositions;
+        private IPool<CardPool> CurrentPool => GameData.CurrentGameInstance.Pool;
 
         public UiPoolPosition[] PoolCardPositions => poolCardPositions;
 
         public UiPoolParameters Parameters => parameters;
-        bool IsPositionLocked(PositionId positionId) => CurrentPool.IsPositionLocked(positionId);
+
+        private bool IsPositionLocked(PositionId positionId)
+        {
+            return CurrentPool.IsPositionLocked(positionId);
+        }
 
         public void RemoveCard(PositionId positionId)
         {

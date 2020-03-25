@@ -27,7 +27,7 @@ namespace HexCardGame.Runtime
         public static readonly Gold GoldItem = new Gold();
         public static readonly ActionPoint ActionPointItem = new ActionPoint();
 
-        readonly Dictionary<string, ItemEntry> _register = new Dictionary<string, ItemEntry>();
+        private readonly Dictionary<string, ItemEntry> _register = new Dictionary<string, ItemEntry>();
 
         public Inventory(SeatType id, GameParameters parameters, IDispatcher dispatcher)
         {
@@ -37,14 +37,17 @@ namespace HexCardGame.Runtime
             OnCreateInventory();
         }
 
-        IDispatcher Dispatcher { get; }
-        GameParameters Parameters { get; }
+        private IDispatcher Dispatcher { get; }
+        private GameParameters Parameters { get; }
 
         public SeatType Id { get; }
 
-        void OnCreateInventory() => Dispatcher.Notify<ICreateInventory>(i => i.OnCreateInventory(this));
+        private void OnCreateInventory()
+        {
+            Dispatcher.Notify<ICreateInventory>(i => i.OnCreateInventory(this));
+        }
 
-        class ItemEntry
+        private class ItemEntry
         {
             public int Amount;
             public IItem Item;
@@ -68,7 +71,10 @@ namespace HexCardGame.Runtime
             return _register[id].Amount >= amount;
         }
 
-        public IItem GetItem(string id) => _register[id].Item;
+        public IItem GetItem(string id)
+        {
+            return _register[id].Item;
+        }
 
         public void AddItem(IItem item, int amount)
         {
@@ -102,11 +108,15 @@ namespace HexCardGame.Runtime
             OnRemoveItem(total, item, amount);
         }
 
-        void OnAddItem(int total, IItem item, int amount) =>
+        private void OnAddItem(int total, IItem item, int amount)
+        {
             Dispatcher.Notify<IAddItem>(i => i.OnAddItem(Id, item, total, amount));
+        }
 
-        void OnRemoveItem(int total, IItem item, int amount) =>
+        private void OnRemoveItem(int total, IItem item, int amount)
+        {
             Dispatcher.Notify<IRemoveItem>(i => i.OnRemoveItem(Id, item, total, amount));
+        }
 
         #endregion
     }

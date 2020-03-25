@@ -7,15 +7,15 @@ namespace Tools.UI.Card
     public class UiCardGraveyardSorter : MonoBehaviour
     {
         [SerializeField, Tooltip("World point where the graveyard is positioned")]
-        Transform graveyardPosition;
+        private Transform graveyardPosition;
 
-        [SerializeField] UiCardParameters parameters;
+        [SerializeField] private UiCardParameters parameters;
 
-        IUiCardPile CardGraveyard { get; set; }
+        private IUiCardPile CardGraveyard { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
-        void Awake()
+        private void Awake()
         {
             CardGraveyard = GetComponent<UiCardGraveyard>();
             CardGraveyard.OnPileChanged += Sort;

@@ -9,11 +9,11 @@ namespace HexCardGame.UI
 {
     public class UiBoardHightlight : UiEventListener, ICreateBoard<CreatureElement>
     {
-        readonly Dictionary<Vector3Int, UiHoverParticleSystem> _highlights =
+        private readonly Dictionary<Vector3Int, UiHoverParticleSystem> _highlights =
             new Dictionary<Vector3Int, UiHoverParticleSystem>();
 
-        [SerializeField] GameObject highlightTiles;
-        Tilemap TileMap { get; set; }
+        [SerializeField] private GameObject highlightTiles;
+        private Tilemap TileMap { get; set; }
 
         void ICreateBoard<CreatureElement>.OnCreateBoard(IBoard<CreatureElement> board)
         {
@@ -35,7 +35,7 @@ namespace HexCardGame.UI
             Hide();
         }
 
-        void Hide()
+        private void Hide()
         {
             foreach (var i in _highlights.Values)
                 i.Hide();

@@ -1,5 +1,4 @@
-﻿
-using HexCardGame.SharedData;
+﻿using HexCardGame.SharedData;
 using Tools.Extensions.Arrays;
 using UnityEngine;
 
@@ -10,15 +9,18 @@ namespace HexBoardGame.Runtime
     /// </summary>
     public class BoardManipulationOddR : IBoardManipulation
     {
-        static readonly Hex[] NeighboursDirections =
+        private static readonly Hex[] NeighboursDirections =
         {
             new Hex(1, 0), new Hex(1, -1), new Hex(0, -1),
             new Hex(-1, 0), new Hex(-1, 1), new Hex(0, 1)
         };
 
-        readonly Hex[] _hexPoints;
+        private readonly Hex[] _hexPoints;
 
-        public BoardManipulationOddR(BoardData dataShape) => _hexPoints = dataShape.GetHexPoints();
+        public BoardManipulationOddR(BoardData dataShape)
+        {
+            _hexPoints = dataShape.GetHexPoints();
+        }
 
         public Vector3Int[] GetNeighbours(Vector3Int cell)
         {
@@ -31,14 +33,14 @@ namespace HexBoardGame.Runtime
                 var array = new[] {neighbour};
                 neighbours = neighbours.Append(array);
             }
-            
+
             return ConvertGroup(neighbours);
         }
 
         /// <summary>
         ///     If the point is present among the starting configuration returns it. Otherwise returns a empty array.
         /// </summary>
-        Hex[] GetIfExistsOrEmpty(Hex hex)
+        private Hex[] GetIfExistsOrEmpty(Hex hex)
         {
             foreach (var i in _hexPoints)
                 if (i == hex)
@@ -55,7 +57,10 @@ namespace HexBoardGame.Runtime
             return GetIfExistsOrEmpty(center).Length > 0;
         }
 
-        public Vector3Int[] GetVertical(Vector3Int cell, int length) => new Vector3Int[] { };
+        public Vector3Int[] GetVertical(Vector3Int cell, int length)
+        {
+            return new Vector3Int[] { };
+        }
 
         public Vector3Int[] GetHorizontal(Vector3Int cell, int length)
         {
@@ -70,7 +75,7 @@ namespace HexBoardGame.Runtime
 
             for (var i = -1; i >= -halfLength; i--)
                 points = points.Append(GetIfExistsOrEmpty(new Hex(x + i, y)));
-            
+
             return ConvertGroup(points);
         }
 
@@ -111,25 +116,29 @@ namespace HexBoardGame.Runtime
         public static Hex[] ConvertGroup(params Vector3Int[] input)
         {
             var output = new Hex[input.Length];
-            for (var i = 0; i < input.Length; i++) 
+            for (var i = 0; i < input.Length; i++)
                 output[i] = ConvertHexCoordinate(input[i]);
             return output;
         }
-        
+
         public static Vector3Int[] ConvertGroup(params Hex[] input)
         {
             var output = new Vector3Int[input.Length];
-            for (var i = 0; i < input.Length; i++) 
+            for (var i = 0; i < input.Length; i++)
                 output[i] = ConvertCellCoordinate(input[i]);
-            
+
             return output;
         }
 
-        public static Hex ConvertHexCoordinate(Vector3Int cell) =>
-            OffsetCoordHelper.RoffsetToCube(OffsetCoord.Parity.Odd, new OffsetCoord(cell.x, cell.y));
+        public static Hex ConvertHexCoordinate(Vector3Int cell)
+        {
+            return OffsetCoordHelper.RoffsetToCube(OffsetCoord.Parity.Odd, new OffsetCoord(cell.x, cell.y));
+        }
 
-        public static Vector3Int ConvertCellCoordinate(Hex hex) =>
-            OffsetCoordHelper.RoffsetFromCube(OffsetCoord.Parity.Odd, hex).ToVector3Int();
+        public static Vector3Int ConvertCellCoordinate(Hex hex)
+        {
+            return OffsetCoordHelper.RoffsetFromCube(OffsetCoord.Parity.Odd, hex).ToVector3Int();
+        }
 
         #endregion
     }
