@@ -9,7 +9,7 @@ namespace HexCardGame.UI
     [Event]
     public interface ISelectPickPoolPosition
     {
-        void OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId);
+        void OnSelectPickPoolPosition(SeatType seatType, PositionId positionId);
     }
 
     [RequireComponent(typeof(IMouseInput))]
@@ -52,7 +52,7 @@ namespace HexCardGame.UI
             if (!Position.HasData)
                 return;
 
-            Dispatcher.Notify<ISelectPickPoolPosition>(i => i.OnSelectPickPoolPosition(PlayerId.User, Position.Id));
+            Dispatcher.Notify<ISelectPickPoolPosition>(i => i.OnSelectPickPoolPosition(SeatType.Bottom, Position.Id));
         }
     }
 }

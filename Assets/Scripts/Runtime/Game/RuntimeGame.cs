@@ -60,10 +60,10 @@ namespace HexCardGame.Runtime.Game
 
             {
                 //Create Library
-                var libData = new Dictionary<PlayerId, CardData[]>
+                var libData = new Dictionary<SeatType, CardData[]>
                 {
-                    {PlayerId.User, args.GameParameters.Profiles.UserPlayer.LibraryData.GetDeck()},
-                    {PlayerId.Ai, args.GameParameters.Profiles.AiPlayer.LibraryData.GetDeck()}
+                    {SeatType.Bottom, args.GameParameters.Profiles.UserPlayer.LibraryData.GetDeck()},
+                    {SeatType.Top, args.GameParameters.Profiles.AiPlayer.LibraryData.GetDeck()}
                 };
 
                 Library = new Library(libData, Dispatcher);

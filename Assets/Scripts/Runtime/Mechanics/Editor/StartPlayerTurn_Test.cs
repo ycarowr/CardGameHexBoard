@@ -18,7 +18,7 @@ namespace HexCardGame.Runtime.Test
         {
             Game.StartPlayerTurn();
             Assert.IsTrue(EventReceived);
-            Assert.IsTrue(Game.TurnLogic.CurrentPlayerId == _player.Id);
+            Assert.IsTrue(Game.TurnLogic.CurrentSeatType == _player.Id);
         }
     }
 }

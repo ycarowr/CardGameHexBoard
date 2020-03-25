@@ -25,7 +25,7 @@
                 return;
             Game.TurnLogic.UpdateCurrentPlayer();
 
-            var playerId = Game.TurnLogic.CurrentPlayerId;
+            var playerId = Game.TurnLogic.CurrentSeatType;
             var inventory = GetInventory(playerId);
 
             Game.IsTurnInProgress = true;

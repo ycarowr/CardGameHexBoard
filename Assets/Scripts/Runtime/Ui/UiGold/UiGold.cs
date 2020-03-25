@@ -12,20 +12,20 @@ namespace HexCardGame.UI
         const string Colon = ": ";
         readonly StringBuilder _stringBuilder = new StringBuilder();
         readonly LocalizationIds _textId = LocalizationIds.Gold;
-        [SerializeField] PlayerId id;
+        [SerializeField] SeatType id;
         TextMeshPro MyText { get; set; }
         string PreBuiltText { get; set; }
 
-        public void OnAddItem(PlayerId playerId, IItem item, int total, int amount)
+        public void OnAddItem(SeatType seatType, IItem item, int total, int amount)
         {
-            if (IsMyEvent(playerId))
+            if (IsMyEvent(seatType))
                 if (item.ItemId == Gold.Id)
                     MyText.text = Build(total.ToString());
         }
 
-        public void OnRemoveItem(PlayerId playerId, IItem item, int total, int amount)
+        public void OnRemoveItem(SeatType seatType, IItem item, int total, int amount)
         {
-            if (IsMyEvent(playerId))
+            if (IsMyEvent(seatType))
                 if (item.ItemId == Gold.Id)
                     MyText.text = Build(total.ToString());
         }
@@ -47,6 +47,6 @@ namespace HexCardGame.UI
             return _stringBuilder.ToString();
         }
 
-        bool IsMyEvent(PlayerId playerId) => playerId == id;
+        bool IsMyEvent(SeatType seatType) => seatType == id;
     }
 }

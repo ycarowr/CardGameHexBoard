@@ -13,15 +13,15 @@ namespace HexCardGame.UI
     {
         UiPool UiPool { get; set; }
 
-        void IPickCard.OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId) =>
+        void IPickCard.OnPickCard(SeatType id, CardHand cardHand, PositionId positionId) =>
             UiPool.RemoveCard(positionId);
 
         void IRestartGame.OnRestart() => UiPool.Clear();
 
-        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
+        void IReturnCard.OnReturnCard(SeatType id, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
             UiPool.AddCard(cardPool, positionId, false);
 
-        void IRevealCard.OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId) =>
+        void IRevealCard.OnRevealCard(SeatType id, CardPool cardPool, PositionId positionId) =>
             UiPool.AddCard(cardPool, positionId);
 
         void IRevealPool.OnRevealPool(IPool<CardPool> pool)
@@ -34,8 +34,8 @@ namespace HexCardGame.UI
             }
         }
 
-        void ISelectPickPoolPosition.OnSelectPickPoolPosition(PlayerId playerId, PositionId positionId) =>
-            GameData.CurrentGameInstance.PickCardFromPosition(playerId, positionId);
+        void ISelectPickPoolPosition.OnSelectPickPoolPosition(SeatType seatType, PositionId positionId) =>
+            GameData.CurrentGameInstance.PickCardFromPosition(seatType, positionId);
 
         protected override void Awake()
         {

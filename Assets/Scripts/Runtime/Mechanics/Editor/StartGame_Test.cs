@@ -7,7 +7,7 @@ namespace HexCardGame.Runtime.Test
     {
         public void OnStartGame(IPlayer starter)
         {
-            PlayerId = starter.Id;
+            SeatType = starter.Id;
             EventReceived = true;
         }
 
@@ -17,7 +17,7 @@ namespace HexCardGame.Runtime.Test
             Game.StartGame();
             Assert.IsTrue(Game.IsGameStarted);
             Assert.IsTrue(EventReceived);
-            Assert.IsTrue(PlayerId == Game.TurnLogic.CurrentPlayerId);
+            Assert.IsTrue(SeatType == Game.TurnLogic.CurrentSeatType);
         }
     }
 }

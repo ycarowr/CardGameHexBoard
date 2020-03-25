@@ -5,13 +5,13 @@ namespace HexCardGame.Runtime.Game
     [Event]
     public interface IPickCard
     {
-        void OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId);
+        void OnPickCard(SeatType id, CardHand cardHand, PositionId positionId);
     }
 
     [Event]
     public interface IReturnCard
     {
-        void OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId);
+        void OnReturnCard(SeatType id, CardHand cardHand, CardPool cardPool, PositionId positionId);
     }
 
     public class HandPool : BaseGameMechanics
@@ -20,7 +20,7 @@ namespace HexCardGame.Runtime.Game
         {
         }
 
-        public void PickCard(PlayerId playerId, PositionId positionId)
+        public void PickCard(SeatType seatType, PositionId positionId)
         {
             if (!Game.IsGameStarted)
                 return;
@@ -31,14 +31,14 @@ namespace HexCardGame.Runtime.Game
                 return;
             if (!pool.HasDataAt(positionId))
                 return;
-            var isMyTurn = Game.TurnLogic.IsMyTurn(playerId);
+            var isMyTurn = Game.TurnLogic.IsMyTurn(seatType);
             if (!isMyTurn)
                 return;
-            var hand = GetPlayerHand(playerId);
+            var hand = GetPlayerHand(seatType);
             var handSize = hand.Cards.Count;
             if (handSize >= hand.MaxHandSize)
                 return;
-            var inventory = GetInventory(playerId);
+            var inventory = GetInventory(seatType);
             var actionPoints = Parameters.Amounts.ActionPointsConsume;
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
             if (!hasEnoughActionPoints)
@@ -49,13 +49,13 @@ namespace HexCardGame.Runtime.Game
             var cardHand = new CardHand(data);
             inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             hand.Add(cardHand);
-            OnPickCard(playerId, cardHand, positionId);
+            OnPickCard(seatType, cardHand, positionId);
         }
 
-        void OnPickCard(PlayerId playerId, CardHand cardHand, PositionId positionId) =>
-            Dispatcher.Notify<IPickCard>(i => i.OnPickCard(playerId, cardHand, positionId));
+        void OnPickCard(SeatType seatType, CardHand cardHand, PositionId positionId) =>
+            Dispatcher.Notify<IPickCard>(i => i.OnPickCard(seatType, cardHand, positionId));
 
-        public void ReturnCard(PlayerId playerId, CardHand cardHand, PositionId positionId)
+        public void ReturnCard(SeatType seatType, CardHand cardHand, PositionId positionId)
         {
             if (!Game.IsGameStarted)
                 return;
@@ -63,14 +63,14 @@ namespace HexCardGame.Runtime.Game
                 return;
             if (Game.Pool.HasDataAt(positionId))
                 return;
-            var hand = GetPlayerHand(playerId);
+            var hand = GetPlayerHand(seatType);
             if (!hand.Has(cardHand))
                 return;
-            var isMyTurn = Game.TurnLogic.IsMyTurn(playerId);
+            var isMyTurn = Game.TurnLogic.IsMyTurn(seatType);
             if (!isMyTurn)
                 return;
             var actionPoints = Parameters.Amounts.ActionPointsConsume;
-            var inventory = GetInventory(playerId);
+            var inventory = GetInventory(seatType);
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
             if (!hasEnoughActionPoints)
                 return;
@@ -80,10 +80,10 @@ namespace HexCardGame.Runtime.Game
             var data = cardHand.Data;
             var cardPool = new CardPool(data);
             Game.Pool.AddCardAt(cardPool, positionId);
-            OnReturnCard(playerId, cardHand, cardPool, positionId);
+            OnReturnCard(seatType, cardHand, cardPool, positionId);
         }
 
-        void OnReturnCard(PlayerId playerId, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
-            Dispatcher.Notify<IReturnCard>(i => i.OnReturnCard(playerId, cardHand, cardPool, positionId));
+        void OnReturnCard(SeatType seatType, CardHand cardHand, CardPool cardPool, PositionId positionId) =>
+            Dispatcher.Notify<IReturnCard>(i => i.OnReturnCard(seatType, cardHand, cardPool, positionId));
     }
 }

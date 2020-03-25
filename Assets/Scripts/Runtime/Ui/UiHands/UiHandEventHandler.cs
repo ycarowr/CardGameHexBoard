@@ -12,7 +12,7 @@ namespace HexCardGame.UI
     {
         UiHandRegistry Registry { get; set; }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int position,
+        void ICreateBoardElement.OnCreateBoardElement(SeatType id, CreatureElement creatureElement, Vector3Int position,
             CardHand card)
         {
             if (!IsMyEvent(id))
@@ -21,7 +21,7 @@ namespace HexCardGame.UI
             Registry.RemoveCard(card);
         }
 
-        void IDrawCard.OnDrawCard(PlayerId id, CardHand cardHand)
+        void IDrawCard.OnDrawCard(SeatType id, CardHand cardHand)
         {
             if (!IsMyEvent(id))
                 return;
@@ -29,7 +29,7 @@ namespace HexCardGame.UI
             Registry.CreateCardFromLibrary(cardHand);
         }
 
-        void IPickCard.OnPickCard(PlayerId id, CardHand cardHand, PositionId positionId)
+        void IPickCard.OnPickCard(SeatType id, CardHand cardHand, PositionId positionId)
         {
             if (!IsMyEvent(id))
                 return;
@@ -38,7 +38,7 @@ namespace HexCardGame.UI
 
         void IRestartGame.OnRestart() => Registry.Clear();
 
-        void IReturnCard.OnReturnCard(PlayerId id, CardHand cardHand, CardPool cardPool, PositionId positionId)
+        void IReturnCard.OnReturnCard(SeatType id, CardHand cardHand, CardPool cardPool, PositionId positionId)
         {
             if (!IsMyEvent(id))
                 return;
@@ -47,10 +47,10 @@ namespace HexCardGame.UI
 
         void ISelectBoardPosition.OnSelectBoardPosition(Vector3Int position) => Registry.SelectBoardPosition(position);
 
-        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(PlayerId id, PositionId positionId) =>
+        void ISelectReturnPoolPosition.OnSelectReturnPoolPosition(SeatType id, PositionId positionId) =>
             Registry.ReturnCardToPosition(id, positionId);
 
-        bool IsMyEvent(PlayerId id) => Registry.Id == id;
+        bool IsMyEvent(SeatType id) => Registry.Id == id;
 
         protected override void Awake()
         {

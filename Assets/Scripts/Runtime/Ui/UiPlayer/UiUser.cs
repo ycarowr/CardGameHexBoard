@@ -3,6 +3,6 @@
     /// <summary> User HUD </summary>
     public class UiUser : UiPlayer
     {
-        public override PlayerId Id => PlayerId.User;
+        public override SeatType Id => SeatType.Bottom;
     }
 }

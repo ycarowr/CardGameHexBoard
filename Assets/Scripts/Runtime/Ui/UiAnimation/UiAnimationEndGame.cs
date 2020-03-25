@@ -8,7 +8,7 @@ namespace HexCardGame.UI
     public class UiAnimationEndGame : UiAnimation, IFinishGame
     {
         const float DelayToNotify = 1f;
-        [SerializeField] PlayerId id;
+        [SerializeField] SeatType id;
         [SerializeField] LocalizationIds localizedText;
         TMP_Text Text;
 

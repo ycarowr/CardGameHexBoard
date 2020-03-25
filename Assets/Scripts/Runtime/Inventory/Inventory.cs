@@ -12,13 +12,13 @@ namespace HexCardGame.Runtime
     [Event]
     public interface IAddItem
     {
-        void OnAddItem(PlayerId playerId, IItem item, int total, int amount);
+        void OnAddItem(SeatType seatType, IItem item, int total, int amount);
     }
 
     [Event]
     public interface IRemoveItem
     {
-        void OnRemoveItem(PlayerId playerId, IItem item, int total, int amount);
+        void OnRemoveItem(SeatType seatType, IItem item, int total, int amount);
     }
 
 
@@ -29,7 +29,7 @@ namespace HexCardGame.Runtime
 
         readonly Dictionary<string, ItemEntry> _register = new Dictionary<string, ItemEntry>();
 
-        public Inventory(PlayerId id, GameParameters parameters, IDispatcher dispatcher)
+        public Inventory(SeatType id, GameParameters parameters, IDispatcher dispatcher)
         {
             Id = id;
             Parameters = parameters;
@@ -40,7 +40,7 @@ namespace HexCardGame.Runtime
         IDispatcher Dispatcher { get; }
         GameParameters Parameters { get; }
 
-        public PlayerId Id { get; }
+        public SeatType Id { get; }
 
         void OnCreateInventory() => Dispatcher.Notify<ICreateInventory>(i => i.OnCreateInventory(this));
 

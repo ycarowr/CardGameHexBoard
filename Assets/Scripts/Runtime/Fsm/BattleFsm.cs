@@ -7,7 +7,7 @@ namespace HexCardGame
 {
     public class BattleFsm : BaseStateMachine
     {
-        readonly Dictionary<PlayerId, TurnState> _register = new Dictionary<PlayerId, TurnState>();
+        readonly Dictionary<SeatType, TurnState> _register = new Dictionary<SeatType, TurnState>();
 
         public BattleFsm(RuntimeGame.GameArgs args, IGame game) : base(args.Controller)
         {
@@ -57,14 +57,14 @@ namespace HexCardGame
         }
 
         /// <summary> Call this method to pass the turn of the current player. </summary>
-        public bool TryPassTurn(PlayerId id)
+        public bool TryPassTurn(SeatType id)
         {
             var state = GetPlayerState(id);
             return state.TryPassTurn();
         }
 
-        public void RegisterPlayer(PlayerId id, TurnState state) => _register.Add(id, state);
-        public TurnState GetPlayerState(PlayerId id) => _register[id];
+        public void RegisterPlayer(SeatType id, TurnState state) => _register.Add(id, state);
+        public TurnState GetPlayerState(SeatType id) => _register[id];
 
         public override void Clear()
         {

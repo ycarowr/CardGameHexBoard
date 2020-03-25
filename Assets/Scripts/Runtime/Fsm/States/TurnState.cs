@@ -9,7 +9,7 @@ namespace HexCardGame
         protected TurnState(BattleFsm.BattleFsmArguments args) : base(args) => Fsm.RegisterPlayer(Id, this);
 
         protected bool IsMyTurn => Game.TurnLogic.IsMyTurn(Id);
-        protected abstract PlayerId Id { get; }
+        protected abstract SeatType Id { get; }
         protected virtual bool IsAi => false;
         protected virtual bool IsUser => false;
         Coroutine TimeOutRoutine { get; set; }

@@ -9,7 +9,7 @@ namespace HexCardGame
         {
         }
 
-        protected override PlayerId Id => PlayerId.Ai;
+        protected override SeatType Id => SeatType.Top;
 
         Coroutine AiFinishTurnRoutine { get; set; }
         float AiFinishTurnDelay => GameParameters.Timers.TimeUntilAiFinishTurn;

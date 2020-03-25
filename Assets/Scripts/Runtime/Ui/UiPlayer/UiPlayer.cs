@@ -4,7 +4,7 @@ namespace HexCardGame.UI
 {
     public interface IUiPlayer
     {
-        PlayerId Id { get; }
+        SeatType Id { get; }
         GameData GameData { get; }
         bool IsMyTurn();
         bool IsUser();
@@ -14,7 +14,7 @@ namespace HexCardGame.UI
     /// <summary> Main player UI. </summary>
     public class UiPlayer : MonoBehaviour, IUiPlayer
     {
-        public virtual PlayerId Id => PlayerId.Ai;
+        public virtual SeatType Id => SeatType.Top;
         public GameData GameData { get; private set; }
         public bool IsMyTurn() => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(Id);
         public bool IsUser() => GameData.CurrentGameInstance.TurnLogic.IsUser();

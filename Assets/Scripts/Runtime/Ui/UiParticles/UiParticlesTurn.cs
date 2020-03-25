@@ -5,7 +5,7 @@ namespace HexCardGame.UI
 {
     public class UiParticlesTurn : UiParticles, IStartPlayerTurn
     {
-        [SerializeField] PlayerId id;
+        [SerializeField] SeatType id;
 
         void IStartPlayerTurn.OnStartPlayerTurn(IPlayer player)
         {

@@ -42,13 +42,13 @@ namespace HexCardGame.UI
 
         void UiButtonLose.IPressLose.PressLose()
         {
-            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.Ai);
+            Ui.GameData.CurrentGameInstance.ForceWin(SeatType.Top);
             DisableInput();
         }
 
         void UiButtonWin.IPressWin.PressWin()
         {
-            Ui.GameData.CurrentGameInstance.ForceWin(PlayerId.User);
+            Ui.GameData.CurrentGameInstance.ForceWin(SeatType.Bottom);
             DisableInput();
         }
 

@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Game
     [Event]
     public interface IRevealCard
     {
-        void OnRevealCard(PlayerId id, CardPool cardPool, PositionId positionId);
+        void OnRevealCard(SeatType id, CardPool cardPool, PositionId positionId);
     }
 
     public class PoolLibrary : BaseGameMechanics
@@ -14,7 +14,7 @@ namespace HexCardGame.Runtime.Game
         {
         }
 
-        public void RevealCard(PlayerId playerId, PositionId positionId)
+        public void RevealCard(SeatType seatType, PositionId positionId)
         {
             if (!Game.IsGameStarted)
                 return;
@@ -26,7 +26,7 @@ namespace HexCardGame.Runtime.Game
 
             var data = Game.Library.GetRandomData();
             var cardPool = new CardPool(data);
-            var inventory = GetInventory(playerId);
+            var inventory = GetInventory(seatType);
             var actionPoints = Parameters.Amounts.ActionPointsConsume;
             var hasEnoughActionPoints = inventory.GetAmount(Inventory.ActionPointItem) >= actionPoints;
             if (!hasEnoughActionPoints)
@@ -34,13 +34,13 @@ namespace HexCardGame.Runtime.Game
 
             inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             pool.AddCardAt(cardPool, positionId);
-            OnRevealCard(playerId, cardPool, positionId);
+            OnRevealCard(seatType, cardPool, positionId);
         }
 
-        void OnRevealCard(PlayerId playerId, CardPool cardPool, PositionId positionId) =>
-            Dispatcher.Notify<IRevealCard>(i => i.OnRevealCard(playerId, cardPool, positionId));
+        void OnRevealCard(SeatType seatType, CardPool cardPool, PositionId positionId) =>
+            Dispatcher.Notify<IRevealCard>(i => i.OnRevealCard(seatType, cardPool, positionId));
 
-        public void RevealCardHigherPosition(PlayerId playerId)
+        public void RevealCardHigherPosition(SeatType seatType)
         {
             if (!Game.IsGameStarted)
                 return;
@@ -49,7 +49,7 @@ namespace HexCardGame.Runtime.Game
             if (!empty.HasValue)
                 return;
 
-            RevealCard(playerId, empty.Value);
+            RevealCard(seatType, empty.Value);
         }
 
         PositionId? FindEmpty()

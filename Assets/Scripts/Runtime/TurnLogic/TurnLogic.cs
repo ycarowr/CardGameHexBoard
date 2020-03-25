@@ -19,17 +19,17 @@ namespace HexCardGame.Runtime.GameTurn
 
         #region Properties
 
-        public PlayerId CurrentPlayerId { get; private set; }
-        public PlayerId NextPlayerId => CurrentPlayer.Id == PlayerId.User ? PlayerId.Ai : PlayerId.User;
-        public PlayerId StarterPlayerId { get; private set; }
+        public SeatType CurrentSeatType { get; private set; }
+        public SeatType NextSeatType => CurrentPlayer.Id == SeatType.Bottom ? SeatType.Top : SeatType.Bottom;
+        public SeatType StarterSeatType { get; private set; }
         public IPlayer[] Players { get; }
         public int TurnCount { get; private set; }
-        public IPlayer CurrentPlayer => GetPlayer(CurrentPlayerId);
-        public IPlayer NextPlayer => GetPlayer(NextPlayerId);
-        public IPlayer StarterPlayer => GetPlayer(StarterPlayerId);
+        public IPlayer CurrentPlayer => GetPlayer(CurrentSeatType);
+        public IPlayer NextPlayer => GetPlayer(NextSeatType);
+        public IPlayer StarterPlayer => GetPlayer(StarterSeatType);
         public int PlayersCount => Players.Length;
         public bool IsMyTurn(IPlayer player) => CurrentPlayer == player;
-        public bool IsMyTurn(PlayerId id) => CurrentPlayerId == id;
+        public bool IsMyTurn(SeatType id) => CurrentSeatType == id;
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace HexCardGame.Runtime.GameTurn
                 return;
 
             //update current player
-            CurrentPlayerId = NextPlayerId;
+            CurrentSeatType = NextSeatType;
         }
 
         /// <summary> Decides which player goes first Randomly. </summary>
@@ -54,15 +54,15 @@ namespace HexCardGame.Runtime.GameTurn
         {
             var randomIndex = Random.Range(0, PlayersCount);
             randomIndex = 0;
-            StarterPlayerId = Players[randomIndex].Id;
-            CurrentPlayerId = StarterPlayerId;
+            StarterSeatType = Players[randomIndex].Id;
+            CurrentSeatType = StarterSeatType;
         }
 
-        public IPlayer GetOpponent(IPlayer player) => player.Id == PlayerId.User
-            ? GetPlayer(PlayerId.Ai)
-            : GetPlayer(PlayerId.User);
+        public IPlayer GetOpponent(IPlayer player) => player.Id == SeatType.Bottom
+            ? GetPlayer(SeatType.Top)
+            : GetPlayer(SeatType.Bottom);
 
-        public IPlayer GetPlayer(PlayerId id)
+        public IPlayer GetPlayer(SeatType id)
         {
             foreach (var player in Players)
                 if (player.Id == id)
@@ -71,12 +71,12 @@ namespace HexCardGame.Runtime.GameTurn
             return null;
         }
 
-        public bool IsUser() => CurrentPlayerId == PlayerId.User;
-        public bool IsEnemy() => CurrentPlayerId == PlayerId.Ai;
+        public bool IsUser() => CurrentSeatType == SeatType.Bottom;
+        public bool IsEnemy() => CurrentSeatType == SeatType.Top;
 
-        public void SetCurrentSeat(PlayerId current) => CurrentPlayerId = current;
+        public void SetCurrentSeat(SeatType current) => CurrentSeatType = current;
 
-        public void SetStarterSeat(PlayerId first) => StarterPlayerId = first;
+        public void SetStarterSeat(SeatType first) => StarterSeatType = first;
 
         #endregion
     }

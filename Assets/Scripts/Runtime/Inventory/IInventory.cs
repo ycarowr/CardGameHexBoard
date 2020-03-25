@@ -2,7 +2,7 @@ namespace HexCardGame.Runtime
 {
     public interface IInventory
     {
-        PlayerId Id { get; }
+        SeatType Id { get; }
         IItem GetItem(string id);
         bool HasItem(IItem id, int amount);
         int GetAmount(IItem item);

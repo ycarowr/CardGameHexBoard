@@ -49,8 +49,8 @@ namespace Tools.UI.Card
         public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
         public bool IsHovering => Fsm.IsCurrent<UiCardHover>();
         public bool IsDisabled => Fsm.IsCurrent<UiCardDisable>();
-        public bool IsUser => id == PlayerId.User;
-        PlayerId id;
+        public bool IsUser => id == SeatType.Bottom;
+        SeatType id;
         UiGameDataAccess dataAccess;
 
         #endregion
@@ -96,10 +96,10 @@ namespace Tools.UI.Card
 
         public void Discard() => Fsm.Discard();
 
-        public void SetAndUpdateView(ICardData data, PlayerId playerId, UiGameDataAccess access)
+        public void SetAndUpdateView(ICardData data, SeatType seatType, UiGameDataAccess access)
         {
             artwork.sprite = data.Artwork;
-            id = playerId;
+            id = seatType;
             dataAccess = access;
         }
 

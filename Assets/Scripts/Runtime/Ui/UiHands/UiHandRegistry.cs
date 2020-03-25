@@ -12,13 +12,13 @@ namespace HexCardGame.UI
     {
         readonly Dictionary<IUiCard, CardHand> _registry = new Dictionary<IUiCard, CardHand>();
         [SerializeField] GameObject cardPrefab;
-        [SerializeField] PlayerId id;
+        [SerializeField] SeatType id;
         [SerializeField] Transform libraryPosition;
         [SerializeField] UiPool uiPool;
         CardHand SelectedCard { get; set; }
         ObjectPooler Pooler => ObjectPooler.Instance;
         UiCardHandSelector CardHandSelector { get; set; }
-        public PlayerId Id => id;
+        public SeatType Id => id;
 
         protected override void Awake()
         {
@@ -91,7 +91,7 @@ namespace HexCardGame.UI
             SelectedCard = null;
         }
 
-        public void ReturnCardToPosition(PlayerId id, PositionId positionId)
+        public void ReturnCardToPosition(SeatType id, PositionId positionId)
         {
             if (SelectedCard == null)
                 return;

@@ -13,7 +13,7 @@ namespace HexCardGame.Runtime.Game
 
         protected GameParameters Parameters => Game.Parameters;
 
-        protected IHand GetPlayerHand(PlayerId id)
+        protected IHand GetPlayerHand(SeatType id)
         {
             foreach (var i in Game.Hands)
                 if (i.Id == id)
@@ -21,7 +21,7 @@ namespace HexCardGame.Runtime.Game
             return null;
         }
 
-        protected IInventory GetInventory(PlayerId id)
+        protected IInventory GetInventory(SeatType id)
         {
             foreach (var i in Game.Inventories)
                 if (i.Id == id)

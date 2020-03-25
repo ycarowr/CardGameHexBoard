@@ -19,7 +19,7 @@ namespace HexCardGame.UI
             TileMap = GetComponentInChildren<Tilemap>();
         }
 
-        void ICreateBoardElement.OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int cell, CardHand card)
+        void ICreateBoardElement.OnCreateBoardElement(SeatType id, CreatureElement creatureElement, Vector3Int cell, CardHand card)
         {
             var data = creatureElement.Data;
             CreateElement(creatureElement, data, cell);

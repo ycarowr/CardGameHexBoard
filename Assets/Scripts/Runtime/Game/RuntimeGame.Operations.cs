@@ -11,29 +11,29 @@ namespace HexCardGame.Runtime.Game
         public void PreStartGame() => GameMechanics.PreStartGame.Execute();
         public void StartPlayerTurn() => GameMechanics.StartPlayerTurn.Execute();
         public void FinishPlayerTurn() => GameMechanics.FinishPlayerTurn.Execute();
-        public void DrawCardFromLibrary(PlayerId playerId) => GameMechanics.HandLibrary.DrawCard(playerId);
-        public void FreeDrawCardFromLibrary(PlayerId playerId) => GameMechanics.HandLibrary.FreeDrawCard(playerId);
+        public void DrawCardFromLibrary(SeatType seatType) => GameMechanics.HandLibrary.DrawCard(seatType);
+        public void FreeDrawCardFromLibrary(SeatType seatType) => GameMechanics.HandLibrary.FreeDrawCard(seatType);
 
-        public void RevealCardHigherPosition(PlayerId playerId) =>
-            GameMechanics.PoolLibrary.RevealCardHigherPosition(playerId);
+        public void RevealCardHigherPosition(SeatType seatType) =>
+            GameMechanics.PoolLibrary.RevealCardHigherPosition(seatType);
 
-        public void RevealCardFromLibrary(PlayerId playerId, PositionId positionId)
-            => GameMechanics.PoolLibrary.RevealCard(playerId, positionId);
+        public void RevealCardFromLibrary(SeatType seatType, PositionId positionId)
+            => GameMechanics.PoolLibrary.RevealCard(seatType, positionId);
 
-        public void PlayElementAt(PlayerId playerId, CardHand card, Vector3Int position)
-            => GameMechanics.HandBoard.PlayCardAt(playerId, card, position);
+        public void PlayElementAt(SeatType seatType, CardHand card, Vector3Int position)
+            => GameMechanics.HandBoard.PlayCardAt(seatType, card, position);
 
-        public void PickCardFromPosition(PlayerId playerId, PositionId positionId) =>
-            GameMechanics.HandPool.PickCard(playerId, positionId);
+        public void PickCardFromPosition(SeatType seatType, PositionId positionId) =>
+            GameMechanics.HandPool.PickCard(seatType, positionId);
 
-        public void ReturnCardToPosition(PlayerId playerId, CardHand cardHand, PositionId positionId) =>
-            GameMechanics.HandPool.ReturnCard(playerId, cardHand, positionId);
+        public void ReturnCardToPosition(SeatType seatType, CardHand cardHand, PositionId positionId) =>
+            GameMechanics.HandPool.ReturnCard(seatType, cardHand, positionId);
 
-        public void ExecuteAiTurn(PlayerId id)
+        public void ExecuteAiTurn(SeatType id)
         {
         }
 
-        public void ForceWin(PlayerId id)
+        public void ForceWin(SeatType id)
         {
             var player = TurnLogic.GetPlayer(id);
             GameMechanics.FinishGame.Execute(player);

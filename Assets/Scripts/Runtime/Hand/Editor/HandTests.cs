@@ -4,11 +4,11 @@ namespace HexCardGame.Runtime.Test
 {
     public class HandTests : BaseTest, ICreateHand
     {
-        readonly PlayerId _id = PlayerId.User;
+        readonly SeatType _id = SeatType.Bottom;
         IHand _hand;
         bool _handCreated;
 
-        public void OnCreateHand(IHand hand, PlayerId id)
+        public void OnCreateHand(IHand hand, SeatType id)
         {
             _handCreated = true;
             Assert.IsTrue(id == _id);

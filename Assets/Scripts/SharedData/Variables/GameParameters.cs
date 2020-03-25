@@ -78,23 +78,23 @@ namespace HexCardGame
             public Player AiPlayer = new Player
             {
                 IsAi = true,
-                id = PlayerId.Ai
+                id = SeatType.Top
             };
 
             [Tooltip("Seat where the user player will be sitting.")]
-            public PlayerId userId = PlayerId.User;
+            public SeatType userId = SeatType.Bottom;
 
             [Tooltip("Configurations for Bottom player")]
             public Player UserPlayer = new Player
             {
                 IsAi = false,
-                id = PlayerId.User
+                id = SeatType.Bottom
             };
 
             [Serializable]
             public class Player
             {
-                public PlayerId id;
+                public SeatType id;
                 public bool IsAi;
                 public PlayerDeck LibraryData;
             }

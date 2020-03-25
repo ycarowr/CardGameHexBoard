@@ -13,6 +13,6 @@ namespace Game.Ui
 
         protected virtual void Awake() => GameData = GameData.Load();
 
-        public bool IsMyTurn(PlayerId id) => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(id);
+        public bool IsMyTurn(SeatType id) => GameData.CurrentGameInstance.TurnLogic.IsMyTurn(id);
     }
 }

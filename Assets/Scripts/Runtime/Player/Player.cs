@@ -10,14 +10,14 @@ namespace HexCardGame
 
     public interface IPlayer
     {
-        PlayerId Id { get; }
+        SeatType Id { get; }
         bool IsUser { get; }
     }
 
     /// <summary> A concrete player class. </summary>
     public class Player : IPlayer
     {
-        public Player(PlayerId id, GameParameters gameParameters, IDispatcher dispatcher)
+        public Player(SeatType id, GameParameters gameParameters, IDispatcher dispatcher)
         {
             Id = id;
             Dispatcher = dispatcher;
@@ -27,7 +27,7 @@ namespace HexCardGame
         IDispatcher Dispatcher { get; }
         GameParameters GameParameters { get; }
 
-        public PlayerId Id { get; }
+        public SeatType Id { get; }
         public bool IsUser => Id == GameParameters.Profiles.userId;
 
         void OnCreatePlayer() => Dispatcher.Notify<ICreatePlayer>(i => i.OnCreatePlayer(this));

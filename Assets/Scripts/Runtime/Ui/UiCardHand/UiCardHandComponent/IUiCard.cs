@@ -19,6 +19,6 @@ namespace Tools.UI.Card
         void Draw();
         void Discard();
         void Initialize();
-        void SetAndUpdateView(ICardData data, PlayerId playerId, UiGameDataAccess dataAccess);
+        void SetAndUpdateView(ICardData data, SeatType seatType, UiGameDataAccess dataAccess);
     }
 }

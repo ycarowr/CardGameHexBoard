@@ -8,25 +8,25 @@ namespace HexCardGame.Runtime.Test
         public void OnFinishGame(IPlayer winner)
         {
             EventReceived = true;
-            PlayerId = winner.Id;
+            SeatType = winner.Id;
         }
 
         [Test]
         public void FinishGame_User_Test()
         {
-            var id = PlayerId.User;
+            var id = SeatType.Bottom;
             Game.ForceWin(id);
             Assert.IsTrue(EventReceived);
-            Assert.IsTrue(PlayerId == id);
+            Assert.IsTrue(SeatType == id);
         }
 
         [Test]
         public void FinishGame_Ai_Test()
         {
-            var id = PlayerId.Ai;
+            var id = SeatType.Top;
             Game.ForceWin(id);
             Assert.IsTrue(EventReceived);
-            Assert.IsTrue(id == PlayerId);
+            Assert.IsTrue(id == SeatType);
         }
     }
 }

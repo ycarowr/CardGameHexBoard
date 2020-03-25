@@ -10,7 +10,7 @@ namespace HexCardGame.Runtime.Test
         readonly Vector3Int _v3IntPosition = new Vector3Int();
         CardHand _cardHand;
 
-        public void OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int position,
+        public void OnCreateBoardElement(SeatType id, CreatureElement creatureElement, Vector3Int position,
             CardHand card)
         {
             EventReceived = true;

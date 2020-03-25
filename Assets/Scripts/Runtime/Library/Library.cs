@@ -15,15 +15,15 @@ namespace HexCardGame.Runtime
     {
         int Size { get; }
         CardData GetRandomData();
-        CardData GetRandomDataFromPlayer(PlayerId id);
+        CardData GetRandomDataFromPlayer(SeatType id);
     }
 
     public class Library : ILibrary
     {
         readonly CardData[] _register;
-        readonly Dictionary<PlayerId, CardData[]> _registerByPlayer;
+        readonly Dictionary<SeatType, CardData[]> _registerByPlayer;
 
-        public Library(Dictionary<PlayerId, CardData[]> playersLibrary, IDispatcher dispatcher)
+        public Library(Dictionary<SeatType, CardData[]> playersLibrary, IDispatcher dispatcher)
         {
             Dispatcher = dispatcher;
             _registerByPlayer = playersLibrary;
@@ -49,7 +49,7 @@ namespace HexCardGame.Runtime
         public int Size => _register.Length;
         public CardData GetRandomData() => _register.RandomItem();
 
-        public CardData GetRandomDataFromPlayer(PlayerId id) => _registerByPlayer[id].RandomItem();
+        public CardData GetRandomDataFromPlayer(SeatType id) => _registerByPlayer[id].RandomItem();
 
         void OnCreateLibrary() => Dispatcher.Notify<ICreateLibrary>(i => i.OnCreateLibrary(this));
     }

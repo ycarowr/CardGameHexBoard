@@ -1,9 +1,9 @@
 ﻿namespace HexCardGame
 {
     /// <summary> Position where a player can take seat in the game. </summary>
-    public enum PlayerId
+    public enum SeatType
     {
-        User = 0,
-        Ai = 2
+        Bottom = 0,
+        Top = 2
     }
 }

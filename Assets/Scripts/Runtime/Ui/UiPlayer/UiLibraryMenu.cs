@@ -13,13 +13,13 @@ namespace HexCardGame.UI
 
         void UiButtonDraw.IPressDraw.Draw()
         {
-            GameData.CurrentGameInstance.DrawCardFromLibrary(PlayerId.User);
+            GameData.CurrentGameInstance.DrawCardFromLibrary(SeatType.Bottom);
             Hide();
         }
 
         void UiButtonReveal.IPressReveal.Reveal()
         {
-            GameData.CurrentGameInstance.RevealCardHigherPosition(PlayerId.User);
+            GameData.CurrentGameInstance.RevealCardHigherPosition(SeatType.Bottom);
             Hide();
         }
 

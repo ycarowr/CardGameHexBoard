@@ -8,14 +8,14 @@ namespace HexCardGame.Runtime
 
     public class CreatureElement : ICard
     {
-        public CreatureElement(ICardData data, PlayerId ownerId)
+        public CreatureElement(ICardData data, SeatType ownerId)
         {
             OwnerId = ownerId;
             SetData(data);
         }
 
 
-        public PlayerId OwnerId { get; }
+        public SeatType OwnerId { get; }
 
         public ICardData Data { get; private set; }
 

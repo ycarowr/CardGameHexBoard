@@ -44,7 +44,7 @@ namespace Game.Fsm.Tests
         {
             GameData.CurrentGameInstance.StartGame();
             _ended = false;
-            GameData.CurrentGameInstance.ForceWin(PlayerId.User);
+            GameData.CurrentGameInstance.ForceWin(SeatType.Bottom);
             Assert.IsTrue(_ended);
         }
 
@@ -53,7 +53,7 @@ namespace Game.Fsm.Tests
         {
             GameData.CurrentGameInstance.StartGame();
             _ended = false;
-            GameData.CurrentGameInstance.ForceWin(PlayerId.Ai);
+            GameData.CurrentGameInstance.ForceWin(SeatType.Top);
             Assert.IsTrue(_ended);
         }
 

@@ -5,7 +5,7 @@ namespace HexCardGame.Runtime.Game
     [Event]
     public interface ICreateBoardElement
     {
-        void OnCreateBoardElement(PlayerId id, CreatureElement creatureElement, Vector3Int position, CardHand card);
+        void OnCreateBoardElement(SeatType id, CreatureElement creatureElement, Vector3Int position, CardHand card);
     }
 
     public class HandBoard : BaseGameMechanics
@@ -14,20 +14,20 @@ namespace HexCardGame.Runtime.Game
         {
         }
 
-        public void PlayCardAt(PlayerId playerId, CardHand card, Vector3Int position)
+        public void PlayCardAt(SeatType seatType, CardHand card, Vector3Int position)
         {
             if (!Game.IsGameStarted)
                 return;
             if (!Game.IsTurnInProgress)
                 return;
-            if (!Game.TurnLogic.IsMyTurn(playerId))
+            if (!Game.TurnLogic.IsMyTurn(seatType))
                 return;
 
-            var hand = GetPlayerHand(playerId);
+            var hand = GetPlayerHand(seatType);
             if (!hand.Has(card))
                 return;
             var cost = card.Cost;
-            var inventory = GetInventory(playerId);
+            var inventory = GetInventory(seatType);
             var hasEnoughGold = inventory.GetAmount(Inventory.GoldItem) >= cost;
             if (!hasEnoughGold)
                 return;
@@ -43,13 +43,13 @@ namespace HexCardGame.Runtime.Game
             inventory.RemoveItem(Inventory.ActionPointItem, actionPoints);
             inventory.RemoveItem(Inventory.GoldItem, cost);
             hand.Remove(card);
-            var creature = new CreatureElement(card.Data, playerId);
+            var creature = new CreatureElement(card.Data, seatType);
             Game.Board.AddDataAt(creature, position);
-            OnCreateCreature(playerId, creature, position, card);
+            OnCreateCreature(seatType, creature, position, card);
         }
 
-        void OnCreateCreature(PlayerId playerId, CreatureElement creatureElement, Vector3Int position, CardHand card) =>
+        void OnCreateCreature(SeatType seatType, CreatureElement creatureElement, Vector3Int position, CardHand card) =>
             Dispatcher.Notify<ICreateBoardElement>(i =>
-                i.OnCreateBoardElement(playerId, creatureElement, position, card));
+                i.OnCreateBoardElement(seatType, creatureElement, position, card));
     }
 }

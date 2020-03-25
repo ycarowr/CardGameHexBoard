@@ -2,7 +2,7 @@
 {
     public interface ITurnLogic
     {
-        PlayerId CurrentPlayerId { get; }
+        SeatType CurrentSeatType { get; }
 
         /// <summary> List with all the players that are playing the match. </summary>
         IPlayer[] Players { get; }
@@ -32,7 +32,7 @@
         bool IsMyTurn(IPlayer player);
 
         /// <summary> Returns whether is the player turn or not. </summary>
-        bool IsMyTurn(PlayerId id);
+        bool IsMyTurn(SeatType id);
 
         bool IsUser();
         bool IsEnemy();
@@ -41,6 +41,6 @@
         IPlayer GetOpponent(IPlayer player);
 
         /// <summary> Returns a player based on its seat. </summary>
-        IPlayer GetPlayer(PlayerId id);
+        IPlayer GetPlayer(SeatType id);
     }
 }

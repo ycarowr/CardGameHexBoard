@@ -9,7 +9,7 @@ namespace HexCardGame.UI
     [Event]
     public interface ISelectReturnPoolPosition
     {
-        void OnSelectReturnPoolPosition(PlayerId playerId, PositionId positionId);
+        void OnSelectReturnPoolPosition(SeatType seatType, PositionId positionId);
     }
 
     [RequireComponent(typeof(IMouseInput))]
@@ -52,7 +52,7 @@ namespace HexCardGame.UI
                 return;
             if (Position.HasData)
                 return;
-            Dispatcher.Notify<ISelectReturnPoolPosition>(i => i.OnSelectReturnPoolPosition(PlayerId.User, Position.Id));
+            Dispatcher.Notify<ISelectReturnPoolPosition>(i => i.OnSelectReturnPoolPosition(SeatType.Bottom, Position.Id));
         }
     }
 }

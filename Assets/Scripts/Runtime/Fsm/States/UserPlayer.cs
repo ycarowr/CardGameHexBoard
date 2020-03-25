@@ -7,7 +7,7 @@
         {
         }
 
-        protected override PlayerId Id => PlayerId.User;
+        protected override SeatType Id => SeatType.Bottom;
         protected override bool IsAi => GameParameters.Profiles.UserPlayer.IsAi;
         protected override bool IsUser => !GameParameters.Profiles.UserPlayer.IsAi;
     }

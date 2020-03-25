@@ -7,7 +7,7 @@ namespace HexCardGame.Runtime.Test
     {
         protected bool EventReceived;
         protected IGame Game;
-        protected PlayerId PlayerId;
+        protected SeatType SeatType;
 
         public override void Setup()
         {

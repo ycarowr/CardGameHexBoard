@@ -35,17 +35,17 @@ namespace HexCardGame.Runtime.Game
         IPool<CardPool> Pool { get; }
         IBoard<CreatureElement> Board { get; }
         IBoardManipulation BoardManipulation { get; }
-        void ExecuteAiTurn(PlayerId id);
-        void ForceWin(PlayerId id);
+        void ExecuteAiTurn(SeatType id);
+        void ForceWin(SeatType id);
     }
 
     public interface ICardGame
     {
-        void RevealCardHigherPosition(PlayerId playerId);
-        void DrawCardFromLibrary(PlayerId playerId);
-        void FreeDrawCardFromLibrary(PlayerId playerId);
-        void PickCardFromPosition(PlayerId playerId, PositionId positionId);
-        void ReturnCardToPosition(PlayerId playerId, CardHand cardHand, PositionId positionId);
-        void PlayElementAt(PlayerId playerId, CardHand card, Vector3Int position);
+        void RevealCardHigherPosition(SeatType seatType);
+        void DrawCardFromLibrary(SeatType seatType);
+        void FreeDrawCardFromLibrary(SeatType seatType);
+        void PickCardFromPosition(SeatType seatType, PositionId positionId);
+        void ReturnCardToPosition(SeatType seatType, CardHand cardHand, PositionId positionId);
+        void PlayElementAt(SeatType seatType, CardHand card, Vector3Int position);
     }
 }
