@@ -10,7 +10,7 @@ namespace HexCardGame.UI
 
         void IFinishGame.OnFinishGame(IPlayer winner)
         {
-            if (winner.Id == id) StartCoroutine(Play(DelayToNotify));
+            if (winner.Seat == id) StartCoroutine(Play(DelayToNotify));
         }
     }
 }

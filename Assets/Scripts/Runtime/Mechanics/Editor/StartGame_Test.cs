@@ -7,7 +7,7 @@ namespace HexCardGame.Runtime.Test
     {
         public void OnStartGame(IPlayer starter)
         {
-            SeatType = starter.Id;
+            SeatType = starter.Seat;
             EventReceived = true;
         }
 

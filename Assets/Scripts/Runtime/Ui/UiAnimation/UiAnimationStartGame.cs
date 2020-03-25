@@ -10,7 +10,7 @@ namespace HexCardGame.UI
 
         void IStartGame.OnStartGame(IPlayer player)
         {
-            Text.text = player.Id + " player starts!";
+            Text.text = player.Seat + " player starts!";
             StartCoroutine(Animate(DelayToNotify));
         }
 

@@ -39,14 +39,14 @@ namespace HexCardGame.Runtime.Game
         {
             var players = Game.TurnLogic.Players;
             foreach (var p in players)
-                GetInventory(p.Id).AddItem(Inventory.GoldItem, Parameters.Amounts.StartingGold);
+                GetInventory(p.Seat).AddItem(Inventory.GoldItem, Parameters.Amounts.StartingGold);
         }
 
         void DrawStartingHands()
         {
             foreach (var player in Game.TurnLogic.Players)
                 for (var i = 0; i < Parameters.Amounts.StartingHandCount; i++)
-                    Game.FreeDrawCardFromLibrary(player.Id);
+                    Game.FreeDrawCardFromLibrary(player.Seat);
         }
 
         void RevealPool()

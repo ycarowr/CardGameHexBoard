@@ -8,7 +8,7 @@ namespace HexCardGame.Runtime.Test
         public void OnFinishGame(IPlayer winner)
         {
             EventReceived = true;
-            SeatType = winner.Id;
+            SeatType = winner.Seat;
         }
 
         [Test]

@@ -45,7 +45,7 @@ namespace HexCardGame
 
         void IStartGame.OnStartGame(IPlayer starter)
         {
-            var nextState = Fsm.GetPlayerState(starter.Id);
+            var nextState = Fsm.GetPlayerState(starter.Seat);
             Fsm.Controller.MonoBehaviour.StartCoroutine(NextStateRoutine(nextState));
         }
 

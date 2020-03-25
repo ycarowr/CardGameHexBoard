@@ -7,7 +7,7 @@
         }
 
         protected override SeatType Id => SeatType.Top;
-        protected override bool IsAi => GameParameters.Profiles.AiPlayer.IsAi;
-        protected override bool IsUser => !GameParameters.Profiles.AiPlayer.IsAi;
+        protected override bool IsAi => GameParameters.Profiles.remotePlayer.isAi;
+        protected override bool IsUser => !GameParameters.Profiles.remotePlayer.isAi;
     }
 }

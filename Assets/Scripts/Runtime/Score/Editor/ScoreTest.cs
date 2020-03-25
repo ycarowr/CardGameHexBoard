@@ -95,8 +95,8 @@ namespace HexCardGame.Runtime.Test
 
         IPlayer[] GetPlayers() => new IPlayer[]
         {
-            new Player(SeatType.Bottom, Parameters, Dispatcher),
-            new Player(SeatType.Top, Parameters, Dispatcher)
+            new Player(0, SeatType.Bottom, Parameters, Dispatcher),
+            new Player(1, SeatType.Top, Parameters, Dispatcher)
         };
     }
 }

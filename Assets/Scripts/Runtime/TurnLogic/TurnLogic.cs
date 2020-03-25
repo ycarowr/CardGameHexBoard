@@ -20,7 +20,7 @@ namespace HexCardGame.Runtime.GameTurn
         #region Properties
 
         public SeatType CurrentSeatType { get; private set; }
-        public SeatType NextSeatType => CurrentPlayer.Id == SeatType.Bottom ? SeatType.Top : SeatType.Bottom;
+        public SeatType NextSeatType => CurrentPlayer.Seat == SeatType.Bottom ? SeatType.Top : SeatType.Bottom;
         public SeatType StarterSeatType { get; private set; }
         public IPlayer[] Players { get; }
         public int TurnCount { get; private set; }
@@ -54,18 +54,18 @@ namespace HexCardGame.Runtime.GameTurn
         {
             var randomIndex = Random.Range(0, PlayersCount);
             randomIndex = 0;
-            StarterSeatType = Players[randomIndex].Id;
+            StarterSeatType = Players[randomIndex].Seat;
             CurrentSeatType = StarterSeatType;
         }
 
-        public IPlayer GetOpponent(IPlayer player) => player.Id == SeatType.Bottom
+        public IPlayer GetOpponent(IPlayer player) => player.Seat == SeatType.Bottom
             ? GetPlayer(SeatType.Top)
             : GetPlayer(SeatType.Bottom);
 
         public IPlayer GetPlayer(SeatType id)
         {
             foreach (var player in Players)
-                if (player.Id == id)
+                if (player.Seat == id)
                     return player;
 
             return null;

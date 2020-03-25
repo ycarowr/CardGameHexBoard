@@ -29,12 +29,12 @@ MonoBehaviour:
     TimeUntilStartGameEvent: 0.01
     TimeUntilStartTurn: 0.01
   Profiles:
-    AiPlayer:
-      id: 2
-      IsAi: 1
-      LibraryData: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}
-    userId: 0
-    UserPlayer:
-      id: 0
-      IsAi: 0
-      LibraryData: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}
+    localPlayerSeat: 0
+    localPlayer:
+      seat: 0
+      isAi: 0
+      libraryData: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}
+    remotePlayer:
+      seat: 2
+      isAi: 1
+      libraryData: {fileID: 11400000, guid: 3d5744a1844122a4487e514fdd14b68c, type: 2}

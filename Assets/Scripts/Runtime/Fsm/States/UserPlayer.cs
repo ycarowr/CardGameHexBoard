@@ -8,7 +8,7 @@
         }
 
         protected override SeatType Id => SeatType.Bottom;
-        protected override bool IsAi => GameParameters.Profiles.UserPlayer.IsAi;
-        protected override bool IsUser => !GameParameters.Profiles.UserPlayer.IsAi;
+        protected override bool IsAi => GameParameters.Profiles.localPlayer.isAi;
+        protected override bool IsUser => !GameParameters.Profiles.localPlayer.isAi;
     }
 }

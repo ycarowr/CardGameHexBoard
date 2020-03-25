@@ -21,7 +21,7 @@ namespace HexCardGame
             if (!IsMyTurn)
                 return;
 
-            var nextId = Game.TurnLogic.NextPlayer.Id;
+            var nextId = Game.TurnLogic.NextPlayer.Seat;
             var nextState = Fsm.GetPlayerState(nextId);
             Fsm.PushState(nextState);
         }

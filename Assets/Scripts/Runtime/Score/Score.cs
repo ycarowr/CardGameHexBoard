@@ -27,7 +27,7 @@ namespace HexCardGame.Runtime.GameScore
             Parameters = parameters;
             Dispatcher = dispatcher;
             foreach (var i in players)
-                RegisterPlayer(i.Id);
+                RegisterPlayer(i.Seat);
             OnCreateScore();
         }
 

@@ -9,7 +9,7 @@ namespace HexCardGame.UI
 
         void IStartPlayerTurn.OnStartPlayerTurn(IPlayer player)
         {
-            if (player.Id == id)
+            if (player.Seat == id)
                 StartCoroutine(Animate());
         }
     }

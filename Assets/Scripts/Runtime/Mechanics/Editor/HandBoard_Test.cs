@@ -24,7 +24,7 @@ namespace HexCardGame.Runtime.Test
         {
             var player = Game.TurnLogic.CurrentPlayer;
             _cardHand = new CardHand(_mockCardData);
-            Game.PlayElementAt(player.Id, _cardHand, _v3IntPosition);
+            Game.PlayElementAt(player.Seat, _cardHand, _v3IntPosition);
             Assert.IsTrue(EventReceived);
         }
     }

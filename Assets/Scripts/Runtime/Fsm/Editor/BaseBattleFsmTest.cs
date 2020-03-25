@@ -21,7 +21,13 @@ namespace Game.Fsm.Tests
             Dispatcher.AddListener(this);
             Controller = new GameObject("MockFsmController").AddComponent<MockFsmController>();
             Controller.Awake();
-            GameData.Initialize(Controller);
+            
+            var localPlayerSeat = Parameters.Profiles.localPlayer.seat;
+            var remotePlayerSeat = Parameters.Profiles.remotePlayer.seat;
+            
+            var localPlayer = new Player(0, localPlayerSeat, Parameters, Dispatcher);
+            var remotePlayer = new Player(1, remotePlayerSeat, Parameters, Dispatcher);
+            GameData.CreateGame(Controller, localPlayer, remotePlayer);
         }
 
         [TearDown]

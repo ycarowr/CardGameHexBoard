@@ -24,25 +24,22 @@ namespace HexCardGame.Runtime.Game
         void InitializeGameDataStructures(GameArgs args)
         {
             {
-                //Create Players
-                var userId = args.GameParameters.Profiles.UserPlayer.id;
-                var aiId = args.GameParameters.Profiles.AiPlayer.id;
-                var user = new Player(userId, args.GameParameters, args.Dispatcher);
-                var ai = new Player(aiId, args.GameParameters, args.Dispatcher);
-                Players = new[] {user, ai};
+                var localPlayer = args.LocalPlayer;
+                var remotePlayer = args.RemotePlayer;
+                Players = new[] {localPlayer, remotePlayer};
 
                 //Create Hands
                 Hands = new IHand[]
                 {
-                    new Hand(user.Id, args.GameParameters, Dispatcher),
-                    new Hand(ai.Id, args.GameParameters, Dispatcher)
+                    new Hand(localPlayer.Seat, args.GameParameters, Dispatcher),
+                    new Hand(remotePlayer.Seat, args.GameParameters, Dispatcher)
                 };
 
                 //Create Inventories
                 Inventories = new IInventory[]
                 {
-                    new Inventory(user.Id, Parameters, Dispatcher),
-                    new Inventory(ai.Id, Parameters, Dispatcher)
+                    new Inventory(localPlayer.Seat, Parameters, Dispatcher),
+                    new Inventory(remotePlayer.Seat, Parameters, Dispatcher)
                 };
 
                 //Create Score
@@ -62,8 +59,8 @@ namespace HexCardGame.Runtime.Game
                 //Create Library
                 var libData = new Dictionary<SeatType, CardData[]>
                 {
-                    {SeatType.Bottom, args.GameParameters.Profiles.UserPlayer.LibraryData.GetDeck()},
-                    {SeatType.Top, args.GameParameters.Profiles.AiPlayer.LibraryData.GetDeck()}
+                    {SeatType.Bottom, args.GameParameters.Profiles.localPlayer.libraryData.GetDeck()},
+                    {SeatType.Top, args.GameParameters.Profiles.remotePlayer.libraryData.GetDeck()}
                 };
 
                 Library = new Library(libData, Dispatcher);
@@ -81,6 +78,8 @@ namespace HexCardGame.Runtime.Game
             public IDispatcher Dispatcher;
             public IGameController Controller;
             public GameParameters GameParameters;
+            public IPlayer LocalPlayer;
+            public IPlayer RemotePlayer;
         }
     }
 

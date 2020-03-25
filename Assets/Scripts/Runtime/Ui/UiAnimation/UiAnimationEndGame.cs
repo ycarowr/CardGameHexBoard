@@ -14,7 +14,7 @@ namespace HexCardGame.UI
 
         void IFinishGame.OnFinishGame(IPlayer winner)
         {
-            if (winner.Id == id)
+            if (winner.Seat == id)
             {
                 Text.text = Localization.Instance.Get(localizedText);
                 StartCoroutine(Animate(DelayToNotify));

@@ -18,19 +18,18 @@ namespace HexCardGame
         /// <summary>  Clears the game data. </summary>
         public void Clear() => CurrentGameInstance = null;
 
-        void CreateGame(IGameController controller)
+        public void CreateGame(IGameController controller, IPlayer localPlayer, IPlayer remotePlayer)
         {
             var turnBasedArgs = new RuntimeGame.GameArgs
             {
                 Controller = controller,
                 Dispatcher = _dispatcher,
-                GameParameters = gameParameters
+                GameParameters = gameParameters,
+                LocalPlayer = localPlayer,
+                RemotePlayer = remotePlayer
             };
             CurrentGameInstance = new RuntimeGame(turnBasedArgs);
         }
-
-        /// <summary>  Initialize game data. </summary>
-        public void Initialize(IGameController controller) => CreateGame(controller);
 
         void OnEnable()
         {

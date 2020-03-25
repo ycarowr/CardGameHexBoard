@@ -75,28 +75,28 @@ namespace HexCardGame
         [Serializable]
         public class PlayerProfiles
         {
-            public Player AiPlayer = new Player
-            {
-                IsAi = true,
-                id = SeatType.Top
-            };
-
             [Tooltip("Seat where the user player will be sitting.")]
-            public SeatType userId = SeatType.Bottom;
+            public SeatType localPlayerSeat = SeatType.Bottom;
 
             [Tooltip("Configurations for Bottom player")]
-            public Player UserPlayer = new Player
+            public Player localPlayer = new Player
             {
-                IsAi = false,
-                id = SeatType.Bottom
+                isAi = false,
+                seat = SeatType.Bottom
+            };
+            
+            public Player remotePlayer = new Player
+            {
+                isAi = true,
+                seat = SeatType.Top
             };
 
             [Serializable]
             public class Player
             {
-                public SeatType id;
-                public bool IsAi;
-                public PlayerDeck LibraryData;
+                public SeatType seat;
+                public bool isAi;
+                public PlayerDeck libraryData;
             }
         }
 
