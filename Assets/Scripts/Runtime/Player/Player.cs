@@ -12,7 +12,7 @@ namespace HexCardGame
     {
         int NetworkId { get; }
         SeatType Seat { get; }
-        bool IsUser { get; }
+        bool IsLocalPlayer { get; }
     }
 
     /// <summary> A concrete player class. </summary>
@@ -31,7 +31,7 @@ namespace HexCardGame
 
         public int NetworkId { get; }
         public SeatType Seat { get; }
-        public bool IsUser => Seat == GameParameters.Profiles.localPlayerSeat;
+        public bool IsLocalPlayer => Seat == GameParameters.Profiles.localPlayerSeat;
 
         private void OnCreatePlayer()
         {

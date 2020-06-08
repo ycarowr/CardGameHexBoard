@@ -55,8 +55,30 @@ namespace HexCardGame
             var localPlayer = new Player(localPlayerNetworkId, localPlayerSeat, _gameParameters, _dispatcher);
             var remotePlayer = new Player(remotePlayerNetworkId, remotePlayerSeat, _gameParameters, _dispatcher);
 
+            OnConnectPlayer(localPlayer);
+            OnConnectPlayer(remotePlayer);
+            
             if(IsReady())
                 _gameController.StartBattle(localPlayer, remotePlayer);
+        }
+
+        void OnConnectPlayer(IPlayer player)
+        {
+            var playerSeat = player.Seat;
+            var entry = GetEntry(playerSeat);
+            entry.player = player;
+        }
+
+        private ref PlayerEntry GetEntry(SeatType seatType)
+        {
+            for (var index = 0; index < registry.Length; index++)
+            {
+                var entry = registry[index];
+                if (entry.seat == seatType)
+                    return ref registry[index];
+            }
+            
+            throw new ArgumentException($"Entry {seatType} is not registered");
         }
 
         [Serializable]
